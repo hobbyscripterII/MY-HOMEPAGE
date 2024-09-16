@@ -1,9 +1,30 @@
 @charset "UTF-8";
 
 footer {
-	height: 80px;
+	box-sizing: border-box;
+	height: 200px;
+	padding-top: 100px;
 	text-align: center;
-	line-height: 80px;
-	background-color: #000;
-	color: #FFF;
+	background-color: #f15a22;
+	display: block;
+}
+
+footer > p {
+	color: #000 !important;
+}
+
+/*
+#footer-logo {
+	margin: 10px auto;
+}
+*/
+
+#footer-links > a > span {
+	font-family: "Bebas Neue", sans-serif;
+	color: #000;
+	font-size: 3rem;
+}
+
+#footer-links > a {
+	margin-right: 10px;
 }

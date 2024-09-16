@@ -1,8 +1,30 @@
 @charset "UTF-8";
 
 article {
+	box-sizing: border-box;
     width: 700px;
     height: 1000px;
     background-color: #FFF;
     margin: 20px auto;
+    padding: 10px;
+}
+
+#article-board-main {
+	display: block;
+}
+
+#article-title {
+	width: 100%;
+	font-family: "Bebas Neue", sans-serif;
+	color: #000;
+	font-size: 3rem;
+	text-align: center;
+}
+
+#table-list {
+	width: 100%;
+}
+
+#btn-grp {
+	text-align: right;
 }

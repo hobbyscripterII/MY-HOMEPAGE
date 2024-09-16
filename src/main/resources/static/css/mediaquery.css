@@ -2,25 +2,47 @@
 
 @media (max-width: 768px) {
 	article {
-		width: 100%;
-		margin: 0;
-		background-color: rgba(255, 255, 255, 0.7);
+	    width: 90%;
+	    height: auto;
+	    margin: 20px auto;
 	}
 	
-    #header-hamburger-btn {
-	    width: 30px;
-	    height: 30px;
-    }
+	main {
+		height: 100vh;
+	}
+	
+	#header-hamburger-btn {
+	    height: 20px;
+	    cursor: pointer;
+	    padding: 0 15px 0px 15px;
+	    margin: 10px 0 0 5px;
+	}
 
 	#header-logo {
-	    width: 270px;
-	    height: auto;
-	    margin-left: 20px;
 	    margin-top: 5px;
 	}
 
 	#header-sidebar.open {
 		width: 100%;
-		padding-left: 0;
+		padding-left: 35px;
+	}
+	
+	#header-sidebar > a {
+		font-size: 3rem;
+	}
+	
+	footer {
+		padding-top: 10px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	
+	#footer-links > a {
+		width: 100%;
+	}
+	
+	#footer-links > a > span {
+		font-size: 2.3rem;
 	}
 }
