@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+@media (max-width: 768px) {
+	article {
+		width: 100%;
+		margin: 0;
+		background-color: rgba(255, 255, 255, 0.7);
+	}
+	
+    #header-hamburger-btn {
+	    width: 30px;
+	    height: 30px;
+    }
+
+	#header-logo {
+	    width: 270px;
+	    height: auto;
+	    margin-left: 20px;
+	    margin-top: 5px;
+	}
+
+	#header-sidebar.open {
+		width: 100%;
+		padding-left: 0;
+	}
+}

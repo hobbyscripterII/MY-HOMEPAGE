@@ -9,7 +9,6 @@ body {
     height: 100vh;
     background-image: url("/img/img-bg.jpg");
     background-size: cover;
-    /*background-position-y: -340px;*/
 }
 
 a {
