@@ -8,7 +8,7 @@
 	<select id="boardGet" parameterType="map" resultType="map">
 	SELECT IBOARD, ICODE, TITLE, CREATED_AT
 	FROM tbl_board
-	WHERE DEL_YN = 'N'
+	WHERE DEL_YN = 'N' AND ICODE = #{code}
 	ORDER BY CREATED_AT DESC
 	</select>
 	

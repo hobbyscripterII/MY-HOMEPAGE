@@ -9,10 +9,10 @@
 <div class="overlay"></div>
 <div id="header-sidebar">
 	<a th:href="@{/board/list(code='B001')}">NOTICE</a>
-	<a href="#">MENU2</a>
-	<a href="#">MENU3</a>
-	<a href="#">MENU4</a>
-	<a href="#">MENU5</a>
+	<a th:href="@{/board/list(code='B002')}">STUDY</a>
+	<a href="#">PHOTO</a>
+	<a href="#">MUSIC</a>
+	<a href="#">DAILY</a>
 	
 	<th:block sec:authorize="isAnonymous()">		<!-- 익명 사용자일 경우 로그인 버튼 출력 -->
 		<a th:href="@{/login}">LOGIN</a>

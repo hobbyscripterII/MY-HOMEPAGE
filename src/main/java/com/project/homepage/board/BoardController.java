@@ -32,7 +32,10 @@ public class BoardController {
 	// 목록형 게시판
 	@GetMapping("/list")
 	public String mainList(@RequestParam Map<String, Object> requestMap, Model model) {
+		String code = (String) requestMap.get("code");
+		
 		model.addAttribute(Const.DATA, service.boardGet(requestMap));
+		model.addAttribute(Const.ARTICLE_TITLE, articleTitleGet(code));
 		return "board/list";
 	}
 	
@@ -54,9 +57,6 @@ public class BoardController {
 	public Map<String, Object> writeMarkdown(@RequestBody Map<String, Object> requestMap) {
 		Map<String, Object> responseMap = new HashMap();
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
-//		String icode = (String)requestMap.get("icode");
-//		String title = (String) requestMap.get("title");
-//		String contents = (String)requestMap.get("contents");
 		
 		int boardInsert = service.boardInsert(requestMap);
 		
@@ -112,7 +112,6 @@ public class BoardController {
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
 		
 		int boardDelete = service.boardDelete(iboard);
-		log.info("boardDelete = {}", boardDelete);
 		
 		if(boardDelete == 1) {
 			responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);
@@ -128,6 +127,7 @@ public class BoardController {
 		
 		switch (code) {
 		case "B001": title = "NOTICE"; break;
+		case "B002": title = "STUDY"; break;
 		}
 		return title;
 	}
