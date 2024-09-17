@@ -45,4 +45,9 @@
 	#footer-links > a > span {
 		font-size: 2.3rem;
 	}
+	
+	/* 모바일 일 때 숨김 처리 */
+	.mobile-hide {
+		display: none;
+	}
 }
