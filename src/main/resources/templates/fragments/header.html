@@ -13,14 +13,13 @@
 	<a href="#">MENU3</a>
 	<a href="#">MENU4</a>
 	<a href="#">MENU5</a>
+	
+	<th:block sec:authorize="isAnonymous()">		<!-- 익명 사용자일 경우 로그인 버튼 출력 -->
+		<a th:href="@{/login}">LOGIN</a>
+	</th:block>
+	<th:block sec:authorize="isAuthenticated()">	<!-- 권한 관계없이 인증 완료 후 로그아웃 버튼 출력 -->
+		<a th:href="@{/logout}">LOGOUT</a>
+	</th:block>
 </div>
 </header>
-
-<!--
-<script th:inline="javascript">
-    function logout() {
-        if (confirm('로그아웃하시겠습니까?')) { alert('로그아웃이 완료되었습니다.'); location.href = '/logout'; }
-    }
-</script>
--->
 </html>

@@ -33,3 +33,13 @@ article {
 #write-title {
 	margin-bottom: 5px;
 }
+
+#login {
+    margin-top: 10px;
+    width: 100%;
+}
+
+#access-denied-home > p {
+	width: 100%;
+	text-align: center;
+}
