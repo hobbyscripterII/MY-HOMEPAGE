@@ -8,27 +8,97 @@
 		WRITE
 	</p>
 	
-<!--
-	<table class="table table-hover" id="table-list">
-		<thead>
-			<tr>
-				<th scope="col">번호</th>
-				<th scope="col">제목</th>
-				<th scope="col">작성일</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class="table">
-				<td>1</td>
-				<td>공지사항입니다.</td>
-				<td>2024-09-16 23:28</td>
-			</tr>
-		</tbody>
-	</table>
+	<input type="text" id="write-title" class="form-control">
+	
+	<div id="editor"></div>
 	
 	<div id="btn-grp">
-		<button type="button" class="btn btn-primary">WRITE</button>
+		<button type="button" id="btn-cancel" class="btn btn-danger">CANCEL</button>
+		<button type="button" id="btn-write" class="btn btn-success">WRITE</button>
 	</div>
--->
 </article>
+
+<script th:inline="javascript">
+	let $btnWrite = $('#btn-write');
+	let $data = ([[${DATA}]] || '');
+	let $iboard = ($data.iboard || '');
+	let $code = ($data.icode == '' ? $data.icode : [[${param.code}]]);
+	
+	const editor = new toastui.Editor({
+	    el: document.querySelector('#editor'),
+	    previewStyle: 'vertical',
+	    height: '500px'
+	});
+	
+	if($iboard != '') {
+		$('#btn-write').html('UPDATE');
+		$('#article-title').html('UPDATE');
+		$('#write-title').val($data.title);
+		editor.setHTML($data.contents);
+		
+		$('#btn-write').attr('id', 'btn-update');
+	}
+	
+	$('#btn-update').click(() => {
+		if(confirm('게시글을 수정하시겠습니까?')) {
+			let title = $('#write-title').val();
+			let contents = editor.getHTML().trim();
+			let dto = {iboard : $iboard, title : title, contents : contents};
+			
+			$.ajax({
+				type		: 'PATCH',
+				url			: '/board/update-md',
+				data		: JSON.stringify(dto),
+				contentType	: 'application/json',
+				success		: (data) => {
+					const RESULT = data.RESULT;
+					
+					if(RESULT == 1) {
+						alert('게시글이 수정되었습니다.');
+						location.href = '/board/read-md?iboard=' + $iboard;
+					} else {
+						alert('게시글 수정에 실패하였습니다.');
+						return;
+					}
+				}, error	: (err) => {
+					console.log('err = ', err);
+				}
+			})
+		}
+	});
+	
+	$btnWrite.click(() => {
+		let paramCode = `[[${param.code}]]`;
+		let code = paramCode.replace(/[\[\]"]/g, '');
+		let title = $('#write-title').val();
+		let contents = editor.getHTML().trim();
+		let dto = {icode : code, title : title, contents : contents};
+		
+		$.ajax({
+			type		: 'POST',
+			url			: '/board/write-md',
+			data		: JSON.stringify(dto),
+			contentType	: 'application/json',
+			success		: (data) => {
+				const RESULT = data.RESULT;
+				
+				if(RESULT == 1) {
+					alert('게시글이 등록되었습니다.');
+					location.href = '/board/list?code=' + code;
+				} else {
+					alert('게시글 등록에 실패하였습니다.');
+					return;
+				}
+			}, error	: (err) => {
+				console.log('err = ', err);
+			}
+		})
+	});
+	
+	$('#btn-cancel').click(() => {
+		if(confirm('게시글 작성을 취소하고 목록으로 돌아가시겠습니까?')) {
+			location.href = '/board/list?code=' + $code;
+		}
+	});
+</script>
 </html>

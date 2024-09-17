@@ -17,16 +17,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="table">
-				<td>1</td>
-				<td>공지사항입니다.</td>
-				<td>2024-09-16 23:28</td>
+			<tr class="table" th:each="data : ${DATA}">
+				<td th:text="${data.IBOARD}">1</td>
+				<td><a th:href="@{/board/read-md(iboard = ${data.IBOARD})}"><span th:text="${data.TITLE}"></span></a></td>
+				<td th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">2024-09-16 23:28</td>
 			</tr>
 		</tbody>
 	</table>
 	
 	<div id="btn-grp">
-		<button type="button" class="btn btn-primary" th:onclick="|location.href='@{/board/write(code='B001')}'|">WRITE</button>
+		<button type="button" class="btn btn-primary" th:onclick="|location.href='@{/board/write-md(code = 'B001')}'|">WRITE</button>
 	</div>
 </article>
 </html>

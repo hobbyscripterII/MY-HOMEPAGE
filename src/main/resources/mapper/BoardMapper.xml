@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.homepage.board.BoardMapper">
+	<insert id="boardInsert" parameterType="map">
+	INSERT INTO tbl_board(ICODE, IADMIN, TITLE, CONTENTS) VALUES(#{icode}, '1', #{title}, #{contents})
+	</insert>
+	
+	<select id="boardGet" parameterType="map" resultType="map">
+	SELECT IBOARD, ICODE, TITLE, CREATED_AT
+	FROM tbl_board
+	WHERE DEL_YN = 'N'
+	ORDER BY CREATED_AT DESC
+	</select>
+	
+	<select id="boardSelect" parameterType="map" resultType="map">
+	SELECT *
+	FROM tbl_board
+	WHERE IBOARD = #{iboard}
+	</select>
+	
+	<update id="boardDelete" parameterType="string">
+	UPDATE tbl_board SET DEL_YN = 'Y' WHERE IBOARD = #{iboard}
+	</update>
+	
+	<update id="boardUpdate" parameterType="map">
+	UPDATE tbl_board SET
+	TITLE = #{title},
+	CONTENTS = #{contents}
+	WHERE IBOARD = #{iboard}
+	</update>
+</mapper>

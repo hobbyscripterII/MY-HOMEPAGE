@@ -27,4 +27,9 @@ article {
 
 #btn-grp {
 	text-align: right;
+	margin-top: 10px;
+}
+
+#write-title {
+	margin-bottom: 5px;
 }
