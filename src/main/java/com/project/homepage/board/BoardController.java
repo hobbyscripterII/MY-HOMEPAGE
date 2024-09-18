@@ -77,7 +77,9 @@ public class BoardController {
 	@GetMapping("/read-md")
 	public String readMarkdown(@RequestParam Map<String, Object> requestMap, Model model) {
 		Map<String, Object> boardSelect = service.boardSelect(requestMap);
-		
+		// 쿼리에서 받아온 결과가 NULL인 경우 Map에 추가되지 않으므로 해당 Key 값이 없을 경우 직접 넣어준다.
+		boardSelect.putIfAbsent("NAME", "");
+		log.info("boardSelect = {}", boardSelect);
 		String code = (String) boardSelect.get("icode");
 		boardSelect.put("article_title", articleTitleGet(code));
 		boardSelect.put("contents", commonmarkUtil.markdown((String) boardSelect.get("contents")));
@@ -125,6 +127,9 @@ public class BoardController {
 		switch (code) {
 		case "B001": title = "NOTICE"; break;
 		case "B002": title = "STUDY"; break;
+		case "B003": title = "PHOTO"; break;
+		case "B004": title = "MUSIC"; break;
+		case "B005": title = "DAILY"; break;
 		}
 		return title;
 	}

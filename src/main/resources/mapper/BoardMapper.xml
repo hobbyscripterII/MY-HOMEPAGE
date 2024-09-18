@@ -18,7 +18,7 @@
 	<select id="boardSelect" parameterType="map" resultType="map">
 	SELECT *
 	FROM tbl_board A
-	INNER JOIN tbl_thumbnail B
+	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
 	WHERE A.iboard = #{iboard}
 	</select>
@@ -37,4 +37,53 @@
 	<insert id="thumbnailInsert" parameterType="map">
 	INSERT INTO tbl_thumbnail(IBOARD, NAME) VALUES(#{iboard}, #{name})
 	</insert>
+	
+	<select id="latestPostGet" parameterType="map">
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B001'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
+	UNION ALL
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B002'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B003'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B004'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B005'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
+	</select>
 </mapper>

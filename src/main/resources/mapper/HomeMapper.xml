@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.homepage.home.HomeMapper">
+	<select id="latestPostGet" parameterType="map">
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B001'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
+	UNION ALL
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B002'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
+	</select>
+</mapper>

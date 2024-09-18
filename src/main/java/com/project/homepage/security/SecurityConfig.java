@@ -29,7 +29,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/", "/css/**", "/js/**", "/img/**",
                                 "/login", "/logout", "/access-denied",
-                                "/board/", "/board/list/**", "/board/read-md/**"
+                                "/board/", "/board/list/**", "/board/read-md/**",
+                                "/thumbnail/**"
                         ).permitAll()
                         // ADMIN만 접근 가능
                         .anyRequest().hasRole("ADMIN")

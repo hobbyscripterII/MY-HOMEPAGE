@@ -3,6 +3,78 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
+      
+<div id="thumbnail-home-notice">
+	<p class="thumbnail-home-title">NOTICE</p>
+	<div class="thumbnail-contents-wrap">
+		<th:block th:each="data : ${DATA}">
+			<th:block th:if="${data.icode == 'B001'}">
+				<div class="thumbnail-item">
+					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><img th:src="${data.NAME}" alt="썸네일"></a>
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+				</div>
+			</th:block>
+		</th:block>
+	</div>
+</div>
+
+<div id="thumbnail-home-study">
+	<p class="thumbnail-home-title">STUDY</p>
+	<div class="thumbnail-contents-wrap">
+		<th:block th:each="data : ${DATA}">
+			<th:block th:if="${data.icode == 'B002'}">
+				<div class="thumbnail-item">
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><img th:src="${data.NAME}" alt="썸네일"></a>
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+				</div>
+			</th:block>
+		</th:block>
+	</div>
+</div>
+
+<div id="thumbnail-home-photo">
+	<p class="thumbnail-home-title">PHOTO</p>
+	<div class="thumbnail-contents-wrap">
+		<th:block th:each="data : ${DATA}">
+			<th:block th:if="${data.icode == 'B003'}">
+				<div class="thumbnail-item">
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><img th:src="${data.NAME}" alt="썸네일"></a>
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+				</div>
+			</th:block>
+		</th:block>
+	</div>
+</div>
+
+<div id="thumbnail-home-music">
+	<p class="thumbnail-home-title">MUSIC</p>
+	<div class="thumbnail-contents-wrap">
+		<th:block th:each="data : ${DATA}">
+			<th:block th:if="${data.icode == 'B004'}">
+				<div class="thumbnail-item">
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><img th:src="${data.NAME}" alt="썸네일"></a>
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+				</div>
+			</th:block>
+		</th:block>
+	</div>
+</div>
+
+<div id="thumbnail-home-daily">
+	<p class="thumbnail-home-title">DAILY</p>
+	<div class="thumbnail-contents-wrap">
+		<th:block th:each="data : ${DATA}">
+			<th:block th:if="${data.icode == 'B005'}">
+				<div class="thumbnail-item">
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><img th:src="${data.NAME}" alt="썸네일"></a>
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+				</div>
+			</th:block>
+		</th:block>
+	</div>
+</div>
+
 <article id="article-home">
 </article>
 </html>

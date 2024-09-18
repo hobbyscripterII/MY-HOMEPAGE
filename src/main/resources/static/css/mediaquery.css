@@ -8,7 +8,7 @@
 	}
 	
 	main {
-		height: 100vh;
+		height: auto;
 	}
 	
 	#header-hamburger-btn {
@@ -49,5 +49,19 @@
 	/* 모바일 일 때 숨김 처리 */
 	.mobile-hide {
 		display: none;
+	}
+	
+	#thumbnail-home-notice, #thumbnail-home-study {
+	    width: 90%;
+	    height: auto;
+	    margin: 20px auto;
+	}
+	
+	.thumbnail-contents-wrap {
+		display: block;
+	}
+	
+	.thumbnail-item {
+		width: 100%;
 	}
 }
