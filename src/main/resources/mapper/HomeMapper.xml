@@ -7,7 +7,7 @@
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
-	WHERE A.icode = 'B001'
+	WHERE A.icode = 'B001' AND A.del_yn = 'N'
 	ORDER BY A.CREATED_AT DESC
 	LIMIT 3
 	)
@@ -17,7 +17,7 @@
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
-	WHERE A.icode = 'B002'
+	WHERE A.icode = 'B002' AND A.del_yn = 'N'
 	ORDER BY A.CREATED_AT DESC
 	LIMIT 3
 	)
@@ -27,7 +27,7 @@
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
-	WHERE A.icode = 'B003'
+	WHERE A.icode = 'B003' AND A.del_yn = 'N'
 	ORDER BY A.CREATED_AT DESC
 	LIMIT 3
 	)
@@ -37,7 +37,7 @@
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
-	WHERE A.icode = 'B004'
+	WHERE A.icode = 'B004' AND A.del_yn = 'N'
 	ORDER BY A.CREATED_AT DESC
 	LIMIT 3
 	)
@@ -47,7 +47,7 @@
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
-	WHERE A.icode = 'B005'
+	WHERE A.icode = 'B005' AND A.del_yn = 'N'
 	ORDER BY A.CREATED_AT DESC
 	LIMIT 3
 	)
