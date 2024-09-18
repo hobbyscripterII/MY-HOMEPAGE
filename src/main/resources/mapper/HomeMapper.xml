@@ -21,5 +21,32 @@
 	ORDER BY A.CREATED_AT DESC
 	LIMIT 3
 	)
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B003'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B004'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
+	(
+	SELECT *
+	FROM tbl_board A
+	LEFT JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.icode = 'B005'
+	ORDER BY A.CREATED_AT DESC
+	LIMIT 3
+	)
 	</select>
 </mapper>
