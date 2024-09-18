@@ -1,8 +1,8 @@
 package com.project.homepage.cmmn.util;
 
-import org.commonmark.html.HtmlRenderer;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.stereotype.Component;
 
 @Component

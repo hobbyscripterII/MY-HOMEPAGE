@@ -47,3 +47,9 @@ article {
 #editor {
 	padding-left: 20px;
 }
+
+#thumbnail-preview {
+	display: none;
+	height: 200px;
+	margin-bottom: 10px;
+}

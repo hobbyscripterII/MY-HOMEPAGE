@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.ResponseCode;
@@ -57,17 +59,17 @@ public class BoardController {
 	
 	@ResponseBody
 	@PostMapping("/write-md")
-	public Map<String, Object> writeMarkdown(@RequestBody Map<String, Object> requestMap) {
+	public Map<String, Object> writeMarkdown(@RequestPart("thumbnail") MultipartFile thumbnail, @RequestParam Map<String, Object> requestMap) {
 		Map<String, Object> responseMap = new HashMap();
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
 		
-		int boardInsert = service.boardInsert(requestMap);
-		
-		if(boardInsert == 1) {
-			responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);
-		} else {
-			responseMap.put(Const.RESULT, ResponseCode.FAIL.code);
-		}
+//		int boardInsert = service.boardInsert(requestMap);
+//		
+//		if(boardInsert == 1) {
+//			responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);
+//		} else {
+//			responseMap.put(Const.RESULT, ResponseCode.FAIL.code);
+//		}
 		
 		return responseMap;
 	}
