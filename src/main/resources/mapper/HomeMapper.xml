@@ -21,6 +21,7 @@
 	ORDER BY A.CREATED_AT DESC
 	LIMIT 3
 	)
+	UNION ALL
 	(
 	SELECT *
 	FROM tbl_board A
@@ -30,6 +31,7 @@
 	ORDER BY A.CREATED_AT DESC
 	LIMIT 3
 	)
+	UNION ALL
 	(
 	SELECT *
 	FROM tbl_board A
@@ -39,6 +41,7 @@
 	ORDER BY A.CREATED_AT DESC
 	LIMIT 3
 	)
+	UNION ALL
 	(
 	SELECT *
 	FROM tbl_board A
