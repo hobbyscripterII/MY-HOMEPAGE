@@ -24,7 +24,10 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(@RequestParam Map<String, Object> requestMap, Model model) {
 		List<Map<String, Object>> latestPostGet = service.latestPostGet(requestMap);
-		log.info("latestPostGet = {}", latestPostGet);
+		
+		for(Map<String, Object> post : latestPostGet) {
+			post.putIfAbsent("NAME", "");
+		}
 		
 		model.addAttribute(Const.DATA, latestPostGet);
 		return "home";

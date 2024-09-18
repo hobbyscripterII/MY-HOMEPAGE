@@ -54,7 +54,6 @@ public class BoardController {
 	
 	@GetMapping("/write-md")
 	public String write(@RequestParam Map<String, Object> requestMap) {
-		log.info("requestMap = {}", requestMap);
 		
 		return "board/write-md";
 	}
@@ -79,7 +78,6 @@ public class BoardController {
 		Map<String, Object> boardSelect = service.boardSelect(requestMap);
 		// 쿼리에서 받아온 결과가 NULL인 경우 Map에 추가되지 않으므로 해당 Key 값이 없을 경우 직접 넣어준다.
 		boardSelect.putIfAbsent("NAME", "");
-		log.info("boardSelect = {}", boardSelect);
 		String code = (String) boardSelect.get("icode");
 		boardSelect.put("article_title", articleTitleGet(code));
 		boardSelect.put("contents", commonmarkUtil.markdown((String) boardSelect.get("contents")));
