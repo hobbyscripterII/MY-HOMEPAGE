@@ -9,11 +9,15 @@
 </style>
 <article id="article-board-main">
 	<p id="article-title" th:text="${DATA.article_title}">
-		
 	</p>
 	
 	<strong th:text="${DATA.title}"></strong>
 	<hr>
+	
+	<div id="thumbnail-wrap">
+		<img id="thumbnail" alt="썸네일">
+	</div>
+	
 	<div id="editor"></div>
 	
 	<div id="btn-grp">
@@ -29,6 +33,17 @@
 	$(document).ready(() => {
 		let contents = [[${DATA.contents}]];
 		$('#editor').html(contents);
+	});
+
+	$(document).ready(() => {
+		let thumbnail = $('#thumbnail');
+		let name = ([[${DATA.NAME}]] || '');
+		
+		if(name != '') {
+			thumbnail.attr('src', name);
+			thumbnail.css('display', 'block');
+		}
+		
 	});
 	
 	let $btnDelete = $('#btn-delete');
@@ -58,16 +73,6 @@
 				}
 			})
 		}
-		
-		/*
-		let paramCode = `[[${param.code}]]`;
-		let code = paramCode.replace(/[\[\]"]/g, '');
-		let title = $('#write-title').val();
-		let contents = editor.getHTML().trim();
-		let dto = {icode : code, title : title, contents : contents};
-		
-
-		*/
 	})
 </script>
 </html>

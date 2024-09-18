@@ -1,5 +1,6 @@
 package com.project.homepage.board;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.ResponseCode;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
+import com.project.homepage.cmmn.util.FileUploadUtil;
 
 @Controller
 @RequestMapping("/board")
@@ -59,19 +61,8 @@ public class BoardController {
 	
 	@ResponseBody
 	@PostMapping("/write-md")
-	public Map<String, Object> writeMarkdown(@RequestPart("thumbnail") MultipartFile thumbnail, @RequestParam Map<String, Object> requestMap) {
-		Map<String, Object> responseMap = new HashMap();
-		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
-		
-//		int boardInsert = service.boardInsert(requestMap);
-//		
-//		if(boardInsert == 1) {
-//			responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);
-//		} else {
-//			responseMap.put(Const.RESULT, ResponseCode.FAIL.code);
-//		}
-		
-		return responseMap;
+	public Map<String, Object> writeMarkdown(@RequestPart(name = "thumbnail", required = false) MultipartFile thumbnail, @RequestParam Map<String, Object> requestMap) throws IOException {
+		return service.boardInsert(thumbnail, requestMap);
 	}
 	
 	@GetMapping("/update-md")
@@ -86,6 +77,7 @@ public class BoardController {
 	@GetMapping("/read-md")
 	public String readMarkdown(@RequestParam Map<String, Object> requestMap, Model model) {
 		Map<String, Object> boardSelect = service.boardSelect(requestMap);
+		
 		String code = (String) boardSelect.get("icode");
 		boardSelect.put("article_title", articleTitleGet(code));
 		boardSelect.put("contents", commonmarkUtil.markdown((String) boardSelect.get("contents")));

@@ -13,4 +13,5 @@ public interface BoardMapper {
 	public Map<String, Object> boardSelect(Map<String, Object> requestMap);
 	public int boardDelete(String iboard);
 	public int boardUpdate(Map<String, Object> requestMap);
+	public int thumbnailInsert(Map<String, Object> requestMap);
 }

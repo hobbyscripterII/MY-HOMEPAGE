@@ -48,8 +48,21 @@ article {
 	padding-left: 20px;
 }
 
-#thumbnail-preview {
+#thumbnail, #thumbnail-preview {
 	display: none;
-	height: 200px;
 	margin-bottom: 10px;
+}
+
+#thumbnail {
+	height: 250px;
+}
+
+#thumbnail-preview {
+	height: 200px;
+}
+
+#thumbnail-wrap {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.homepage.board.BoardMapper">
-	<insert id="boardInsert" parameterType="map">
+	<insert id="boardInsert" useGeneratedKeys="true" keyColumn="iboard" parameterType="map">
 	INSERT INTO tbl_board(ICODE, IADMIN, TITLE, CONTENTS) VALUES(#{icode}, '1', #{title}, #{contents})
+	<selectKey keyProperty="iboard" resultType="integer">
+	SELECT LAST_INSERT_ID()
+	</selectKey>
 	</insert>
 	
 	<select id="boardGet" parameterType="map" resultType="map">
@@ -14,8 +17,10 @@
 	
 	<select id="boardSelect" parameterType="map" resultType="map">
 	SELECT *
-	FROM tbl_board
-	WHERE IBOARD = #{iboard}
+	FROM tbl_board A
+	INNER JOIN tbl_thumbnail B
+	ON A.iboard = B.iboard
+	WHERE A.iboard = #{iboard}
 	</select>
 	
 	<update id="boardDelete" parameterType="string">
@@ -28,4 +33,8 @@
 	CONTENTS = #{contents}
 	WHERE IBOARD = #{iboard}
 	</update>
+	
+	<insert id="thumbnailInsert" parameterType="map">
+	INSERT INTO tbl_thumbnail(IBOARD, NAME) VALUES(#{iboard}, #{name})
+	</insert>
 </mapper>
