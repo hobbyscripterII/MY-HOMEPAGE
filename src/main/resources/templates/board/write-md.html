@@ -24,8 +24,8 @@
 	let $btnWrite = $('#btn-write');
 	let $data = ([[${DATA}]] || '');
 	let $iboard = ($data.iboard || '');
-	let $code = ($data.icode == '' ? $data.icode : [[${param.code}]]);
-	
+	let $code = ($data.icode != '' ? $data.icode : [[${param.code}]]);
+
 	// SimpleMDE 웹에디터 초기화
 	var editor = new SimpleMDE({
 		element: $("#editor")[0]
