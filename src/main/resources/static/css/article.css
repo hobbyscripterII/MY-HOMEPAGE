@@ -43,3 +43,7 @@ article {
 	width: 100%;
 	text-align: center;
 }
+
+#editor {
+	padding-left: 20px;
+}

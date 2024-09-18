@@ -4,6 +4,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
+<style>
+	#article-board-main { overflow: auto; }
+</style>
 <article id="article-board-main">
 	<p id="article-title" th:text="${DATA.article_title}">
 		

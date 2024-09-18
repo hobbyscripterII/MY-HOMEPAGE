@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
+
 <article id="article-board-main">
 	<p id="article-title">
 		WRITE
@@ -10,7 +11,8 @@
 	
 	<input type="text" id="write-title" class="form-control">
 	
-	<div id="editor"></div>
+	<textarea id="editor"></textarea>
+	<!-- <div id="editor"></div> -->
 	
 	<div id="btn-grp">
 		<button type="button" id="btn-cancel" class="btn btn-danger">CANCEL</button>
@@ -24,17 +26,16 @@
 	let $iboard = ($data.iboard || '');
 	let $code = ($data.icode == '' ? $data.icode : [[${param.code}]]);
 	
-	const editor = new toastui.Editor({
-	    el: document.querySelector('#editor'),
-	    previewStyle: 'vertical',
-	    height: '500px'
+	// SimpleMDE 웹에디터 초기화
+	var editor = new SimpleMDE({
+		element: $("#editor")[0]
 	});
 	
 	if($iboard != '') {
 		$('#btn-write').html('UPDATE');
 		$('#article-title').html('UPDATE');
 		$('#write-title').val($data.title);
-		editor.setHTML($data.contents);
+		editor.value($data.contents);
 		
 		$('#btn-write').attr('id', 'btn-update');
 	}
@@ -42,7 +43,7 @@
 	$('#btn-update').click(() => {
 		if(confirm('게시글을 수정하시겠습니까?')) {
 			let title = $('#write-title').val();
-			let contents = editor.getHTML().trim();
+			let contents = editor.value();
 			let dto = {iboard : $iboard, title : title, contents : contents};
 			
 			$.ajax({
@@ -71,7 +72,8 @@
 		let paramCode = `[[${param.code}]]`;
 		let code = paramCode.replace(/[\[\]"]/g, '');
 		let title = $('#write-title').val();
-		let contents = editor.getHTML().trim();
+		let contents = editor.value();
+		console.log('contents = ', contents);
 		let dto = {icode : code, title : title, contents : contents};
 		
 		$.ajax({

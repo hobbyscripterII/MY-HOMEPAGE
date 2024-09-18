@@ -18,15 +18,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.ResponseCode;
+import com.project.homepage.cmmn.util.CommonmarkUtil;
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 	private final BoardService service;
+	private final CommonmarkUtil commonmarkUtil;
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
-	public BoardController(BoardService service) {
+	public BoardController(BoardService service, CommonmarkUtil commonmarkUtil) {
 		this.service = service;
+		this.commonmarkUtil = commonmarkUtil;
 	}
 	
 	// 목록형 게시판
@@ -83,7 +86,7 @@ public class BoardController {
 		Map<String, Object> boardSelect = service.boardSelect(requestMap);
 		String code = (String) boardSelect.get("icode");
 		boardSelect.put("article_title", articleTitleGet(code));
-		
+		boardSelect.put("contents", commonmarkUtil.markdown((String) boardSelect.get("contents")));
 		model.addAttribute(Const.DATA, boardSelect);
 		return "board/read-md";
 	}
