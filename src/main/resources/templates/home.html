@@ -11,7 +11,14 @@
 			<th:block th:if="${data.icode == 'B001'}">
 				<div class="thumbnail-item">
 					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><img th:src="${data.NAME}" alt="썸네일"></a>
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
+						<th:block th:if="${data.NAME != ''}">
+							<img th:src="${data.NAME}" alt="썸네일">
+						</th:block>
+						<th:block th:if="${data.NAME == ''}">
+							<img th:src="@{/img/img-noimage.png}" alt="썸네일">
+						</th:block>
+					</a>
 					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
 				</div>
 			</th:block>

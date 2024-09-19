@@ -33,16 +33,15 @@
 	$(document).ready(() => {
 		let contents = [[${DATA.contents}]];
 		$('#editor').html(contents);
-	});
-
-	$(document).ready(() => {
-		let thumbnail = $('#thumbnail');
+		
+		
+		let thumbnailPreview = $('#thumbnail-preview');
 		let name = ([[${DATA.NAME}]] || '');
 		let height = $('main').height();
 		
 		if(name != '') {
-			thumbnail.attr('src', name);
-			thumbnail.css('display', 'block');
+			thumbnailPreview.attr('src', name);
+			thumbnailPreview.css('display', 'block');
 		}
 		
 		if($(window).width() <= 768) {
