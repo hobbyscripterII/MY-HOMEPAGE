@@ -6,17 +6,16 @@
       layout:fragment="article">
 <style>
 	#article-board-main { overflow: auto; }
-	main { height: 100%; }
 </style>
 <article id="article-board-main">
 	<p id="article-title" th:text="${DATA.article_title}">
 	</p>
 	
-	<strong th:text="${DATA.title}"></strong>
+	<strong id="read-title" th:text="${DATA.title}"></strong>
 	<hr>
 	
 	<div id="thumbnail-wrap">
-		<img id="thumbnail" alt="썸네일">
+		<img id="thumbnail-preview" alt="썸네일">
 	</div>
 	
 	<div id="editor"></div>
@@ -39,12 +38,18 @@
 	$(document).ready(() => {
 		let thumbnail = $('#thumbnail');
 		let name = ([[${DATA.NAME}]] || '');
+		let height = $('main').height();
 		
 		if(name != '') {
 			thumbnail.attr('src', name);
 			thumbnail.css('display', 'block');
 		}
 		
+		if($(window).width() <= 768) {
+			$('main').css('height', height < 800 ? '100%' : 'auto');
+		} else {
+			$('main').css('height', height < 900 ? '100%' : 'auto');
+		}
 	});
 	
 	let $btnDelete = $('#btn-delete');

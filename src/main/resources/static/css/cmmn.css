@@ -2,6 +2,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 
 * {
 	margin: 0;
@@ -21,6 +27,10 @@ a {
 
 tr > th, tr > td {
 	text-align: center;
+}
+
+h1, h2, h3 {
+	font-family: "Bebas Neue", "Pretendard-Regular", sans-serif;
 }
 
 .btn {

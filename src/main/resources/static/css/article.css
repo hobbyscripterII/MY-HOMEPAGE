@@ -42,6 +42,10 @@ article {
 	margin-bottom: 5px;
 }
 
+#read-title {
+	margin-left: 20px;
+}
+
 #login {
     margin-top: 10px;
     width: 100%;
