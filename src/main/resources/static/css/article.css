@@ -57,17 +57,14 @@ article {
 }
 
 /* 게시글 썸네일 */
-#thumbnail, #thumbnail-preview {
-	display: none;
-	margin-bottom: 10px;
-}
-
 #thumbnail {
-	height: 250px;
+	display: block;
 }
 
 #thumbnail-preview {
+	display: none;
 	height: 200px;
+	margin-bottom: 10px;
 }
 
 #thumbnail-wrap {
