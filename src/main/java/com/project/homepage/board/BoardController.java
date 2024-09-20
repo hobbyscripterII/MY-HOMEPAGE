@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.ResponseCode;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
-import com.project.homepage.cmmn.util.FileUploadUtil;
 
 @Controller
 @RequestMapping("/board")
