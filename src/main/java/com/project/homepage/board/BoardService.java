@@ -57,6 +57,8 @@ public class BoardService {
 		} catch(SQLException e) {
 			responseMap.put(Const.RESULT, ResponseCode.SQL_ERROR.code);
 		}
+		
+		log.info("responseMap = {}", responseMap);
 		return responseMap;
 	}
 	

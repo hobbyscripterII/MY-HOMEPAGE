@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.homepage.board.BoardMapper">
 	<insert id="boardInsert" useGeneratedKeys="true" keyColumn="iboard" parameterType="map">
-	INSERT INTO tbl_board(ICODE, IADMIN, TITLE, CONTENTS) VALUES(#{icode}, '1', #{title}, #{contents})
+	INSERT INTO tbl_board(ICODE, IADMIN, TITLE, CONTENTS, YOUTUBE_ID) VALUES(#{icode}, '1', #{title}, #{contents}, #{youtube_id})
 	<selectKey keyProperty="iboard" resultType="integer">
 	SELECT LAST_INSERT_ID()
 	</selectKey>
@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="boardSelect" parameterType="map" resultType="map">
-	SELECT *
+	SELECT A.IBOARD AS iboard, A.ICODE AS icode, A.IADMIN AS iadmin, A.TITLE AS title, A.CONTENTS AS contents, IFNULL(A.YOUTUBE_ID, "") AS youtube_id, A.CREATED_AT AS created_at, B.ITHUMBNAIL AS ithumbnail, B.NAME AS name
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
@@ -38,7 +38,8 @@
 	<update id="boardUpdate" parameterType="map">
 	UPDATE tbl_board SET
 	TITLE = #{title},
-	CONTENTS = #{contents}
+	CONTENTS = #{contents},
+	YOUTUBE_ID = #{youtube_id}
 	WHERE IBOARD = #{iboard}
 	</update>
 	

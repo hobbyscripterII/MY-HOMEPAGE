@@ -78,4 +78,9 @@
 	.rss-contents {
 		font-size: 12px;
 	}
+	
+	#movie-wrap > iframe {
+	    width: 83vw;
+	    height: 33vh;
+	}
 }

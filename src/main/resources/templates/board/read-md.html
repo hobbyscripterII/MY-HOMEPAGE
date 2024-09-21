@@ -18,6 +18,11 @@
 		<img id="thumbnail-preview" alt="썸네일">
 	</div>
 	
+	<div id="movie-wrap">
+		<iframe th:src="'https://www.youtube.com/embed/' + ${DATA.youtube_id}">
+		</iframe>
+	</div>
+	
 	<div id="editor"></div>
 	
 	<div id="btn-grp">
@@ -31,12 +36,16 @@
 
 <script th:inline="javascript">
 	$(document).ready(() => {
+		let code = [[${DATA.icode}]];
 		let contents = [[${DATA.contents}]];
 		$('#editor').html(contents);
 		
+		if(code == 'B004') {
+			$('#movie-wrap').css('display', 'block');
+		}
 		
 		let thumbnailPreview = $('#thumbnail-preview');
-		let name = ([[${DATA.NAME}]] || '');
+		let name = ([[${DATA.name}]] || '');
 		let height = $('main').height();
 		
 		if(name != '') {

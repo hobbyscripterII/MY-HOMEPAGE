@@ -170,3 +170,14 @@ article {
 	width: 100%;
 	justify-content: center;
 }
+
+#movie-wrap {
+	display: none;
+	width: 100%;
+	text-align: center;
+}
+
+#movie-wrap > iframe {
+	width: 700px;
+	height: 400px;
+}

@@ -17,7 +17,7 @@
     </div>
 	
 	<div class="row">
-      <label class="col-sm-2 col-form-label">THUMBNAIL</label>
+      <label class="col-sm-2 col-form-label" for="thumbnail">THUMBNAIL</label>
       <div class="col-sm-10">
         <input type="file" id="thumbnail" class="form-control" accept="image/*" onchange="thumnailPreview(this)">
       </div>
@@ -35,11 +35,42 @@
 </article>
 
 <script th:inline="javascript">
-	let $btnWrite = $('#btn-write');
-	let $data = ([[${DATA}]] || '');
-	let $iboard = ($data.iboard || '');
-	let $code = ($data.icode != '' ? $data.icode : [[${param.code}]]);
-
+	let $btnWrite	= $('#btn-write');
+	let $data		= ([[${DATA}]] || '');
+	let $iboard		= ($data.iboard || '');
+	let $code		= $data.icode != undefined ? $data.icode : [[${param.code}]];
+	let youtube_id  = null;
+	
+	$(document).ready(() => {
+		if($code == 'B004') {
+			$('#thumbnail').attr('type', 'text');
+			$('#thumbnail').attr('onchange', '');
+			$('#thumbnail').attr('id', 'youtube-url');
+			$('#thumbnail').val('');
+			$('label[for="thumbnail"]').text('YOUTUBE URL');
+		}
+		
+		$('#youtube-url').on('input', () => {
+			youtubeIdGet();
+		});
+	});
+	
+	function youtubeIdGet() {
+		let url		= $('#youtube-url').val();
+		let id		= url.split('v=')[1]?.split('&')[0];
+		youtube_id	= id;
+		
+		if(id && id.length == 11) {
+			$('#thumbnail-preview').css('display', 'block');
+			$('#thumbnail-preview').attr('src', 'https://img.youtube.com/vi/' + id + '/0.jpg');
+		} else {
+			alert('유튜브 링크를 확인해주세요.');
+			$('#youtube-url').val('');
+			$('#thumbnail-preview').css('display', 'none');
+			return;
+		}
+	}
+	
 	// SimpleMDE 웹에디터 초기화
 	var editor = new SimpleMDE({
 		element: $("#editor")[0]
@@ -73,9 +104,10 @@
 	
 	$('#btn-update').click(() => {
 		if(confirm('게시글을 수정하시겠습니까?')) {
-			let title = $('#write-title').val();
-			let contents = editor.value();
-			let dto = {iboard : $iboard, title : title, contents : contents};
+			let title		= $('#write-title').val();
+			let contents	= editor.value();
+			let youtube_id	= youtube_id;
+			let dto			= {iboard : $iboard, title : title, contents : contents, youtube_id : youtube_id};
 			
 			$.ajax({
 				type		: 'PATCH',
@@ -100,17 +132,23 @@
 	});
 	
 	$btnWrite.click(() => {
-		let paramCode = `[[${param.code}]]`;
-		let code = paramCode.replace(/[\[\]"]/g, '');
-		let title = $('#write-title').val();
-		let contents = editor.value();
-		let thumbnail = $('#thumbnail')[0].files[0];
+		let paramCode 	= `[[${param.code}]]`;
+		let code 		= paramCode.replace(/[\[\]"]/g, '');
+		let title 		= $('#write-title').val();
+		let contents 	= editor.value();
+		let formData 	= new FormData();
 		
-		let formData = new FormData();
-		formData.append("thumbnail", thumbnail);
-		formData.append("icode", code);
-		formData.append("title", title);
-		formData.append("contents", contents);
+		formData.append("icode"			, code);
+		formData.append("title"			, title);
+		formData.append("contents"		, contents);
+		formData.append("youtube_id"	, youtube_id);
+		
+		if($code == 'B004') {
+			formData.append("thumbnail"		, null);
+		} else {
+			let thumbnail = $('#thumbnail')[0].files[0];
+			formData.append("thumbnail"		, thumbnail);
+		}
 		
 		$.ajax({
 			type		: 'POST',
