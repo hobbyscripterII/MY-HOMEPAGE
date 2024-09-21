@@ -43,10 +43,6 @@ public class HomeController {
 			post.putIfAbsent("NAME", "");
 		}
 		
-		log.info("responseMap = {}"		, responseMap);
-		log.info("responseCode = {}"	, responseCode);
-		log.info("rss = {}"				, rss);
-		
 		if(responseCode == 1) {
 			model.addAttribute(Const.RSS, rss);
 		}

@@ -6,20 +6,14 @@
       
 <div id="thumbnail-home-notice">
 	<p class="thumbnail-home-title">NOTICE</p>
-	<div class="thumbnail-contents-wrap">
+	<div class="rss-contents-wrap">
 		<th:block th:each="data : ${DATA}">
 			<th:block th:if="${data.icode == 'B001'}">
-				<div class="thumbnail-item">
-					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
-						<th:block th:if="${data.NAME != ''}">
-							<img th:src="${data.NAME}" alt="썸네일">
-						</th:block>
-						<th:block th:if="${data.NAME == ''}">
-							<img th:src="@{/img/img-noimage.png}" alt="썸네일">
-						</th:block>
-					</a>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+				<div class="rss-item">
+					<p class="rss-contents">
+						<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+						<span th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></span>
+					</p>
 				</div>
 			</th:block>
 		</th:block>
