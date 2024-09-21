@@ -13,6 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -23,20 +24,21 @@ import org.xml.sax.SAXException;
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.ResponseCode;
 
-import jakarta.annotation.PostConstruct;
-
 @Component
 public class RSSParseUtil {
 	public static Map<String, Object> responseMap	= new HashMap<String, Object>();
 	private List<Map<String, Object>> rss			= new ArrayList<Map<String, Object>>();
 	private final Logger log						= LoggerFactory.getLogger(getClass());
+//	private final int fixedRate 					= 60000;	// 1분(테스트용)
+	private final int fixedRate 					= 21600000;	// 6시간(배포용)
 	private final String url;
-
+	
 	public RSSParseUtil(@Value("${rss.url}") String url) {
 		this.url = url;
 	}
 	
-	@PostConstruct
+	@Scheduled(fixedRate = fixedRate)
+//	@PostConstruct
 	public List<Map<String, Object>> rssParse() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			log.info("{}", getClass());
@@ -55,9 +57,9 @@ public class RSSParseUtil {
 					String link 			= element.getElementsByTagName("link").item(0).getTextContent();
 					String date 			= element.getElementsByTagName("pubDate").item(0).getTextContent();
 					Map<String, Object> map = new HashMap<String, Object>();
-					map.put("title", title);
-					map.put("link", link);
-					map.put("date", date);
+					map.put("title"	, title);
+					map.put("link"	, link);
+					map.put("date"	, date);
 					rss.add(map);
 				}
 			}
@@ -65,12 +67,8 @@ public class RSSParseUtil {
 			responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);
 			responseMap.put(Const.RSS	, rss);
 			
-			log.info("responseMap = {}", responseMap);
-			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			responseMap.put(Const.RESULT, ResponseCode.RSS_PARSE_ERROR.code);
-			
-			log.info("responseMap = {}", responseMap);
 		}
 		return rss;
 	}
