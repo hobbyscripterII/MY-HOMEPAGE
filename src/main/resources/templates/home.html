@@ -26,22 +26,27 @@
 	</div>
 </div>
 
-<!--
 <div id="thumbnail-home-study">
-	<p class="thumbnail-home-title">STUDY</p>
-	<div class="thumbnail-contents-wrap">
-		<th:block th:each="data : ${DATA}">
-			<th:block th:if="${data.icode == 'B002'}">
-				<div class="thumbnail-item">
-					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><img th:src="${data.NAME}" alt="썸네일"></a>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+	<p class="thumbnail-home-title">STUDY(RSS)</p>
+	<div class="rss-contents-wrap">
+		<th:block th:if="${RESULT == 1}" th:each="rss : ${RSS}">
+				<div class="rss-item">
+					<p class="rss-contents">
+						<a th:href="${rss.link}" target="_blank"><span th:text="${rss.title}"></span></a>
+						<span th:text="${#dates.format(rss.date, 'yyyy-MM-dd')}"></span>
+					</p>
 				</div>
-			</th:block>
+		</th:block>
+		
+		<th:block th:if="${RESULT == -4}">
+				<div class="rss-item">
+					<p class="rss-contents-error">
+						<span>RSS를 불러올 수 없습니다.</span>
+					</p>
+				</div>
 		</th:block>
 	</div>
 </div>
--->
 
 <div id="thumbnail-home-photo">
 	<p class="thumbnail-home-title">PHOTO</p>

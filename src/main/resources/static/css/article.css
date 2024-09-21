@@ -9,7 +9,7 @@
 
 article {
 	box-sizing: border-box;
-    width: 700px;
+    width: 1000px;
     height: auto;
     /* height: 1000px; */
     background-color: #FFF;
@@ -79,7 +79,7 @@ article {
 
 #thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
 	box-sizing: border-box;
-    width: 700px;
+    width: 1000px;
     height: 265px;
     background-color: #FFF;
     margin: 20px auto;
@@ -108,12 +108,20 @@ article {
 	object-fit: cover;
 }
 
-.thumbnail-item > p {
+.thumbnail-item > p, .rss-item > p > span {
     color: gray;
     font-size: 12px;
     text-align: right;
     margin-right: 10px;
     margin-bottom: 0;
+}
+
+.thumbnail-item > p {
+    width: 100%;
+}
+
+.rss-item > p > span {
+    width: 110px;
 }
 
 .thumbnail-home-title {
@@ -130,4 +138,30 @@ article {
 	width: 100%;
 	display: flex;
 	justify-content: start;
+}
+
+.rss-contents-wrap {
+	width: 100%;
+	display: block;
+	margin: 10px 0 10px 0;
+}
+
+.rss-item {
+	width: 100%;
+	text-align: left;
+}
+
+.rss-contents {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rss-contents-error {
+	width: 100%;
+	text-align: center;
+}
+
+#thumbnail-home-study {
+	height: auto;
 }

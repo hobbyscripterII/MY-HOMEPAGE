@@ -5,4 +5,5 @@ public class Const {
 	public static String DATA = "DATA";
 	public static String ROLE_PREFIX = "ROLE_";
 	public static String ARTICLE_TITLE = "ARTICLE_TITLE";
+	public static String RSS = "RSS";
 }

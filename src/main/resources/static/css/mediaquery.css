@@ -64,4 +64,8 @@
 	.thumbnail-item {
 		width: 100%;
 	}
+	
+	.rss-contents {
+		font-size: 12px;
+	}
 }
