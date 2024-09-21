@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.homepage.cmmn.Const;
+import com.project.homepage.cmmn.Pagination;
 import com.project.homepage.cmmn.ResponseCode;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
 
@@ -30,17 +31,22 @@ public class BoardController {
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	public BoardController(BoardService service, CommonmarkUtil commonmarkUtil) {
-		this.service = service;
-		this.commonmarkUtil = commonmarkUtil;
+		this.service		= service;
+		this.commonmarkUtil	= commonmarkUtil;
 	}
 	
 	// 목록형 게시판
 	@GetMapping("/list")
-	public String mainList(@RequestParam Map<String, Object> requestMap, Model model) {
-		String code = (String) requestMap.get("code");
+	public String mainList(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam(name = "amount", required = false, defaultValue = "10") int amount, @RequestParam Map<String, Object> requestMap, Model model) {
+		Pagination pagination	= new Pagination(page, amount, service.boardGetCnt(requestMap));
+		int offset 				= (page == 1 ? 0 : (page - 1) * 10);
 		
-		model.addAttribute(Const.DATA, service.boardGet(requestMap));
-		model.addAttribute(Const.ARTICLE_TITLE, articleTitleGet(code));
+		requestMap.put("offset"		, offset);
+		requestMap.put("amount"		, amount);
+		
+		model.addAttribute(Const.DATA			, service.boardGet(requestMap));
+		model.addAttribute(Const.ARTICLE_TITLE	, articleTitleGet((String) requestMap.get("code")));
+		model.addAttribute(Const.PAGINATION		, pagination);
 		return "board/list";
 	}
 	
@@ -52,7 +58,6 @@ public class BoardController {
 	
 	@GetMapping("/write-md")
 	public String write(@RequestParam Map<String, Object> requestMap) {
-		
 		return "board/write-md";
 	}
 	
@@ -91,11 +96,8 @@ public class BoardController {
 		
 		int boardUpdate = service.boardUpdate(requestMap);
 		
-		if(boardUpdate == 1) {
-			responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);
-		} else {
-			responseMap.put(Const.RESULT, ResponseCode.FAIL.code);
-		}
+		if(boardUpdate == 1) { responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code); } 
+		else 				 { responseMap.put(Const.RESULT, ResponseCode.FAIL.code); }
 		
 		return responseMap;
 	}
@@ -108,11 +110,8 @@ public class BoardController {
 		
 		int boardDelete = service.boardDelete(iboard);
 		
-		if(boardDelete == 1) {
-			responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);
-		} else {
-			responseMap.put(Const.RESULT, ResponseCode.FAIL.code);
-		}
+		if(boardDelete == 1) { responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code); } 
+		else 				 { responseMap.put(Const.RESULT, ResponseCode.FAIL.code); }
 		
 		return responseMap;
 	}

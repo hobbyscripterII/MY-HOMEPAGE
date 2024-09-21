@@ -29,6 +29,8 @@
 		</tbody>
 	</table>
 	
+	<div th:replace="~{fragments/pagination :: pagination}" ></div>
+	
 	<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
 	<div id="btn-grp">
 		<button type="button" class="btn btn-primary" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">WRITE</button>

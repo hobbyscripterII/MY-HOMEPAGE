@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface BoardMapper {
 	public int boardInsert(Map<String, Object> requestMap);
 	public List<Map<String, Object>> boardGet(Map<String, Object> requestMap);
+	public int boardGetCnt(Map<String, Object> requestMap);
 	public Map<String, Object> boardSelect(Map<String, Object> requestMap);
 	public int boardDelete(String iboard);
 	public int boardUpdate(Map<String, Object> requestMap);

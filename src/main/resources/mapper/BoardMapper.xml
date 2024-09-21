@@ -13,6 +13,14 @@
 	FROM tbl_board
 	WHERE DEL_YN = 'N' AND ICODE = #{code}
 	ORDER BY CREATED_AT DESC
+	LIMIT #{offset}, #{amount}
+	</select>
+	
+	<select id="boardGetCnt" parameterType="map" resultType="int">
+	SELECT COUNT(*)
+	FROM tbl_board
+	WHERE DEL_YN = 'N' AND ICODE = #{code}
+	ORDER BY CREATED_AT DESC
 	</select>
 	
 	<select id="boardSelect" parameterType="map" resultType="map">

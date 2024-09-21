@@ -165,3 +165,8 @@ article {
 #thumbnail-home-notice, #thumbnail-home-study {
 	height: auto;
 }
+
+.pagination {
+	width: 100%;
+	justify-content: center;
+}

@@ -64,6 +64,10 @@ public class BoardService {
 		return mapper.boardGet(requestMap);
 	}
 	
+	public int boardGetCnt(Map<String, Object> requestMap) {
+		return mapper.boardGetCnt(requestMap);
+	}
+	
 	public Map<String, Object> boardSelect(Map<String, Object> requestMap) {
 		return mapper.boardSelect(requestMap);
 	}
