@@ -118,7 +118,6 @@
 		if(confirm('게시글을 수정하시겠습니까?')) {
 			let title		= $('#write-title').val();
 			let contents	= editor.value();
-			let youtube_id	= youtube_id;
 			let dto			= {iboard : $iboard, title : title, contents : contents, youtube_id : youtube_id};
 			
 			$.ajax({

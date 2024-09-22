@@ -5,14 +5,17 @@
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
 <style>
-	main 			    { height: 100%; }
 	#article-board-main { overflow: auto; }
 </style>
 <article id="article-board-main">
 	<p id="article-title" th:text="${DATA.article_title}">
 	</p>
 	
-	<strong id="read-title" th:text="${DATA.title}"></strong>
+	<div id="read-top-wrap">
+		<strong id="read-title" th:text="${DATA.title}"></strong>
+		<strong id="read-created-at" th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd')}"></strong>
+	</div>
+	
 	<hr>
 	
 	<div id="thumbnail-wrap">
@@ -41,13 +44,6 @@
 		let contents          		= [[${DATA.contents}]];
 		let name 			  		= ([[${DATA.name}]] || '');
 		let $thumbnailPreview 		= $('#thumbnail-preview');
-		
-		if($('main').width() < 768) {
-			setTimeout(() => {
-				let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
-				$('main').css('height', $articleBoardMainHeight <= 500 ? '100%' : 'auto');
-			}, 0);
-		}
 		
 		$('#editor').html(contents);
 		
@@ -87,5 +83,13 @@
 			})
 		}
 	});
+	
+	$(document).ready(() => {
+		setTimeout(() => {
+			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
+			console.log('$articleBoardMainHeight = ', $articleBoardMainHeight);
+			$('main').css('height', $articleBoardMainHeight <= 700 ? '100%' : 'auto');
+		}, 100);
+	});	
 </script>
 </html>

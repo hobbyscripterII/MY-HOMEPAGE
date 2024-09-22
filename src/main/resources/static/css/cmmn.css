@@ -33,6 +33,7 @@ body {
     height: 100vh;
     background-image: url("/img/img-bg.jpg");
     background-size: cover;
+    background-attachment: fixed;
 }
 
 a {

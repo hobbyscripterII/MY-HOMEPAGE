@@ -43,7 +43,7 @@ article {
 }
 
 #read-title {
-	margin-left: 20px;
+	/* margin-left: 20px; */
 }
 
 #login {
@@ -67,7 +67,7 @@ article {
 
 #thumbnail-preview {
 	display: none;
-	height: 200px;
+	height: 300px;
 	margin-bottom: 10px;
 }
 
@@ -89,7 +89,7 @@ article {
     height: 300px;
     background-color: #FFF;
     margin: 20px auto;
-    padding: 10px;
+    padding: 5px 20px 5px 20px;
 }
 
 .thumbnail-item {
@@ -119,7 +119,7 @@ article {
 	object-fit: cover;
 }
 
-.thumbnail-item > p, .rss-item > p > span {
+.thumbnail-item > p, .rss-item > p > span, #read-created-at {
     color: gray;
     font-size: 12px;
     text-align: right;
@@ -184,4 +184,13 @@ article {
 #movie-wrap > iframe {
 	width: 700px;
 	height: 400px;
+}
+
+#read-top-wrap {
+	width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 20px;
+    box-sizing: border-box;
 }
