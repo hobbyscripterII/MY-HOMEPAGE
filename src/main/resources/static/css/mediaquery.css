@@ -32,6 +32,7 @@
 	}
 	
 	footer {
+		height: 90px;
 		padding-top: 10px;
 		display: flex;
 		flex-wrap: wrap;
@@ -43,7 +44,7 @@
 	}
 	
 	#footer-links > a > span {
-		font-size: 2rem;
+		font-size: 25px;
 	}
 	
 	/* 모바일 일 때 숨김 처리 */
