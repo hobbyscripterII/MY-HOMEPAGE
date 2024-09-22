@@ -2,6 +2,7 @@ package com.project.homepage.board;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -57,7 +58,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("/write-md")
-	public String write(@RequestParam Map<String, Object> requestMap) {
+	public String write(@RequestParam Map<String, Object> requestMap, Model model) {
+		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
+		model.addAttribute(Const.GENRE, boardGenreGet);
 		return "board/write-md";
 	}
 	

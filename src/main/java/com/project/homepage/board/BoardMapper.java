@@ -15,4 +15,5 @@ public interface BoardMapper {
 	public int boardDelete(String iboard);
 	public int boardUpdate(Map<String, Object> requestMap);
 	public int thumbnailInsert(Map<String, Object> requestMap);
+	public List<Map<String, Object>> boardGenreGet();
 }

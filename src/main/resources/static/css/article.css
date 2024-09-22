@@ -194,3 +194,8 @@ article {
     padding: 0 20px 0 20px;
     box-sizing: border-box;
 }
+
+#genre {
+    width: 80.3%;
+    margin-left: 15px;
+}

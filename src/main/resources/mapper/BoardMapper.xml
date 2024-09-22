@@ -2,17 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.homepage.board.BoardMapper">
 	<insert id="boardInsert" useGeneratedKeys="true" keyColumn="iboard" parameterType="map">
-	INSERT INTO tbl_board(ICODE, IADMIN, TITLE, CONTENTS, YOUTUBE_ID) VALUES(#{icode}, '1', #{title}, #{contents}, #{youtube_id})
+	INSERT INTO tbl_board(ICODE, IADMIN, TITLE, CONTENTS, YOUTUBE_ID, GENRE) VALUES(#{icode}, '1', #{title}, #{contents}, #{youtube_id}, #{genre})
 	<selectKey keyProperty="iboard" resultType="integer">
 	SELECT LAST_INSERT_ID()
 	</selectKey>
 	</insert>
 	
 	<select id="boardGet" parameterType="map" resultType="map">
-	SELECT IBOARD, ICODE, TITLE, CREATED_AT
-	FROM tbl_board
-	WHERE DEL_YN = 'N' AND ICODE = #{code}
-	ORDER BY CREATED_AT DESC
+	SELECT A.IBOARD, A.ICODE, A.TITLE, (SELECT NAME FROM tbl_code WHERE ICODE = A.GENRE) GENRE, A.CREATED_AT
+	FROM tbl_board A
+	INNER JOIN tbl_code B
+	ON A.ICODE = B.ICODE
+	WHERE A.DEL_YN = 'N' AND A.ICODE = #{code}
+	ORDER BY A.CREATED_AT DESC
 	LIMIT #{offset}, #{amount}
 	</select>
 	
@@ -39,11 +41,18 @@
 	UPDATE tbl_board SET
 	TITLE = #{title},
 	CONTENTS = #{contents},
-	YOUTUBE_ID = #{youtube_id}
+	YOUTUBE_ID = #{youtube_id},
+	GENRE = #{genre}
 	WHERE IBOARD = #{iboard}
 	</update>
 	
 	<insert id="thumbnailInsert" parameterType="map">
 	INSERT INTO tbl_thumbnail(IBOARD, NAME) VALUES(#{iboard}, #{name})
 	</insert>
+	
+	<select id="boardGenreGet" resultType="map">
+	SELECT ICODE, NAME
+	FROM tbl_code
+	WHERE ICODE LIKE '%C%'
+	</select>
 </mapper>

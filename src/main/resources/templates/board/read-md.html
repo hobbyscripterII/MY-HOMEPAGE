@@ -87,7 +87,6 @@
 	$(document).ready(() => {
 		setTimeout(() => {
 			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
-			console.log('$articleBoardMainHeight = ', $articleBoardMainHeight);
 			$('main').css('height', $articleBoardMainHeight <= 700 ? '100%' : 'auto');
 		}, 100);
 	});	

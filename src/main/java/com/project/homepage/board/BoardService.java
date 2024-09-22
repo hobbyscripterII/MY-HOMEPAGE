@@ -2,6 +2,7 @@ package com.project.homepage.board;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLSyntaxErrorException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class BoardService {
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	public BoardService(BoardMapper mapper, FileUploadUtil fileUploadUtil) {
-		this.mapper = mapper;
+		this.mapper 	    = mapper;
 		this.fileUploadUtil = fileUploadUtil;
 	}
 	
@@ -34,6 +35,7 @@ public class BoardService {
 
 		try {
 			String uploadPath = "";
+			String code       = (String) requestMap.get("code");
 			
 			if(thumbnail != null) {
 				uploadPath = fileUploadUtil.fileUpload(thumbnail, "/thumbnail/");
@@ -58,7 +60,6 @@ public class BoardService {
 			responseMap.put(Const.RESULT, ResponseCode.SQL_ERROR.code);
 		}
 		
-		log.info("responseMap = {}", responseMap);
 		return responseMap;
 	}
 	
@@ -80,5 +81,9 @@ public class BoardService {
 	
 	public int boardUpdate(Map<String, Object> requestMap) {
 		return mapper.boardUpdate(requestMap);
+	}
+	
+	public List<Map<String, Object>> boardGenreGet() {
+		return mapper.boardGenreGet();
 	}
 }

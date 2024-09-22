@@ -10,7 +10,7 @@
 	</p>
 	
 	<div class="row">
-      <label class="col-sm-2 col-form-label">TITLE</label>
+      <label class="col-sm-2 col-form-label" for="write-title">TITLE</label>
       <div class="col-sm-10">
 		<input type="text" id="write-title" class="form-control">
       </div>
@@ -24,6 +24,22 @@
     </div>
 	
 	<img id="thumbnail-preview" alt="썸네일 미리보기"></img>
+	
+	<th:block th:if="${param.code != null}">
+		<th:block th:with="code=${param.code}"></th:block>
+	</th:block>
+	<th:block th:if="${DATA.icode != null}">
+		<th:block th:with="code=${DATA.icode}"></th:block>
+	</th:block>
+	
+	<div class="row" th:if="${code eq 'B004'}">
+      <label class="col-sm-2 col-form-label" for="genre">GENRE</label>
+      <select class="form-control" id="genre">
+      	<th:block th:each="genre : ${GENRE}">
+	        <option th:value="${genre.ICODE}" th:text="${genre.NAME}">1</option>
+      	</th:block>
+      </select>
+    </div>
 	
 	<textarea id="editor"></textarea>
 	<!-- <div id="editor"></div> -->
@@ -116,9 +132,10 @@
 	
 	$('#btn-update').click(() => {
 		if(confirm('게시글을 수정하시겠습니까?')) {
-			let title		= $('#write-title').val();
+			let $title		= $('#write-title').val();
 			let contents	= editor.value();
-			let dto			= {iboard : $iboard, title : title, contents : contents, youtube_id : youtube_id};
+			let $genre      = $('#genre').val();
+			let dto			= {iboard : $iboard, title : $title, contents : contents, youtube_id : youtube_id, genre : $genre};
 			
 			$.ajax({
 				type		: 'PATCH',
@@ -147,12 +164,14 @@
 		let code 		= paramCode.replace(/[\[\]"]/g, '');
 		let title 		= $('#write-title').val();
 		let contents 	= editor.value();
+		let $genre      = ($('#genre').val() || null);
 		let formData 	= new FormData();
 		
 		formData.append("icode"			, code);
 		formData.append("title"			, title);
 		formData.append("contents"		, contents);
 		formData.append("youtube_id"	, youtube_id);
+		formData.append("genre"	        , $genre);
 		
 		if($code == 'B004') {
 			formData.append("thumbnail"		, null);
@@ -221,5 +240,12 @@
 			location.href = '/board/list?code=' + $code;
 		}
 	});
+	
+	$(document).ready(() => {
+		setTimeout(() => {
+			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
+			$('main').css('height', $articleBoardMainHeight <= 800 ? '100%' : 'auto');
+		}, 100);
+	});	
 </script>
 </html>
