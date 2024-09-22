@@ -67,6 +67,7 @@
 	
 	.thumbnail-item > a > img {
 		width: 100%;
+		height: auto;
 	}
 	
 	#thumbnail-preview {

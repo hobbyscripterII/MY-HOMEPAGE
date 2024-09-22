@@ -26,11 +26,11 @@ import com.project.homepage.cmmn.ResponseCode;
 
 @Component
 public class RSSParseUtil {
-	public static Map<String, Object> responseMap	= new HashMap<String, Object>();
-	private List<Map<String, Object>> rss			= new ArrayList<Map<String, Object>>();
+	public Map<String, Object> responseMap	        = new HashMap<String, Object>();
 	private final Logger log						= LoggerFactory.getLogger(getClass());
 //	private final int fixedRate 					= 60000;	// 1분(테스트용)
-	private final int fixedRate 					= 21600000;	// 6시간(배포용)
+//	private final int fixedRate 					= 21600000;	// 6시간(배포용)
+	private final int fixedRate 					= 3600000;	// 1시간(배포용)
 	private final String url;
 	
 	public RSSParseUtil(@Value("${rss.url}") String url) {
@@ -39,10 +39,11 @@ public class RSSParseUtil {
 	
 	@Scheduled(fixedRate = fixedRate)
 //	@PostConstruct
-	public List<Map<String, Object>> rssParse() throws ParserConfigurationException, SAXException, IOException {
+	public void rssParse() throws ParserConfigurationException, SAXException, IOException {
 		try {
-			log.info("{}", getClass());
+			responseMap.clear();
 			
+			List<Map<String, Object>> rss   = new ArrayList<Map<String, Object>>();
 			DocumentBuilderFactory factory	= DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder			= factory.newDocumentBuilder();
 			Document document				= builder.parse(url);
@@ -70,6 +71,5 @@ public class RSSParseUtil {
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			responseMap.put(Const.RESULT, ResponseCode.RSS_PARSE_ERROR.code);
 		}
-		return rss;
 	}
 }

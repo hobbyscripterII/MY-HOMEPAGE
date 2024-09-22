@@ -106,6 +106,10 @@ article {
 .thumbnail-item > a > span {
 	font-family: 'Pretendard-Regular';
 	margin-left: 1px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
 }
 
 .thumbnail-item > a > img {

@@ -22,7 +22,7 @@ import jakarta.annotation.PostConstruct;
 @Controller
 public class HomeController {
 	private final Logger log = LoggerFactory.getLogger(getClass());
-	private final HomeService service;
+	private final HomeService  service;
 	private final RSSParseUtil rssReaderUtil;
 	
 	public HomeController(HomeService service, RSSParseUtil rssReaderUtil) {
