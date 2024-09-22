@@ -42,10 +42,12 @@
 		let name 			  		= ([[${DATA.name}]] || '');
 		let $thumbnailPreview 		= $('#thumbnail-preview');
 		
-		setTimeout(() => {
-			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
-			$('main').css('height', $articleBoardMainHeight <= 800 ? '100%' : 'auto');
-		}, 0);
+		if($('main').width() < 768) {
+			setTimeout(() => {
+				let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
+				$('main').css('height', $articleBoardMainHeight <= 500 ? '100%' : 'auto');
+			}, 0);
+		}
 		
 		$('#editor').html(contents);
 		
