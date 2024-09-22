@@ -39,8 +39,8 @@
 	let $data		= ([[${DATA}]] || '');
 	let $iboard		= ($data.iboard || '');
 	let $code		= $data.icode != undefined ? $data.icode : [[${param.code}]];
-	let youtube_id  = '';
-		
+	let youtube_id  = null;
+	
 	$(document).ready(() => {
 		if($code == 'B004') {
 			$('#thumbnail').attr('type', 'text');
@@ -75,18 +75,6 @@
 	var editor = new SimpleMDE({
 		element: $("#editor")[0]
 	});
-
-	/*
-	// TinyMCE 웹에디터 초기화
-	$('#editor').tinymce({
-		width: '100%',
-		height: '500px',
-		plugins: [
-			
-		],
-		toolbar: ''
-	});
-	*/
 	
 	// 썸네일 미리보기
 	function thumnailPreview(file) {

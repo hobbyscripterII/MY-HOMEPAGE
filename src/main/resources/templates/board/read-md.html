@@ -5,6 +5,7 @@
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
 <style>
+	main 			    { height: 100%; }
 	#article-board-main { overflow: auto; }
 </style>
 <article id="article-board-main">
@@ -36,33 +37,29 @@
 
 <script th:inline="javascript">
 	$(document).ready(() => {
-		let code = [[${DATA.icode}]];
-		let contents = [[${DATA.contents}]];
+		let code              		= [[${DATA.icode}]];
+		let contents          		= [[${DATA.contents}]];
+		let name 			  		= ([[${DATA.name}]] || '');
+		let $thumbnailPreview 		= $('#thumbnail-preview');
+		
+		setTimeout(() => {
+			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
+			$('main').css('height', $articleBoardMainHeight <= 500 ? '100%' : 'auto');
+		}, 0);
+		
 		$('#editor').html(contents);
 		
 		if(code == 'B004') {
 			$('#movie-wrap').css('display', 'block');
 		}
 		
-		let thumbnailPreview = $('#thumbnail-preview');
-		let name 			 = ([[${DATA.name}]] || '');
-		let height 			 = $('main').height();
-		
 		if(name != '') {
-			thumbnailPreview.attr('src', name);
-			thumbnailPreview.css('display', 'block');
-		}
-		
-		if($(window).width() <= 768) {
-			$('main').css('height', height < 800 ? '100%' : 'auto');
-		} else {
-			$('main').css('height', height < 900 ? '100%' : 'auto');
+			$thumbnailPreview.attr('src', name);
+			$thumbnailPreview.css('display', 'block');
 		}
 	});
 	
-	let $btnDelete = $('#btn-delete');
-	
-	$btnDelete.click(() => {
+	$('#btn-delete').click(() => {
 		if(confirm('삭제된 게시글은 복구할 수 없습니다. 삭제하시겠습니까?')) {
 			let iboard = [[${DATA.iboard}]];
 			let code   = [[${DATA.icode}]];
@@ -87,6 +84,6 @@
 				}
 			})
 		}
-	})
+	});
 </script>
 </html>
