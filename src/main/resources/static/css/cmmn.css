@@ -9,10 +9,24 @@
     font-style: normal;
 }
 
+@keyframes fadein {
+	0%, 15% {
+		opacity: 0;
+	}
+	
+	100% {
+		opcity: 1;
+	}
+}
+
 * {
 	margin: 0;
 	padding: 0;
     font-family: "Lato", sans-serif;
+}
+
+html {
+	animation: fadein 2s forwards;
 }
 
 body {
