@@ -12,4 +12,21 @@ $(document).ready(function () {
 	`### 🧒 소개 끝!\n\n`;
 	
     $('#article-home').html(marked.parse(contents));
+	
+	if($(window).width() >= '768') {
+		if ($('#thumbnail-home-music .thumbnail-item').length < 4) {
+		    $('#thumbnail-home-music .thumbnail-contents-wrap').css('justify-content', 'right');
+		    $('#thumbnail-home-music .thumbnail-item').css('margin-left', '10px');
+		}
+		
+		if ($('#thumbnail-home-photo .thumbnail-item').length < 4) {
+		    $('#thumbnail-home-photo .thumbnail-contents-wrap').css('justify-content', 'right');
+		    $('#thumbnail-home-photo .thumbnail-item').css('margin-left', '10px');
+		}
+		
+		if ($('#thumbnail-home-daily .thumbnail-item').length < 4) {
+		    $('#thumbnail-home-daily .thumbnail-contents-wrap').css('justify-content', 'right');
+		    $('#thumbnail-home-daily .thumbnail-item').css('margin-left', '10px');
+		}
+	}
 });
