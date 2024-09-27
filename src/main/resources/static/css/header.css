@@ -6,7 +6,8 @@ header {
     box-sizing: border-box;
     width: 100%;
     height: 70px;
-    background-color: #000;
+    /* background-color: #000; */
+    background-color : rgb(255,255,255,0.5);
     display: flex !important;
     align-items: center;
     z-index: 1001;
@@ -23,9 +24,11 @@ header {
 
 /* 로고 이미지 대신 사용할 문구 */
 #header-name {
-	font-family: 'Blinking', sans-serif;
-	font-size: 2rem;
+	text-transform: uppercase;
+	font-family: 'Cafe24Meongi-W-v1.0';		/* 귀여운 글씨 */
+	font-size: 2.6rem;
 	color: #FFF;
+	font-weight: bold;
 }
 
 /* 좌측 사이드바 */
@@ -38,7 +41,8 @@ header {
 	position: absolute;
 	overflow-x: hidden;
 	padding-top: 30px;
-	background-color: #f15a22;
+	/* background-color: #f15a22; */
+	background-color : rgb(255,255,255, 1);
 	transition: 0.2s;
 	z-index: 1001;
 }
@@ -47,9 +51,10 @@ header {
 	display: block;
 	width: 100%;
 	color: white;
-	font-family: "Bebas Neue", sans-serif;
+	/* font-family: "Bebas Neue", sans-serif; */	/* footer 글씨체 */
+	font-family: 'Cafe24Meongi-W-v1.0';				/* 귀여운 글씨체 */
 	font-weight: bold;
-	font-size: 2rem;
+	font-size: 2.5rem;
 }
 
 #header-sidebar.open {

@@ -2,10 +2,11 @@
 
 footer {
 	box-sizing: border-box;
-	height: 200px;
-	padding-top: 70px;
+	height: 190px;
+	padding-top: 10px;
 	text-align: center;
-	background-color: #f15a22;
+	/* background-color: #f15a22; */
+	background-color : rgb(255,255,255,0.5);
 	display: block;
 	/* margin-top: 250px; */
 	position: relative;
@@ -30,4 +31,15 @@ footer > p {
 
 #footer-links > a {
 	margin-right: 10px;
+}
+
+#footer-links > p {
+	margin-bottom: -5px;
+}
+
+#footer-title {
+	text-transform: uppercase;
+	font-family: "Bebas Neue", sans-serif;
+	color: #FFF;
+	font-size: 3rem;
 }

@@ -8,6 +8,17 @@
     font-weight: 400;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Cafe24Meongi-W-v1.0';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/Cafe24Meongi-W-v1.0.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NanumSquareNeoBold';
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.eot);
+    src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.eot?#iefix) format("embedded-opentype"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.woff) format("woff"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.ttf) format("truetype");
+}
 
 @keyframes fadein {
 	0%, 15% {
@@ -22,22 +33,25 @@
 * {
 	margin: 0;
 	padding: 0;
-    font-family: "Lato", sans-serif;
+	text-decoration-line: none !important;
 }
 
 html {
-	animation: fadein 2s forwards;
+	animation: fadein 1s forwards;
 }
 
 body {
+    font-family: 'NanumSquareNeoBold' !important;
     height: 100vh;
-    background-image: url("/img/img-bg.jpg");
+    /* background-image: url("/img/img-bg.jpg"); */
+    background-image: url("https://images.unsplash.com/photo-1605184861755-8f190fea96a5?q=80&w=2732&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     background-size: cover;
     background-attachment: fixed;
 }
 
 a {
 	text-decoration: none;
+	color: #000 !important;
 }
 
 tr > th, tr > td {

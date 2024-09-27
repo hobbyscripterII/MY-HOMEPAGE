@@ -32,7 +32,7 @@
 	}
 	
 	footer {
-		height: 90px;
+		height: 110px;
 		padding-top: 10px;
 		display: flex;
 		flex-wrap: wrap;
@@ -88,5 +88,14 @@
 	
 	#genre {
 	    width: 90%;
+	}
+	
+	#footer-title {
+		font-size: 25px;
+	}
+	
+	footer > p {
+	    font-size: 10px;
+	    font-weight: bold;
 	}
 }
