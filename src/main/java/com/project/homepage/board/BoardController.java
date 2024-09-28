@@ -72,21 +72,26 @@ public class BoardController {
 	
 	@GetMapping("/update-md")
 	public String update(@RequestParam("iboard") String iboard, Model model) {
-		Map<String, Object> requestMap = new HashMap<>();
-		requestMap.put("iboard", iboard);
-		Map<String, Object> boardSelect = service.boardSelect(requestMap);
-		model.addAttribute(Const.DATA, boardSelect);
+		Map<String, Object> requestMap 			= new HashMap<>();
+		requestMap.put("iboard"			, iboard);
+		
+		Map<String, Object> boardSelect			= service.boardSelect(requestMap);
+		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
+		
+		model.addAttribute(Const.DATA	, boardSelect);
+		model.addAttribute(Const.GENRE	, boardGenreGet);
 		return "board/write-md";
 	}
 	
 	@GetMapping("/read-md")
 	public String readMarkdown(@RequestParam Map<String, Object> requestMap, Model model) {
-		Map<String, Object> boardSelect = service.boardSelect(requestMap);
-		// 쿼리에서 받아온 결과가 NULL인 경우 Map에 추가되지 않으므로 해당 Key 값이 없을 경우 직접 넣어준다.
-		boardSelect.putIfAbsent("name", "");
-		String code = (String) boardSelect.get("icode");
-		boardSelect.put("article_title", articleTitleGet(code));
-		boardSelect.put("contents", commonmarkUtil.markdown((String) boardSelect.get("contents")));
+		Map<String, Object> boardSelect		= service.boardSelect(requestMap);
+		boardSelect.putIfAbsent("name", ""); // 쿼리에서 받아온 결과가 NULL인 경우 Map에 추가되지 않으므로 해당 Key 값이 없을 경우 직접 넣어준다.
+		String code 						= (String) boardSelect.get("icode");
+		
+		boardSelect.put("article_title"	, articleTitleGet(code));
+		boardSelect.put("contents"		, commonmarkUtil.markdown((String) boardSelect.get("contents")));
+		
 		model.addAttribute(Const.DATA, boardSelect);
 		return "board/read-md";
 	}
@@ -97,7 +102,7 @@ public class BoardController {
 		Map<String, Object> responseMap = new HashMap();
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
 		
-		int boardUpdate = service.boardUpdate(requestMap);
+		int boardUpdate 				= service.boardUpdate(requestMap);
 		
 		if(boardUpdate == 1) { responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code); } 
 		else 				 { responseMap.put(Const.RESULT, ResponseCode.FAIL.code); }
@@ -111,7 +116,7 @@ public class BoardController {
 		Map<String, Object> responseMap = new HashMap();
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
 		
-		int boardDelete = service.boardDelete(iboard);
+		int boardDelete 				= service.boardDelete(iboard);
 		
 		if(boardDelete == 1) { responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code); } 
 		else 				 { responseMap.put(Const.RESULT, ResponseCode.FAIL.code); }

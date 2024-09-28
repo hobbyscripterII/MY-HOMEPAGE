@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
-<style> .row { margin-bottom: 10px; } </style>
+<style> .row { margin-bottom: 10px; } .genre-form { display: none; }</style>
 <article id="article-board-main">
 	<p id="article-title">
 		WRITE
@@ -14,6 +14,18 @@
       <div class="col-sm-10">
 		<input type="text" id="write-title" class="form-control">
       </div>
+    </div>
+	
+	<div class="row genre-form">
+      <label class="col-sm-2 col-form-label" for="genre">GENRE</label>
+      <select class="form-control" id="genre">
+      	<th:block th:if="${DATA != null}">
+	        <option th:value="${DATA.genre_code}" th:text="${DATA.genre_name}"></option>
+      	</th:block>
+      	<th:block th:each="genre : ${GENRE}">
+	        <option th:value="${genre.ICODE}" th:text="${genre.NAME}"></option>
+      	</th:block>
+      </select>
     </div>
 	
 	<div class="row">
@@ -32,15 +44,6 @@
 		<th:block th:with="code=${DATA.icode}"></th:block>
 	</th:block>
 	
-	<div class="row" th:if="${code eq 'B004'}">
-      <label class="col-sm-2 col-form-label" for="genre">GENRE</label>
-      <select class="form-control" id="genre">
-      	<th:block th:each="genre : ${GENRE}">
-	        <option th:value="${genre.ICODE}" th:text="${genre.NAME}">1</option>
-      	</th:block>
-      </select>
-    </div>
-	
 	<textarea id="editor"></textarea>
 	<!-- <div id="editor"></div> -->
 	
@@ -56,7 +59,11 @@
 	let $iboard		= ($data.iboard || '');
 	let $code		= $data.icode != undefined ? $data.icode : [[${param.code}]];
 	let youtube_id  = '';
-		
+	
+	console.log('param.code = ', [[${param.code}]]);
+	console.log('data.icode = ', $data.icode);
+	console.log('code       = ', $code[0]);
+	
 	$(document).ready(() => {
 		if($code == 'B004') {
 			$('#thumbnail').attr('type', 'text');
@@ -64,7 +71,18 @@
 			$('#thumbnail').attr('id', 'youtube-url');
 			$('#thumbnail').val('');
 			$('label[for="thumbnail"]').text('YOUTUBE URL');
+			$('.genre-form').css('display', 'flex');
+			
+			if($iboard != '') {
+				let youtubeURL 		= 'https://www.youtube.com/watch?v=' + $data.youtube_id;
+				let yotubeTumbnail	= 'https://img.youtube.com/vi/' + $data.youtube_id + '/0.jpg';
+				
+				$('#youtube-url').val(youtubeURL);
+				$('#thumbnail-preview').attr('src', yotubeTumbnail);
+				$('#thumbnail-preview').css('display', 'block');
+			}
 		}
+		
 		
 		$('#youtube-url').on('input', () => {
 			youtubeIdGet();
@@ -82,7 +100,7 @@
 		} else {
 			alert('유튜브 링크를 확인해주세요.');
 			$('#youtube-url').val('');
-			$('#thumbnail-preview').css('display', 'none');
+			$('#thumbnail-preview').css('display', 'flex');
 			return;
 		}
 	}

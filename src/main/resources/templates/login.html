@@ -24,15 +24,23 @@
 	      <small class="form-text text-muted">패스워드를 입력해주세요.</small>
 	    </div>
 	    
-	    <button type="button" id="login" class="btn btn-dark">LOGIN</button>
+	    <button type="button" id="login" class="btn btn-primary">LOGIN</button>
 	</form>
 </article>
 
 <script type="text/javascript">
-	let form = $('#form');
+	$(document).ready(function(e) {
+		if(e.keyCode == '13') {
+			login();
+		}
+		
+		$('#login').click(function() {
+			login();
+		});
+	});
 	
-	$('#login').click(() => {
-				let id = $('#id');
+	function login() {
+		let id = $('#id');
 		let pw = $('#pw');
 		
 		if(id.val().trim() == '') {
@@ -44,8 +52,8 @@
 			pw.focus();
 			return;
 		} else {
-			form.submit();
+			$('#form').submit();
 		}
-	});
+	}
 </script>
 </html>
