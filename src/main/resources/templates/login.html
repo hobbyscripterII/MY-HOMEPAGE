@@ -30,9 +30,11 @@
 
 <script type="text/javascript">
 	$(document).ready(function(e) {
-		if(e.keyCode == '13') {
-			login();
-		}
+		$(document).on('keydown', function(e) {
+			if(e.key == 'Enter') {
+				login();
+			}
+		});
 		
 		$('#login').click(function() {
 			login();
