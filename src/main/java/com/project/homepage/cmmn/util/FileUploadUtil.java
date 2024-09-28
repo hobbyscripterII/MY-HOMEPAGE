@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
@@ -24,7 +25,7 @@ public class FileUploadUtil {
 	
 	public String fileUpload(MultipartFile file, String suffixPath) throws IOException {
 		String fileName = uuidGet(file);
-		Path path = Paths.get(prefixPath);
+		Path path		= Paths.get(prefixPath);
 		
 		// 해당 경로에 폴더가 없을 경우 생성한다.
 		if(!Files.exists(path)) {
@@ -39,9 +40,9 @@ public class FileUploadUtil {
 		 * savePath		- LOCAL에 저장되는 실제 경로
 		 * uploadPath	- WebConfig를 통해 연결되는 외부 리소스 경로
 		 */
-		String savePath = Paths.get(prefixPath + fileName).toString();
+		String savePath   = Paths.get(prefixPath + fileName).toString();
 		String uploadPath = suffixPath + fileName;
-		File saveFile = new File(savePath);
+		File saveFile 	  = new File(savePath);
 		
 		try {
 			file.transferTo(saveFile);
@@ -54,7 +55,7 @@ public class FileUploadUtil {
 	
 	public String uuidGet(MultipartFile file) {
 		String originalName = file.getOriginalFilename();
-		String ext = originalName.substring(originalName.lastIndexOf("."));
+		String ext 			= originalName.substring(originalName.lastIndexOf("."));
 		return UUID.randomUUID() + ext;
 	}
 }

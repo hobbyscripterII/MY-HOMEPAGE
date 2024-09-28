@@ -60,7 +60,7 @@ article {
 }
 
 #editor {
-	padding-left: 20px;
+	/* padding-left: 20px; */
 }
 
 /* 게시글 썸네일 */
@@ -198,7 +198,7 @@ article {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px 0 20px;
+    /* padding: 0 20px 0 20px; */
     box-sizing: border-box;
 }
 
@@ -211,4 +211,9 @@ article {
 .btn-primary {
     background-color: hotpink !important;
     border-color: hotpink !important;
+}
+
+.ck-content {
+    width: 100%;
+    height: 500px;
 }

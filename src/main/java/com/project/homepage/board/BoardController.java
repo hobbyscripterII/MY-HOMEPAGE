@@ -18,22 +18,43 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.Pagination;
 import com.project.homepage.cmmn.ResponseCode;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
+import com.project.homepage.cmmn.util.FileUploadUtil;
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 	private final BoardService service;
 	private final CommonmarkUtil commonmarkUtil;
+	private final FileUploadUtil fileUploadUtil;
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
-	public BoardController(BoardService service, CommonmarkUtil commonmarkUtil) {
+	public BoardController(BoardService service, CommonmarkUtil commonmarkUtil, FileUploadUtil fileUploadUtil) {
 		this.service		= service;
 		this.commonmarkUtil	= commonmarkUtil;
+		this.fileUploadUtil = fileUploadUtil;
+	}
+	
+	@RequestMapping("/upload-img")
+	public ModelAndView uploadImg(MultipartHttpServletRequest request) throws IOException {
+		try {
+			ModelAndView mv		= new ModelAndView("jsonView");
+			MultipartFile image = request.getFile("upload");
+			String path 		= fileUploadUtil.fileUpload(image, "/img/");
+			
+			mv.addObject("uploaded"	, true);
+			mv.addObject("url"		, path);
+			
+			return mv;
+		} catch(IOException e) {
+			return null;
+		}
 	}
 	
 	// 목록형 게시판
@@ -61,7 +82,7 @@ public class BoardController {
 	public String write(@RequestParam Map<String, Object> requestMap, Model model) {
 		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
 		model.addAttribute(Const.GENRE, boardGenreGet);
-		return "board/write-md";
+		return "board/write-we";
 	}
 	
 	@ResponseBody
@@ -80,7 +101,7 @@ public class BoardController {
 		
 		model.addAttribute(Const.DATA	, boardSelect);
 		model.addAttribute(Const.GENRE	, boardGenreGet);
-		return "board/write-md";
+		return "board/write-we";
 	}
 	
 	@GetMapping("/read-md")

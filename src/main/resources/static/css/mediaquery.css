@@ -98,4 +98,9 @@
 	    font-size: 10px;
 	    font-weight: bold;
 	}
+	
+	/* CKEditor5 모바일 이미지 사이즈 */
+	.image > img {
+		width: 100%;
+	}
 }
