@@ -70,7 +70,8 @@ article {
 
 #thumbnail-preview {
 	display: none;
-	height: 300px;
+	width: 50%;
+	/* height: 300px; */
 	margin-bottom: 10px;
 }
 

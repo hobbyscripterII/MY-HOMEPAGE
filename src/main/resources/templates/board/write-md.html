@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
-<style> .row { margin-bottom: 10px; } .genre-form { display: flex; }</style>
+<style> .row { margin-bottom: 10px; } .genre-form { display: none; } </style>
 <article id="article-board-main">
 	<p id="article-title">
 		WRITE
@@ -57,11 +57,12 @@
 </article>
 
 <script th:inline="javascript">
-	let $btnWrite	= $('#btn-write');
-	let $data		= ([[${DATA}]] || '');
-	let $iboard		= ($data.iboard || '');
-	let $code		= $data.icode != undefined ? $data.icode : [[${param.code}]];
-	let youtube_id  = ($data.youtube_id || '');
+	let $btnWrite				= $('#btn-write');
+	let $data					= ([[${DATA}]] || '');
+	let $iboard					= ($data.iboard || '');
+	let $code					= $data.icode != undefined ? $data.icode : [[${param.code}]];
+	let youtube_id  			= ($data.youtube_id || '');
+	let $thumbnailPreview 		= $('#thumbnail-preview');
 	
 	$(document).ready(() => {
 		if($code == 'B004') {
@@ -77,15 +78,23 @@
 				let yotubeTumbnail	= 'https://img.youtube.com/vi/' + $data.youtube_id + '/0.jpg';
 				
 				$('#youtube-url').val(youtubeURL);
-				$('#thumbnail-preview').attr('src', yotubeTumbnail);
-				$('#thumbnail-preview').css('display', 'block');
+				$thumbnailPreview.attr('src', yotubeTumbnail);
+				$thumbnailPreview.css('display', 'block');
 			}
 		}
-		
 		
 		$('#youtube-url').on('input', () => {
 			youtubeIdGet();
 		});
+		
+		/*
+		$thumbnailPreview.on('load', function() {
+			if($thumbnailPreview.height() < 300) {
+				console.log('$thumbnailPreview.height() = ', $thumbnailPreview.height());
+				$thumbnailPreview.css('height', 'auto');
+			}
+		});
+		*/
 	});
 	
 	function youtubeIdGet() {
@@ -126,12 +135,11 @@
 		let thumbnail = file.files[0];
 		
 		if(thumbnail) {
-			let reader = new FileReader();
-			
-			reader.onload = function(e) {
-				let thumbnailPreview = $('#thumbnail-preview');
-				thumbnailPreview.attr('src', e.target.result);
-				thumbnailPreview.css('display', 'block');
+			let reader		= new FileReader();
+			reader.onload	= function(e) {
+				let $thumbnailPreview = $('#thumbnail-preview');
+				$thumbnailPreview.attr('src', e.target.result);
+				$thumbnailPreview.css('display', 'block');
 			};
 			
 			reader.readAsDataURL(thumbnail);
@@ -152,6 +160,7 @@
 			let $title		= $('#write-title').val();
 			let contents	= editor.value();
 			let $genre      = $('#genre').val();
+			
 			let dto			= {iboard : $iboard, title : $title, contents : contents, youtube_id : youtube_id, genre : $genre};
 			
 			$.ajax({

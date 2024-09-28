@@ -26,7 +26,7 @@
 	</select>
 	
 	<select id="boardSelect" parameterType="map" resultType="map">
-	SELECT A.IBOARD AS iboard, A.ICODE AS icode, A.genre AS genre_code, (SELECT NAME FROM tbl_code WHERE icode = A.genre) AS genre_name, A.IADMIN AS iadmin, A.TITLE AS title, A.CONTENTS AS contents, IFNULL(A.YOUTUBE_ID, "") AS youtube_id, A.CREATED_AT AS created_at, B.ITHUMBNAIL AS ithumbnail, B.NAME AS name
+	SELECT A.IBOARD AS iboard, A.ICODE AS icode, IFNULL(A.genre, '') AS genre_code, IFNULL((SELECT NAME FROM tbl_code WHERE icode = A.genre), '') AS genre_name, A.IADMIN AS iadmin, A.TITLE AS title, A.CONTENTS AS contents, IFNULL(A.YOUTUBE_ID, "") AS youtube_id, A.CREATED_AT AS created_at, B.ITHUMBNAIL AS ithumbnail, B.NAME AS name
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
