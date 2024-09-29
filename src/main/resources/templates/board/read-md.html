@@ -12,8 +12,8 @@
 	</p>
 	
 	<div id="read-top-wrap">
-		<strong id="read-title" th:text="${DATA.title}"></strong>
-		<strong id="read-created-at" th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd')}"></strong>
+		<p><strong id="read-title" th:text="${DATA.title}"></strong></p>
+		<p><strong id="read-created-at" th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd')}"></strong></p>
 	</div>
 	
 	<hr>
@@ -37,6 +37,35 @@
 		</th:block>
 		<button type="button" id="btn-list" class="btn btn-secondary" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">LIST</button>
 	</div>
+</article>
+
+<article id="article-board-main">
+	<table class="table" id="table-list">
+		<tbody>
+			<tr class="table" th:each="data : ${NEXT_POST}">
+				<td class="bottom-post-title">
+					<strong>다음 글</strong>
+				</td>
+				<td>
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
+						<span th:text="${data.title}"></span>
+					</a>
+				</td>
+			</tr>
+			
+			<tr class="table" th:each="data : ${PREV_POST}">
+				<td class="bottom-post-title">
+					<strong>이전 글</strong>
+				</td>
+				
+				<td>
+					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
+						<span th:text="${data.title}"></span>
+					</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </article>
 
 <script th:inline="javascript">
@@ -90,7 +119,7 @@
 	$(document).ready(() => {
 		setTimeout(() => {
 			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
-			$('main').css('height', $articleBoardMainHeight <= 700 ? '100%' : 'auto');
+			$('main').css('height', $articleBoardMainHeight <= 800 ? '100%' : 'auto');
 		}, 100);
 	});	
 </script>

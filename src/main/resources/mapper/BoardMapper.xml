@@ -14,7 +14,7 @@
 	INNER JOIN tbl_code B
 	ON A.ICODE = B.ICODE
 	WHERE A.DEL_YN = 'N' AND A.ICODE = #{code}
-	ORDER BY A.CREATED_AT DESC
+	ORDER BY A.IBOARD DESC
 	LIMIT #{offset}, #{amount}
 	</select>
 	
@@ -54,5 +54,21 @@
 	SELECT ICODE, NAME
 	FROM tbl_code
 	WHERE ICODE LIKE '%C%'
+	</select>
+	
+	<select id="prevPostGet" resultType="map">
+	SELECT iboard, icode, title, genre, created_at
+	FROM tbl_board
+	WHERE iboard <![CDATA[ < ]]> #{iboard} AND icode = (SELECT icode FROM tbl_board WHERE iboard = #{iboard}) AND del_yn = 'N'
+	ORDER BY iboard DESC
+	LIMIT 1
+	</select>
+	
+	<select id="nextPostGet" resultType="map">
+	SELECT iboard, icode, title, genre, created_at
+	FROM tbl_board
+	WHERE iboard <![CDATA[ > ]]> #{iboard} AND icode = (SELECT icode FROM tbl_board WHERE iboard = #{iboard}) AND del_yn = 'N'
+	ORDER BY iboard ASC
+	LIMIT 1
 	</select>
 </mapper>

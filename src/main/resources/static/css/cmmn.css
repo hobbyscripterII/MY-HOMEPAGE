@@ -51,7 +51,15 @@ body {
 
 a {
 	text-decoration: none;
-	color: #000 !important;
+	color: #333;
+}
+
+a:hover {
+    color: inherit !important;
+}
+
+td > a {
+	color: #333;
 }
 
 tr > th, tr > td {

@@ -32,7 +32,7 @@
 		</tbody>
 	</table>
 	
-	<div th:replace="~{fragments/pagination :: pagination}" ></div>
+	<div th:replace="~{/fragments/pagination :: pagination}" ></div>
 	
 	<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
 	<div id="btn-grp">
@@ -40,4 +40,18 @@
 	</div>
 	</th:block>
 </article>
+
+<script th:inline="javascript">
+$(document).ready(function(e) {
+	$('.page-item').each(function(e) {
+		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
+		let currentPage = $(this).text().trim();									// 사용자가 선택한 페이지
+		
+		if(queryPage == currentPage) {
+			$(this).addClass('active');
+			$(this).find('a').css('color', '#FFF');
+		}
+	});
+});
+</script>
 </html>

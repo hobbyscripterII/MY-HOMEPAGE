@@ -2,9 +2,9 @@
 
 @media (max-width: 768px) {
 	article {
-	    width: 90%;
+	    width: 100%;
 	    height: auto;
-	    margin: 20px auto;
+	    margin: 0;
 	}
 	
 	main {
@@ -64,6 +64,7 @@
 	
 	.thumbnail-item {
 		width: 100%;
+		margin-bottom: 10px;
 	}
 	
 	.thumbnail-item > a > img {
@@ -79,6 +80,13 @@
 	
 	.rss-contents {
 		font-size: 12px;
+	}
+	
+	.rss-contents > a {
+		white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    width: 75%;
 	}
 	
 	#movie-wrap > iframe {
@@ -102,5 +110,45 @@
 	/* CKEditor5 모바일 이미지 사이즈 */
 	.image > img {
 		width: 100%;
+	}
+	
+	/*
+	#read-top-wrap {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	*/
+	
+	.thumbnail-item > p {
+		text-align: left;
+	}
+	
+	.thumbnail-item > a > span {
+		margin-top: 0px;
+		font-size: 10px;
+	}
+	.thumbnail-item > p, .rss-item > p > span, #read-created-at {
+		width: 70px;
+		font-size: 10px;
+	}
+	
+	#read-title {
+		font-size: 11px;
+	}
+	
+	table {
+		font-size: 11px;
+	}
+	
+	#editor {
+		font-size: 12px;
+	}
+	
+	.pagination {
+		font-size: 10px;
+	}
+	
+	.bottom-post-title {
+		width: 65px;
 	}
 }

@@ -107,13 +107,17 @@ public class BoardController {
 	@GetMapping("/read-md")
 	public String readMarkdown(@RequestParam Map<String, Object> requestMap, Model model) {
 		Map<String, Object> boardSelect		= service.boardSelect(requestMap);
-		boardSelect.putIfAbsent("name", ""); // 쿼리에서 받아온 결과가 NULL인 경우 Map에 추가되지 않으므로 해당 Key 값이 없을 경우 직접 넣어준다.
 		String code 						= (String) boardSelect.get("icode");
+		String iboard 					    = (String) requestMap.get("iboard");
+		List<Map<String, Object>> prevPost 	= service.prevPostGet(iboard);
+		List<Map<String, Object>> nextPost 	= service.nextPostGet(iboard);
 		
-		boardSelect.put("article_title"	, articleTitleGet(code));
-		boardSelect.put("contents"		, commonmarkUtil.markdown((String) boardSelect.get("contents")));
-		
-		model.addAttribute(Const.DATA, boardSelect);
+		boardSelect.put("article_title"		, articleTitleGet(code));
+		boardSelect.put("contents"			, commonmarkUtil.markdown((String) boardSelect.get("contents")));
+		boardSelect.putIfAbsent("name"		, ""); // 쿼리에서 받아온 결과가 NULL인 경우 Map에 추가되지 않으므로 해당 Key 값이 없을 경우 직접 넣어준다.
+		model.addAttribute(Const.PREV_POST 	, prevPost);
+		model.addAttribute(Const.NEXT_POST 	, nextPost);
+		model.addAttribute(Const.DATA		, boardSelect);
 		return "board/read-md";
 	}
 	

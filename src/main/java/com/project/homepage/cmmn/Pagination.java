@@ -56,4 +56,9 @@ public class Pagination {
 	public void setTotal(int total) 			{ this.total = total; }
 	public int getPageCnt() 					{ return pageCnt; }
 	public void setPageCnt(int pageCnt) 		{ this.pageCnt = pageCnt; }
+
+	@Override
+	public String toString() {
+		return "Pagination [start=" + start + ", end=" + end + ", realEnd=" + realEnd + ", prev=" + prev + ", next=" + next + ", page=" + page + ", amount=" + amount + ", total=" + total + ", pageCnt=" + pageCnt + "]";
+	}
 }

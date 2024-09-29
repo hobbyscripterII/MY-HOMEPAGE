@@ -13,10 +13,6 @@ header {
     z-index: 1001;
 }
 
-#header-sidebar > a:hover {
-	color: #000;
-}
-
 /* 로고 이미지 */
 #header-logo {
     height: 35px;
@@ -50,7 +46,7 @@ header {
 #header-sidebar > a {
 	display: block;
 	width: 100%;
-	color: white;
+	color: #333;
 	/* font-family: "Bebas Neue", sans-serif; */	/* footer 글씨체 */
 	font-family: 'Cafe24Meongi-W-v1.0';				/* 귀여운 글씨체 */
 	font-weight: bold;

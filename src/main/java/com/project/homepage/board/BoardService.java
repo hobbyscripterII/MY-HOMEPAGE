@@ -86,4 +86,12 @@ public class BoardService {
 	public List<Map<String, Object>> boardGenreGet() {
 		return mapper.boardGenreGet();
 	}
+	
+	public List<Map<String, Object>> prevPostGet(String iboard) {
+		return mapper.prevPostGet(iboard);
+	}
+	
+	public List<Map<String, Object>> nextPostGet(String iboard) {
+		return mapper.nextPostGet(iboard);
+	}
 }

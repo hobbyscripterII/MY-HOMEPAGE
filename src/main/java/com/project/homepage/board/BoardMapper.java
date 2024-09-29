@@ -16,4 +16,6 @@ public interface BoardMapper {
 	public int boardUpdate(Map<String, Object> requestMap);
 	public int thumbnailInsert(Map<String, Object> requestMap);
 	public List<Map<String, Object>> boardGenreGet();
+	public List<Map<String, Object>> prevPostGet(String iboard);
+	public List<Map<String, Object>> nextPostGet(String iboard);
 }

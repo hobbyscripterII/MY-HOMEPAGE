@@ -203,8 +203,6 @@ article {
 
 #read-top-wrap {
 	width: 100%;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     /* padding: 0 20px 0 20px; */
     box-sizing: border-box;
@@ -229,4 +227,8 @@ article {
 /* 웹에디터 내 이미지 크기가 클 경우 */
 .image > img {
 	width: 100%;
+}
+
+.rss-contents > a {
+	color: #333;
 }
