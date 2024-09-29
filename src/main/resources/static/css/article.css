@@ -72,13 +72,21 @@ article {
 	display: none;
 	width: 50%;
 	/* height: 300px; */
-	margin-bottom: 10px;
+	margin: 0px auto 3px auto;
 }
 
 #thumbnail-wrap {
 	width: 100%;
-	display: flex;
+	display: block;
 	justify-content: center;
+	margin-bottom: 50px;
+}
+
+#thumbnail-title {
+	display: none;
+	text-align: center;
+	color: gray;
+	font-size: 11px;
 }
 
 .thumbnail-contents-wrap {
@@ -216,4 +224,9 @@ article {
 .ck-content {
     width: 100%;
     height: 500px;
+}
+
+/* 웹에디터 내 이미지 크기가 클 경우 */
+.image > img {
+	width: 100%;
 }

@@ -20,6 +20,7 @@
 	
 	<div id="thumbnail-wrap">
 		<img id="thumbnail-preview" alt="썸네일">
+		<p id="thumbnail-title">썸네일</p>
 	</div>
 	
 	<div id="movie-wrap">
@@ -44,6 +45,7 @@
 		let contents          		= [[${DATA.contents}]];
 		let name 			  		= ([[${DATA.name}]] || '');
 		let $thumbnailPreview 		= $('#thumbnail-preview');
+		let $thumbnailTitle			= $('#thumbnail-title');
 		
 		$('#editor').html(contents);
 		
@@ -54,6 +56,7 @@
 		if(name != '') {
 			$thumbnailPreview.attr('src', name);
 			$thumbnailPreview.css('display', 'block');
+			$thumbnailTitle.css('display', 'block');
 		}
 	});
 	

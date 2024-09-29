@@ -62,6 +62,10 @@ h1, h2, h3 {
 	font-family: "Bebas Neue", "Pretendard-Regular", sans-serif;
 }
 
+p {
+	margin-bottom: 0 !important;
+}
+
 .btn {
 	font-family: "Bebas Neue", sans-serif;
 	font-size: 1.1rem !important;
