@@ -3,7 +3,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
-<style> .row { margin-bottom: 10px; } .genre-form { display: none; } </style>
+<style>
+.row { margin-bottom: 10px; }
+.genre-form { display: none; }
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused),
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-bulrred) { padding-left: 30px; }
+
+</style>
 <article id="article-board-main">
 	<p id="article-title">
 		WRITE
@@ -126,6 +132,7 @@
 	
 	// CKEditor5 웹에디터 초기화
 	ClassicEditor.create(document.querySelector('#editor'), {
+		language	: 'ko',
 		ckfinder	: { uploadUrl: '/board/upload-img' },
 		toolbar		: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', 'blockQuote', 'insertTable', 'mediaEmbed', 'undo', 'redo'],
 	})

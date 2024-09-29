@@ -9,7 +9,7 @@
 
 article {
 	box-sizing: border-box;
-    width: 1000px;
+    width: 100%;
     height: auto;
     /* height: 1000px; */
     /* background-color: #FFF; */
@@ -60,7 +60,7 @@ article {
 }
 
 #editor {
-	/* padding-left: 20px; */
+	padding-left: 20px;
 }
 
 /* 게시글 썸네일 */
