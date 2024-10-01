@@ -117,12 +117,21 @@
 	});
 	
 	$(document).ready(() => {
-	    $('.image > img').each(function() {
-	    	$(this).on('load', function() {
-		        if ($(this).width() < 1000) { $(this).css('width', 'auto'); } 
-		        else 						{ $(this).css('width', '100%'); }
-	    	});
-	    });
+		if($(window).width() > 768) {
+		    $('.image > img').each(function() {
+		    	$(this).on('load', function() {
+			        if ($(this).width() < 1000) { $(this).css('width', 'auto'); } 
+			        else 						{ $(this).css('width', '100%'); }
+		    	});
+		    });
+		} else {
+		    $('.image > img').each(function() {
+		    	$(this).on('load', function() {
+			        if ($(this).width() < 1000) { $(this).css('width', '100%'); } 
+			        else 						{ $(this).css('width', 'auto'); }
+		    	});
+		    });
+		}
 	    
 		setTimeout(() => {
 			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);

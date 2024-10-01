@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@media (max-width: 960px) {
+@media (min-width: 960px) {
 	#thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
 	    width: 90%;
 	}
@@ -12,7 +12,7 @@
 
 @media (max-width: 768px) {
 	article {
-	    width: 95vw;
+	    width: 100vw;
 	    height: auto;
 	    margin: 0;
 	}
