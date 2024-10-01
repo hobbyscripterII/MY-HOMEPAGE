@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:fragment="aside">
+<div id="aside">
+	<th:block sec:authorize="hasRole('ADMIN')">		<!-- 로그인한 계정의 권한이 ADMIN일 경우 해당 메뉴 노출 -->
+		<a th:href="@{/admin/skin}">스킨 설정</a>
+		<a th:href="@{/admin/board}">게시판 설정</a>
+		<a th:href="@{/admin/post}">게시글 설정</a>
+	</th:block>
+</div>
+</html>

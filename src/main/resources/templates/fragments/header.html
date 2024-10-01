@@ -9,12 +9,16 @@
 <div class="overlay"></div>
 <div id="header-sidebar">
 	<a th:href="@{/board/list(code='B001')}">NOTICE</a>
+	<a th:href="@{/board/list(code='B006')}">DESIGN</a>
 	<!-- <a th:href="@{/board/list(code='B002')}">STUDY</a> -->
 	<a th:href="@{/board/list(code='B003')}">PHOTO</a>
 	<a th:href="@{/board/list(code='B004')}">MUSIC</a>
 	<a th:href="@{/board/list(code='B005')}">DAILY</a>
+	<th:block sec:authorize="hasRole('ADMIN')">		<!-- 로그인한 계정의 권한이 ADMIN일 경우 해당 메뉴 노출 -->
+		<a th:href="@{/admin/main}">ADMIN</a>
+	</th:block>
 	
-	<th:block sec:authorize="isAnonymous()">		<!-- 익명 사용자일 경우 로그인 버튼 출력 -->
+	<th:block sec:authorize="isAnonymous()">		<!-- 익명 계정일 경우 로그인 버튼 출력 -->
 		<a th:href="@{/login}">LOGIN</a>
 	</th:block>
 	<th:block sec:authorize="isAuthenticated()">	<!-- 권한 관계없이 인증 완료 후 로그아웃 버튼 출력 -->

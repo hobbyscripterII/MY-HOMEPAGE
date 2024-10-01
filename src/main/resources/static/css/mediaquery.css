@@ -1,8 +1,18 @@
 @charset "UTF-8";
 
+@media (max-width: 960px) {
+	#thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
+	    width: 90%;
+	}
+	
+	#article-board-main {
+	    width: 90%;
+	}
+}
+
 @media (max-width: 768px) {
 	article {
-	    width: 100%;
+	    width: 95vw;
 	    height: auto;
 	    margin: 0;
 	}
@@ -69,7 +79,7 @@
 	
 	.thumbnail-item > a > img {
 		width: 100%;
-		height: auto;
+		height: 200px;
 	}
 	
 	#thumbnail-preview {

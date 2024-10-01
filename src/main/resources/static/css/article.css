@@ -9,7 +9,7 @@
 
 article {
 	box-sizing: border-box;
-    width: 100%;
+    width: 1000px;
     height: auto;
     /* height: 1000px; */
     /* background-color: #FFF; */
@@ -226,7 +226,7 @@ article {
 
 /* 웹에디터 내 이미지 크기가 클 경우 */
 .image > img {
-	width: 100%;
+	width: auto;
 }
 
 .rss-contents > a {

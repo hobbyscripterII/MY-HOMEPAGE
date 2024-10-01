@@ -154,10 +154,12 @@ public class BoardController {
 		
 		switch (code) {
 		case "B001": title = "NOTICE"; break;
-		case "B002": title = "STUDY"; break;
-		case "B003": title = "PHOTO"; break;
-		case "B004": title = "MUSIC"; break;
-		case "B005": title = "DAILY"; break;
+		case "B002": title = "STUDY";  break;
+		case "B003": title = "PHOTO";  break;
+		case "B004": title = "MUSIC";  break;
+		case "B005": title = "DAILY";  break;
+		case "B006": title = "DESIGN"; break;
+		case "B007": title = "ADMIN";  break;
 		}
 		return title;
 	}
