@@ -120,15 +120,21 @@
 		if($(window).width() > 768) {
 		    $('.image > img').each(function() {
 		    	$(this).on('load', function() {
-			        if ($(this).width() < 1000) { $(this).css('width', 'auto'); } 
-			        else 						{ $(this).css('width', '100%'); }
+			        if ($(this).width() < 1000) {
+			        	$(this).css('width', 'auto');
+		        	} else {
+		        		$(this).css('width', '60%');
+		        	}
 		    	});
 		    });
 		} else {
 		    $('.image > img').each(function() {
 		    	$(this).on('load', function() {
-			        if ($(this).width() < 1000) { $(this).css('width', '100%'); } 
-			        else 						{ $(this).css('width', 'auto'); }
+			        if ($(this).width() < 1000) {
+		        		$(this).css('width', '100%');
+		        	} else {
+			        	$(this).css('width', 'auto');
+		        	}
 		    	});
 		    });
 		}

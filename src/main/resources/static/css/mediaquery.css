@@ -2,11 +2,11 @@
 
 @media (min-width: 960px) {
 	#thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
-	    width: 90%;
+	    width: 1000px;
 	}
 	
 	#article-board-main {
-	    width: 90%;
+	    width: 1000px;
 	}
 }
 

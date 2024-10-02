@@ -70,7 +70,7 @@ article {
 
 #thumbnail-preview {
 	display: none;
-	width: 15%;
+	width: 40%;
 	/* height: 300px; */
 	margin: 0px auto 3px auto;
 }
@@ -106,7 +106,7 @@ article {
 }
 
 .thumbnail-item {
-	width: 240px;
+	width: 24%;
 	text-align: left;
 }
 
@@ -127,7 +127,7 @@ article {
 
 .thumbnail-item > a > img {
 	display: block;
-	width: 240px;
+	width: 100%;
 	height: 200px;
 	object-fit: cover;
 }
