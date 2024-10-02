@@ -21,10 +21,9 @@ header {
 /* 로고 이미지 대신 사용할 문구 */
 #header-name {
 	text-transform: uppercase;
-	font-family: 'Cafe24Meongi-W-v1.0';		/* 귀여운 글씨 */
-	font-size: 2.6rem;
-	color: #FFF;
-	font-weight: bold;
+	font-family: 'NotoSerifKR';
+	font-size: 2rem;
+	color: #3C3D37;
 }
 
 /* 좌측 사이드바 */
@@ -38,19 +37,20 @@ header {
 	overflow-x: hidden;
 	padding-top: 30px;
 	/* background-color: #f15a22; */
-	background-color : rgb(255,255,255, 1);
+	/* background-color : rgb(255,255,255, 1); */
+	background-image: url("https://images.unsplash.com/photo-1518103151122-5762d91db994?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
 	transition: 0.2s;
 	z-index: 1001;
+	background-position-y: -35vh;
 }
 
 #header-sidebar > a {
 	display: block;
 	width: 100%;
-	color: #333;
+	color: #1E201E;
 	/* font-family: "Bebas Neue", sans-serif; */	/* footer 글씨체 */
-	font-family: 'Cafe24Meongi-W-v1.0';				/* 귀여운 글씨체 */
-	font-weight: bold;
-	font-size: 2.5rem;
+	font-family: 'NotoSerifKR';
+	font-size: 2rem;
 }
 
 #header-sidebar.open {
@@ -60,9 +60,11 @@ header {
 
 /* 토글 */
 #header-hamburger-btn {
-    height: 15px;
     cursor: pointer;
-    padding: 0 15px 0 15px;
+    color: #3C3D37;
+    width: 2rem;
+    height: 2rem;
+    margin: 5px 0 0 15px;
 }
 
 /* 토글 클릭 시 뒷 화면 */

@@ -2,7 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       th:fragment="nav">
 <header>
-<img id="header-hamburger-btn" src="https://img.icons8.com/?size=100&id=8113&format=png&color=ffffff" alt="햄버거 버튼 아이콘" onclick="sidebarToggle()">
+<svg id="header-hamburger-btn" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" alt="햄버거 버튼 아이콘" class="bi bi-list" viewBox="0 0 16 16" onclick="sidebarToggle()">
+  <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+</svg>
 <!-- <a href="/"><img id="header-logo" th:src="@{/img/img-logo.png}" alt="로고 아이콘"></img></a>  -->
 <a href="/"><span id="header-name">inspire</span></a>
 

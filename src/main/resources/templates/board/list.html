@@ -36,7 +36,7 @@
 	
 	<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
 	<div id="btn-grp">
-		<button type="button" class="btn btn-primary" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">WRITE</button>
+		<button type="button" class="btn btn-light" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">WRITE</button>
 	</div>
 	</th:block>
 </article>

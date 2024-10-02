@@ -1,20 +1,16 @@
 @charset "UTF-8";
 
 footer {
-	box-sizing: border-box;
-	height: 190px;
-	padding-top: 10px;
-	text-align: center;
-	/* background-color: #f15a22; */
-	background-color : rgb(255,255,255,0.5);
-	display: block;
-	/* margin-top: 250px; */
-	position: relative;
-	bottom: 0;
+    box-sizing: border-box;
+    height: 100px;
+    padding-top: 10px;
+    text-align: center;
+    background-color: #000;
+    display: block;
 }
 
 footer > p {
-	color: #000 !important;
+	color: #ECDFCC !important;
 }
 
 /*
@@ -24,9 +20,7 @@ footer > p {
 */
 
 #footer-links > a > span {
-	font-family: "Bebas Neue", sans-serif;
-	color: #000;
-	font-size: 3rem;
+	color: #ECDFCC;
 }
 
 #footer-links > a {
@@ -39,7 +33,6 @@ footer > p {
 
 #footer-title {
 	text-transform: uppercase;
-	font-family: "Bebas Neue", sans-serif;
 	color: #FFF;
-	font-size: 3rem;
+	font-size: 1rem;
 }
