@@ -9,10 +9,12 @@
 	</insert>
 	
 	<select id="boardGet" parameterType="map" resultType="map">
-	SELECT A.IBOARD, A.ICODE, A.TITLE, (SELECT NAME FROM tbl_code WHERE ICODE = A.GENRE) GENRE, A.CREATED_AT
+	SELECT A.IBOARD, A.ICODE, A.TITLE, (SELECT NAME FROM tbl_code WHERE ICODE = A.GENRE) GENRE, IFNULL(C.NAME, '') TUMBNAIL, A.CREATED_AT
 	FROM tbl_board A
 	INNER JOIN tbl_code B
 	ON A.ICODE = B.ICODE
+	LEFT JOIN tbl_thumbnail C
+	ON A.IBOARD = C.IBOARD
 	WHERE A.DEL_YN = 'N' AND A.ICODE = #{code}
 	ORDER BY A.IBOARD DESC
 	LIMIT #{offset}, #{amount}

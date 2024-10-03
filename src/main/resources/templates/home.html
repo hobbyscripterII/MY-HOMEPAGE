@@ -4,10 +4,10 @@
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
 
-<article id="article-home">
+<article id="article-home" class="card-2">
 </article>
       
-<div id="thumbnail-home-notice">
+<div id="thumbnail-home-notice" class="card-2">
 	<p class="thumbnail-home-title">NOTICE</p>
 	<div class="rss-contents-wrap">
 		<th:block th:each="data : ${DATA}">
@@ -23,7 +23,7 @@
 	</div>
 </div>
 
-<div id="thumbnail-home-study">
+<div id="thumbnail-home-study" class="card-2">
 	<p class="thumbnail-home-title">STUDY(RSS)</p>
 	<div class="rss-contents-wrap">
 		<th:block th:if="${RESULT == 1}" th:each="rss : ${RSS}">
@@ -45,7 +45,7 @@
 	</div>
 </div>
 
-<div id="thumbnail-home-photo">
+<div id="thumbnail-home-photo" class="card-2">
 	<p class="thumbnail-home-title">PHOTO</p>
 	<div class="thumbnail-contents-wrap">
 		<th:block th:each="data : ${DATA}">
@@ -67,7 +67,7 @@
 	</div>
 </div>
 
-<div id="thumbnail-home-music">
+<div id="thumbnail-home-music" class="card-2">
 	<p class="thumbnail-home-title">MUSIC</p>
 	<div class="thumbnail-contents-wrap">
 		<th:block th:each="data : ${DATA}">
@@ -82,7 +82,7 @@
 	</div>
 </div>
 
-<div id="thumbnail-home-daily">
+<div id="thumbnail-home-daily" class="card-2">
 	<p class="thumbnail-home-title">DAILY</p>
 	<div class="thumbnail-contents-wrap">
 		<th:block th:each="data : ${DATA}">

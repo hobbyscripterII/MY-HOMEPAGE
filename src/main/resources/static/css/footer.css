@@ -5,7 +5,7 @@ footer {
     height: 100px;
     padding-top: 10px;
     text-align: center;
-    background-color: #000;
+    background-color : rgb(0,0,0,0.5);
     display: block;
 }
 

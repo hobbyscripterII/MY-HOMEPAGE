@@ -57,25 +57,22 @@ public class BoardController {
 		}
 	}
 	
-	// 목록형 게시판
+	// 리스트 목록형 & 사진 목록형 게시판
 	@GetMapping("/list")
 	public String mainList(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam(name = "amount", required = false, defaultValue = "10") int amount, @RequestParam Map<String, Object> requestMap, Model model) {
 		Pagination pagination	= new Pagination(page, amount, service.boardGetCnt(requestMap));
 		int offset 				= (page == 1 ? 0 : (page - 1) * 10);
+		Map<String, Object> map = articleTitleAndUrlGet((String) requestMap.get("code"));
+		String title			= (String) map.get("title");
+		String url				= (String) map.get("url");
 		
-		requestMap.put("offset"		, offset);
-		requestMap.put("amount"		, amount);
+		requestMap.put("offset" , offset);
+		requestMap.put("amount" , amount);
 		
 		model.addAttribute(Const.DATA			, service.boardGet(requestMap));
-		model.addAttribute(Const.ARTICLE_TITLE	, articleTitleGet((String) requestMap.get("code")));
+		model.addAttribute(Const.ARTICLE_TITLE	, title);
 		model.addAttribute(Const.PAGINATION		, pagination);
-		return "board/list";
-	}
-	
-	// 사진형 게시판
-	@GetMapping("/photo")
-	public String mainPhoto() {
-		return null;
+		return url;
 	}
 	
 	@GetMapping("/write-md")
@@ -111,8 +108,10 @@ public class BoardController {
 		String iboard 					    = (String) requestMap.get("iboard");
 		List<Map<String, Object>> prevPost 	= service.prevPostGet(iboard);
 		List<Map<String, Object>> nextPost 	= service.nextPostGet(iboard);
+		Map<String, Object> map 			= articleTitleAndUrlGet((String) requestMap.get("code"));
+		String title						= (String) map.get("title");
 		
-		boardSelect.put("article_title"		, articleTitleGet(code));
+		boardSelect.put("article_title"		, title);
 		boardSelect.put("contents"			, commonmarkUtil.markdown((String) boardSelect.get("contents")));
 		boardSelect.putIfAbsent("name"		, ""); // 쿼리에서 받아온 결과가 NULL인 경우 Map에 추가되지 않으므로 해당 Key 값이 없을 경우 직접 넣어준다.
 		model.addAttribute(Const.PREV_POST 	, prevPost);
@@ -149,18 +148,25 @@ public class BoardController {
 		return responseMap;
 	}
 	
-	private String articleTitleGet(String code) {
+	private Map<String, Object> articleTitleAndUrlGet(String code) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
 		String title = null;
+		String url   = null;
 		
 		switch (code) {
-		case "B001": title = "NOTICE"; break;
-		case "B002": title = "STUDY";  break;
-		case "B003": title = "PHOTO";  break;
-		case "B004": title = "MUSIC";  break;
-		case "B005": title = "DAILY";  break;
-		case "B006": title = "DESIGN"; break;
-		case "B007": title = "ADMIN";  break;
+		case "B001": title = "NOTICE"; url = "board/list";    break;
+		case "B002": title = "STUDY"; 				          break;
+		case "B003": title = "PHOTO";  url = "board/list-ph"; break;
+		case "B004": title = "MUSIC";  url = "board/list-ph"; break;
+		case "B005": title = "DAILY";  url = "board/list-ph"; break;
+		case "B006": title = "DESIGN"; url = "board/list-ph"; break;
+		case "B007": title = "ADMIN";  						  break;
 		}
-		return title;
+		
+		map.put("title", title);
+		map.put("url"  , url);
+		
+		return map;
 	}
 }
