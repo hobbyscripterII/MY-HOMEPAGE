@@ -5,9 +5,8 @@
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
 <style>
-	article {
-		background-color: transparent;
-	}	
+	main { height: 100%; }
+	article { background-color: transparent; }	
 </style>
 <article id="article-board-main">
 	<p id="article-title" th:text="${ARTICLE_TITLE}">
@@ -17,12 +16,20 @@
 	<div class="thumbnail-contents-wrap">
 		<th:block th:each="data : ${DATA}">
 			<div class="thumbnail-item">
-				<a>
+				<a th:if="${data.ICODE != 'B004'}">
 					<th:block th:if="${data.TUMBNAIL == ''}">
 						<img th:src="@{/img/img-noimage.png}" alt="썸네일">
 					</th:block>
 					<th:block th:if="${data.TUMBNAIL != ''}">
 						<img th:src="${data.TUMBNAIL}" alt="썸네일">
+					</th:block>						
+				</a>
+				<a th:if="${data.ICODE == 'B004'}">
+					<th:block th:if="${data.YOUTUBE_ID == ''}">
+						<img th:src="@{/img/img-noimage.png}" alt="썸네일">
+					</th:block>
+					<th:block th:if="${data.YOUTUBE_ID != ''}">
+						<img th:src="'https://img.youtube.com/vi/' + ${data.YOUTUBE_ID} + '/0.jpg'" alt="썸네일">
 					</th:block>						
 				</a>
 				<a class="thumbnail-item-info" th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
