@@ -157,6 +157,11 @@
 	}
 	
 	#article-home > p {
-	font-size: 12px;
+		font-size: 12px;
+	}
+	
+	.thumbnail-item-info {
+    	opacity: 1;
+    	height: auto;
 	}
 }

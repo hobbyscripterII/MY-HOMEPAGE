@@ -108,7 +108,7 @@ public class BoardController {
 		String iboard 					    = (String) requestMap.get("iboard");
 		List<Map<String, Object>> prevPost 	= service.prevPostGet(iboard);
 		List<Map<String, Object>> nextPost 	= service.nextPostGet(iboard);
-		Map<String, Object> map 			= articleTitleAndUrlGet((String) requestMap.get("code"));
+		Map<String, Object> map 			= articleTitleAndUrlGet(code);
 		String title						= (String) map.get("title");
 		
 		boardSelect.put("article_title"		, title);
