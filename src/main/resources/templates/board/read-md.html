@@ -6,6 +6,7 @@
       layout:fragment="article">
 <style>
 	#article-board-main { overflow: auto; }
+	.table { margin-bottom: 0 !important; }
 </style>
 <article id="article-board-main">
 	<p id="article-title" th:text="${DATA.article_title}">
@@ -39,34 +40,36 @@
 	</div>
 </article>
 
-<article id="article-board-main">
-	<table class="table" id="table-list">
-		<tbody>
-			<tr class="table" th:each="data : ${NEXT_POST}">
-				<td class="bottom-post-title">
-					<strong>다음 글</strong>
-				</td>
-				<td>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
-						<span th:text="${data.title}"></span>
-					</a>
-				</td>
-			</tr>
-			
-			<tr class="table" th:each="data : ${PREV_POST}">
-				<td class="bottom-post-title">
-					<strong>이전 글</strong>
-				</td>
+<th:block th:if="${#arrays.length(NEXT_POST) > 0 || #arrays.length(PREV_POST) > 0}">
+	<article id="article-board-main">
+		<table class="table" id="table-list">
+			<tbody>
+				<tr class="table" th:each="data : ${NEXT_POST}">
+					<td class="bottom-post-title">
+						<strong>다음 글</strong>
+					</td>
+					<td>
+						<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
+							<span th:text="${data.title}"></span>
+						</a>
+					</td>
+				</tr>
 				
-				<td>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
-						<span th:text="${data.title}"></span>
-					</a>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</article>
+				<tr class="table" th:each="data : ${PREV_POST}">
+					<td class="bottom-post-title">
+						<strong>이전 글</strong>
+					</td>
+					
+					<td>
+						<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
+							<span th:text="${data.title}"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</article>
+</th:block>
 
 <script th:inline="javascript">
 	$(document).ready(() => {
@@ -139,10 +142,12 @@
 		    });
 		}
 	    
+		/*
 		setTimeout(() => {
 			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
 			$('main').css('height', $articleBoardMainHeight <= 800 ? '100%' : 'auto');
 		}, 100);
+		*/
 	});	
 </script>
 </html>

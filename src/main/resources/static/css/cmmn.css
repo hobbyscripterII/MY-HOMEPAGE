@@ -55,7 +55,7 @@ html {
 }
 
 body {
-    font-family: 'Source Sans Pro' !important;
+    font-family: 'Pretendard-Regular' !important;
     height: 100vh;
     /* background-image: url("/img/img-bg.jpg"); */
     background-image: url("https://images.unsplash.com/photo-1503394186783-bdcdf2f6d0cb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
@@ -91,4 +91,9 @@ p {
 .btn {
 	font-family: "Bebas Neue", sans-serif;
 	font-size: 1.1rem !important;
+}
+
+input:active {
+	outline: none;
+	box-shadow: none;
 }

@@ -35,7 +35,7 @@
 	<div th:replace="~{fragments/pagination :: pagination}"></div>
 	
 	<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-	<div id="btn-grp">
+	<div id="btn-grp" style="padding: 0">
 		<button type="button" class="btn btn-light" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">WRITE</button>
 	</div>
 	</th:block>

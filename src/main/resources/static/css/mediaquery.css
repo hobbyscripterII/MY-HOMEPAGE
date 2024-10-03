@@ -1,20 +1,24 @@
 @charset "UTF-8";
 
 @media (min-width: 960px) {
+	article {
+		width: 90%;
+	}
+	
 	#thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
-	    width: 1000px;
+	    width: 90%;
 	}
 	
 	#article-board-main {
-	    width: 1000px;
+	    width: 90%;
 	}
 }
 
 @media (max-width: 768px) {
 	article {
-	    width: 100vw;
-	    height: auto;
-	    margin: 0;
+		width: 90%;
+        height: auto;
+        margin: 20px auto;
 	}
 
 	#header-logo {

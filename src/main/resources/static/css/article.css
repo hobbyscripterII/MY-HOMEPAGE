@@ -15,7 +15,7 @@ article {
     /* background-color: #FFF; */
     background-color : rgb(255,255,255,0.5);
     margin: 20px auto;
-    padding: 10px;
+    padding: 5px 20px 5px 20px;
 }
 
 #article-board-main {
@@ -38,6 +38,7 @@ article {
 #btn-grp {
 	text-align: right;
 	margin-top: 10px;
+	padding: 0 20px 0 20px;
 }
 
 #write-title {
@@ -59,7 +60,7 @@ article {
 }
 
 #editor {
-	padding-left: 20px;
+	padding: 0 20px 0 20px;
 }
 
 /* 게시글 썸네일 */
@@ -189,7 +190,7 @@ article {
 #movie-wrap {
 	display: none;
 	width: 100%;
-	text-align: center;
+	padding: 0 20px 0 20px;
 }
 
 #movie-wrap > iframe {
