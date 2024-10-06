@@ -8,6 +8,8 @@
 	#article-board-main { overflow: auto; }
 	.table { margin-bottom: 0 !important; }
 	#thumbnail-wrap { display: none; }
+	blockquote { border-left: 6px solid darkgray; padding-left: 10px; }
+	blockquote > p { color: darkgray; }
 </style>
 <article id="article-board-main">
 	<p id="article-title" th:text="${DATA.article_title}">
@@ -142,13 +144,6 @@
 		    	});
 		    });
 		}
-	    
-		/*
-		setTimeout(() => {
-			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
-			$('main').css('height', $articleBoardMainHeight <= 800 ? '100%' : 'auto');
-		}, 100);
-		*/
-	});	
+	});
 </script>
 </html>

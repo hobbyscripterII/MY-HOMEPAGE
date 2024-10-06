@@ -2,15 +2,16 @@
 
 footer {
     box-sizing: border-box;
-    height: 100px;
-    padding-top: 10px;
+    height: 95px;
+    padding: 10px 0 10px 0;
     text-align: center;
-    background-color : rgb(0,0,0,0.5);
+    background-color : rgb(0,0,0,0.2);
     display: block;
 }
 
 footer > p {
-	color: #ECDFCC !important;
+	color: #333 !important;
+	font-size: small;
 }
 
 /*
@@ -19,16 +20,16 @@ footer > p {
 }
 */
 
+#footer-links {
+	margin-bottom: 5px;
+}
+
 #footer-links > a > span {
-	color: #ECDFCC;
+	color: #FFF;
 }
 
 #footer-links > a {
 	margin-right: 10px;
-}
-
-#footer-links > p {
-	margin-bottom: -5px;
 }
 
 #footer-title {
