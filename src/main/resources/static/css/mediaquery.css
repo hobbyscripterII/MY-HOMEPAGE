@@ -20,6 +20,10 @@
 	#thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
 		height: 255px;
 	}
+	
+	.thumbnail-item-info {
+		height: auto;
+	}
 }
 
 @media (max-width: 768px) {
