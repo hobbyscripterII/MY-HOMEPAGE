@@ -61,6 +61,17 @@ $(document).ready(function(e) {
 			$(this).find('a').css('color', '#FFF');
 		}
 	});
+	
+	if($(window).width() < 768) {
+		if(($('#article-board-main').height) < 200) {
+			let $footer = $('footer');
+			
+			$footer.css('position', 'absolute');
+			$footer.css('bottom', '0px');
+			$footer.css('display', 'flex !important');
+		}
+		$('main').css('height', 'auto');
+	}
 });
 </script>
 </html>
