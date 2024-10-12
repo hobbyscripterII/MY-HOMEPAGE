@@ -14,7 +14,7 @@
 	}
 	
 	.thumbnail-item > a > img {
-		height: 155px;
+		height: 230px;
 	}
 	
 	#thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
@@ -167,5 +167,6 @@
 	.thumbnail-item-info {
     	opacity: 1;
     	height: auto;
+    	width: 282px;
 	}
 }

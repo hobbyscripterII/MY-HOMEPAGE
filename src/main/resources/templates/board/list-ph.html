@@ -8,6 +8,7 @@
 	main { height: 100%; }
 	article { background-color: transparent; }
 	.thumbnail-item { position: relative; }
+	.col { padding-left: 0px; }
 </style>
 <article id="article-board-main">
 	<p id="article-title" th:text="${ARTICLE_TITLE}">
@@ -16,7 +17,7 @@
 	
 	<div class="thumbnail-contents-wrap">
 		<th:block th:each="data : ${DATA}">
-			<div class="thumbnail-item">
+			<div class="thumbnail-item col">
 				<a th:if="${data.ICODE != 'B004'}">
 					<th:block th:if="${data.TUMBNAIL == ''}">
 						<img th:src="@{/img/img-noimage.png}" alt="썸네일">

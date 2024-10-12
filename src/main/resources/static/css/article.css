@@ -1,12 +1,5 @@
 @charset "UTF-8";
 
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
-
 .card-2 {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
@@ -15,7 +8,7 @@ article {
 	box-sizing: border-box;
     width: 70%;
     height: auto;
-    background-color : rgb(255,255,255,0.2);
+    background-color : rgb(255,255,255,0.7);
     margin: 20px auto;
     padding: 5px 20px 5px 20px;
 }
@@ -30,7 +23,7 @@ article {
 
 #article-title {
 	width: 100%;
-	font-family: 'NotoSerifKR';
+	font-family: 'Bebas Neue', 'NotoSerifKR';
 	color: #1E201E;
 	font-size: 2rem;
 	text-align: center;
@@ -107,10 +100,14 @@ article {
     width: 70%;
     height: 340px;
     /* background-color: #FFF; */
-    background-color : rgb(255,255,255,0.2);
+    background-color : rgb(255,255,255,0.7);
     margin: 20px auto;
     padding: 5px 20px 5px 20px;
     position: relative;
+}
+
+#thumbnail-home-notice {
+	height: 155px;
 }
 
 .thumbnail-item {
@@ -140,7 +137,7 @@ article {
 
 .thumbnail-item > a > img {
 	display: block;
-	width: 100%;
+	width: 300px;
 	height: 230px;
 	object-fit: cover;
 }
@@ -159,7 +156,7 @@ article {
 .thumbnail-item-info {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     display: flex;
     flex-direction: column;
@@ -168,8 +165,8 @@ article {
     text-align: center;
     opacity: 0;
     transition: opacity 0.3s;
-    width: 100%;
-    height: 25vh;
+    width: 300px;
+    /* height: 25vh; */
 }
 
 .thumbnail-item-info > p, .thumbnail-item-info > span {
@@ -186,7 +183,7 @@ article {
 
 .thumbnail-home-title {
 	width: 100%;
-	font-family: 'NotoSerifKR';
+	font-family: 'Bebas Neue', 'NotoSerifKR';
 	color: #1E201E;
 	font-size: 1.5rem;
 	text-align: left;

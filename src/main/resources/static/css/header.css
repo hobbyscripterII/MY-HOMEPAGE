@@ -7,7 +7,7 @@ header {
     width: 100%;
     height: 70px;
     /* background-color: #000; */
-    background-color : rgb(255,255,255,0.2);
+    background-color : rgb(255,255,255,0.7);
     display: flex !important;
     align-items: center;
     z-index: 1001;
@@ -21,9 +21,9 @@ header {
 /* 로고 이미지 대신 사용할 문구 */
 #header-name {
 	text-transform: uppercase;
-	font-family: 'NotoSerifKR';
-	font-size: 2rem;
-	color: #3C3D37;
+	font-family: 'Bebas Neue';
+	font-size: 3rem;
+	color: #333;
 }
 
 /* 좌측 사이드바 */
@@ -38,7 +38,7 @@ header {
 	padding-top: 30px;
 	/* background-color: #f15a22; */
 	/* background-color : rgb(255,255,255, 1); */
-	background-image: url("https://images.unsplash.com/photo-1600172454132-ada7faa101cf?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+	background-image: url("https://images.unsplash.com/photo-1728274264036-0cf705b911c6?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
 	transition: 0.2s;
 	z-index: 1001;
     background-position-y: bottom;
@@ -48,10 +48,9 @@ header {
 #header-sidebar > a {
 	display: block;
 	width: 100%;
-	color: #1E201E;
-	/* font-family: "Bebas Neue", sans-serif; */	/* footer 글씨체 */
-	font-family: 'NotoSerifKR';
-	font-size: 2rem;
+	color: #FFF;
+	font-family: "Bebas Neue", sans-serif; /* footer 글씨체 */
+	font-size: 2.5rem;
 }
 
 #header-sidebar.open {
@@ -65,7 +64,7 @@ header {
     color: #3C3D37;
     width: 2rem;
     height: 2rem;
-    margin: 5px 0 0 15px;
+    margin: 0px 5px 5px 5px;
 }
 
 /* 토글 클릭 시 뒷 화면 */
@@ -75,7 +74,7 @@ header {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0.5);
 	display: none;
 	z-index: 1000;
 	transition: 0.5s;
