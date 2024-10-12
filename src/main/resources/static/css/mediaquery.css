@@ -13,6 +13,10 @@
 	    width: 90%;
 	}
 	
+	.thumbnail-item.home > a > img {
+		height: 150px;
+	}
+	
 	.thumbnail-item > a > img {
 		height: 230px;
 	}
@@ -47,7 +51,7 @@
 	}
 	
 	footer {
-		height: 90px;
+		height: 115px;
 		padding-top: 10px;
 		display: flex;
 		flex-wrap: wrap;

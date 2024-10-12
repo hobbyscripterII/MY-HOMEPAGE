@@ -56,7 +56,7 @@
 	<div class="thumbnail-contents-wrap">
 		<th:block th:each="data : ${DATA}">
 			<th:block th:if="${data.icode == 'B003'}">
-				<div class="thumbnail-item">
+				<div class="thumbnail-item home">
 					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
 					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
 						<th:block th:if="${data.NAME == ''}">
@@ -78,7 +78,7 @@
 	<div class="thumbnail-contents-wrap">
 		<th:block th:each="data : ${DATA}">
 			<th:block th:if="${data.icode == 'B004'}">
-				<div class="thumbnail-item"> <!-- 'https://img.youtube.com/vi/' + id + '/0.jpg' -->
+				<div class="thumbnail-item home"> <!-- 'https://img.youtube.com/vi/' + id + '/0.jpg' -->
 					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
 					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><img th:src="'https://img.youtube.com/vi/' + ${data.youtube_id} + '/0.jpg'" alt="썸네일"></a>
 					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
@@ -93,7 +93,7 @@
 	<div class="thumbnail-contents-wrap">
 		<th:block th:each="data : ${DATA}">
 			<th:block th:if="${data.icode == 'B005'}">
-				<div class="thumbnail-item">
+				<div class="thumbnail-item home">
 					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
 					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
 						<th:block th:if="${data.NAME == ''}">
