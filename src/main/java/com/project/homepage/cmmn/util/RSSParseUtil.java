@@ -37,7 +37,7 @@ public class RSSParseUtil {
 		this.url = url;
 	}
 	
-	@Scheduled(fixedRate = fixedRate)
+//	@Scheduled(fixedRate = fixedRate) // 재사용 시 주석 해제
 //	@PostConstruct
 	public void rssParse() throws ParserConfigurationException, SAXException, IOException {
 		try {
