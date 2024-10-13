@@ -5,10 +5,9 @@
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
 <style>
-	main { height: 100%; }
 	article { background-color: transparent; }
 	.thumbnail-item { position: relative; }
-	.col { padding: 0; margin: 0; }
+	.col { padding: 0; margin: 0; margin-bottom: 10px; }
 </style>
 <article id="article-board-main">
 	<p id="article-title" th:text="${ARTICLE_TITLE}">
@@ -52,6 +51,8 @@
 </article>
 
 <script th:inline="javascript">
+let $main = $('main');
+
 $(document).ready(function(e) {
 	$('.page-item').each(function(e) {
 		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
@@ -64,14 +65,18 @@ $(document).ready(function(e) {
 	});
 	
 	if($(window).width() < 768) {
-		if(($('#article-board-main').height) < 200) {
-			let $footer = $('footer');
-			
-			$footer.css('position', 'absolute');
-			$footer.css('bottom', '0px');
-			$footer.css('display', 'flex !important');
+		if($main.height() < 600) {
+			$main.css('height', '630px');
+		} else {
+			$main.css('height', 'auto');
+			$('footer').css('margin-top', '50px');
 		}
-		$('main').css('height', 'auto');
+	} else {
+		if($main.height() < 700) {
+			$main.css('height', '730px');
+		} else {
+			$main.css('height', 'auto');
+		}
 	}
 });
 </script>

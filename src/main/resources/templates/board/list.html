@@ -4,9 +4,6 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
-<style>
-	main { height: 100%; }
-</style>
 <article id="article-board-main" class="card-2">
 	<p id="article-title" th:text="${ARTICLE_TITLE}">
 		NOTICE
@@ -43,6 +40,9 @@
 
 <script th:inline="javascript">
 $(document).ready(function(e) {
+	let $main = $('main');
+	console.log('$(window).width() = ', $(window).width());
+	
 	$('.page-item').each(function(e) {
 		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
 		let currentPage = $(this).text().trim();									// 사용자가 선택한 페이지
@@ -52,6 +52,21 @@ $(document).ready(function(e) {
 			$(this).find('a').css('color', '#FFF');
 		}
 	});
+	
+	if($(window).width() < 768) {
+		if($main.height() < 600) {
+			$main.css('height', '630px');
+		} else {
+			$main.css('height', 'auto');
+			$('footer').css('margin-top', '50px');
+		}
+	} else {
+		if($main.height() < 700) {
+			$main.css('height', '730px');
+		} else {
+			$main.css('height', 'auto');
+		}
+	}
 });
 </script>
 </html>

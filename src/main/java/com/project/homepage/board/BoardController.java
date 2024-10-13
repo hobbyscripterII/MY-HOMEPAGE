@@ -59,12 +59,13 @@ public class BoardController {
 	
 	// 리스트 목록형 & 사진 목록형 게시판
 	@GetMapping("/list")
-	public String mainList(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam(name = "amount", required = false, defaultValue = "10") int amount, @RequestParam Map<String, Object> requestMap, Model model) {
-		Pagination pagination	= new Pagination(page, amount, service.boardGetCnt(requestMap));
-		int offset 				= (page == 1 ? 0 : (page - 1) * 10);
+	public String mainList(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
 		Map<String, Object> map = articleTitleAndUrlGet((String) requestMap.get("code"));
 		String title			= (String) map.get("title");
 		String url				= (String) map.get("url");
+		int amount				= (int) map.get("amount");
+		Pagination pagination	= new Pagination(page, amount, service.boardGetCnt(requestMap));
+		int offset 				= (page == 1 ? 0 : (page - 1) * 10);
 		
 		requestMap.put("offset" , offset);
 		requestMap.put("amount" , amount);
@@ -153,19 +154,21 @@ public class BoardController {
 		
 		String title = null;
 		String url   = null;
+		int amount   = 10;
 		
 		switch (code) {
-		case "B001": title = "NOTICE"; url = "board/list";    break;
-		case "B002": title = "STUDY"; 				          break;
-		case "B003": title = "PHOTO";  url = "board/list-ph"; break;
-		case "B004": title = "MUSIC";  url = "board/list-ph"; break;
-		case "B005": title = "DAILY";  url = "board/list-ph"; break;
-		case "B006": title = "DESIGN"; url = "board/list-ph"; break;
-		case "B007": title = "ADMIN";  						  break;
+		case "B001": title = "NOTICE"; url = "board/list";    			   break;
+		case "B002": title = "STUDY"; 				          			   break;
+		case "B003": title = "PHOTO";  url = "board/list-ph"; amount = 12; break;
+		case "B004": title = "MUSIC";  url = "board/list-ph"; amount = 12; break;
+		case "B005": title = "DAILY";  url = "board/list-ph"; amount = 12; break;
+		case "B006": title = "DESIGN"; url = "board/list-ph"; amount = 12; break;
+		case "B007": title = "ADMIN";  						  			   break;
 		}
 		
-		map.put("title", title);
-		map.put("url"  , url);
+		map.put("title" , title);
+		map.put("url"   , url);
+		map.put("amount", amount);
 		
 		return map;
 	}

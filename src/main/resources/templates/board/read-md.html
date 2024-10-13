@@ -123,6 +123,8 @@
 	});
 	
 	$(document).ready(() => {
+		let $main = $('main');
+		
 		if($(window).width() > 768) {
 		    $('.image > img').each(function() {
 		    	$(this).on('load', function() {
@@ -133,6 +135,12 @@
 		        	}
 		    	});
 		    });
+		    
+			if($main.height() < 700) {
+				$main.css('height', '730px');
+			} else {
+				$main.css('height', 'auto');
+			}
 		} else {
 		    $('.image > img').each(function() {
 		    	$(this).on('load', function() {
@@ -143,6 +151,13 @@
 		        	}
 		    	});
 		    });
+		    
+			if($main.height() < 600) {
+				$main.css('height', '630px');
+			} else {
+				$main.css('height', 'auto');
+				$('footer').css('margin-top', '50px');
+			}
 		}
 	});
 </script>
