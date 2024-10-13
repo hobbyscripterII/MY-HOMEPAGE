@@ -41,7 +41,6 @@
 <script th:inline="javascript">
 $(document).ready(function(e) {
 	let $main = $('main');
-	console.log('$(window).width() = ', $(window).width());
 	
 	$('.page-item').each(function(e) {
 		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지

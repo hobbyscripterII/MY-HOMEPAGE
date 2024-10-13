@@ -118,7 +118,8 @@ public class BoardController {
 		model.addAttribute(Const.PREV_POST 	, prevPost);
 		model.addAttribute(Const.NEXT_POST 	, nextPost);
 		model.addAttribute(Const.DATA		, boardSelect);
-		return "board/read-md";
+		
+		return "board/read";
 	}
 	
 	@ResponseBody

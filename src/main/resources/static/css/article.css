@@ -10,7 +10,7 @@ article {
     height: auto;
     background-color : rgb(255,255,255,0.7);
     margin: 20px auto;
-    padding: 5px 20px 5px 20px;
+    padding: 5px 20px 15px 20px;
 }
 
 #article-board-main {
@@ -91,18 +91,18 @@ article {
 .thumbnail-contents-wrap {
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	flex-wrap: wrap;
 }
 
 #thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
 	box-sizing: border-box;
     width: 70%;
-    height: 340px;
+    /* height: 340px; */
     /* background-color: #FFF; */
     background-color : rgb(255,255,255,0.7);
     margin: 20px auto;
-    padding: 5px 20px 5px 20px;
+    padding: 5px 15px 1px 15px;
     position: relative;
 }
 
@@ -111,7 +111,7 @@ article {
 }
 
 .thumbnail-item {
-	width: 24%;
+	width: 22%;
 	text-align: left;
 	margin-bottom: 20px;
 	height: 70%;
@@ -132,13 +132,12 @@ article {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: block;
-	margin-top: 6px;
 }
 
 .thumbnail-item > a > img {
 	display: block;
 	width: 300px;
-	height: 230px;
+	height: 25vh;
 	object-fit: cover;
 }
 

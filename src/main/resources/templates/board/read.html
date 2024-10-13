@@ -93,6 +93,28 @@
 			$thumbnailPreview.css('display', 'block');
 			$thumbnailTitle.css('display', 'block');
 		}
+		
+		if($(window).width() > 768) {
+		    $('.image > img').each(function() {
+		    	$(this).on('load', function() {
+			        if ($(this).width() < 1000) {
+			        	$(this).css('width', 'auto');
+		        	} else {
+		        		$(this).css('width', '60%');
+		        	}
+		    	});
+		    });
+		} else {
+		    $('.image > img').each(function() {
+		    	$(this).on('load', function() {
+			        if ($(this).width() < 1000) {
+		        		$(this).css('width', '100%');
+		        	} else {
+			        	$(this).css('width', 'auto');
+		        	}
+		    	});
+		    });
+		}
 	});
 	
 	$('#btn-delete').click(() => {
@@ -123,42 +145,25 @@
 	});
 	
 	$(document).ready(() => {
-		let $main = $('main');
+	    let $main = $('main');
 		
-		if($(window).width() > 768) {
-		    $('.image > img').each(function() {
-		    	$(this).on('load', function() {
-			        if ($(this).width() < 1000) {
-			        	$(this).css('width', 'auto');
-		        	} else {
-		        		$(this).css('width', '60%');
-		        	}
-		    	});
-		    });
-		    
-			if($main.height() < 700) {
-				$main.css('height', '730px');
-			} else {
-				$main.css('height', 'auto');
-			}
-		} else {
-		    $('.image > img').each(function() {
-		    	$(this).on('load', function() {
-			        if ($(this).width() < 1000) {
-		        		$(this).css('width', '100%');
-		        	} else {
-			        	$(this).css('width', 'auto');
-		        	}
-		    	});
-		    });
-		    
-			if($main.height() < 600) {
-				$main.css('height', '630px');
-			} else {
-				$main.css('height', 'auto');
-				$('footer').css('margin-top', '50px');
-			}
-		}
+		setTimeout(() => {
+			if ($(window).width() < 768) {
+	            if ($main.height() < 600) {
+	                $main.css('height', '630px');
+	            } else {
+	                $main.css('height', 'auto');
+	                $('footer').css('margin-top', '100px');
+	            }
+	        } else {
+	            if ($main.height() < 700) {
+	                $main.css('height', '710px');
+	            } else {
+	                $main.css('height', 'auto');
+	                $('footer').css('margin-top', '100px');
+	            }
+	        }
+		}, 1);
 	});
 </script>
 </html>
