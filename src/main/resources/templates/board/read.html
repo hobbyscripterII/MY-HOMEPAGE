@@ -11,7 +11,7 @@
 	blockquote { border-left: 6px solid darkgray; padding-left: 10px; }
 	blockquote > p { color: darkgray; }
 </style>
-<article id="article-board-main">
+<article id="article-board-main" class="contents">
 	<p id="article-title" th:text="${DATA.article_title}">
 	</p>
 	
@@ -76,11 +76,14 @@
 
 <script th:inline="javascript">
 	$(document).ready(() => {
-		let code              		= [[${DATA.icode}]];
-		let contents          		= [[${DATA.contents}]];
-		let name 			  		= ([[${DATA.name}]] || '');
-		let $thumbnailPreview 		= $('#thumbnail-preview');
-		let $thumbnailTitle			= $('#thumbnail-title');
+		let code              		  = [[${DATA.icode}]];
+		let contents          		  = [[${DATA.contents}]];
+		let name 			  		  = ([[${DATA.name}]] || '');
+		let $thumbnailPreview 		  = $('#thumbnail-preview');
+		let $thumbnailTitle			  = $('#thumbnail-title');
+		let $main                     = $('main');
+		let $articleBoardMainContents = $('#article-board-main.contents');
+		
 		
 		$('#editor').html(contents);
 		
@@ -115,6 +118,26 @@
 		    	});
 		    });
 		}
+		
+		setTimeout(function() {
+			console.log('$articleBoardMainContents          = ', $articleBoardMainContents);
+			console.log('$articleBoardMainContents.height() = ', $articleBoardMainContents.height());
+			
+			if($(window).width() < 768) {
+				if($articleBoardMainContents.height() < 600) {
+					$main.css('height', '630px');
+				} else {
+					$main.css('height', 'auto');
+					$('footer').css('margin-top', '50px');
+				}
+			} else {
+				if($articleBoardMainContents.height() < 700) {
+					$main.css('height', '730px');
+				} else {
+					$main.css('height', 'auto');
+				}
+			}
+		}, 1000);
 	});
 	
 	$('#btn-delete').click(() => {
@@ -142,28 +165,6 @@
 				}
 			})
 		}
-	});
-	
-	$(document).ready(() => {
-	    let $main = $('main');
-		
-		setTimeout(() => {
-			if ($(window).width() < 768) {
-	            if ($main.height() < 600) {
-	                $main.css('height', '630px');
-	            } else {
-	                $main.css('height', 'auto');
-	                $('footer').css('margin-top', '100px');
-	            }
-	        } else {
-	            if ($main.height() < 700) {
-	                $main.css('height', '710px');
-	            } else {
-	                $main.css('height', 'auto');
-	                $('footer').css('margin-top', '100px');
-	            }
-	        }
-		}, 1);
 	});
 </script>
 </html>
