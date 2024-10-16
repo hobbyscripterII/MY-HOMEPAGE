@@ -4,6 +4,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/default-layout}"
       layout:fragment="article">
+<style>
+.input-group {
+	display: flex;
+}
+</style>
 <article id="article-board-main" class="card-2">
 	<p id="article-title" th:text="${ARTICLE_TITLE}">
 		NOTICE
@@ -36,11 +41,39 @@
 		<button type="button" class="btn btn-light" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">WRITE</button>
 	</div>
 	</th:block>
+	
+	<!-- 검색창 -->
+    <div class="input-group mb-3">
+    	<form id="search-form">
+    		<input type="hidden" id="code" name="code" class="form-control">
+			<input type="text" id="keyword" name="keyword" class="form-control" placeholder="검색어를 입력해주세요.">
+			<button class="btn btn-light" type="button" id="search-btn">SEARCH</button>
+    	</form>
+    </div>
 </article>
 
 <script th:inline="javascript">
+function search() {
+	let keyword = ($('#keyword').val()).trim();
+	
+	if(keyword == null || keyword == '') {
+		alert('키워드를 입력해주세요.');
+		return false;
+	} else {
+		$('#search-form').attr('action', '/board/list');
+		$('#search-form').attr('method', 'get');
+		$('#search-form').submit();
+	}
+}
+
+$('#search-btn').click(function(e) {
+	search();
+});
+
 $(document).ready(function(e) {
 	let $main = $('main');
+	let $code = [[${param.code}]];
+	$('#code').val($code);
 	
 	$('.page-item').each(function(e) {
 		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
@@ -50,6 +83,7 @@ $(document).ready(function(e) {
 			$(this).addClass('active');
 			$(this).find('a').css('color', '#FFF');
 		}
+		
 	});
 	
 	if($(window).width() < 768) {

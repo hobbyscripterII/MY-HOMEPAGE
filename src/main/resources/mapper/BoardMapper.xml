@@ -16,6 +16,9 @@
 	LEFT JOIN tbl_thumbnail C
 	ON A.IBOARD = C.IBOARD
 	WHERE A.DEL_YN = 'N' AND A.ICODE = #{code}
+	<if test="keyword != null and keyword != ''">
+		AND A.TITLE LIKE '%${keyword}%'
+	</if>
 	ORDER BY A.IBOARD DESC
 	LIMIT #{offset}, #{amount}
 	</select>

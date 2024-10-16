@@ -70,6 +70,8 @@ public class BoardController {
 		requestMap.put("offset" , offset);
 		requestMap.put("amount" , amount);
 		
+		log.info("requestMap = {}", requestMap);
+		
 		model.addAttribute(Const.DATA			, service.boardGet(requestMap));
 		model.addAttribute(Const.ARTICLE_TITLE	, title);
 		model.addAttribute(Const.PAGINATION		, pagination);
