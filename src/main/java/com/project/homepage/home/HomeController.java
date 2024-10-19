@@ -38,7 +38,7 @@ public class HomeController {
 		List<Map<String, Object>> rss 	= (List<Map<String, Object>>)responseMap.get(Const.RSS);	// responseMap에서 꺼낸 Tistory Blog RSS 결과물
 		
 		for(Map<String, Object> post : latestPostGet) {
-			post.putIfAbsent("NAME", "");
+			post.put("IMG_YN", ((String) post.get("CONTENTS")).contains("img") ? "Y" : "N");
 		}
 		
 		if(responseCode == 1) {

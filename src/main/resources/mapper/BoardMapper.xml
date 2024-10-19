@@ -27,6 +27,9 @@
 	SELECT COUNT(*)
 	FROM tbl_board
 	WHERE DEL_YN = 'N' AND ICODE = #{code}
+	<if test="keyword != null and keyword != ''">
+		AND TITLE LIKE '%${keyword}%'
+	</if>
 	ORDER BY CREATED_AT DESC
 	</select>
 	

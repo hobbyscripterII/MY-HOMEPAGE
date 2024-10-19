@@ -3,7 +3,7 @@
 <mapper namespace="com.project.homepage.home.HomeMapper">
 	<select id="latestPostGet" parameterType="map">
 	(
-	SELECT *
+	SELECT A.IBOARD, A.ICODE, A.TITLE, A.CONTENTS, A.YOUTUBE_ID, A.GENRE, A.DEL_YN, A.CREATED_AT
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
@@ -13,7 +13,7 @@
 	)
 	UNION ALL
 	(
-	SELECT *
+	SELECT A.IBOARD, A.ICODE, A.TITLE, A.CONTENTS, A.YOUTUBE_ID, A.GENRE, A.DEL_YN, A.CREATED_AT
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
@@ -23,7 +23,7 @@
 	)
 	UNION ALL
 	(
-	SELECT *
+	SELECT A.IBOARD, A.ICODE, A.TITLE, A.CONTENTS, A.YOUTUBE_ID, A.GENRE, A.DEL_YN, A.CREATED_AT
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
@@ -33,7 +33,7 @@
 	)
 	UNION ALL
 	(
-	SELECT *
+	SELECT A.IBOARD, A.ICODE, A.TITLE, A.CONTENTS, A.YOUTUBE_ID, A.GENRE, A.DEL_YN, A.CREATED_AT
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard

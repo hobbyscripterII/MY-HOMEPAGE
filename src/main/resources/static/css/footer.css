@@ -1,43 +1,7 @@
 @charset "UTF-8";
-
-footer {
-    box-sizing: border-box;
-    height: 125px;
-    padding: 10px 0 10px 0;
-    text-align: center;
-    background-color : rgb(0,0,0,0.7);
-    display: block;
-    margin-top: 350px;
-}
-
-footer > p {
-	color: #FFF !important;
-	font-size: small;
-}
-
-/*
-#footer-logo {
-	margin: 10px auto;
-}
-*/
-
-#footer-links {
-	margin-bottom: 5px;
-}
-
-#footer-links > a > span {
-	color: #FFF;
-	font-family: 'Bebas Neue';
-	font-size: 20px;
-}
-
-#footer-links > a {
-	margin-right: 10px;
-}
-
-#footer-title {
-	text-transform: uppercase;
-	color: #FFF;
-	font-size: 2rem;
-	font-family: 'Bebas Neue';
-}
+footer { box-sizing: border-box; height: 250px; padding: 10px 0 10px 0; text-align: center; background-color : rgb(0,0,0,1); display: block; margin-top: 350px; }
+footer > p { color: #FFF !important; font-size: 1rem; }
+#footer-links { margin-bottom: 5px; margin-top: 45px; }
+#footer-links > a > span { color: #FFF; font-family: 'Bebas Neue'; font-size: 2rem; }
+#footer-links > a { margin-right: 10px; }
+#footer-title { text-transform: uppercase; color: #FFF; font-size: 3rem; font-family: 'Bebas Neue'; }
