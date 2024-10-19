@@ -26,7 +26,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		margin-top: 30px;
+		margin-top: 150px;
 	}
 	
 	#footer-links > a {
@@ -148,19 +148,27 @@
 	#header-hamburger-btn {
 		margin: 0px 5px 5px 13px;
 	}
+	
+	.fold {
+		width: 100% !important;
+	}
+	
+	.btn {
+		font-size: 12px !important;
+	}
 }
 
 @media (max-width: 960px) {
 	article {
-		width: 90%;
+		width: 88%;
 	}
 	
 	#thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
-	    width: 90%;
+	    width: 86vw;
 	}
 	
 	#article-board-main {
-	    width: 90%;
+	    width: 88%;
 	}
 	
 	/*
@@ -179,5 +187,9 @@
 	
 	.thumbnail-item-info {
 		height: auto;
+	}
+	
+	#home-fold-contents-wrap {
+		width: 88%;
 	}
 }

@@ -97,7 +97,7 @@ article {
 
 #thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily {
 	box-sizing: border-box;
-    width: 70%;
+    width: 69.4%;
     /* height: 340px; */
     /* background-color: #FFF; */
     background-color : rgb(255,255,255,0.7);
@@ -262,4 +262,21 @@ figcaption {
 	color: gray;
     font-style: italic;
     font-size: 12px;
+}
+
+.fold {
+	width: 49% !important;
+	margin-right: 10px;
+}
+
+#home-fold-contents-wrap {
+	box-sizing: border-box;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+.mr-10p {
+	margin-right: 10px;
 }

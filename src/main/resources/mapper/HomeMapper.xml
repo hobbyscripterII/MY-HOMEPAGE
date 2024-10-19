@@ -9,7 +9,7 @@
 	ON A.iboard = B.iboard
 	WHERE A.icode = 'B001' AND A.del_yn = 'N'
 	ORDER BY A.CREATED_AT DESC
-	LIMIT 4
+	LIMIT 10
 	)
 	UNION ALL
 	(
@@ -19,7 +19,7 @@
 	ON A.iboard = B.iboard
 	WHERE A.icode = 'B003' AND A.del_yn = 'N'
 	ORDER BY A.CREATED_AT DESC
-	LIMIT 4
+	LIMIT 10
 	)
 	UNION ALL
 	(
@@ -29,7 +29,7 @@
 	ON A.iboard = B.iboard
 	WHERE A.icode = 'B004' AND A.del_yn = 'N'
 	ORDER BY A.CREATED_AT DESC
-	LIMIT 4
+	LIMIT 10
 	)
 	UNION ALL
 	(
@@ -39,7 +39,7 @@
 	ON A.iboard = B.iboard
 	WHERE A.icode = 'B005' AND A.del_yn = 'N'
 	ORDER BY A.CREATED_AT DESC
-	LIMIT 4
+	LIMIT 10
 	)
 	</select>
 </mapper>

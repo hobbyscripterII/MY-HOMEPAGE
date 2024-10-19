@@ -58,7 +58,7 @@ body {
     font-family: 'Pretendard-Regular' !important;
     height: 100vh;
     /* background-image: url("/img/img-bg.jpg"); */
-    background-image: url("https://images.unsplash.com/photo-1728274264036-0cf705b911c6?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-image: url("https://images.unsplash.com/photo-1518803194621-27188ba362c9?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
     background-size: cover;
     background-attachment: fixed;
     background-position-y: bottom;
@@ -87,11 +87,6 @@ h1, h2, h3, h4, h5 {
 
 p {
 	margin-bottom: 0 !important;
-}
-
-.btn {
-	font-family: "Bebas Neue", sans-serif;
-	font-size: 1.1rem !important;
 }
 
 input:active {

@@ -24,6 +24,8 @@ import org.xml.sax.SAXException;
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.ResponseCode;
 
+import jakarta.annotation.PostConstruct;
+
 @Component
 public class RSSParseUtil {
 	public Map<String, Object> responseMap	        = new HashMap<String, Object>();
@@ -37,8 +39,8 @@ public class RSSParseUtil {
 		this.url = url;
 	}
 	
-//	@Scheduled(fixedRate = fixedRate) // 재사용 시 주석 해제
-//	@PostConstruct
+  	@Scheduled(fixedRate = fixedRate) // 재사용 시 주석 해제
+  	@PostConstruct
 	public void rssParse() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			responseMap.clear();

@@ -8,9 +8,6 @@
 	.thumbnail-item > a > img {	width: 100%; }
 </style>
 
-<article id="article-home" class="card-2">
-</article>
-      
 <div id="thumbnail-home-notice" class="card-2">
 	<p class="thumbnail-home-title">NOTICE</p>
 	<div class="rss-contents-wrap">
@@ -27,30 +24,73 @@
 	</div>
 </div>
 
-<!--
-<div id="thumbnail-home-study" class="card-2">
-	<p class="thumbnail-home-title">STUDY(RSS)</p>
-	<div class="rss-contents-wrap">
-		<th:block th:if="${RESULT == 1}" th:each="rss : ${RSS}">
-				<div class="rss-item">
-					<p class="rss-contents">
-						<a th:href="${rss.link}" target="_blank"><span th:text="${rss.title}"></span></a>
-						<span th:text="${#dates.format(rss.date, 'yyyy-MM-dd')}"></span>
-					</p>
-				</div>
-		</th:block>
-		
-		<th:block th:if="${RESULT == -4}">
-				<div class="rss-item">
-					<p class="rss-contents-error">
-						<span>RSS를 불러올 수 없습니다.</span>
-					</p>
-				</div>
-		</th:block>
+<div id="home-fold-contents-wrap">
+	<div id="thumbnail-home-study" class="card-2 fold">
+		<p class="thumbnail-home-title">STUDY(RSS)</p>
+		<div class="rss-contents-wrap">
+			<th:block th:if="${RESULT == 1}" th:each="rss : ${RSS}">
+					<div class="rss-item">
+						<p class="rss-contents">
+							<a th:href="${rss.link}" target="_blank"><span th:text="${rss.title}"></span></a>
+							<span th:text="${#dates.format(rss.date, 'yyyy-MM-dd')}"></span>
+						</p>
+					</div>
+			</th:block>
+			
+			<th:block th:if="${RESULT == -4}">
+					<div class="rss-item">
+						<p class="rss-contents-error">
+							<span>RSS를 불러올 수 없습니다.</span>
+						</p>
+					</div>
+			</th:block>
+		</div>
+	</div>
+
+	<div id="thumbnail-home-study" class="card-2 fold">
+		<p class="thumbnail-home-title">PHOTO</p>
+		<div class="rss-contents-wrap">
+			<th:block th:each="data : ${DATA}">
+					<div class="rss-item" th:if="${data.icode == 'B003'}">
+						<p class="rss-contents">
+							<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+							<span th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></span>
+						</p>
+					</div>
+			</th:block>
+		</div>
+	</div>
+	
+	<div id="thumbnail-home-study" class="card-2 fold">
+		<p class="thumbnail-home-title">MUSIC</p>
+		<div class="rss-contents-wrap">
+			<th:block th:each="data : ${DATA}">
+					<div class="rss-item" th:if="${data.icode == 'B004'}">
+						<p class="rss-contents">
+							<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+							<span th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></span>
+						</p>
+					</div>
+			</th:block>
+		</div>
+	</div>
+	
+	<div id="thumbnail-home-study" class="card-2 fold">
+		<p class="thumbnail-home-title">DAILY</p>
+		<div class="rss-contents-wrap">
+			<th:block th:each="data : ${DATA}">
+					<div class="rss-item" th:if="${data.icode == 'B005'}">
+						<p class="rss-contents">
+							<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
+							<span th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></span>
+						</p>
+					</div>
+			</th:block>
+		</div>
 	</div>
 </div>
--->
 
+<!--
 <div id="thumbnail-home-photo" class="card-2">
 	<p class="thumbnail-home-title">PHOTO</p>
 	<div class="thumbnail-contents-wrap">
@@ -72,41 +112,9 @@
 		</th:block>
 	</div>
 </div>
+-->
 
-<div id="thumbnail-home-music" class="card-2">
-	<p class="thumbnail-home-title">MUSIC</p>
-	<div class="thumbnail-contents-wrap">
-		<th:block th:each="data : ${DATA}">
-			<th:block th:if="${data.icode == 'B004'}">
-				<div class="thumbnail-item home"> <!-- 'https://img.youtube.com/vi/' + id + '/0.jpg' -->
-					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><img th:src="'https://img.youtube.com/vi/' + ${data.youtube_id} + '/0.jpg'" alt="썸네일"></a>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
-				</div>
-			</th:block>
-		</th:block>
-	</div>
-</div>
 
-<div id="thumbnail-home-daily" class="card-2">
-	<p class="thumbnail-home-title">DAILY</p>
-	<div class="thumbnail-contents-wrap">
-		<th:block th:each="data : ${DATA}">
-			<th:block th:if="${data.icode == 'B005'}">
-				<div class="thumbnail-item home">
-					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
-						<th:block th:if="${data.NAME == ''}">
-							<img th:src="@{/img/img-noimage.png}" alt="썸네일">
-						</th:block>
-						<th:block th:if="${data.NAME != ''}">
-							<img th:src="${data.NAME}" alt="썸네일">
-						</th:block>						
-					</a>					
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
-				</div>
-			</th:block>
-		</th:block>
-	</div>
-</div>
+
+
 </html>
