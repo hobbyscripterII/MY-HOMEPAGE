@@ -15,13 +15,13 @@
 			<div class="rss-item" th:if="${data.ICODE == 'B001'}">
 				<p class="rss-contents">
 					<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
-						<span th:text="${data.TITLE}"></span>
 						<span th:if="${data.IMG_YN eq 'Y'}">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-							  <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-							  <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
-							</svg>
+							<img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/slr-camera.png" alt="slr-camera"/>
 						</span>
+						<span th:if="${data.IMG_YN eq 'N'}">
+							<img width="15" height="15" src="https://img.icons8.com/ios-glyphs/30/1A1A1A/speech-bubble--v1.png" alt="speech-bubble--v1"/>
+						</span>
+						<span th:text="${data.TITLE}"></span>
 					</a>
 					<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
 				</p>
@@ -32,12 +32,15 @@
 
 <div id="home-fold-contents-wrap">
 	<div id="thumbnail-home-study" class="card-2 fold">
-		<p class="thumbnail-home-title">STUDY(RSS)</p>
+		<p class="thumbnail-home-title">STUDY</p>
 		<div class="rss-contents-wrap">
 			<th:block th:if="${RESULT == 1}" th:each="rss : ${RSS}">
 					<div class="rss-item">
 						<p class="rss-contents">
-							<a th:href="${rss.link}" target="_blank"><span th:text="${rss.title}"></span></a>
+							<a th:href="${rss.link}" target="_blank">
+								<img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/rss.png" alt="rss"/>
+								<span th:text="${rss.title}"></span>
+							</a>
 							<span th:text="${#dates.format(rss.date, 'yyyy-MM-dd')}"></span>
 						</p>
 					</div>
@@ -60,13 +63,14 @@
 				<div class="rss-item" th:if="${data.ICODE == 'B003'}">
 					<p class="rss-contents">
 						<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
-							<span th:text="${data.TITLE}"></span>
 							<span th:if="${data.IMG_YN eq 'Y'}">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-								  <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-								  <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
-								</svg>
+								<img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/slr-camera.png" alt="slr-camera"/>
 							</span>
+							<span th:if="${data.IMG_YN eq 'N'}">
+								<img width="15" height="15" src="https://img.icons8.com/ios-glyphs/30/1A1A1A/speech-bubble--v1.png" alt="speech-bubble--v1"/>
+							</span>
+							
+							<span th:text="${data.TITLE}"></span>
 						</a>
 						<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
 					</p>
@@ -81,7 +85,10 @@
 			<th:block th:each="data : ${DATA}">
 				<div class="rss-item" th:if="${data.ICODE == 'B004'}">
 					<p class="rss-contents">
-						<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}"><span th:text="${data.TITLE}"></span></a>
+						<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
+							<img width="15" height="15" src="https://img.icons8.com/material-sharp/24/1A1A1A/music.png" alt="music"/>
+							<span th:text="${data.TITLE}"></span>
+						</a>
 						<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
 					</p>
 				</div>
@@ -97,13 +104,13 @@
 					<div class="rss-item">
 						<p class="rss-contents">
 							<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
-								<span th:text="${data.TITLE}"></span>
 								<span th:if="${data.IMG_YN eq 'Y'}">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-									  <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-									  <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
-									</svg>
+									<img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/slr-camera.png" alt="slr-camera"/>
 								</span>
+								<span th:if="${data.IMG_YN eq 'N'}">
+									<img width="15" height="15" src="https://img.icons8.com/ios-glyphs/30/1A1A1A/speech-bubble--v1.png" alt="speech-bubble--v1"/>
+								</span>
+								<span th:text="${data.TITLE}"></span>
 							</a>
 							<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
 						</p>
