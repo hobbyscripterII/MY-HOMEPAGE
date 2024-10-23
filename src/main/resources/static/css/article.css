@@ -5,7 +5,7 @@ article { box-sizing: border-box; width: 70%; height: auto; background-color : r
 #article-home > h5 { margin-top: 10px; }
 #article-title { width: 100%; font-family: 'Bebas Neue', 'NotoSerifKR'; color: #1E201E; font-size: 3rem; text-align: center; margin-bottom: 10px !important; }
 #table-list { width: 100%; }
-#btn-grp { text-align: right; margin-top: 10px; padding: 0 20px 20px 20px; }
+#btn-grp { text-align: right; margin-top: 10px; padding: 0 0 20px 20px; }
 #write-title { margin-bottom: 5px; }
 #login { margin: 10px 0 10px 0; width: 100%; }
 #access-denied-home > p { width: 100%; text-align: center; }

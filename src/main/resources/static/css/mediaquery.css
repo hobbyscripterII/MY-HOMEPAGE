@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@media (max-width: 375px) {
+	#article-board-main { width: 100% !important; }
+	.btn { --bs-btn-padding-x: 1rem !important; --bs-btn-padding-y: 0.5rem !important; }
+	#editor { padding: 0 !important; }
+}
+
 @media (max-width: 768px) {
 	article { width: 90%; height: auto; margin: 20px auto; }
 	#header-logo { margin-top: 5px; }
@@ -36,6 +42,7 @@
 	#header-hamburger-btn { margin: 0px 5px 5px 13px; }
 	.fold { width: 100% !important; }
 	.btn { font-size: 12px !important; }
+	.table td, .table th { padding: 0.5rem !important; }
 }
 
 @media (max-width: 960px) {
