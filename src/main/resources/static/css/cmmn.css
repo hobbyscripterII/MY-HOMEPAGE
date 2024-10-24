@@ -9,7 +9,7 @@
 @keyframes fadein { 0%, 15% { opacity: 0; } 100% { opacity: 1; } }
 * { margin: 0; padding: 0; text-decoration-line: none !important; }
 html { animation: fadein 1s forwards; }
-body { font-family: 'Pretendard-Regular' !important; height: 100vh; /* background-image: url("/img/img-bg.jpg"); */ /* background-image: url("https://images.unsplash.com/photo-1518803194621-27188ba362c9?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */ background-size: cover; background-attachment: fixed; background-position-y: bottom; }
+body { font-family: 'Pretendard-Regular' !important; height: 100vh; background-size: cover; background-attachment: fixed; background-position-y: bottom; background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url("https://images.unsplash.com/photo-1713010426160-5cad07c165b7?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); }
 a { text-decoration: none; color: #1E201E; }
 a:hover { color: inherit !important; }
 td > a { color: #1E201E; }

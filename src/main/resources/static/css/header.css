@@ -1,11 +1,13 @@
 @charset "UTF-8";
 @import url('https://fonts.cdnfonts.com/css/blinking-2');
 @import url('https://fonts.cdnfonts.com/css/helvetica-neue-5');
-header { box-sizing: border-box; width: 100%; height: 70px; background-color: #000; /* background-color : rgb(255,255,255,0.7); */ display: flex !important; align-items: center; z-index: 1001; }
+header { box-sizing: border-box; width: 100%; height: 70px; background-color: #BE2E22; /* background-color : rgb(255,255,255,0.7); */ display: flex !important; align-items: center; z-index: 1001; }
+header > a { height: 100%; }
 #header-logo { height: 35px; }
 #header-name { text-transform: uppercase; font-family: 'Bebas Neue'; font-size: 3rem; color: #FFF; }
-#header-sidebar { box-sizing: border-box; width: 0; height: 100%; top: 70px; left: 0; position: absolute; overflow-x: hidden; padding-top: 30px; background-color: #FFF; /* background-color: #f15a22; */ /* background-color : rgb(255,255,255, 1); */ /* background-image: url("https://images.unsplash.com/photo-1518803194621-27188ba362c9?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */ transition: 0.2s; z-index: 1001; background-position-y: bottom; background-position-x: center; }
-#header-sidebar > a { display: block; width: 100%; color: #000; font-family: "Bebas Neue", sans-serif; font-size: 2.5rem; }
+#header-sidebar { box-sizing: border-box; width: 0; height: 100%; top: 70px; left: 0; position: absolute; overflow-x: hidden; padding-top: 30px; background-color: #BE2E22; /* background-color: #f15a22; */ /* background-color : rgb(255,255,255, 1); */ /* background-image: url("https://images.unsplash.com/photo-1518803194621-27188ba362c9?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); */ transition: 0.2s; z-index: 1001; background-position-y: bottom; background-position-x: center; }
+#header-sidebar > a { display: block; width: 100%; color: #FFF; font-family: "Bebas Neue", sans-serif; font-size: 2.8rem; }
+#header-sidebar > a:hover { color: #FFF !important; text-decoration: underline !important; }
 #header-sidebar.open { width: 270px; padding-left: 40px; }
-#header-hamburger-btn { cursor: pointer; color: #FFF; width: 2rem; height: 2rem; margin: 0px 20px 5px 20px; }
+#header-hamburger-btn { cursor: pointer; color: #FFF; width: 2rem; height: 100%; margin: 0 20px 5px 20px; }
 .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3); display: none; z-index: 1000; transition: 0.5s; cursor: pointer; }
