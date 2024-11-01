@@ -39,8 +39,8 @@ public class RSSParseUtil {
 		this.url = url;
 	}
 	
-  	@Scheduled(fixedRate = fixedRate) // 재사용 시 주석 해제
-  	@PostConstruct
+  	@Scheduled(fixedRate = fixedRate)
+//  	@PostConstruct
 	public void rssParse() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			responseMap.clear();
@@ -56,7 +56,8 @@ public class RSSParseUtil {
 
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element element 		= (Element) node;
-					String title 			= element.getElementsByTagName("title").item(0).getTextContent();
+					String title_ 			= element.getElementsByTagName("title").item(0).getTextContent();
+					String title		    = removeCategory(title_);
 					String link 			= element.getElementsByTagName("link").item(0).getTextContent();
 					String date 			= element.getElementsByTagName("pubDate").item(0).getTextContent();
 					Map<String, Object> map = new HashMap<String, Object>();
@@ -74,4 +75,15 @@ public class RSSParseUtil {
 			responseMap.put(Const.RESULT, ResponseCode.RSS_PARSE_ERROR.code);
 		}
 	}
+  	
+  	public String removeCategory(String title) {
+  		int endIdx = title.indexOf(']');
+  		
+  		if(endIdx != -1) {
+  			title = title.substring(endIdx + 1).trim();
+  			
+  		}
+  		
+  		return title;
+  	}
 }
