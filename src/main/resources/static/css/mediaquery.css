@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@media (max-width: 375px) {
+@media (max-width: 319px) {
 	#article-board-main { width: 95%; }
 	.btn { --bs-btn-padding-x: 1rem; --bs-btn-padding-y: 0.5rem; }
 	#editor { padding: 0; }
@@ -15,11 +15,9 @@
 	#header-logo { margin-top: 5px; }
 	#header-sidebar.open { width: 100%; padding-left: 35px; }
 	#header-sidebar > a { font-size: 2.5rem; }
-	footer { height: 200px; padding-top: 10px; display: flex; flex-wrap: wrap; justify-content: center; margin-top: 150px; }
-	#footer-title { font-size: 2rem; }
-	#footer-links { margin-bottom: 5px; margin-top: 35px; }
+	footer { padding-top: 10px; display: flex; flex-wrap: wrap; justify-content: center; }
+	#footer-links { margin-bottom: 5px; }
 	#footer-links > a { width: 100%; }
-	#footer-links > a > span { font-size: 25px; }
 	/* 모바일 일 때 숨김 처리 */
 	.mobile-hide { display: none; }
 	#thumbnail-home-notice, #thumbnail-home-study, #thumbnail-home-photo, #thumbnail-home-music, #thumbnail-home-daily { width: 90%; height: auto; margin: 20px auto; }
@@ -31,7 +29,6 @@
 	.rss-contents > a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 75%; }
 	#movie-wrap > iframe { width: 100%; height: 200px; }
 	#genre { width: 90%; }
-	footer > p { font-size: 14px; }
 	/* CKEditor5 모바일 이미지 사이즈 */
 	.image > img { width: 100%; }
 	.thumbnail-item > p { text-align: left; }
@@ -48,6 +45,12 @@
 	.fold { width: 100% !important; }
 	.btn { font-size: 12px !important; }
 	.table td, .table th { padding: 0.5rem !important; }
+	.table>:not(caption)>*>* { font-size: 13px; }
+	.rss-contents > a { width: 100%; }
+	/* HoverEffectIdeas */
+	.grid figure { min-width: 0; }
+	.grid figure img { width: 100%; }
+	figure.effect-julia img { height: 220px; width: 100%; }
 }
 
 @media (max-width: 960px) {

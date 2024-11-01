@@ -111,25 +111,6 @@
 		}
 	}
 	
-	// SimpleMDE 웹에디터 초기화
-	/*
-	var editor = new SimpleMDE({
-		element: $("#editor")[0]
-	});
-	*/
-
-	// TinyMCE 웹에디터 초기화
-	/*
-	tinymce.init({
-	  selector			: '#editor',
-      width				: '100%',
-      height			: '500px',
-      plugins			: 'autolink code link autoresize paste contextmenu image preview',
-      toolbar			: 'undo redo | fontsizeselect | forecolor | bold italic strikethrough underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link custom_image | code preview',
-      fontsize_formats	: '10px 12px 14px 16px 18px 20px 22px 24px 28px 32px 36px 48px',
-	});
-	*/
-	
 	// CKEditor5 웹에디터 초기화
 	ClassicEditor.create(document.querySelector('#editor'), {
 		language	: 'ko',

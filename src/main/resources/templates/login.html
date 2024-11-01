@@ -1,61 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/default-layout}"
-      layout:fragment="article">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 <style>
-	main { height: 100%; }
+    main {
+        height: 100%;
+    }
 </style>
 <article id="login-home" class="card-2">
-	<p id="article-title">
-		LOGIN
-	</p>
-	
-	<form id="form" th:action="@{/login}" th:method="POST">
-	    <div>
-	      <label class="form-label mt-4">ID</label>
-	      <input type="text" class="form-control" id="id" name="id">
-	      <small class="form-text text-muted">아이디를 입력해주세요.</small>
-	    </div>
-	    
-	    <div>
-	      <label class="form-label mt-4">PASSWORD</label>
-	      <input type="password" class="form-control" id="pw" name="pw">
-	      <small class="form-text text-muted">패스워드를 입력해주세요.</small>
-	    </div>
-	    
-	    <button type="button" id="login" class="btn btn-light">LOGIN</button>
-	</form>
+    <p id="article-title">
+        LOGIN
+    </p>
+
+    <form id="form" th:action="@{/login}" th:method="POST">
+        <div>
+            <label class="form-label mt-4">ID</label>
+            <input type="text" class="form-control" id="id" name="id">
+            <small class="form-text text-muted">아이디를 입력해주세요.</small>
+        </div>
+
+        <div>
+            <label class="form-label mt-4">PASSWORD</label>
+            <input type="password" class="form-control" id="pw" name="pw">
+            <small class="form-text text-muted">패스워드를 입력해주세요.</small>
+        </div>
+
+        <button type="button" id="login" class="btn btn-light">LOGIN</button>
+    </form>
 </article>
 
 <script type="text/javascript">
-	$(document).ready(function(e) {
-		$(document).on('keydown', function(e) {
-			if(e.key == 'Enter') {
-				login();
-			}
-		});
-		
-		$('#login').click(function() {
-			login();
-		});
-	});
-	
-	function login() {
-		let id = $('#id');
-		let pw = $('#pw');
-		
-		if(id.val().trim() == '') {
-			alert('아이디를 입력해주세요.');
-			id.focus();
-			return;
-		} else if(pw.val().trim() == '') {
-			alert('패스워드를 입력해주세요.');
-			pw.focus();
-			return;
-		} else {
-			$('#form').submit();
-		}
-	}
+    $(document).ready(function(e) {
+        $(document).on('keydown', function(e) {
+            if (e.key == 'Enter') {
+                login();
+            }
+        });
+
+        $('#login').click(function() {
+            login();
+        });
+    });
+
+    function login() {
+        let id = $('#id');
+        let pw = $('#pw');
+
+        if (id.val().trim() == '') {
+            alert('아이디를 입력해주세요.');
+            id.focus();
+            return;
+        } else if (pw.val().trim() == '') {
+            alert('패스워드를 입력해주세요.');
+            pw.focus();
+            return;
+        } else {
+            $('#form').submit();
+        }
+    }
 </script>
+
 </html>

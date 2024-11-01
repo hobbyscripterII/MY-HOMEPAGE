@@ -65,7 +65,7 @@ public class BoardController {
 		String url				= (String) map.get("url");
 		int amount				= (int) map.get("amount");
 		Pagination pagination	= new Pagination(page, amount, service.boardGetCnt(requestMap));
-		int offset 				= (page == 1 ? 0 : (page - 1) * 10);
+		int offset 				= (page == 1 ? 0 : (page - 1) * amount);
 		
 		requestMap.put("offset" , offset);
 		requestMap.put("amount" , amount);
@@ -158,7 +158,7 @@ public class BoardController {
 		int amount   = 10;
 		
 		switch (code) {
-		case "B001": title = "NOTICE"; url = "board/list";    			   break;
+		case "B001": title = "NOTICE"; url = "board/list";    amount = 10; break;
 		case "B002": title = "STUDY"; 				          			   break;
 		case "B003": title = "PHOTO";  url = "board/list-ph"; amount = 12; break;
 		case "B004": title = "MUSIC";  url = "board/list-ph"; amount = 12; break;

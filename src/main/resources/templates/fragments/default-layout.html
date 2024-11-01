@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head 	th:replace="~{fragments/head 	:: head}" />
+
+<head th:replace="~{fragments/head 	:: head}" />
+
 <body>
-<nav 	th:replace="~{fragments/header 	:: header}" ></nav>
-<main 	th:replace="~{fragments/main 	:: main}" ></main>
-<footer th:replace="~{fragments/footer 	:: footer}" ></footer>
+    <nav th:replace="~{fragments/header 	:: header}"></nav>
+    <main th:replace="~{fragments/main 	:: main}"></main>
+    <footer th:replace="~{fragments/footer 	:: footer}"></footer>
 </body>
+
 </html>

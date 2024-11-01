@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/default-layout}"
-      layout:fragment="article">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 <style>
-.input-group { display: flex; }
-.table td, .table th { padding: 0.5rem; }
+    .input-group {
+        display: flex;
+    }
+
+    .table td,
+    .table th {
+        padding: 0.5rem;
+    }
 </style>
 <article id="article-board-main" class="card-2">
-	<p id="article-title" th:text="${ARTICLE_TITLE}">
-		NOTICE
-	</p>
-	
-	<table class="table table-hover" id="table-list">
-		<thead>
-			<tr>
-				<!-- <th scope="col" class="mobile-hide">번호</th> -->
-				
-				<th scope="col">번호</th>
-				<th th:if="${param.code.toString() eq 'B004'}" scope="col">장르</th>
-				<th scope="col">제목</th>
-				<th scope="col" class="mobile-hide">작성일</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class="table" th:each="data : ${DATA}">
-				<!-- <td th:text="${data.IBOARD}" class="mobile-hide">1</td> -->
-				<td><span th:text="${data.ROWNUMBER}"></span></td>
-				<td th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}"></td>
-				<td><a th:href="@{/board/read-md(iboard = ${data.IBOARD})}"><span th:text="${data.TITLE}"></span></a></td>
-				<td th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}" class="mobile-hide">2024-09-16 23:28</td>
+    <p id="article-title" th:text="${ARTICLE_TITLE}">
+        NOTICE
+    </p>
+
+    <table class="table table-hover" id="table-list">
+        <thead>
+            <tr>
+                <!-- <th scope="col" class="mobile-hide">번호</th> -->
+
+                <th scope="col" class="mobile-hide">번호</th>
+                <th th:if="${param.code.toString() eq 'B004'}" scope="col">장르</th>
+                <th scope="col">제목</th>
+                <th scope="col" class="mobile-hide">작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table" th:each="data : ${DATA}">
+                <!-- <td th:text="${data.IBOARD}" class="mobile-hide">1</td> -->
+                <td class="mobile-hide"><span th:text="${data.ROWNUMBER}"></span></td>
+                <td th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}"></td>
+                <td><a th:href="@{/board/read-md(iboard = ${data.IBOARD})}"><span th:text="${data.TITLE}"></span></a></td>
+                <td th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}" class="mobile-hide">2024-09-16 23:28</td>
 			</tr>
 		</tbody>
 	</table>
@@ -89,7 +91,7 @@ $(document).ready(function(e) {
 	
 	if($(window).width() < 768) {
 		if($main.height() < 600) {
-			$main.css('height', '630px');
+			$main.css('height', '480px');
 		} else {
 			$main.css('height', 'auto');
 			$('footer').css('margin-top', '50px');

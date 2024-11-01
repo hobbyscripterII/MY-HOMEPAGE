@@ -1,43 +1,81 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/default-layout}"
-      layout:fragment="article">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 <style>
-	article { background-color: transparent; }
-	.thumbnail-item { position: relative; }
-	.col { padding: 0; margin: 0; margin-bottom: 10px; }
+    article {
+        background-color: transparent;
+    }
+
+    .thumbnail-item {
+        position: relative;
+    }
+
+    .col {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 10px;
+    }
 </style>
 <article id="article-board-main">
-	<p id="article-title" th:text="${ARTICLE_TITLE}">
-		NOTICE
-	</p>
+    <p id="article-title" th:text="${ARTICLE_TITLE}">
+        NOTICE
+    </p>
 	
-	<div class="thumbnail-contents-wrap">
-		<th:block th:each="data : ${DATA}">
-			<div class="thumbnail-item col">
-				<a th:if="${data.ICODE != 'B004'}">
-					<th:block th:if="${data.TUMBNAIL == ''}">
-						<img th:src="@{/img/img-noimage.png}" alt="썸네일">
-					</th:block>
-					<th:block th:if="${data.TUMBNAIL != ''}">
-						<img th:src="${data.TUMBNAIL}" alt="썸네일">
-					</th:block>						
-				</a>
-				<a th:if="${data.ICODE == 'B004'}">
-					<th:block th:if="${data.YOUTUBE_ID == ''}">
-						<img th:src="@{/img/img-noimage.png}" alt="썸네일">
-					</th:block>
-					<th:block th:if="${data.YOUTUBE_ID != ''}">
-						<img th:src="'https://img.youtube.com/vi/' + ${data.YOUTUBE_ID} + '/0.jpg'" alt="썸네일">
-					</th:block>						
-				</a>
-				<a class="thumbnail-item-info" th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
-					<p th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></p>
+	<!--
+    <div class="thumbnail-contents-wrap">
+        <th:block th:each="data : ${DATA}">
+            <div class="thumbnail-item col">
+                <a th:if="${data.ICODE != 'B004'}">
+                    <th:block th:if="${data.TUMBNAIL == ''}">
+                        <img th:src="@{/img/img-noimage.png}" alt="썸네일">
+                    </th:block>
+                    <th:block th:if="${data.TUMBNAIL != ''}">
+                        <img th:src="${data.TUMBNAIL}" alt="썸네일">
+                    </th:block>
+                </a>
+                <a th:if="${data.ICODE == 'B004'}">
+                    <th:block th:if="${data.YOUTUBE_ID == ''}">
+                        <img th:src="@{/img/img-noimage.png}" alt="썸네일">
+                    </th:block>
+                    <th:block th:if="${data.YOUTUBE_ID != ''}">
+                        <img th:src="'https://img.youtube.com/vi/' + ${data.YOUTUBE_ID} + '/0.jpg'" alt="썸네일">
+                    </th:block>
+                </a>
+                <a class="thumbnail-item-info" th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
+                    <p th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></p>
 					<span th:text="${data.TITLE}"></span>
 				</a>
 			</div>
+		</th:block>
+	</div>
+	-->
+	<div class="grid">
+		<th:block th:each="data : ${DATA}">
+			<figure class="effect-julia">
+                <th:block th:if="${data.ICODE != 'B004'}">
+                    <th:block th:if="${data.TUMBNAIL == ''}">
+                        <img th:src="@{/img/img-noimage.png}" alt="썸네일">
+                    </th:block>
+                    <th:block th:if="${data.TUMBNAIL != ''}">
+                        <img th:src="${data.TUMBNAIL}" alt="썸네일">
+                    </th:block>
+                </th:block>
+                <th:block th:if="${data.ICODE == 'B004'}">
+                    <th:block th:if="${data.YOUTUBE_ID == ''}">
+                        <img th:src="@{/img/img-noimage.png}" alt="썸네일">
+                    </th:block>
+                    <th:block th:if="${data.YOUTUBE_ID != ''}">
+                        <img th:src="'https://img.youtube.com/vi/' + ${data.YOUTUBE_ID} + '/0.jpg'" alt="썸네일">
+                    </th:block>
+                </th:block>
+                
+				<figcaption>
+					<h2 th:text="${data.TITLE}"></h2>
+					<div>
+						<p th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}">yyyy-MM-dd</p>
+					</div>
+					<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}">View more</a>
+				</figcaption>			
+			</figure>
 		</th:block>
 	</div>
 	
@@ -66,7 +104,7 @@ $(document).ready(function(e) {
 	
 	if($(window).width() < 768) {
 		if($main.height() < 600) {
-			$main.css('height', '630px');
+			$main.css('height', '480px');
 		} else {
 			$main.css('height', 'auto');
 			$('footer').css('margin-top', '50px');

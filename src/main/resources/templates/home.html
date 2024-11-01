@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/default-layout}"
-      layout:fragment="article">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 <style>
-	main { margin-bottom: 0; }
-	.thumbnail-item > a > img {	width: 100%; }
+    main {
+        margin-bottom: 0;
+    }
+
+    .thumbnail-item>a>img {
+        width: 100%;
+    }
 </style>
 
+<!--
 <div id="thumbnail-home-notice" class="card-2">
 	<p class="thumbnail-home-title">NOTICE</p>
 	<div class="rss-contents-wrap">
@@ -29,19 +32,17 @@
 		</th:block>
 	</div>
 </div>
+-->
 
-<div id="home-fold-contents-wrap">
-	<div id="thumbnail-home-study" class="card-2 fold">
-		<p class="thumbnail-home-title">STUDY</p>
-		<div class="rss-contents-wrap">
-			<th:block th:if="${RESULT == 1}" th:each="rss : ${RSS}">
-					<div class="rss-item">
-						<p class="rss-contents">
-							<a th:href="${rss.link}" target="_blank">
-								<img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/rss.png" alt="rss"/>
-								<span th:text="${rss.title}"></span>
-							</a>
-							<span th:text="${#dates.format(rss.date, 'yyyy-MM-dd')}"></span>
+<div id="rss-contents-wrap">
+    <div id="thumbnail-home-study" class="card-2">
+        <p class="thumbnail-home-title">STUDY</p>
+        <div class="rss-contents-wrap">
+            <th:block th:if="${RESULT == 1}" th:each="rss : ${RSS}">
+                <div class="rss-item">
+                    <p class="rss-contents">
+                        <a th:href="${rss.link}" target="_blank"><img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/rss.png" alt="rss" /><span th:text="${rss.title}"></span></a>
+                        <span class="mobile-hide" th:text="${#dates.format(rss.date, 'yyyy-MM-dd')}"></span>
 						</p>
 					</div>
 			</th:block>
@@ -56,7 +57,7 @@
 		</div>
 	</div>
 
-	<div id="thumbnail-home-study" class="card-2 fold">
+	<div id="thumbnail-home-study" class="card-2">
 		<p class="thumbnail-home-title">PHOTO</p>
 		<div class="rss-contents-wrap">
 			<th:block th:each="data : ${DATA}">
@@ -72,14 +73,14 @@
 							
 							<span th:text="${data.TITLE}"></span>
 						</a>
-						<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
+						<span class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
 					</p>
 				</div>
 			</th:block>
 		</div>
 	</div>
 	
-	<div id="thumbnail-home-study" class="card-2 fold">
+	<div id="thumbnail-home-study" class="card-2">
 		<p class="thumbnail-home-title">MUSIC</p>
 		<div class="rss-contents-wrap">
 			<th:block th:each="data : ${DATA}">
@@ -89,14 +90,14 @@
 							<img width="15" height="15" src="https://img.icons8.com/material-sharp/24/1A1A1A/music.png" alt="music"/>
 							<span th:text="${data.TITLE}"></span>
 						</a>
-						<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
+						<span class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
 					</p>
 				</div>
 			</th:block>
 		</div>
 	</div>
 	
-	<div id="thumbnail-home-study" class="card-2 fold">
+	<div id="thumbnail-home-study" class="card-2">
 		<p class="thumbnail-home-title">DAILY</p>
 		<div class="rss-contents-wrap">
 			<th:block th:each="data : ${DATA}">
@@ -112,7 +113,7 @@
 								</span>
 								<span th:text="${data.TITLE}"></span>
 							</a>
-							<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
+							<span class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
 						</p>
 					</div>
 				</th:block>
@@ -120,28 +121,4 @@
 		</div>
 	</div>
 </div>
-
-<!--
-<div id="thumbnail-home-photo" class="card-2">
-	<p class="thumbnail-home-title">PHOTO</p>
-	<div class="thumbnail-contents-wrap">
-		<th:block th:each="data : ${DATA}">
-			<th:block th:if="${data.icode == 'B003'}">
-				<div class="thumbnail-item home">
-					<p th:text="${#dates.format(data.created_at, 'yyyy-MM-dd')}"></p>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
-						<th:block th:if="${data.NAME == ''}">
-							<img th:src="@{/img/img-noimage.png}" alt="썸네일">
-						</th:block>
-						<th:block th:if="${data.NAME != ''}">
-							<img th:src="${data.NAME}" alt="썸네일">
-						</th:block>						
-					</a>
-					<a th:href="@{/board/read-md(iboard = ${data.iboard})}"><span th:text="${data.title}"></span></a>
-				</div>
-			</th:block>
-		</th:block>
-	</div>
-</div>
--->
 </html>
