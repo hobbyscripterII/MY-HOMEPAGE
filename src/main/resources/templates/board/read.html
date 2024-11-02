@@ -12,19 +12,28 @@
 			<table class="board-table">
 				<tbody>
 					<tr>
-						<td class="td-10p" scope="col">제목
+						<td class="td-10p mobile-hide" scope="col">제목
 						<td class="td-10p" th:text="${DATA.title}">제목</td>
 					</tr>
+					
 					<tr>
-						<td scope="col">작성일</td>
+						<td scope="col" class="mobile-hide">작성일</td>
 						<td th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd')}">작성일</td>
 					</tr>
+					
+					<!-- 썸네일 표출(미사용으로 주석 처리) -->
+					<!--
 					<tr class="tr-thumbnail tr-remove">
-						<td colspan="2"><img id="thumbnail-preview" alt="썸네일"></td>
+						<td colspan="2"><img id="thumbnail-preview" alt="썸네일"><p><strong>썸네일</strong></p></td>
 					</tr>
+					-->
+					
+					<!-- 음악 게시판일 경우 유튜브 동영상 표출 -->
 					<tr class="tr-youtube tr-remove">
 						<td colspan="2"><iframe th:src="'https://www.youtube.com/embed/' + ${DATA.youtube_id}"></iframe></td>
 					</tr>
+					
+					<!-- CKEditor5 웹에디터 -->
 					<tr>
 						<td colspan="2"><div id="editor"></div></td>
 					</tr>
@@ -37,8 +46,9 @@
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
 			<button type="button" class="btn btn-dark" id="btn-delete">삭제</button>
 			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/update-md(iboard = ${DATA.iboard})}'|">수정</button>
-			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
 		</th:block>
+		
+		<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
 	</div>
 
 	<div class="container" th:if="${#arrays.length(NEXT_POST) > 0 || #arrays.length(PREV_POST) > 0}">
@@ -69,18 +79,22 @@
 		
 		$('#editor').html(contents);
 		
+		// 음악 게시판일 경우 유튜브 동영상 표출
 		if(code == 'B004') {
 			$('iframe').css('display', 'block');
 			$trYoutube.removeClass('tr-remove');
 		}
 		
+		// 썸네일 표출(미사용으로 주석 처리)
+		/*
 		if(name != '') {
 			$thumbnailPreview.attr('src', name);
 			$thumbnailPreview.css('display', 'block');
 			$trThumbnail.removeClass('tr-remove');
 		}
+		*/
 		
-		/*
+		// 웹에디터 이미지 사이즈 조정
 		if($(window).width() > 768) {
 		    $('.image > img').each(function() {
 		    	$(this).on('load', function() {
@@ -102,7 +116,6 @@
 		    	});
 		    });
 		}
-		*/
 	});
 	
 	$('#btn-delete').click(() => {
