@@ -1,66 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-<style>
-    .input-group {
-        display: flex;
-    }
 
-    .table td,
-    .table th {
-        padding: 0.5rem;
-    }
-</style>
-<article id="article-board-main" class="card-2">
-    <p id="article-title" th:text="${ARTICLE_TITLE}">
-        NOTICE
-    </p>
+<style>main { height: 100%; }</style>
 
-    <table class="table table-hover" id="table-list">
-        <thead>
-            <tr>
-                <!-- <th scope="col" class="mobile-hide">번호</th> -->
+<section class="notice">
+	<div class="page-title">
+		<div class="container">
+			<h3 th:text="${ARTICLE_TITLE}">타이틀</h3>
+		</div>
+	</div>
 
-                <th scope="col" class="mobile-hide">번호</th>
-                <th th:if="${param.code.toString() eq 'B004'}" scope="col">장르</th>
-                <th scope="col">제목</th>
-                <th scope="col" class="mobile-hide">작성일</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="table" th:each="data : ${DATA}">
-                <!-- <td th:text="${data.IBOARD}" class="mobile-hide">1</td> -->
-                <td class="mobile-hide"><span th:text="${data.ROWNUMBER}"></span></td>
-                <td th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}"></td>
-                <td><a th:href="@{/board/read-md(iboard = ${data.IBOARD})}"><span th:text="${data.TITLE}"></span></a></td>
-                <td th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}" class="mobile-hide">2024-09-16 23:28</td>
-			</tr>
-		</tbody>
-	</table>
+	<div id="board-search">
+		<div class="container">
+			<div class="search-window">
+    			<form id="search-form">
+    				<input type="hidden" id="code" name="code" class="form-control">
+					<div class="search-wrap">
+						<label for="search" class="blind"></label>
+						<input id="search" name="search" placeholder="검색어를 입력해주세요.">
+						<button type="submit" class="btn btn-dark" id="search-btn">검색</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="board-list">
+		<div class="container">
+			<table class="board-table">
+				<thead>
+					<tr>
+						<th scope="col" class="th-num mobile-hide">번호</th>
+						<th th:if="${param.code.toString() eq 'B004'}" scope="col">장르</th>
+						<th scope="col" class="th-title">제목</th>
+						<th scope="col" class="th-date mobile-hide">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="data : ${DATA}">
+						<td class="mobile-hide" th:text="${data.ROWNUMBER}">번호</td>
+						<td th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}">장르</td>
+						<td><a th:href="@{/board/read-md(iboard = ${data.IBOARD})}" th:text="${data.TITLE}">제목</a></td>
+						<td class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 	
 	<div th:replace="~{fragments/pagination :: pagination}"></div>
 	
-	<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-	<div id="btn-grp" style="padding: 0">
-		<button type="button" class="btn btn-light" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">WRITE</button>
+	<div class="btn-group">
+		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<button type="submit" class="btn btn-dark" id="search-btn" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">작성</button>
+		</th:block>
 	</div>
-	</th:block>
-	
-	<!-- 검색창 -->
-    <div class="input-group mb-3">
-    	<form id="search-form">
-    		<input type="hidden" id="code" name="code" class="form-control">
-			<input type="text" id="keyword" name="keyword" class="form-control" placeholder="검색어를 입력해주세요.">
-			<button class="btn btn-light" type="button" id="search-btn">SEARCH</button>
-    	</form>
-    </div>
-</article>
+</section>
 
 <script th:inline="javascript">
 function search() {
-	let keyword = ($('#keyword').val()).trim();
+	let search = ($('#search').val()).trim();
 	
-	if(keyword == null || keyword == '') {
-		alert('키워드를 입력해주세요.');
+	if(search == null || search == '') {
+		alert('검색어를 입력해주세요.');
 		return false;
 	} else {
 		$('#search-form').attr('action', '/board/list');
@@ -74,35 +76,17 @@ $('#search-btn').click(function(e) {
 });
 
 $(document).ready(function(e) {
-	let $main = $('main');
-	let $code = [[${param.code}]];
+	let $main 		= $('main');
+	let search_data = [[${SEARCH_DATA}]];
+	let $code 		= [[${param.code}]];
+	
 	$('#code').val($code);
+	$('#search').val(search_data.search);
 	
 	$('.page-item').each(function(e) {
 		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
 		let currentPage = $(this).text().trim();									// 사용자가 선택한 페이지
-		
-		if(queryPage == currentPage) {
-			$(this).addClass('active');
-			$(this).find('a').css('color', '#FFF');
-		}
-		
 	});
-	
-	if($(window).width() < 768) {
-		if($main.height() < 600) {
-			$main.css('height', '480px');
-		} else {
-			$main.css('height', 'auto');
-			$('footer').css('margin-top', '50px');
-		}
-	} else {
-		if($main.height() < 700) {
-			$main.css('height', '730px');
-		} else {
-			$main.css('height', 'auto');
-		}
-	}
 });
 </script>
 </html>

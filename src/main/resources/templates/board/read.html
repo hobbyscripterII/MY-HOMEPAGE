@@ -1,112 +1,86 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-<style>
-    #article-board-main {
-        overflow: auto;
-    }
+<section class="notice">
+	<div class="page-title">
+		<div class="container">
+			<h3 th:text="${DATA.article_title}">타이틀</h3>
+		</div>
+	</div>
 
-    .table {
-        margin-bottom: 0 !important;
-    }
-
-    #thumbnail-wrap {
-        display: none;
-    }
-
-    blockquote {
-        border-left: 6px solid darkgray;
-        padding-left: 10px;
-    }
-
-    blockquote>p {
-        color: darkgray;
-    }
-</style>
-<article id="article-board-main" class="contents">
-    <p id="article-title" th:text="${DATA.article_title}">
-    </p>
-
-    <div id="read-top-wrap">
-        <p><strong id="read-title" th:text="${DATA.title}"></strong></p>
-        <p><strong id="read-created-at" th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd')}"></strong></p>
+	<div id="board-list">
+		<div class="container">
+			<table class="board-table">
+				<tbody>
+					<tr>
+						<td class="td-10p" scope="col">제목
+						<td class="td-10p" th:text="${DATA.title}">제목</td>
+					</tr>
+					<tr>
+						<td scope="col">작성일</td>
+						<td th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd')}">작성일</td>
+					</tr>
+					<tr class="tr-thumbnail tr-remove">
+						<td colspan="2"><img id="thumbnail-preview" alt="썸네일"></td>
+					</tr>
+					<tr class="tr-youtube tr-remove">
+						<td colspan="2"><iframe th:src="'https://www.youtube.com/embed/' + ${DATA.youtube_id}"></iframe></td>
+					</tr>
+					<tr>
+						<td colspan="2"><div id="editor"></div></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	
-	<hr>
-	
-	<div id="thumbnail-wrap">
-		<img id="thumbnail-preview" alt="썸네일">
-		<p id="thumbnail-title">썸네일</p>
-	</div>
-	
-	<div id="movie-wrap">
-		<iframe th:src="'https://www.youtube.com/embed/' + ${DATA.youtube_id}">
-		</iframe>
-	</div>
-	
-	<div id="editor"></div>
-	
-	<div id="btn-grp">
+	<div class="btn-group">
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-			<button type="button" id="btn-delete" class="btn btn-danger">DELETE</button>
-			<button type="button" id="btn-update" class="btn btn-success" th:onclick="|location.href='@{/board/update-md(iboard = ${DATA.iboard})}'|">UPDATE</button>
+			<button type="button" class="btn btn-dark" id="btn-delete">삭제</button>
+			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/update-md(iboard = ${DATA.iboard})}'|">수정</button>
+			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
 		</th:block>
-		<button type="button" id="btn-list" class="btn btn-secondary" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">LIST</button>
 	</div>
-</article>
 
-<th:block th:if="${#arrays.length(NEXT_POST) > 0 || #arrays.length(PREV_POST) > 0}">
-	<article id="article-board-main">
-		<table class="table" id="table-list">
+	<div class="container" th:if="${#arrays.length(NEXT_POST) > 0 || #arrays.length(PREV_POST) > 0}">
+		<table class="board-table">
 			<tbody>
-				<tr class="table" th:each="data : ${NEXT_POST}">
-					<td class="bottom-post-title">
-						<strong>다음 글</strong>
-					</td>
-					<td>
-						<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
-							<span th:text="${data.title}"></span>
-						</a>
-					</td>
+				<tr th:each="data : ${NEXT_POST}">
+					<td class="td-20p">다음 글</td>
+					<td><a th:href="@{/board/read-md(iboard = ${data.iboard})}" th:text="${data.title}"></a></td>
 				</tr>
-				
-				<tr class="table" th:each="data : ${PREV_POST}">
-					<td class="bottom-post-title">
-						<strong>이전 글</strong>
-					</td>
-					
-					<td>
-						<a th:href="@{/board/read-md(iboard = ${data.iboard})}">
-							<span th:text="${data.title}"></span>
-						</a>
-					</td>
+				<tr th:each="data : ${PREV_POST}">
+					<td class="td-20p">이전 글</td>
+					<td><a th:href="@{/board/read-md(iboard = ${data.iboard})}" th:text="${data.title}"></a></td>
 				</tr>
 			</tbody>
 		</table>
-	</article>
-</th:block>
-
+	</div>
+</section>
 <script th:inline="javascript">
 	$(document).ready(() => {
 		let code              		  = [[${DATA.icode}]];
 		let contents          		  = [[${DATA.contents}]];
-		let name 			  		  = ([[${DATA.name}]] || '');
+		let name 			  		  = [[${DATA.name}]] || '';
 		let $thumbnailPreview 		  = $('#thumbnail-preview');
-		let $thumbnailTitle			  = $('#thumbnail-title');
 		let $main                     = $('main');
 		let $articleBoardMainContents = $('#article-board-main.contents');
+		let $trThumbnail 			  = $('.tr-thumbnail');
+		let $trYoutube   			  = $('.tr-youtube');
 		
 		$('#editor').html(contents);
 		
 		if(code == 'B004') {
-			$('#movie-wrap').css('display', 'block');
+			$('iframe').css('display', 'block');
+			$trYoutube.removeClass('tr-remove');
 		}
 		
 		if(name != '') {
 			$thumbnailPreview.attr('src', name);
 			$thumbnailPreview.css('display', 'block');
-			$thumbnailTitle.css('display', 'block');
+			$trThumbnail.removeClass('tr-remove');
 		}
 		
+		/*
 		if($(window).width() > 768) {
 		    $('.image > img').each(function() {
 		    	$(this).on('load', function() {
@@ -128,6 +102,7 @@
 		    	});
 		    });
 		}
+		*/
 	});
 	
 	$('#btn-delete').click(() => {

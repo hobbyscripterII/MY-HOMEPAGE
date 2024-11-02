@@ -59,20 +59,22 @@ public class BoardController {
 	
 	// 리스트 목록형 & 사진 목록형 게시판
 	@GetMapping("/list")
-	public String mainList(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
-		Map<String, Object> map = articleTitleAndUrlGet((String) requestMap.get("code"));
-		String title			= (String) map.get("title");
-		String url				= (String) map.get("url");
-		int amount				= (int) map.get("amount");
-		Pagination pagination	= new Pagination(page, amount, service.boardGetCnt(requestMap));
-		int offset 				= (page == 1 ? 0 : (page - 1) * amount);
-		
+	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
+		String code			  = (String) requestMap.get("code");
+		String title		  = getTitle(code);
+		String url			  = "board/list";
+		int amount            = 10;
+		int offset			  = (page == 1 ? 0 : (page - 1) * amount);
+		Pagination pagination = new Pagination(page, amount, service.boardGetCnt(requestMap));
+
 		requestMap.put("offset" , offset);
 		requestMap.put("amount" , amount);
-		
+
 		model.addAttribute(Const.DATA			, service.boardGet(requestMap));
 		model.addAttribute(Const.ARTICLE_TITLE	, title);
 		model.addAttribute(Const.PAGINATION		, pagination);
+		model.addAttribute(Const.SEARCH_DATA    , requestMap);
+		
 		return url;
 	}
 	
@@ -80,12 +82,13 @@ public class BoardController {
 	public String write(@RequestParam Map<String, Object> requestMap, Model model) {
 		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
 		model.addAttribute(Const.GENRE, boardGenreGet);
+		
 		return "board/write-we";
 	}
 	
 	@ResponseBody
 	@PostMapping("/write-md")
-	public Map<String, Object> writeMarkdown(@RequestPart(name = "thumbnail", required = false) MultipartFile thumbnail, @RequestParam Map<String, Object> requestMap) throws IOException {
+	public Map<String, Object> write(@RequestPart(name = "thumbnail", required = false) MultipartFile thumbnail, @RequestParam Map<String, Object> requestMap) throws IOException {
 		return service.boardInsert(thumbnail, requestMap);
 	}
 	
@@ -109,8 +112,7 @@ public class BoardController {
 		String iboard 					    = (String) requestMap.get("iboard");
 		List<Map<String, Object>> prevPost 	= service.prevPostGet(iboard);
 		List<Map<String, Object>> nextPost 	= service.nextPostGet(iboard);
-		Map<String, Object> map 			= articleTitleAndUrlGet(code);
-		String title						= (String) map.get("title");
+		String title						= getTitle(code);
 		
 		boardSelect.put("article_title"		, title);
 		boardSelect.put("contents"			, commonmarkUtil.markdown((String) boardSelect.get("contents")));
@@ -126,6 +128,7 @@ public class BoardController {
 	@PatchMapping("/update-md")
 	public Map<String, Object> updateMarkdown(@RequestBody Map<String, Object> requestMap) {
 		Map<String, Object> responseMap = new HashMap();
+		
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
 		
 		int boardUpdate = service.boardUpdate(requestMap);
@@ -150,27 +153,18 @@ public class BoardController {
 		return responseMap;
 	}
 	
-	private Map<String, Object> articleTitleAndUrlGet(String code) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		
+	private String getTitle(String code) {
 		String title = null;
-		String url   = null;
-		int amount   = 10;
 		
 		switch (code) {
-		case "B001": title = "NOTICE"; url = "board/list";    amount = 10; break;
-		case "B002": title = "STUDY"; 				          			   break;
-		case "B003": title = "PHOTO";  url = "board/list-ph"; amount = 12; break;
-		case "B004": title = "MUSIC";  url = "board/list-ph"; amount = 12; break;
-		case "B005": title = "DAILY";  url = "board/list-ph"; amount = 12; break;
-		case "B006": title = "DESIGN"; url = "board/list-ph"; amount = 12; break;
-		case "B007": title = "ADMIN";  						  			   break;
+		case "B001": title = "NOTICE"; break;
+		case "B003": title = "PHOTO";  break;
+		case "B004": title = "MUSIC";  break;
+		case "B005": title = "DAILY";  break;
+		case "B006": title = "DESIGN"; break;
+		case "B007": title = "ADMIN";  break;
 		}
 		
-		map.put("title" , title);
-		map.put("url"   , url);
-		map.put("amount", amount);
-		
-		return map;
+		return title;
 	}
 }

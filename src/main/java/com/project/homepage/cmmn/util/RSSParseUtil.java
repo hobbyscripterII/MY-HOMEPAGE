@@ -81,7 +81,6 @@ public class RSSParseUtil {
   		
   		if(endIdx != -1) {
   			title = title.substring(endIdx + 1).trim();
-  			
   		}
   		
   		return title;

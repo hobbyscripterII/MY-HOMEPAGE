@@ -1,34 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="nav">
-<header>
-    <svg id="header-hamburger-btn" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" alt="햄버거 버튼 아이콘" class="bi bi-list" viewBox="0 0 16 16" onclick="sidebarToggle()">
-        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
-    </svg>
-    <!-- <a href="/"><img id="header-logo" th:src="@{/img/img-logo.png}" alt="로고 아이콘"></img></a>  -->
-    <a href="/"><span id="header-name">inspire</span></a>
-
-    <div class="overlay"></div>
-    <div id="header-sidebar">
-        <a th:href="@{/board/list(code='B001')}">NOTICE</a>
-        <!-- <a th:href="@{/board/list(code='B006')}">DESIGN</a> -->
-        <!-- <a th:href="@{/board/list(code='B002')}">STUDY</a> -->
-        <a th:href="@{/board/list(code='B003')}">PHOTO</a>
-        <a th:href="@{/board/list(code='B004')}">MUSIC</a>
-        <a th:href="@{/board/list(code='B005')}">DAILY</a>
-        <th:block sec:authorize="hasRole('ADMIN')">
-            <!-- 로그인한 계정의 권한이 ADMIN일 경우 해당 메뉴 노출 -->
-            <a th:href="@{/admin/main}">ADMIN</a>
-        </th:block>
-
-        <th:block sec:authorize="isAnonymous()">
-            <!-- 익명 계정일 경우 로그인 버튼 출력 -->
-            <a th:href="@{/login}">LOGIN</a>
-        </th:block>
-        <th:block sec:authorize="isAuthenticated()">
-            <!-- 권한 관계없이 인증 완료 후 로그아웃 버튼 출력 -->
-            <a th:href="@{/logout}">LOGOUT</a>
-        </th:block>
-    </div>
-</header>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
+<div class="header"><h1><a th:href="@{/}">Hello World!</a></h1></div>
+<div class="nav" id="nav">
+	<h4><a th:href="@{/board/list(code='B001')}">notice</a></h4>
+	<h4><a th:href="@{/board/list(code='B003')}">photo</a></h4>
+	<h4><a th:href="@{/board/list(code='B004')}">music</a></h4>
+	<h4><a th:href="@{/board/list(code='B005')}">daily</a></h4>
+	
+    <th:block sec:authorize="hasRole('ADMIN')">
+        <!-- 로그인한 계정의 권한이 ADMIN일 경우 해당 메뉴 노출 -->
+        <h4><a th:href="@{/admin/main}">admin</a></h4>
+    </th:block>
+    
+    <th:block sec:authorize="isAnonymous()">
+        <!-- 익명 계정일 경우 로그인 버튼 출력 -->
+        <h4><a th:href="@{/login}">login</a></h4>
+    </th:block>
+    
+    <th:block sec:authorize="isAuthenticated()">
+        <!-- 권한 관계없이 인증 완료 후 로그아웃 버튼 출력 -->
+        <h4><a th:href="@{/logout}">logout</a></h4>
+    </th:block>
+</div>
 </html>

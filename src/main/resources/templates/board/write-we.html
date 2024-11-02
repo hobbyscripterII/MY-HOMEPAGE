@@ -1,112 +1,108 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/default-layout}"
-      layout:fragment="article">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 <style>
 .row { margin-bottom: 10px; }
-.genre-form { display: none; }
+#genre { display: none; appearance: none; }
+.ck.ck-editor { width: 880px; margin: auto; }
 .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused),
 .ck.ck-editor__main>.ck-editor__editable:not(.ck-bulrred) { padding-left: 30px; }
-
+#board-search .search-window .search-wrap { max-width: 1000px; padding-right: 0; }
+#board-search .search-window .search-wrap .btn { position: static; width: 100%; }
 </style>
-<article id="article-board-main">
-	<p id="article-title">
-		WRITE
-	</p>
-	
-	<div class="row">
-      <label class="col-sm-2 col-form-label" for="write-title">TITLE</label>
-      <div class="col-sm-10">
-		<input type="text" id="write-title" class="form-control">
-      </div>
-    </div>
-	
-	<div class="row genre-form">
-      <label class="col-sm-2 col-form-label" for="genre">GENRE</label>
-      <select class="form-control" id="genre">
-      	<th:block th:if="${DATA != null}">
-	        <option th:value="${DATA.genre_code}" th:text="${DATA.genre_name}"></option>
-      	</th:block>
- 	    <th:block th:if="${DATA == null}">
-	        <option></option>
-      	</th:block>
-      	<th:block th:each="genre : ${GENRE}">
-	        <option th:value="${genre.ICODE}" th:text="${genre.NAME}"></option>
-      	</th:block>
-      </select>
-    </div>
-	
-	<div class="row">
-      <label class="col-sm-2 col-form-label" for="thumbnail">THUMBNAIL</label>
-      <div class="col-sm-10">
-        <input type="file" id="thumbnail" class="form-control" accept="image/*" onchange="thumnailPreview(this)">
-      </div>
-    </div>
-	
-	<img id="thumbnail-preview" alt="썸네일 미리보기"></img>
-	
-	<th:block th:if="${param.code != null}">
-		<th:block th:with="code=${param.code}"></th:block>
-	</th:block>
-	<th:block th:if="${DATA != null}">
-		<th:block th:with="code=${DATA.icode}"></th:block>
-	</th:block>
-	
-	<textarea id="editor"></textarea>
-	<!-- <div id="editor"></div> -->
-	
-	<div id="btn-grp">
-		<button type="button" id="btn-cancel" class="btn btn-danger">CANCEL</button>
-		<button type="button" id="btn-write" class="btn btn-success">WRITE</button>
+<section class="notice">
+	<div class="page-title">
+		<div class="container">
+			<h3>WRITE</h3>
+		</div>
 	</div>
-</article>
+
+	<div id="board-search">
+		<div class="container">
+			<div class="search-window">
+				<form id="search-form">
+					<div class="search-wrap">
+						<!-- 제목 입력란 -->
+						<input id="write-title" placeholder="제목">
+						
+						<!-- 음악 게시판일 경우 표출 -->
+						<select class="form-control" id="genre">
+							<th:block th:if="${DATA != null}">
+								<option th:value="${DATA.genre_code}" th:text="${DATA.genre_name}"></option>
+							</th:block>
+							<th:block th:if="${DATA == null}">
+								<option>장르</option>
+							</th:block>
+							<th:block th:each="genre : ${GENRE}">
+								<option th:value="${genre.ICODE}" th:text="${genre.NAME}"></option>
+							</th:block>
+						</select>
+						
+						<!-- 썸네일 선택 및 썸네일 미리보기 표출 -->						
+						<input type="file" id="thumbnail" accept="image/*" onchange="thumnailPreview(this)">
+						<img id="thumbnail-preview" alt="썸네일 미리보기"></img>
+					</div>
+				</form>
+				
+				<textarea id="editor"></textarea>
+			</div>
+		</div>
+		
+		<div class="btn-group">
+			<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+				<button type="button" id="btn-write" class="btn btn-dark">작성</button>
+			</th:block>
+		</div>
+	</div>
+</section>
 
 <script th:inline="javascript">
 	let $btnWrite				= $('#btn-write');
-	let $data					= ([[${DATA}]] || '');
-	let $iboard					= ($data.iboard || '');
+	let $data					= [[${DATA}]] || '';
+	let $iboard					= $data.iboard || '';
 	let $code					= $data.icode != undefined ? $data.icode : [[${param.code}]];
-	let youtube_id  			= ($data.youtube_id || '');
+	let youtube_id  			= $data.youtube_id || '';
+	let $thumbnail				= $('#thumbnail');
 	let $thumbnailPreview 		= $('#thumbnail-preview');
+	let $youtubeUrl				= $('#youtube-url');
 	let editor					= null;
 	
 	$(document).ready(() => {
 		if($code == 'B004') {
-			$('#thumbnail').attr('type', 'text');
-			$('#thumbnail').attr('onchange', '');
-			$('#thumbnail').attr('id', 'youtube-url');
-			$('#thumbnail').val('');
+			$thumbnail.attr('type', 'text');
+			$thumbnail.attr('onchange', '');
+			$thumbnail.attr('placeholder', '유튜브 링크');
+			$thumbnail.attr('id', 'youtube-url');
+			$thumbnail.val('');
 			$('label[for="thumbnail"]').text('YOUTUBE URL');
-			$('.genre-form').css('display', 'flex');
+			$('#genre').css('display', 'flex');
 			
 			if($iboard != '') {
 				let youtubeURL 		= 'https://www.youtube.com/watch?v=' + $data.youtube_id;
 				let yotubeTumbnail	= 'https://img.youtube.com/vi/' + $data.youtube_id + '/0.jpg';
 				
-				$('#youtube-url').val(youtubeURL);
+				$youtubeUrl.val(youtubeURL);
 				$thumbnailPreview.attr('src', yotubeTumbnail);
 				$thumbnailPreview.css('display', 'block');
 			}
 		}
 		
-		$('#youtube-url').on('input', () => {
+		$youtubeUrl.on('input', () => {
 			youtubeIdGet();
 		});
 	});
 	
 	function youtubeIdGet() {
-		let url		= $('#youtube-url').val();
+		let url		= $youtubeUrl.val();
 		let id		= url.split('v=')[1]?.split('&')[0];
 		youtube_id	= id;
 		
 		if(id && id.length == 11) {
-			$('#thumbnail-preview').css('display', 'block');
-			$('#thumbnail-preview').attr('src', 'https://img.youtube.com/vi/' + id + '/0.jpg');
+			$thumbnailPreview.css('display', 'block');
+			$thumbnailPreview.attr('src', 'https://img.youtube.com/vi/' + id + '/0.jpg');
 		} else {
 			alert('유튜브 링크를 확인해주세요.');
-			$('#youtube-url').val('');
-			$('#thumbnail-preview').css('display', 'flex');
+			$youtubeUrl.val('');
+			$thumbnailPreview.css('display', 'flex');
 			return;
 		}
 	}
@@ -137,7 +133,6 @@
 		if(thumbnail) {
 			let reader		= new FileReader();
 			reader.onload	= function(e) {
-				let $thumbnailPreview = $('#thumbnail-preview');
 				$thumbnailPreview.attr('src', e.target.result);
 				$thumbnailPreview.css('display', 'block');
 			};
@@ -147,7 +142,7 @@
 	}
 	
 	if($iboard != '') {
-		$('#btn-write').html('UPDATE');
+		$('#btn-write').html('수정');
 		$('#article-title').html('UPDATE');
 		$('#write-title').val($data.title);
 		$('#btn-write').attr('id', 'btn-update');
@@ -232,12 +227,5 @@
 			location.href = '/board/list?code=' + $code;
 		}
 	});
-	
-	$(document).ready(() => {
-		setTimeout(() => {
-			let $articleBoardMainHeight = $('#article-board-main').outerHeight(true);
-			$('main').css('height', $articleBoardMainHeight <= 800 ? '100%' : 'auto');
-		}, 100);
-	});	
 </script>
 </html>

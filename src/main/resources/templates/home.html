@@ -1,39 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-<style>
-    main {
-        margin-bottom: 0;
-    }
 
-    .thumbnail-item>a>img {
-        width: 100%;
-    }
-</style>
+<style>main { height: 50vh; }</style>
+
+<section class="notice">
+	<div class="page-title">
+		<div class="container">
+			<h3>공사 중</h3>
+		</div>
+	</div>
+	
+	<div style="text-align: center">
+		<p><strong>RaspberryPI5</strong></p>
+		<p><strong>Java</strong></p>
+		<p><strong>Spring Boot 3.x</strong></p>
+		<p><strong>STS4</strong></p>
+		<p><strong>Docker</strong></p>
+		<p><strong>Apache Proxy</strong></p>
+		<p><strong>SSL</strong></p>
+	</div>
+</section>
 
 <!--
-<div id="thumbnail-home-notice" class="card-2">
-	<p class="thumbnail-home-title">NOTICE</p>
-	<div class="rss-contents-wrap">
-		<th:block th:each="data : ${DATA}">
-			<div class="rss-item" th:if="${data.ICODE == 'B001'}">
-				<p class="rss-contents">
-					<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
-						<span th:if="${data.IMG_YN eq 'Y'}">
-							<img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/slr-camera.png" alt="slr-camera"/>
-						</span>
-						<span th:if="${data.IMG_YN eq 'N'}">
-							<img width="15" height="15" src="https://img.icons8.com/ios-glyphs/30/1A1A1A/speech-bubble--v1.png" alt="speech-bubble--v1"/>
-						</span>
-						<span th:text="${data.TITLE}"></span>
-					</a>
-					<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
-				</p>
-			</div>
-		</th:block>
-	</div>
-</div>
--->
-
 <div id="rss-contents-wrap">
     <div id="thumbnail-home-study" class="card-2">
         <p class="thumbnail-home-title">STUDY</p>
@@ -121,4 +109,5 @@
 		</div>
 	</div>
 </div>
+-->
 </html>

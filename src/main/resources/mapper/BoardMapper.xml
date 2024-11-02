@@ -4,7 +4,7 @@
 	<insert id="boardInsert" useGeneratedKeys="true" keyColumn="iboard" parameterType="map">
 	INSERT INTO tbl_board(ICODE, IADMIN, TITLE, CONTENTS, YOUTUBE_ID, GENRE) VALUES(#{icode}, '1', #{title}, #{contents}, #{youtube_id}, #{genre})
 	<selectKey keyProperty="iboard" resultType="integer">
-	SELECT LAST_INSERT_ID()
+		SELECT LAST_INSERT_ID()
 	</selectKey>
 	</insert>
 	
@@ -16,8 +16,8 @@
 	LEFT JOIN tbl_thumbnail C
 	ON A.IBOARD = C.IBOARD
 	WHERE A.DEL_YN = 'N' AND A.ICODE = #{code}
-	<if test="keyword != null and keyword != ''">
-		AND A.TITLE LIKE '%${keyword}%'
+	<if test="search != null and search != ''">
+		AND A.TITLE LIKE CONCAT('%', #{search}, '%')
 	</if>
 	ORDER BY A.IBOARD DESC
 	LIMIT #{offset}, #{amount}
