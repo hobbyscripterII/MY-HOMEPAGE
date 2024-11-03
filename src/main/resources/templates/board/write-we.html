@@ -38,8 +38,10 @@
 						</select>
 						
 						<!-- 썸네일 선택 및 썸네일 미리보기 표출 -->						
+						<!--
 						<input type="file" id="thumbnail" accept="image/*" onchange="thumnailPreview(this)">
 						<img id="thumbnail-preview" alt="썸네일 미리보기"></img>
+						-->
 					</div>
 				</form>
 				
@@ -56,7 +58,6 @@
 </section>
 
 <script th:inline="javascript">
-	let $btnWrite				= $('#btn-write');
 	let $data					= [[${DATA}]] || '';
 	let $iboard					= $data.iboard || '';
 	let $code					= $data.icode != undefined ? $data.icode : [[${param.code}]];
@@ -177,7 +178,7 @@
 		}
 	});
 	
-	$btnWrite.click(() => {
+	$('#btn-write').click(() => {
 		let paramCode 	= `[[${param.code}]]`;
 		let code 		= paramCode.replace(/[\[\]"]/g, '');
 		let title 		= $('#write-title').val();

@@ -93,29 +93,6 @@
 			$trThumbnail.removeClass('tr-remove');
 		}
 		*/
-		
-		// 웹에디터 이미지 사이즈 조정
-		if($(window).width() > 768) {
-		    $('.image > img').each(function() {
-		    	$(this).on('load', function() {
-			        if ($(this).width() < 1000) {
-			        	$(this).css('width', 'auto');
-		        	} else {
-		        		$(this).css('width', '60%');
-		        	}
-		    	});
-		    });
-		} else {
-		    $('.image > img').each(function() {
-		    	$(this).on('load', function() {
-			        if ($(this).width() < 1000) {
-		        		$(this).css('width', '100%');
-		        	} else {
-			        	$(this).css('width', 'auto');
-		        	}
-		    	});
-		    });
-		}
 	});
 	
 	$('#btn-delete').click(() => {

@@ -221,17 +221,24 @@ iframe {
 }
 
 blockquote {
-	background-color: #f1f3f5;
 	border-left: 3px solid #d1180b;
 	color: #333;
 }
 
 blockquote p {
-	padding: 2px 0 2px 5px;
+	padding: 4px 0 4px 5px;
 }
 
 .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused), .ck.ck-editor__main>.ck-editor__editable:not(.ck-bulrred) {
 	height: 500px;
+}
+
+.image {
+	max-width: 880px;
+}
+
+.image > img {
+	max-width: 100%;
 }
 
 /* 페이지네이션 */

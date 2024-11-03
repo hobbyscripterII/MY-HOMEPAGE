@@ -3,5 +3,5 @@
 .header { background: #fff; height: 200px; text-align: center; }
 .nav { padding-top: 10px; padding-bottom: 10px; background: #d1180b; text-align: center; }
 .nav-stick { position: fixed; top: 0; }
-.header > h1 > a { color: #000; }
+.header > h1 > a { color: #000; font-family: 'MapoDPPA'; }
 .nav > h4 > a { color: #fff; }

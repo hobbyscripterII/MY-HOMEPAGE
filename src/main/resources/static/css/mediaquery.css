@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-@media ( max-width : 319px) {
+@media (max-width : 319px) {
 	#article-board-main {
 		width: 95%;
 	}
@@ -38,7 +38,7 @@
 	}
 }
 
-@media ( max-width : 767px) {
+@media (max-width : 767px) {
 	.container {
 		width: 100%;
 	}
@@ -58,6 +58,10 @@
 	
 	.board-table a {
 		font-size: 12px;
+		height: 16.8px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: break-all;
 	}
 	
 	.td-20p {
@@ -120,5 +124,8 @@
 	}
 }
 
-@media ( max-width : 960px) {
+@media (max-width : 1120px) {
+	.container, .btn-group {
+		width: 100%;
+	}
 }
