@@ -100,7 +100,7 @@ section.notice {
 }
 
 .board-table th, .board-table td {
-	padding: 14px 0;
+	padding: 14px 5px;
 }
 
 .board-table tbody td {
@@ -180,6 +180,7 @@ section.notice {
 	text-align: right;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	padding: 0 5px;
 }
 
 .blind {
@@ -216,7 +217,7 @@ iframe {
 
 #editor {
 	text-align: left;
-	margin: 0 10px 0 10px;
+	padding: 0 10px 0 10px;
 	width: 880px;
 }
 
@@ -261,5 +262,5 @@ blockquote p {
 .page-link {
 	color: #333;
 	font-size: 13px;
-	margin-right: 5px;
+	margin: 0 5px 0 5px;
 }

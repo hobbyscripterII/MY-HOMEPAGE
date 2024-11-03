@@ -17,6 +17,7 @@
 * {
 	margin: 0;
 	font-family: 'Pretendard-Regular';
+	box-sizing: border-box;
 }
 
 a {

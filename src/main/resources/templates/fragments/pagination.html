@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="pagination">
 <div class="pagination">
-    <a class="page-link" th:if="${1 < PAGINATION.start}" th:href="@{/board/list(code=${param.code}, page=1, keyword=${list.keyword})}">&laquo;</a>
-    <a class="page-link" th:if="${1 < PAGINATION.start}" th:href="@{/board/list(code=${param.code}, page=${PAGINATION.start - PAGINATION.pageCnt}, keyword=${list.keyword})}">&lt;</a>
+    <a class="page-link" th:if="${1 < PAGINATION.start}" th:href="@{/board/list(code=${param.code}, page=1, search=${SEARCH_DATA.search})}">&laquo;</a>
+    <a class="page-link" th:if="${1 < PAGINATION.start}" th:href="@{/board/list(code=${param.code}, page=${PAGINATION.start - PAGINATION.pageCnt}, search=${SEARCH_DATA.search})}">&lt;</a>
     <th:block th:if="${PAGINATION.realEnd > 1}">
         <div class="page-item" th:each="page, i : ${#numbers.sequence(PAGINATION.start, PAGINATION.end)}">
-				<a class="page-link" th:href="@{/board/list(code=${param.code}, page=${i.current})}" th:text="${i.current}"></a>
+				<a class="page-link" th:href="@{/board/list(code=${param.code}, page=${i.current}, search=${SEARCH_DATA.search})}" th:text="${i.current}"></a>
 			</div>
 		</th:block>
-	<a class="page-link" th:if="${PAGINATION.end < PAGINATION.realEnd}" th:href="@{/board/list(code=${param.code}, page=${PAGINATION.end + 1}, amount=${PAGINATION.amount})}">&gt;</a>
-	<a class="page-link" th:if="${PAGINATION.end < PAGINATION.realEnd}" th:href="@{/board/list(code=${param.code}, page=${PAGINATION.realEnd}, amount=${PAGINATION.amount})}">&raquo;</a>
+	<a class="page-link" th:if="${PAGINATION.end < PAGINATION.realEnd}" th:href="@{/board/list(code=${param.code}, page=${PAGINATION.end + 1}, amount=${PAGINATION.amount}, search=${SEARCH_DATA.search})}">&gt;</a>
+	<a class="page-link" th:if="${PAGINATION.end < PAGINATION.realEnd}" th:href="@{/board/list(code=${param.code}, page=${PAGINATION.realEnd}, amount=${PAGINATION.amount}, search=${SEARCH_DATA.search})}">&raquo;</a>
 </div>
 </html>

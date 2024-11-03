@@ -71,9 +71,9 @@ public class BoardController {
 		
 		if(authorities != null) {
 			role = authorities.stream()
-				   .findFirst()
-				   .map(GrantedAuthority :: getAuthority)
-				   .orElse(null);
+							  .findFirst()
+							  .map(GrantedAuthority :: getAuthority)
+							  .orElse(null);
 		}
 		
 		return role;
@@ -83,6 +83,7 @@ public class BoardController {
 	@GetMapping("/list")
 	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
 		String code			  		  	   = (String) requestMap.get("code");
+		String search			  		   = (String) requestMap.get("search") == null ? "" : (String) requestMap.get("search");
 		String title		  		  	   = getTitle(code);
 		String url			 		  	   = "board/list";
 		int amount            		  	   = 10;
@@ -90,6 +91,7 @@ public class BoardController {
 		
 		requestMap.put("offset" , offset);
 		requestMap.put("amount" , amount);
+		requestMap.put("search" , search);
 		requestMap.put("role"   , getRole());
 		
 		List<Map<String, Object>> boardGet = service.boardGet(requestMap);
@@ -164,7 +166,7 @@ public class BoardController {
 	@ResponseBody
 	@PatchMapping("/update-md")
 	public Map<String, Object> updateMarkdown(@RequestBody Map<String, Object> requestMap) {
-		Map<String, Object> responseMap = new HashMap();
+		Map<String, Object> responseMap = new HashMap<String, Object>();
 		
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
 		
@@ -179,7 +181,7 @@ public class BoardController {
 	@ResponseBody
 	@PatchMapping("/delete")
 	public Map<String, Object> delete(@RequestParam("iboard") String iboard) {
-		Map<String, Object> responseMap = new HashMap();
+		Map<String, Object> responseMap = new HashMap<String, Object>();
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
 		
 		int boardDelete = service.boardDelete(iboard);
@@ -194,12 +196,12 @@ public class BoardController {
 		String title = null;
 		
 		switch (code) {
-		case "B001": title = "NOTICE"; break;
-		case "B003": title = "PHOTO";  break;
-		case "B004": title = "MUSIC";  break;
-		case "B005": title = "DAILY";  break;
-		case "B006": title = "DESIGN"; break;
-		case "B007": title = "ADMIN";  break;
+			case "B001": title = "NOTICE"; break;
+			case "B003": title = "PHOTO";  break;
+			case "B004": title = "MUSIC";  break;
+			case "B005": title = "DAILY";  break;
+			case "B006": title = "DESIGN"; break;
+			case "B007": title = "ADMIN";  break;
 		}
 		
 		return title;

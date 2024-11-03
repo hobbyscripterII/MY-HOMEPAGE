@@ -39,11 +39,7 @@
 }
 
 @media (max-width : 767px) {
-	.container {
-		width: 100%;
-	}
-	
-	.nav>h4>a {
+	.nav > h4 > a {
 		font-size: 12px;
 	}
 	
@@ -121,6 +117,10 @@
 	
 	.login-wrap {
 		width: 85vw !important;
+	}
+	
+	.board-table th, .board-table td {
+		padding: 10px 5px;
 	}
 }
 

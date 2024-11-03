@@ -9,7 +9,7 @@ public class Pagination {
     private int page; 			// 페이지 번호(1 페이지, 2 페이지...)
     private int amount; 		// 한 페이지당 보여 줄 게시글 개수
     private int total; 			// 총 게시글 개수
-    private int pageCnt = 5;	// 페이지네이션 개수
+    private int pageCnt = 10;	// 페이지네이션 개수
 
     public Pagination(int page, int amount, int total) {
         this.page 	= page < 0 ? 1 : page;

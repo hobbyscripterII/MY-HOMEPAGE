@@ -91,10 +91,11 @@ $('#search-btn').click(function(e) {
 $(document).ready(function(e) {
 	let $main 		= $('main');
 	let search_data = [[${SEARCH_DATA}]];
-	let $code 		= [[${param.code}]];
+	let code 		= [[${param.code}]];
+	let search      = search_data.search || '';
 	
-	$('#code').val($code);
-	$('#search').val(search_data.search);
+	$('#code').val(code);
+	$('#search').val(search);
 	
 	$('.page-item').each(function(e) {
 		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
