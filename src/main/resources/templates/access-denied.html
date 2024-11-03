@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-<article id="access-denied-home">
-    <p id="article-title">
-        ACCESS DENIED
-    </p>
-
-    <p><strong>접근이 거부되었습니다.</strong></p>
-    <p><strong>해당 페이지 권한이 없습니다.</strong></p>
-</article>
-
+<section class="notice">
+	<div class="page-title">
+		<div class="container">
+			<h3 style="color: red">ACCESS DENIED</h3>
+		</div>
+	</div>
+	
+	<div style="text-align: center; height: 22vh">
+	    <p><strong>접근이 거부되었습니다.</strong></p>
+	    <p><strong>해당 페이지 권한이 없습니다.</strong></p>
+	</div>
+	
+	<!--
+	<div class="btn-group">
+		<button type="submit" class="btn btn-dark" id="search-btn" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">작성</button>
+	</div>
+	-->
+</section>
 </html>

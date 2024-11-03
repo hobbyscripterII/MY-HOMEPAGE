@@ -87,11 +87,11 @@ public class BoardService {
 		return mapper.boardGenreGet();
 	}
 	
-	public List<Map<String, Object>> prevPostGet(String iboard) {
-		return mapper.prevPostGet(iboard);
+	public List<Map<String, Object>> prevPostGet(Map<String, Object> requestMap) {
+		return mapper.prevPostGet(requestMap);
 	}
 	
-	public List<Map<String, Object>> nextPostGet(String iboard) {
-		return mapper.nextPostGet(iboard);
+	public List<Map<String, Object>> nextPostGet(Map<String, Object> requestMap) {
+		return mapper.nextPostGet(requestMap);
 	}
 }

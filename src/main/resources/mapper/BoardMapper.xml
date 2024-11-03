@@ -30,8 +30,8 @@
 	SELECT COUNT(*)
 	FROM tbl_board
 	WHERE DEL_YN = 'N' AND ICODE = #{code}
-	<if test="keyword != null and keyword != ''">
-		AND TITLE LIKE '%${keyword}%'
+	<if test="search != null and search != ''">
+		AND TITLE LIKE CONCAT('%', #{search}, '%')
 	</if>
 	<if test="role == 'ROLE_ANONYMOUS'">
 		AND SEC_YN = 'N'
@@ -74,7 +74,12 @@
 	<select id="prevPostGet" resultType="map">
 	SELECT iboard, icode, title, genre, created_at
 	FROM tbl_board
-	WHERE iboard <![CDATA[ < ]]> #{iboard} AND icode = (SELECT icode FROM tbl_board WHERE iboard = #{iboard}) AND del_yn = 'N'
+	<where>
+	iboard <![CDATA[ < ]]> #{iboard} AND icode = (SELECT icode FROM tbl_board WHERE iboard = #{iboard}) AND del_yn = 'N'
+	<if test="role == 'ROLE_ANONYMOUS'">
+		AND SEC_YN = 'N'
+	</if>
+	</where>
 	ORDER BY iboard DESC
 	LIMIT 1
 	</select>
@@ -82,7 +87,12 @@
 	<select id="nextPostGet" resultType="map">
 	SELECT iboard, icode, title, genre, created_at
 	FROM tbl_board
-	WHERE iboard <![CDATA[ > ]]> #{iboard} AND icode = (SELECT icode FROM tbl_board WHERE iboard = #{iboard}) AND del_yn = 'N'
+	<where>
+	iboard <![CDATA[ < ]]> #{iboard} AND icode = (SELECT icode FROM tbl_board WHERE iboard = #{iboard}) AND del_yn = 'N'
+	<if test="role == 'ROLE_ANONYMOUS'">
+		AND SEC_YN = 'N'
+	</if>
+	</where>
 	ORDER BY iboard ASC
 	LIMIT 1
 	</select>

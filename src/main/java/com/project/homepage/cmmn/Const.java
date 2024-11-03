@@ -11,4 +11,5 @@ public class Const {
 	public static String GENRE 			= "GENRE";
 	public static String PREV_POST 		= "PREV_POST";
 	public static String NEXT_POST 		= "NEXT_POST";
+	public static String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
 }

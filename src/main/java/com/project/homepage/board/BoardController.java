@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -63,8 +64,10 @@ public class BoardController {
 	}
 	
 	// 권한 가져오기
-	public String getRole(Collection<? extends GrantedAuthority> authorities) {
-		String role = null;
+	public String getRole() {
+		Authentication authentication 	   				   = SecurityContextHolder.getContext().getAuthentication();
+		Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) authentication.getAuthorities();
+		String role 									   = null;
 		
 		if(authorities != null) {
 			role = authorities.stream()
@@ -79,8 +82,6 @@ public class BoardController {
 	// 리스트 목록형 & 사진 목록형 게시판(미사용)
 	@GetMapping("/list")
 	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
-		Authentication authentication 	   = SecurityContextHolder.getContext().getAuthentication();
-		String role 				  	   = getRole(authentication.getAuthorities());
 		String code			  		  	   = (String) requestMap.get("code");
 		String title		  		  	   = getTitle(code);
 		String url			 		  	   = "board/list";
@@ -89,7 +90,7 @@ public class BoardController {
 		
 		requestMap.put("offset" , offset);
 		requestMap.put("amount" , amount);
-		requestMap.put("role"   , role);
+		requestMap.put("role"   , getRole());
 		
 		List<Map<String, Object>> boardGet = service.boardGet(requestMap);
 		int boardGetCnt 			  	   = service.boardGetCnt(requestMap);
@@ -132,20 +133,32 @@ public class BoardController {
 	
 	@GetMapping("/read-md")
 	public String readMarkdown(@RequestParam Map<String, Object> requestMap, Model model) {
-		Map<String, Object> boardSelect		= service.boardSelect(requestMap);
-		String code 						= (String) boardSelect.get("icode");
-		String iboard 					    = (String) requestMap.get("iboard");
-		List<Map<String, Object>> prevPost 	= service.prevPostGet(iboard);
-		List<Map<String, Object>> nextPost 	= service.nextPostGet(iboard);
-		String title						= getTitle(code);
-		
-		boardSelect.put("article_title"		, title);
-		boardSelect.put("contents"			, commonmarkUtil.markdown((String) boardSelect.get("contents")));
-		model.addAttribute(Const.PREV_POST 	, prevPost);
-		model.addAttribute(Const.NEXT_POST 	, nextPost);
-		model.addAttribute(Const.DATA		, boardSelect);
-		
-		return "board/read";
+		try {
+			Map<String, Object> boardSelect		= service.boardSelect(requestMap);
+			String code 						= (String) boardSelect.get("icode");
+			String secYn 					    = (String) boardSelect.get("sec_yn");
+			String role							= getRole();
+			
+			requestMap.put("role", role);
+			
+			if(secYn.equals("Y") && role.equals(Const.ROLE_ANONYMOUS)) {
+				throw new AccessDeniedException("권한이 없습니다.");
+			}
+			
+			List<Map<String, Object>> prevPost 	= service.prevPostGet(requestMap);
+			List<Map<String, Object>> nextPost 	= service.nextPostGet(requestMap);
+			String title						= getTitle(code);
+			
+			boardSelect.put("article_title"		, title);
+			boardSelect.put("contents"			, commonmarkUtil.markdown((String) boardSelect.get("contents")));
+			model.addAttribute(Const.PREV_POST 	, prevPost);
+			model.addAttribute(Const.NEXT_POST 	, nextPost);
+			model.addAttribute(Const.DATA		, boardSelect);
+			
+			return "board/read";
+		} catch(AccessDeniedException e) {
+			return "access-denied";
+		}
 	}
 	
 	@ResponseBody
