@@ -12,4 +12,7 @@ public class Const {
 	public static String PREV_POST 		= "PREV_POST";
 	public static String NEXT_POST 		= "NEXT_POST";
 	public static String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
+	public static String NOW_DATE		= "NOW_DATE";
+	public static String DEPOLY_DATE 	= "DEPOLY_DATE";
+	public static String BETWEEN_DAYS   = "BETWEEN_DAYS";
 }

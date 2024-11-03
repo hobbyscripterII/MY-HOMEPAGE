@@ -40,3 +40,26 @@ body {
 iframe {
 	display: none;
 }
+
+/* 홈화면 레인보우 텍스트 효과 */
+.rainbow {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(270deg, red, orange, yellow, green, blue, violet, indigo);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 7s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
