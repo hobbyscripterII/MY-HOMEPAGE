@@ -88,7 +88,7 @@
 	SELECT iboard, icode, title, genre, created_at
 	FROM tbl_board
 	<where>
-	iboard <![CDATA[ < ]]> #{iboard} AND icode = (SELECT icode FROM tbl_board WHERE iboard = #{iboard}) AND del_yn = 'N'
+	iboard <![CDATA[ > ]]> #{iboard} AND icode = (SELECT icode FROM tbl_board WHERE iboard = #{iboard}) AND del_yn = 'N'
 	<if test="role == 'ROLE_ANONYMOUS'">
 		AND SEC_YN = 'N'
 	</if>

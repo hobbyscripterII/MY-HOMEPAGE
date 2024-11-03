@@ -141,12 +141,18 @@ public class BoardController {
 			
 			requestMap.put("role", role);
 			
+			log.info("requestMap = {}", requestMap);
+			
 			if(secYn.equals("Y") && role.equals(Const.ROLE_ANONYMOUS)) {
 				throw new AccessDeniedException("권한이 없습니다.");
 			}
 			
 			List<Map<String, Object>> prevPost 	= service.prevPostGet(requestMap);
 			List<Map<String, Object>> nextPost 	= service.nextPostGet(requestMap);
+			
+			log.info("prevPost = {}", prevPost);
+			log.info("nextPost = {}", nextPost);
+			
 			String title						= getTitle(code);
 			
 			boardSelect.put("article_title"		, title);
