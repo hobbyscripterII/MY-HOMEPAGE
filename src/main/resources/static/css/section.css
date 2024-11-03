@@ -241,6 +241,16 @@ blockquote p {
 	max-width: 100%;
 }
 
+.td-title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bi-lock-fill {
+	color: lightgray;
+}
+
 /* 페이지네이션 */
 .pagination {
 	display: flex;

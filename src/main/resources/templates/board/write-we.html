@@ -8,6 +8,8 @@
 .ck.ck-editor__main>.ck-editor__editable:not(.ck-bulrred) { padding-left: 30px; }
 #board-search .search-window .search-wrap { max-width: 1000px; padding-right: 0; }
 #board-search .search-window .search-wrap .btn { position: static; width: 100%; }
+.sec-yn-wrap { margin: 5px 0; }
+#sec-yn { width: auto !important; height: auto !important; }
 </style>
 <section class="notice">
 	<div class="page-title">
@@ -37,6 +39,11 @@
 							</th:block>
 						</select>
 						
+						<div class="sec-yn-wrap">
+							<span>비밀글 여부</span>
+							<input type="checkbox" id="sec-yn" name="sec-yn" />
+						</div>
+						
 						<!-- 썸네일 선택 및 썸네일 미리보기 표출 -->						
 						<!--
 						<input type="file" id="thumbnail" accept="image/*" onchange="thumnailPreview(this)">
@@ -45,6 +52,7 @@
 					</div>
 				</form>
 				
+				<!-- 웹에디터 -->
 				<textarea id="editor"></textarea>
 			</div>
 		</div>
@@ -62,10 +70,13 @@
 	let $iboard					= $data.iboard || '';
 	let $code					= $data.icode != undefined ? $data.icode : [[${param.code}]];
 	let youtube_id  			= $data.youtube_id || '';
+	let $secYn                  = $data.sec_yn || 'N';
 	let $thumbnail				= $('#thumbnail');
 	let $thumbnailPreview 		= $('#thumbnail-preview');
 	let $youtubeUrl				= $('#youtube-url');
 	let editor					= null;
+	
+	console.log('$secYn = ', $secYn);
 	
 	$(document).ready(() => {
 		if($code == 'B004') {
@@ -85,6 +96,10 @@
 				$thumbnailPreview.attr('src', yotubeTumbnail);
 				$thumbnailPreview.css('display', 'block');
 			}
+		}
+		
+		if($secYn == 'Y') {
+			$('#sec-yn').prop('checked', true);
 		}
 		
 		$youtubeUrl.on('input', () => {
@@ -154,7 +169,8 @@
 			let $title		= $('#write-title').val();
 			let contents	= editor.getData();
 			let $genre      = $('#genre').val();
-			let dto			= {iboard : $iboard, title : $title, contents : contents, youtube_id : youtube_id, genre : $genre};
+			let $secYn		= $('#sec-yn').is(':checked') ? 'Y' : 'N';
+			let dto			= {iboard : $iboard, title : $title, contents : contents, youtube_id : youtube_id, genre : $genre, sec_yn : $secYn };
 
 			$.ajax({
 				type		: 'PATCH',
@@ -184,6 +200,7 @@
 		let title 		= $('#write-title').val();
 		let contents 	= editor.getData();
 		let $genre      = ($('#genre').val() || null);
+		let $secYn		= $('#sec-yn').is(':checked') ? 'Y' : 'N';
 		let formData 	= new FormData();
 		
 		formData.append("icode"			, code);
@@ -191,12 +208,16 @@
 		formData.append("contents"		, contents);
 		formData.append("youtube_id"	, youtube_id);
 		formData.append("genre"	        , $genre);
+		formData.append("sec_yn"	    , $secYn);
 		
 		if($code == 'B004') {
 			formData.append("thumbnail"		, null);
 		} else {
+			formData.append("thumbnail"		, null);
+			/*
 			let thumbnail = $('#thumbnail')[0].files[0];
 			formData.append("thumbnail"		, thumbnail);
+			*/
 		}
 		
 		$.ajax({

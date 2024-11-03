@@ -40,7 +40,12 @@
 					<tr th:each="data : ${DATA}">
 						<td class="mobile-hide" th:text="${data.ROWNUMBER}">번호</td>
 						<td th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}">장르</td>
-						<td><a th:href="@{/board/read-md(iboard = ${data.IBOARD})}" th:text="${data.TITLE}">제목</a></td>
+						<td class="td-title">
+							<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}" th:text="${data.TITLE}">제목</a>
+							<svg th:if="${data.SEC_YN == 'Y'}" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+							  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+							</svg>
+						</td>
 						<td class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
 					</tr>
 				</tbody>

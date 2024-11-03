@@ -1,12 +1,16 @@
 package com.project.homepage.board;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +30,7 @@ import com.project.homepage.cmmn.Pagination;
 import com.project.homepage.cmmn.ResponseCode;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
 import com.project.homepage.cmmn.util.FileUploadUtil;
+import com.project.homepage.security.MyUserDetails;
 
 @Controller
 @RequestMapping("/board")
@@ -57,20 +62,40 @@ public class BoardController {
 		}
 	}
 	
-	// 리스트 목록형 & 사진 목록형 게시판
+	// 권한 가져오기
+	public String getRole(Collection<? extends GrantedAuthority> authorities) {
+		String role = null;
+		
+		if(authorities != null) {
+			role = authorities.stream()
+				   .findFirst()
+				   .map(GrantedAuthority :: getAuthority)
+				   .orElse(null);
+		}
+		
+		return role;
+	}
+	
+	// 리스트 목록형 & 사진 목록형 게시판(미사용)
 	@GetMapping("/list")
 	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
-		String code			  = (String) requestMap.get("code");
-		String title		  = getTitle(code);
-		String url			  = "board/list";
-		int amount            = 10;
-		int offset			  = (page == 1 ? 0 : (page - 1) * amount);
-		Pagination pagination = new Pagination(page, amount, service.boardGetCnt(requestMap));
-
+		Authentication authentication 	   = SecurityContextHolder.getContext().getAuthentication();
+		String role 				  	   = getRole(authentication.getAuthorities());
+		String code			  		  	   = (String) requestMap.get("code");
+		String title		  		  	   = getTitle(code);
+		String url			 		  	   = "board/list";
+		int amount            		  	   = 10;
+		int offset			  		  	   = (page == 1 ? 0 : (page - 1) * amount);
+		
 		requestMap.put("offset" , offset);
 		requestMap.put("amount" , amount);
+		requestMap.put("role"   , role);
+		
+		List<Map<String, Object>> boardGet = service.boardGet(requestMap);
+		int boardGetCnt 			  	   = service.boardGetCnt(requestMap);
+		Pagination pagination 		  	   = new Pagination(page, amount, boardGetCnt);
 
-		model.addAttribute(Const.DATA			, service.boardGet(requestMap));
+		model.addAttribute(Const.DATA			, boardGet);
 		model.addAttribute(Const.ARTICLE_TITLE	, title);
 		model.addAttribute(Const.PAGINATION		, pagination);
 		model.addAttribute(Const.SEARCH_DATA    , requestMap);
@@ -116,7 +141,6 @@ public class BoardController {
 		
 		boardSelect.put("article_title"		, title);
 		boardSelect.put("contents"			, commonmarkUtil.markdown((String) boardSelect.get("contents")));
-		boardSelect.putIfAbsent("name"		, ""); // 쿼리에서 받아온 결과가 NULL인 경우 Map에 추가되지 않으므로 해당 Key 값이 없을 경우 직접 넣어준다.
 		model.addAttribute(Const.PREV_POST 	, prevPost);
 		model.addAttribute(Const.NEXT_POST 	, nextPost);
 		model.addAttribute(Const.DATA		, boardSelect);

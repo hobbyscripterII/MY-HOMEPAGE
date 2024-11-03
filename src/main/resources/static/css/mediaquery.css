@@ -128,4 +128,8 @@
 	.container, .btn-group {
 		width: 100%;
 	}
+	
+	.ck.ck-editor {
+		width: 80% !important;
+	}
 }

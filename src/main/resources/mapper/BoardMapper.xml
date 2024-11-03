@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.homepage.board.BoardMapper">
 	<insert id="boardInsert" useGeneratedKeys="true" keyColumn="iboard" parameterType="map">
-	INSERT INTO tbl_board(ICODE, IADMIN, TITLE, CONTENTS, YOUTUBE_ID, GENRE) VALUES(#{icode}, '1', #{title}, #{contents}, #{youtube_id}, #{genre})
+	INSERT INTO tbl_board(ICODE, IADMIN, TITLE, CONTENTS, YOUTUBE_ID, GENRE, SEC_YN) VALUES(#{icode}, '1', #{title}, #{contents}, #{youtube_id}, #{genre}, #{sec_yn})
 	<selectKey keyProperty="iboard" resultType="integer">
 		SELECT LAST_INSERT_ID()
 	</selectKey>
 	</insert>
 	
 	<select id="boardGet" parameterType="map" resultType="map">
-	SELECT ROW_NUMBER() OVER(ORDER BY A.IBOARD DESC) ROWNUMBER, A.IBOARD, A.ICODE, A.TITLE, (SELECT NAME FROM tbl_code WHERE ICODE = A.GENRE) GENRE, IFNULL(C.NAME, '') TUMBNAIL, IFNULL(A.YOUTUBE_ID, '') YOUTUBE_ID, A.CREATED_AT
+	SELECT ROW_NUMBER() OVER(ORDER BY A.IBOARD DESC) ROWNUMBER, A.IBOARD, A.ICODE, A.TITLE, (SELECT NAME FROM tbl_code WHERE ICODE = A.GENRE) GENRE, IFNULL(C.NAME, '') TUMBNAIL, IFNULL(A.YOUTUBE_ID, '') YOUTUBE_ID, A.CREATED_AT, A.SEC_YN
 	FROM tbl_board A
 	INNER JOIN tbl_code B
 	ON A.ICODE = B.ICODE
@@ -18,6 +18,9 @@
 	WHERE A.DEL_YN = 'N' AND A.ICODE = #{code}
 	<if test="search != null and search != ''">
 		AND A.TITLE LIKE CONCAT('%', #{search}, '%')
+	</if>
+	<if test="role == 'ROLE_ANONYMOUS'">
+		AND SEC_YN = 'N'
 	</if>
 	ORDER BY A.IBOARD DESC
 	LIMIT #{offset}, #{amount}
@@ -30,11 +33,14 @@
 	<if test="keyword != null and keyword != ''">
 		AND TITLE LIKE '%${keyword}%'
 	</if>
+	<if test="role == 'ROLE_ANONYMOUS'">
+		AND SEC_YN = 'N'
+	</if>
 	ORDER BY CREATED_AT DESC
 	</select>
 	
 	<select id="boardSelect" parameterType="map" resultType="map">
-	SELECT A.IBOARD AS iboard, A.ICODE AS icode, IFNULL(A.genre, '') AS genre_code, IFNULL((SELECT NAME FROM tbl_code WHERE icode = A.genre), '') AS genre_name, A.IADMIN AS iadmin, A.TITLE AS title, A.CONTENTS AS contents, IFNULL(A.YOUTUBE_ID, "") AS youtube_id, A.CREATED_AT AS created_at, B.ITHUMBNAIL AS ithumbnail, B.NAME AS name
+	SELECT A.IBOARD AS iboard, A.ICODE AS icode, IFNULL(A.genre, '') AS genre_code, IFNULL((SELECT NAME FROM tbl_code WHERE icode = A.genre), '') AS genre_name, A.IADMIN AS iadmin, A.TITLE AS title, A.CONTENTS AS contents, IFNULL(A.YOUTUBE_ID, "") AS youtube_id, A.CREATED_AT AS created_at, B.ITHUMBNAIL AS ithumbnail, IFNULL(B.NAME, "") AS name, A.SEC_YN AS sec_yn
 	FROM tbl_board A
 	LEFT JOIN tbl_thumbnail B
 	ON A.iboard = B.iboard
@@ -50,7 +56,8 @@
 	TITLE = #{title},
 	CONTENTS = #{contents},
 	YOUTUBE_ID = #{youtube_id},
-	GENRE = #{genre}
+	GENRE = #{genre},
+	SEC_YN = #{sec_yn}
 	WHERE IBOARD = #{iboard}
 	</update>
 	
