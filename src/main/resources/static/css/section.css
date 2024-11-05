@@ -218,7 +218,7 @@ iframe {
 #editor {
 	text-align: left;
 	padding: 0 10px 0 10px;
-	width: 880px;
+	width: 100%;
 }
 
 blockquote {
@@ -235,7 +235,7 @@ blockquote p {
 }
 
 .image {
-	max-width: 880px;
+	max-width: 100%;
 }
 
 .image > img {

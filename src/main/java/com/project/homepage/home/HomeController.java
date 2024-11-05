@@ -10,6 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,21 +31,26 @@ public class HomeController {
 		this.rssReaderUtil	= rssReaderUtil;
 	}
 	
+	@Scheduled(cron = "0 0 0 * * *")
+	public static LocalDate getNowDate() {
+		return LocalDate.now();
+	}
+	
 	@GetMapping("/")
 	public String home(@RequestParam Map<String, Object> requestMap, Model model) throws ParserConfigurationException, SAXException, IOException {
-        LocalDate nowDate 	 = LocalDate.now();
-        LocalDate depolyDate = LocalDate.of(2024, 9, 24);
-        long betweenDays 	 = Math.abs(ChronoUnit.DAYS.between(nowDate, depolyDate));
+		LocalDate nowDate			= getNowDate();
+		LocalDate depolyDate		= LocalDate.of(2024, 9, 24);
+		long betweenDays			= Math.abs(ChronoUnit.DAYS.between(nowDate, depolyDate));
 		
-        model.addAttribute(Const.NOW_DATE, nowDate);
-        model.addAttribute(Const.DEPOLY_DATE, depolyDate);
+        model.addAttribute(Const.NOW_DATE           , nowDate);
+        model.addAttribute(Const.DEPOLY_DATE     , depolyDate);
         model.addAttribute(Const.BETWEEN_DAYS, betweenDays);
         
-//		List<Map<String, Object>> latestPostGet = service.latestPostGet(requestMap);				// 게시판 별 최신 글 5개씩 ...
+//		List<Map<String, Object>> latestPostGet = service.latestPostGet(requestMap);								// 게시판 별 최신 글 5개씩 ...
 //
 //		// RSS 관련
-//		Map<String, Object> responseMap = rssReaderUtil.responseMap;								// rssParseUtil 클래스 rssParse 메소드의 결과 값
-//		int responseCode				= (int) responseMap.get(Const.RESULT);						// responseMap에서 꺼낸 응답 코드(정상 / 에러)
+//		Map<String, Object> responseMap = rssReaderUtil.responseMap;								           					// rssParseUtil 클래스 rssParse 메소드의 결과 값
+//		int responseCode				= (int) responseMap.get(Const.RESULT);								           					// responseMap에서 꺼낸 응답 코드(정상 / 에러)
 //		List<Map<String, Object>> rss 	= (List<Map<String, Object>>)responseMap.get(Const.RSS);	// responseMap에서 꺼낸 Tistory Blog RSS 결과물
 //		
 //		for(Map<String, Object> post : latestPostGet) {
