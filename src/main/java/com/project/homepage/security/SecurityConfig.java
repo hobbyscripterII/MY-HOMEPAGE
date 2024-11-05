@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(a -> a
                         // 권한없이 접근 가능
                         .requestMatchers(
-                                "/", "/css/**", "/js/**", "/img/**",
+                                "/", "/css/**", "/js/**", "/img/**", "/favicon.ico",
                                 "/login", "/logout", "/access-denied",
                                 "/board/", "/board/list/**", "/board/read-md/**",
                                 "/thumbnail/**"
