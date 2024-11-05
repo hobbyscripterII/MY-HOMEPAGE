@@ -25,20 +25,20 @@ public class HomeController {
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	private final HomeService  service;
 	private final RSSParseUtil rssReaderUtil;
+	private LocalDate nowDate = LocalDate.now();
 	
 	public HomeController(HomeService service, RSSParseUtil rssReaderUtil) {
-		this.service		= service;
+		this.service		        = service;
 		this.rssReaderUtil	= rssReaderUtil;
 	}
 	
 	@Scheduled(cron = "0 0 0 * * *")
-	public static LocalDate getNowDate() {
-		return LocalDate.now();
+	public void getNowDate() {
+		nowDate = LocalDate.now();
 	}
 	
 	@GetMapping("/")
 	public String home(@RequestParam Map<String, Object> requestMap, Model model) throws ParserConfigurationException, SAXException, IOException {
-		LocalDate nowDate			= getNowDate();
 		LocalDate depolyDate		= LocalDate.of(2024, 9, 24);
 		long betweenDays			= Math.abs(ChronoUnit.DAYS.between(nowDate, depolyDate));
 		
