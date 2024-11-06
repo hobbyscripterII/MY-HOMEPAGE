@@ -32,9 +32,9 @@ public class HomeController {
 		this.rssReaderUtil	= rssReaderUtil;
 	}
 	
-	@Scheduled(cron = "0 0 0 * * *")
+	@Scheduled(fixedRate = 21600000)
 	public void getNowDate() {
-		nowDate = LocalDate.now();
+		this.nowDate = LocalDate.now();
 	}
 	
 	@GetMapping("/")
