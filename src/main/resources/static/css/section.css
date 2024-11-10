@@ -205,6 +205,10 @@ iframe {
 	height: 400px;
 }
 
+#thumbnail {
+	display: none;
+}
+
 #thumbnail-preview {
 	display: none;
 	width: 440px;

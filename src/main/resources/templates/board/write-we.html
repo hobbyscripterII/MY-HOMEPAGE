@@ -32,23 +32,21 @@
 								<option th:value="${DATA.genre_code}" th:text="${DATA.genre_name}"></option>
 							</th:block>
 							<th:block th:if="${DATA == null}">
-								<option>장르</option>
+								<option value="">장르</option>
 							</th:block>
 							<th:block th:each="genre : ${GENRE}">
 								<option th:value="${genre.ICODE}" th:text="${genre.NAME}"></option>
 							</th:block>
 						</select>
 						
+						<!-- 썸네일 선택 및 썸네일 미리보기 표출 -->						
+						<input type="file" id="thumbnail" accept="image/*" onchange="thumnailPreview(this)">
+						<img id="thumbnail-preview" alt="썸네일 미리보기"></img>
+						
 						<div class="sec-yn-wrap">
 							<span>비밀글 여부</span>
 							<input type="checkbox" id="sec-yn" name="sec-yn" />
 						</div>
-						
-						<!-- 썸네일 선택 및 썸네일 미리보기 표출 -->						
-						<!--
-						<input type="file" id="thumbnail" accept="image/*" onchange="thumnailPreview(this)">
-						<img id="thumbnail-preview" alt="썸네일 미리보기"></img>
-						-->
 					</div>
 				</form>
 				
@@ -73,15 +71,14 @@
 	let $secYn                  = $data.sec_yn || 'N';
 	let $thumbnail				= $('#thumbnail');
 	let $thumbnailPreview 		= $('#thumbnail-preview');
-	let $youtubeUrl				= $('#youtube-url');
 	let editor					= null;
-	
-	console.log('$secYn = ', $secYn);
 	
 	$(document).ready(() => {
 		if($code == 'B004') {
+			let $youtubeUrl = $('#youtube-url');
+			
 			$thumbnail.attr('type', 'text');
-			$thumbnail.attr('onchange', '');
+			$thumbnail.attr('onchange', 'youtubeIdGet()');
 			$thumbnail.attr('placeholder', '유튜브 링크');
 			$thumbnail.attr('id', 'youtube-url');
 			$thumbnail.val('');
@@ -102,15 +99,17 @@
 			$('#sec-yn').prop('checked', true);
 		}
 		
-		$youtubeUrl.on('input', () => {
+		$('#youtube-url').on('input', () => {
 			youtubeIdGet();
 		});
 	});
 	
 	function youtubeIdGet() {
-		let url		= $youtubeUrl.val();
-		let id		= url.split('v=')[1]?.split('&')[0];
-		youtube_id	= id;
+		let url		    = $('#youtube-url').val();
+		let id		    = url.split('v=')[1]?.split('&')[0];
+		let $youtubeUrl = $('#youtube-url');
+		youtube_id	    = id;
+		
 		
 		if(id && id.length == 11) {
 			$thumbnailPreview.css('display', 'block');
@@ -197,20 +196,38 @@
 	$('#btn-write').click(() => {
 		let paramCode 	= `[[${param.code}]]`;
 		let code 		= paramCode.replace(/[\[\]"]/g, '');
-		let title 		= $('#write-title').val();
+		let $title 		= $('#write-title').val();
 		let contents 	= editor.getData();
 		let $genre      = ($('#genre').val() || null);
 		let $secYn		= $('#sec-yn').is(':checked') ? 'Y' : 'N';
 		let formData 	= new FormData();
 		
 		formData.append("icode"			, code);
-		formData.append("title"			, title);
+		formData.append("title"			, $title);
 		formData.append("contents"		, contents);
 		formData.append("youtube_id"	, youtube_id);
 		formData.append("genre"	        , $genre);
 		formData.append("sec_yn"	    , $secYn);
 		
 		if($code == 'B004') {
+			if($title == '' || $title == null) {
+				alert('제목을 입력해주세요.');
+				$('#write-title').focus();
+				return;
+			}
+			
+			if($genre == '' || $genre == null) {
+				alert('장르 선택은 필수입니다.');
+				$('#genre').focus();
+				return;
+			}
+			
+			if(youtube_id == '' || youtube_id == null) {
+				alert('링크 첨부는 필수입니다.');
+				$('#youtube-url').focus();
+				return;
+			}
+			
 			formData.append("thumbnail"		, null);
 		} else {
 			formData.append("thumbnail"		, null);
