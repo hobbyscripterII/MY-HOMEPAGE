@@ -24,7 +24,7 @@
 
 <header>
     <div class="header-banner">
-        <h1>Daily Blog</h1>
+        <a th:href="@{/}"><h1>Daily Blog</h1></a>
     </div>
     <div class="clear"></div>
     <nav>
@@ -52,13 +52,23 @@
 </header>
 <script>
 $(window).scroll(function() {
-	if ($(window).scrollTop() >= 300) {
-		$('nav').addClass('fixed-header');
-		$('nav div').addClass('visible-title');
-	} else {
-		$('nav').removeClass('fixed-header');
-		$('nav div').removeClass('visible-title');
-	}
+    if ($(window).width() <= 768) {
+        if ($(window).scrollTop() >= 200) {
+            $('nav').addClass('fixed-header');
+            $('nav div').addClass('visible-title');
+        } else {
+            $('nav').removeClass('fixed-header');
+            $('nav div').removeClass('visible-title');
+        }
+    } else {
+        if ($(window).scrollTop() >= 300) {
+            $('nav').addClass('fixed-header');
+            $('nav div').addClass('visible-title');
+        } else {
+            $('nav').removeClass('fixed-header');
+            $('nav div').removeClass('visible-title');
+        }
+    }
 });
 </script>
 </html>

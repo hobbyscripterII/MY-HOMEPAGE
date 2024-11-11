@@ -122,6 +122,19 @@
 	.board-table th, .board-table td {
 		padding: 10px 5px;
 	}
+	
+	nav ul li {
+		font-size: 12px;
+	    font-weight: bold;
+	}
+	
+	header {
+		height: 260px;
+	}
+	
+	.header-banner {
+		height: 200px;
+	}
 }
 
 @media (max-width : 1120px) {
