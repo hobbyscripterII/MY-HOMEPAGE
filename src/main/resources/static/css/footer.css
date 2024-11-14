@@ -2,30 +2,26 @@
 
 footer {
 	box-sizing: border-box;
-	height: 80px;
-	padding: 15px 0 15px 0;
+	height: 90px;
+    padding: 10px 0 10px 0;
 	text-align: center;
 	background-color: rgb(0, 0, 0, 1);
 	display: block;
 	margin-top: 230px;
 }
 
-footer>p {
+footer > p {
 	color: #FFF !important;
-	font-size: 13px;
+	font-size: 20px;
 }
 
-#footer-links, #footer-links>a>span {
+#footer-links, #footer-links > a > span {
 	margin: 10px 0 10px 0;
-	font-size: 13px;
+	font-size: 20px;
 	color: #FFF;
 }
 
-#footer-links {
-	font-weight: bold;
-}
-
-#footer-links>a {
+#footer-links > a {
 	margin-right: 10px;
 }
 

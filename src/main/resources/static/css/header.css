@@ -15,7 +15,7 @@ header {
 
 .header-banner {
 	background-color: #000;
-	background-image: url('https://1994.r-e.kr/img/2fa9b3ed-9832-4980-876e-75bf96cf1501.jpg');
+	background-image: url('https://1994.r-e.kr/img/fc2a4d58-bb85-4ac1-9e03-4ca8670d6c4d.jpg');
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -43,7 +43,7 @@ header a h1 {
 nav {
 	width: 100%;
 	height: 60px;
-	background: #000;
+	background: #599468;
 	z-index: 10;
 }
 
@@ -78,6 +78,8 @@ nav ul li {
 nav ul li a {
 	text-decoration: none;
 	color: #fff;
+	font-size: 1.5rem;
+	font-weight: 100;
 }
 
 /* demo content */
@@ -116,14 +118,17 @@ p img {
 	.content {
 		padding: 2rem 0;
 	}
+	
 	article {
 		float: none;
 		margin: 0 auto;
 		width: 96%;
 	}
+	
 	article:last-of-type {
 		margin-bottom: 3rem;
 	}
+	
 	aside {
 		float: none;
 		text-align: center;

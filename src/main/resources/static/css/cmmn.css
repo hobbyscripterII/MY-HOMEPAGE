@@ -8,16 +8,27 @@
 }
 
 @font-face {
-    font-family: 'MapoDPPA';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDPPA.woff') format('woff');
+     font-family: 'AdultKid';
+     src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Beomdolee/AdultKid.woff2') format('woff2');
+     font-weight: normal;
+     font-style: normal;
+}
+
+@font-face {
+    font-family: 'JNE-Yuna-TTF-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-1@1.0/JNE-Yuna-TTF-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
 * {
 	margin: 0;
-	font-family: 'Pretendard-Regular';
 	box-sizing: border-box;
+	font-family: 'JNE-Yuna-TTF-Regular';
+}
+
+p {
+	font-size: 20px;
 }
 
 a {

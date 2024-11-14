@@ -38,7 +38,7 @@ section.notice {
 	box-sizing: border-box;
 	height: 44px;
 	width: 100%;
-	font-size: 14px;
+	font-size: 20px;
 	border: 1px solid #ccc;
 	text-align: center;
 }
@@ -56,14 +56,14 @@ section.notice {
 	bottom: 0;
 	width: 108px;
 	padding: 0;
-	font-size: 16px;
+	font-size: 20px;
 	height: 44px;
 }
 
 .btn-group .btn {
 	width: 108px;
 	padding: 0;
-	font-size: 16px;
+	font-size: 20px;
 	height: 44px;
 }
 
@@ -101,6 +101,7 @@ section.notice {
 
 .board-table th, .board-table td {
 	padding: 14px 5px;
+	font-size: 20px;
 }
 
 .board-table tbody td {
@@ -221,12 +222,11 @@ iframe {
 
 #editor {
 	text-align: left;
-	padding: 0 10px 0 10px;
 	width: 100%;
 }
 
 blockquote {
-	border-left: 3px solid #d1180b;
+	border-left: 3px solid #000;
 	color: #333;
 }
 
@@ -266,6 +266,6 @@ blockquote p {
 
 .page-link {
 	color: #333;
-	font-size: 13px;
+	font-size: 20px;
 	margin: 0 5px 0 5px;
 }

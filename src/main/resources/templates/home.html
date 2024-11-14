@@ -2,9 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 
 <style>
-.home-wrap { text-align: center; }
-.home-title, .home-contents { margin: 20px 0; padding-top: 0; }
-.home-contents { font-weight: 400; }
+.home-wrap {
+	text-align: center;
+}
+
+.home-title, .home-contents {
+	margin: 20px 0;
+	padding-top: 0;
+	font-size: 35px;
+}
+
+.home-contents {
+	font-weight: 400;
+}
 </style>
 
 <section class="notice">
@@ -12,10 +22,7 @@
 		<div class="home-wrap">
 			<!-- <h3 class="home-title"><span class="rainbow">라즈베리파이에서 <span th:text="${BETWEEN_DAYS}"></span>일 째 돌아가는 중</span>🏃‍♀️</h3> -->
 			
-			<h1 class="home-title">블로그 현재 상태</h1>
-			<h1 class="home-contents">~ 공사 중 ~</h1>
-			
-			<h1 class="home-title">배포 환경</h1>
+			<p class="home-title">배포 환경</p>
 			<p>RaspberryPI5</p>
 			<p>Java</p>
 			<p>Spring Boot 3.x</p>
@@ -24,7 +31,7 @@
 			<p>Apache Proxy</p>
 			<p>SSL</p>
 			
-			<h1 class="home-title">블로그 주인</h1>
+			<p class="home-title">블로그 주인</p>
 			<img th:src="@{/img/img-me.jpg}" alt="프로필 사진" style="width: 30%">
 			
 			<!-- <h1 class="home-contents">현재 일자 : <span th:text="${NOW_DATE}"></span></h1> -->

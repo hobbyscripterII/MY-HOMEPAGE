@@ -32,7 +32,7 @@ html .login-wrap .form input[type="text"], html .login-wrap .form input[type="pa
 
 html .login-wrap .form input[type="text"], html .login-wrap .form input[type="password"] {
 	border: 1px solid #bbb;
-	font-size: 14px;
+	font-size: 20px;
 }
 
 html .login-wrap .form input[type="text"]:focus, html .login-wrap .form input[type="password"]:focus {
@@ -52,7 +52,7 @@ html .login-wrap .form a p {
 html .login-wrap .form button {
 	border: none;
 	color: white;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 200;
 	cursor: pointer;
 	transition: box-shadow 0.4s ease;

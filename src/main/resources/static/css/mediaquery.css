@@ -49,12 +49,11 @@
 	}
 	
 	#board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {
-		font-size: 13px;
+		font-size: 20px;
 	}
 	
 	.board-table a {
-		font-size: 12px;
-		height: 16.8px;
+		font-size: 18px;
         text-overflow: ellipsis;
         overflow: hidden;
         word-break: break-all;
@@ -134,6 +133,10 @@
 	
 	.header-banner {
 		height: 200px;
+	}
+	
+	nav ul li a {
+		font-size: 1rem;
 	}
 }
 
