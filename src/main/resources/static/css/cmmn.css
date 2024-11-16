@@ -1,34 +1,15 @@
 @charset "UTF-8";
 
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-     font-family: 'AdultKid';
-     src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Beomdolee/AdultKid.woff2') format('woff2');
-     font-weight: normal;
+     font-family: 'FreesentationL';
+     src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Freesentation/Freesentation-3Light.woff2') format('woff2');
      font-style: normal;
-}
-
-@font-face {
-    font-family: 'JNE-Yuna-TTF-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-1@1.0/JNE-Yuna-TTF-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
 }
 
 * {
 	margin: 0;
 	box-sizing: border-box;
-	font-family: 'JNE-Yuna-TTF-Regular';
-}
-
-p {
-	font-size: 20px;
+	font-family: 'FreesentationL';
 }
 
 a {

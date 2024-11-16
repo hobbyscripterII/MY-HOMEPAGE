@@ -12,12 +12,10 @@ footer {
 
 footer > p {
 	color: #FFF !important;
-	font-size: 20px;
 }
 
 #footer-links, #footer-links > a > span {
 	margin: 10px 0 10px 0;
-	font-size: 20px;
 	color: #FFF;
 }
 
@@ -28,5 +26,4 @@ footer > p {
 #footer-title {
 	text-transform: uppercase;
 	color: #FFF;
-	font-size: 1rem;
 }

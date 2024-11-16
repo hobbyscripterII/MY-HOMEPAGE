@@ -24,13 +24,12 @@
 
 <header>
     <div class="header-banner">
-        <a th:href="@{/}"><h1>Daily Blog</h1></a>
+        <a th:href="@{/}"><h1>주영이 블로그🍓</h1></a>
     </div>
     <div class="clear"></div>
     <nav>
         <div class="site-title"></div>
         <ul>
-            <li><a th:href="@{/}">Home</a></li>
             <li><a th:href="@{/board/list(code='B001')}">Notice</a></li>
             <li><a th:href="@{/board/list(code='B003')}">Photo</a></li>
             <li><a th:href="@{/board/list(code='B004')}">Music</a></li>
@@ -47,13 +46,13 @@
 		    <th:block sec:authorize="isAuthenticated()">
 		        <li><a th:href="@{/logout}">Logout</a></li>
 		    </th:block>
-        <ul>
+        </ul>
     </nav>
 </header>
 <script>
 $(window).scroll(function() {
     if ($(window).width() <= 768) {
-        if ($(window).scrollTop() >= 200) {
+        if ($(window).scrollTop() >= 250) {
             $('nav').addClass('fixed-header');
             $('nav div').addClass('visible-title');
         } else {

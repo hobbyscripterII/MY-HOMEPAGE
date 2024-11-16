@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
+/* 메인 화면 */
+.home-wrap {
+	text-align: center;
+}
+
+.home-title, .home-contents {
+	margin: 20px 0;
+	padding-top: 0;
+	font-size: 2rem;
+}
+
 /* 게시판 */
 table {
 	border-collapse: collapse;
@@ -17,7 +28,7 @@ section.notice {
 .page-title h3 {
 	font-size: 28px;
 	color: #333333;
-	font-weight: 400;
+	font-weight: 800;
 	text-align: center;
 }
 
@@ -38,9 +49,9 @@ section.notice {
 	box-sizing: border-box;
 	height: 44px;
 	width: 100%;
-	font-size: 20px;
 	border: 1px solid #ccc;
 	text-align: center;
+	font-size: 1rem;
 }
 
 #board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {
@@ -56,19 +67,18 @@ section.notice {
 	bottom: 0;
 	width: 108px;
 	padding: 0;
-	font-size: 20px;
 	height: 44px;
+	font-size: 1rem;
 }
 
 .btn-group .btn {
 	width: 108px;
 	padding: 0;
-	font-size: 20px;
 	height: 44px;
+	font-size: 1rem;
 }
 
 .board-table {
-	font-size: 13px;
 	width: 100%;
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
@@ -101,7 +111,6 @@ section.notice {
 
 .board-table th, .board-table td {
 	padding: 14px 5px;
-	font-size: 20px;
 }
 
 .board-table tbody td {
@@ -119,7 +128,6 @@ section.notice {
 .btn {
 	display: inline-block;
 	padding: 0 30px;
-	font-size: 15px;
 	font-weight: 400;
 	background: transparent;
 	text-align: center;
@@ -155,14 +163,14 @@ section.notice {
 	color: #fff;
 }
 
-.btn-dark {
-	background: #555;
+.btn-pink {
+	background: #FFB6C1;
 	color: #fff;
 }
 
-.btn-dark:hover, .btn-dark:focus {
-	background: #373737;
-	border-color: #373737;
+.btn-pink:hover, .btn-pink:focus {
+	background: #FF597B;
+	border-color: #FF597B;
 	color: #fff;
 }
 
@@ -266,6 +274,5 @@ blockquote p {
 
 .page-link {
 	color: #333;
-	font-size: 20px;
 	margin: 0 5px 0 5px;
 }

@@ -48,12 +48,8 @@
 		box-sizing: border-box;
 	}
 	
-	#board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {
-		font-size: 20px;
-	}
-	
 	.board-table a {
-		font-size: 18px;
+		font-size: 1rem;
         text-overflow: ellipsis;
         overflow: hidden;
         word-break: break-all;
@@ -120,6 +116,7 @@
 	
 	.board-table th, .board-table td {
 		padding: 10px 5px;
+		font-size: 1rem;
 	}
 	
 	nav ul li {
@@ -128,11 +125,11 @@
 	}
 	
 	header {
-		height: 260px;
+		height: 360px;
 	}
 	
 	.header-banner {
-		height: 200px;
+		height: 300px;
 	}
 	
 	nav ul li a {
