@@ -10,6 +10,9 @@
 	
 	<select id="boardGet" parameterType="map" resultType="map">
 	SELECT ROW_NUMBER() OVER(ORDER BY A.IBOARD DESC) ROWNUMBER, A.IBOARD, A.ICODE, A.TITLE, (SELECT NAME FROM tbl_code WHERE ICODE = A.GENRE) GENRE, IFNULL(C.NAME, '') TUMBNAIL, IFNULL(A.YOUTUBE_ID, '') YOUTUBE_ID, A.CREATED_AT, A.SEC_YN
+	<if test="search != null and search != ''">
+		,A.CONTENTS
+	</if>
 	FROM tbl_board A
 	INNER JOIN tbl_code B
 	ON A.ICODE = B.ICODE
@@ -17,7 +20,7 @@
 	ON A.IBOARD = C.IBOARD
 	WHERE A.DEL_YN = 'N' AND A.ICODE = #{code}
 	<if test="search != null and search != ''">
-		AND A.TITLE LIKE CONCAT('%', #{search}, '%')
+		AND A.CONTENTS LIKE CONCAT('%', #{search}, '%')
 	</if>
 	<if test="role == 'ROLE_ANONYMOUS'">
 		AND SEC_YN = 'N'
@@ -31,7 +34,7 @@
 	FROM tbl_board
 	WHERE DEL_YN = 'N' AND ICODE = #{code}
 	<if test="search != null and search != ''">
-		AND TITLE LIKE CONCAT('%', #{search}, '%')
+		AND CONTENTS LIKE CONCAT('%', #{search}, '%')
 	</if>
 	<if test="role == 'ROLE_ANONYMOUS'">
 		AND SEC_YN = 'N'

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 
-<style>main { height: 100%; }</style>
+<style>main { height: 100%; } .board-table tbody td.preview { border-top: 0px; text-align: left; }</style>
 
 <section class="notice">
 	<div class="page-title">
@@ -37,17 +37,27 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="data : ${DATA}">
-						<td class="mobile-hide" th:text="${data.ROWNUMBER}">번호</td>
-						<td th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}">장르</td>
-						<td class="td-title">
-							<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}" th:text="${data.TITLE}">제목</a>
-							<svg th:if="${data.SEC_YN == 'Y'}" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-							  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+					<th:block th:each="data : ${DATA}">
+						<tr>
+							<td class="mobile-hide" th:text="${data.ROWNUMBER}">번호</td>
+							<td th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}">장르</td>
+							<td class="td-title">
+								<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}" th:text="${data.TITLE}">제목</a>
+								<svg th:if="${data.SEC_YN == 'Y'}" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+								  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+								</svg>
+							</td>
+							<td class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
+						</tr>
+						<tr th:if="${SEARCH_DATA.search != ''}">
+							<td colspan="4" class="preview">
+							<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-arrow-return-right" viewBox="0 0 15 10">
+							  <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5"/>
 							</svg>
-						</td>
-						<td class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
-					</tr>
+							
+							<span th:text="${data.PREVIEW_CONTENTS}"></span></td>
+						</tr>
+					</th:block>
 					<tr th:if="${#lists.isEmpty(DATA)}">
 						<th:block th:if="${param.code.toString() eq 'B004'}">
 							<td colspan="4">검색 결과가 없습니다. 검색 단어: <strong th:text="${SEARCH_DATA.search}"></strong></td>

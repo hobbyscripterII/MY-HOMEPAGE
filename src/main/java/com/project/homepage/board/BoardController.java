@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -31,7 +33,6 @@ import com.project.homepage.cmmn.Pagination;
 import com.project.homepage.cmmn.ResponseCode;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
 import com.project.homepage.cmmn.util.FileUploadUtil;
-import com.project.homepage.security.MyUserDetails;
 
 @Controller
 @RequestMapping("/board")
@@ -97,7 +98,21 @@ public class BoardController {
 		List<Map<String, Object>> boardGet = service.boardGet(requestMap);
 		int boardGetCnt 			  	   = service.boardGetCnt(requestMap);
 		Pagination pagination 		  	   = new Pagination(page, amount, boardGetCnt);
-
+		int idx 						   = boardGet.size();
+		
+		if(!search.isEmpty()) {
+			for(int i = 0; i < idx; i++) {
+				Map<String, Object> post = boardGet.get(i);
+				String contents_		 = (String) post.get("CONTENTS");
+				String contents 		 = Jsoup.parse(contents_).text();
+				int startIdx			 = contents.indexOf(search);
+				int endIdx				 = Math.min((startIdx + 50), contents.length());
+				String previewContents	 = contents.substring(startIdx, endIdx);
+				
+				post.put("PREVIEW_CONTENTS", previewContents);
+			}
+		}
+		
 		model.addAttribute(Const.DATA			, boardGet);
 		model.addAttribute(Const.ARTICLE_TITLE	, title);
 		model.addAttribute(Const.PAGINATION		, pagination);
@@ -130,6 +145,7 @@ public class BoardController {
 		
 		model.addAttribute(Const.DATA  , boardSelect);
 		model.addAttribute(Const.GENRE , boardGenreGet);
+		
 		return "board/write-we";
 	}
 	
