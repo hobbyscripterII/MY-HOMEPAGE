@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface HomeMapper {
 	public List<Map<String, Object>> latestPostGet(Map<String, Object> requestMap);
+	public Map<String, Object> daysGet();
 }

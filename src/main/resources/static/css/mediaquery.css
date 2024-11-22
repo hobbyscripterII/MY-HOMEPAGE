@@ -135,6 +135,11 @@
 	nav ul li a {
 		font-size: 1rem;
 	}
+	
+	#sec-yn-wrap > #sec-yn {
+		display: inline;
+		margin: 0;
+	}
 }
 
 @media (max-width : 1120px) {

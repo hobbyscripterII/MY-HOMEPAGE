@@ -49,6 +49,7 @@
 							</td>
 							<td class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
 						</tr>
+						<!--
 						<tr th:if="${SEARCH_DATA.search != ''}">
 							<td colspan="4" class="preview">
 							<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-arrow-return-right" viewBox="0 0 15 10">
@@ -57,6 +58,7 @@
 							
 							<span th:text="${data.PREVIEW_CONTENTS}"></span></td>
 						</tr>
+						-->
 					</th:block>
 					<tr th:if="${#lists.isEmpty(DATA)}">
 						<th:block th:if="${param.code.toString() eq 'B004'}">

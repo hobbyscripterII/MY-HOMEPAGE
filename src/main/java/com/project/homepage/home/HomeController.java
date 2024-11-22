@@ -24,27 +24,16 @@ import com.project.homepage.cmmn.util.RSSParseUtil;
 public class HomeController {
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	private final HomeService  service;
-	private final RSSParseUtil rssReaderUtil;
-	private LocalDate nowDate = LocalDate.now();
+//	private final RSSParseUtil rssReaderUtil;
 	
-	public HomeController(HomeService service, RSSParseUtil rssReaderUtil) {
-		this.service		        = service;
-		this.rssReaderUtil	= rssReaderUtil;
+	public HomeController(HomeService service) {
+		this.service = service;
 	}
-	
-//	@Scheduled(fixedRate = 21600000)
-//	public void getNowDate() {
-//		this.nowDate = LocalDate.now();
-//	}
 	
 	@GetMapping("/")
 	public String home(@RequestParam Map<String, Object> requestMap, Model model) throws ParserConfigurationException, SAXException, IOException {
-		LocalDate depolyDate		= LocalDate.of(2024, 9, 24);
-//		long betweenDays			= Math.abs(ChronoUnit.DAYS.between(nowDate, depolyDate));
-		
-//        model.addAttribute(Const.NOW_DATE           , nowDate);
-        model.addAttribute(Const.DEPOLY_DATE     , depolyDate);
-//        model.addAttribute(Const.BETWEEN_DAYS, betweenDays);
+		Map<String, Object> daysGet = service.daysGet();
+        model.addAttribute(Const.DATE , daysGet);
         
 //		List<Map<String, Object>> latestPostGet = service.latestPostGet(requestMap);								// 게시판 별 최신 글 5개씩 ...
 //

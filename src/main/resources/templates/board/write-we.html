@@ -43,7 +43,7 @@
 						<input type="file" id="thumbnail" accept="image/*" onchange="thumnailPreview(this)">
 						<img id="thumbnail-preview" alt="썸네일 미리보기"></img>
 						
-						<div class="sec-yn-wrap">
+						<div id="sec-yn-wrap">
 							<span>비밀글 여부</span>
 							<input type="checkbox" id="sec-yn" name="sec-yn" />
 						</div>
@@ -93,6 +93,8 @@
 				$thumbnailPreview.attr('src', yotubeTumbnail);
 				$thumbnailPreview.css('display', 'block');
 			}
+		} else {
+			$('#thumbnail').css('display', 'none');
 		}
 		
 		if($secYn == 'Y') {

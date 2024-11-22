@@ -4,8 +4,9 @@
 <section class="notice">
 	<div class="container">
 		<div class="home-wrap">
-			<!-- <h3 class="home-title"><span class="rainbow">라즈베리파이에서 <span th:text="${BETWEEN_DAYS}"></span>일 째 돌아가는 중</span>🏃‍♀️</h3> -->
+			<p class="home-title">~ 라즈베리파이에서 <span th:text="${DATE.CNT}"></span>일 째 돌아가는 중 ~</p>
 			
+			<img th:src="@{/img/img-custard.png}" alt="커스터드 아이콘">
 			<p class="home-title">배포 환경</p>
 			<p>RaspberryPI5</p>
 			<p>Java</p>
@@ -15,11 +16,9 @@
 			<p>Apache Proxy</p>
 			<p>SSL</p>
 			
-			<p class="home-title">블로그 주인</p>
-			<img th:src="@{/img/img-me.jpg}" alt="프로필 사진" style="width: 30%">
 			
-			<!-- <h1 class="home-contents">현재 일자 : <span th:text="${NOW_DATE}"></span></h1> -->
-			<h1 class="home-contents">배포 일자 : <span th:text="${DEPOLY_DATE}"></span></h1>
+			<h1 class="home-contents">현재 일자 : <span th:text="${DATE.CURRENT_DAY}"></span></h1>
+			<h1 class="home-contents">최초 배포 일자 : <span th:text="${DATE.DEPOLY_DAY}"></span></h1>
 		</div>
 	</div>
 </section>

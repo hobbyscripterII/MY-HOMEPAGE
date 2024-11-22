@@ -42,4 +42,8 @@
 	LIMIT 10
 	)
 	</select>
+	
+	<select id="daysGet" parameterType="map" resultType="map">
+	SELECT DATEDIFF(CURDATE(), '2024-09-24') CNT, '2024-09-24' DEPOLY_DAY, DATE_FORMAT(NOW(), '%Y-%m-%d') CURRENT_DAY
+	</select>
 </mapper>
