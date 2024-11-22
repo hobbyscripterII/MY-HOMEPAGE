@@ -44,11 +44,11 @@
 	
 	<div class="btn-group">
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-			<button type="button" class="btn btn-dark" id="btn-delete">삭제</button>
-			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/update-md(iboard = ${DATA.iboard})}'|">수정</button>
+			<button type="button" class="btn btn-pink" id="btn-delete">삭제</button>
+			<button type="button" class="btn btn-pink" th:onclick="|location.href='@{/board/update-md(iboard = ${DATA.iboard})}'|">수정</button>
 		</th:block>
 		
-		<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
+		<button type="button" class="btn btn-pink" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
 	</div>
 
 	<div class="container" th:if="${#arrays.length(NEXT_POST) > 0 || #arrays.length(PREV_POST) > 0}">
