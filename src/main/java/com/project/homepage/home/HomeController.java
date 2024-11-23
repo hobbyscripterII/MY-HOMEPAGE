@@ -23,6 +23,7 @@ import com.project.homepage.cmmn.util.RSSParseUtil;
 @Controller
 public class HomeController {
 	private final HomeService service;
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	public HomeController(HomeService service) {
 		this.service = service;
@@ -31,7 +32,10 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(@RequestParam Map<String, Object> requestMap, Model model) throws ParserConfigurationException, SAXException, IOException {
 		Map<String, Object> daysGet = service.daysGet();
-        model.addAttribute(Const.DATE , daysGet);
+		int num 				    = (int) (Math.random() * 7) + 1;
+		
+        model.addAttribute(Const.DATE, daysGet);
+        model.addAttribute(Const.NUM , num);
 		
 		return "home";
 	}

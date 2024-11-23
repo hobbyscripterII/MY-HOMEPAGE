@@ -29,25 +29,20 @@ body {
 	height: 100%;
 }
 
+html {
+	animation: fadein 1.5s forwards;
+}
+
 iframe {
 	display: none;
 }
 
-/* 홈화면 레인보우 텍스트 효과 */
-#rainbow {
-    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+@keyframes fadein {
+	0%, 15% {
+		opacity: 0;
+	}
+	
+	100% {
+		opcity: 1;
+	}
 }

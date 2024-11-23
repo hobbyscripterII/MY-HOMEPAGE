@@ -14,4 +14,5 @@ public class Const {
 	public static String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
 	public static String DATE			= "DATE";
 	public static String TOTAL			= "TOTAL";
+	public static String NUM			= "NUM";
 }

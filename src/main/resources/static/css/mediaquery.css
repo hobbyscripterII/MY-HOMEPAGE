@@ -38,8 +38,7 @@
 	.board-table th, .board-table td { padding: 10px 5px; font-size: 1rem; }
 	.header-banner { height: 300px; }
 	.home-title.small { font-size: 20px; }
-	.home-contents { font-size: 25px; }
-	.custard { width: 50%; }
+	.rdm-img { width: 40%; }
 }
 
 @media (max-width : 1120px) {

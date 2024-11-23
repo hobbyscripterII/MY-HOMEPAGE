@@ -4,9 +4,10 @@
 <section class="notice">
 	<div class="container">
 		<div class="home-wrap">
+			<img th:src="@{'/img/random/' + ${NUM} + '.png'}" class="rdm-img" alt="랜덤 아이콘">
+
 			<p class="home-title small">~ 라즈베리파이에서 <span th:text="${DATE.CNT}"></span>일 째 돌아가는 중 ~</p>
 			
-			<img th:src="@{/img/img-custard.png}" class="custard" alt="커스터드 아이콘">
 			<p class="home-title">배포 환경</p>
 			<p>RaspberryPI5</p>
 			<p>Java</p>
