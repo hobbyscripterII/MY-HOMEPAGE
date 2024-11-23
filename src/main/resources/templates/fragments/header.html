@@ -1,27 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
-<!--
-<div class="header"><h1><a th:href="@{/}">주영이 일상 블로그</a></h1></div>
-<div class="nav" id="nav">
-	<h4><a th:href="@{/board/list(code='B001')}">notice</a></h4>
-	<h4><a th:href="@{/board/list(code='B003')}">photo</a></h4>
-	<h4><a th:href="@{/board/list(code='B004')}">music</a></h4>
-	<h4><a th:href="@{/board/list(code='B005')}">daily</a></h4>
-	
-    <th:block sec:authorize="hasRole('ADMIN')">
-        <h4><a th:href="@{/admin/main}">admin</a></h4>
-    </th:block>
-    
-    <th:block sec:authorize="isAnonymous()">
-        <h4><a th:href="@{/login}">login</a></h4>
-    </th:block>
-    
-    <th:block sec:authorize="isAuthenticated()">
-        <h4><a th:href="@{/logout}">logout</a></h4>
-    </th:block>
-</div>
--->
-
 <header>
     <div class="header-banner">
         <a th:href="@{/}"><h1>주영이 블로그🍓</h1></a>
@@ -31,13 +9,16 @@
         <div class="site-title"></div>
         <ul>
             <li><a th:href="@{/board/list(code='B001')}">Notice</a></li>
+            <li><a th:href="@{/board/list(code='B002')}">Study</a></li>
             <li><a th:href="@{/board/list(code='B003')}">Photo</a></li>
             <li><a th:href="@{/board/list(code='B004')}">Music</a></li>
             <li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
             
+            <!--
 		    <th:block sec:authorize="hasRole('ADMIN')">
 		    	<li><a th:href="@{/admin/main}">Admin</a></li>
 		    </th:block>
+            -->
 		    
 		    <th:block sec:authorize="isAnonymous()">
 		    	<li><a th:href="@{/login}">Login</a></li>

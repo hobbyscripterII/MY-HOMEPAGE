@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
@@ -27,12 +29,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.xml.sax.SAXException;
 
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.Pagination;
 import com.project.homepage.cmmn.ResponseCode;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
 import com.project.homepage.cmmn.util.FileUploadUtil;
+import com.project.homepage.cmmn.util.RSSParseUtil;
 
 @Controller
 @RequestMapping("/board")
@@ -40,12 +44,14 @@ public class BoardController {
 	private final BoardService service;
 	private final CommonmarkUtil commonmarkUtil;
 	private final FileUploadUtil fileUploadUtil;
+	private final RSSParseUtil rssParseUtil;
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
-	public BoardController(BoardService service, CommonmarkUtil commonmarkUtil, FileUploadUtil fileUploadUtil) {
+	public BoardController(BoardService service, CommonmarkUtil commonmarkUtil, FileUploadUtil fileUploadUtil, RSSParseUtil rssParseUtil) {
 		this.service		= service;
 		this.commonmarkUtil	= commonmarkUtil;
 		this.fileUploadUtil = fileUploadUtil;
+		this.rssParseUtil   = rssParseUtil;
 	}
 	
 	@RequestMapping("/upload-img")
@@ -64,40 +70,38 @@ public class BoardController {
 		}
 	}
 	
-	// 권한 가져오기
-	public String getRole() {
-		Authentication authentication 	   				   = SecurityContextHolder.getContext().getAuthentication();
-		Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) authentication.getAuthorities();
-		String role 									   = null;
-		
-		if(authorities != null) {
-			role = authorities.stream()
-							  .findFirst()
-							  .map(GrantedAuthority :: getAuthority)
-							  .orElse(null);
-		}
-		
-		return role;
-	}
-	
 	// 리스트 목록형 & 사진 목록형 게시판(미사용)
+	@SuppressWarnings("unchecked")
 	@GetMapping("/list")
-	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
-		String code			  		  	   = (String) requestMap.get("code");
-		String search			  		   = (String) requestMap.get("search") == null ? "" : (String) requestMap.get("search");
-		String title		  		  	   = getTitle(code);
-		String url			 		  	   = "board/list";
-		int amount            		  	   = 10;
-		int offset			  		  	   = (page == 1 ? 0 : (page - 1) * amount);
+	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) throws ParserConfigurationException, SAXException, IOException {
+		List<Map<String, Object>> boardGet = null;
+		String code	    				   = (String) requestMap.get("code");
+		String search   				   = (String) requestMap.get("search") == null ? "" : (String) requestMap.get("search");
+		String title    				   = getTitle(code);
+		String url      				   = "board/list";
+		int amount      				   = 10;
+		int offset      				   = (page == 1 ? 0 : (page - 1) * amount);
+		int boardGetCnt 				   = 0;
 		
 		requestMap.put("offset" , offset);
 		requestMap.put("amount" , amount);
 		requestMap.put("search" , search);
 		requestMap.put("role"   , getRole());
 		
-		List<Map<String, Object>> boardGet = service.boardGet(requestMap);
-		int boardGetCnt 			  	   = service.boardGetCnt(requestMap);
-		Pagination pagination 		  	   = new Pagination(page, amount, boardGetCnt);
+		if (code.equals("B002")) {
+			try {
+				Map<String, Object> rssGet = rssParseUtil.rssGet(page);
+				boardGetCnt 		       = (int) rssGet.get("TOTAL");
+				boardGet				   = (List<Map<String, Object>>) rssGet.get("RSS");
+			} catch (ParserConfigurationException | SAXException | IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			boardGet    = service.boardGet(requestMap);
+			boardGetCnt	= service.boardGetCnt(requestMap);
+		}
+		
+		Pagination pagination = new Pagination(page, amount, boardGetCnt);
 		
 		// 버그 발견으로 주석 처리
 //		int idx 						   = boardGet.size();
@@ -115,10 +119,10 @@ public class BoardController {
 //			}
 //		}
 		
-		model.addAttribute(Const.DATA			, boardGet);
-		model.addAttribute(Const.ARTICLE_TITLE	, title);
-		model.addAttribute(Const.PAGINATION		, pagination);
-		model.addAttribute(Const.SEARCH_DATA    , requestMap);
+		model.addAttribute(Const.DATA		  , boardGet);
+		model.addAttribute(Const.ARTICLE_TITLE, title);
+		model.addAttribute(Const.PAGINATION	  , pagination);
+		model.addAttribute(Const.SEARCH_DATA  , requestMap);
 		
 		return url;
 	}
@@ -215,13 +219,30 @@ public class BoardController {
 		
 		switch (code) {
 			case "B001": title = "NOTICE"; break;
+			case "B002": title = "STUDY";  break;
 			case "B003": title = "PHOTO";  break;
 			case "B004": title = "MUSIC";  break;
 			case "B005": title = "DAILY";  break;
-			case "B006": title = "DESIGN"; break;
+//			case "B006": title = "DESIGN"; break;
 			case "B007": title = "ADMIN";  break;
 		}
 		
 		return title;
+	}
+	
+	// 권한 가져오기
+	public String getRole() {
+		Authentication authentication 	   				   = SecurityContextHolder.getContext().getAuthentication();
+		Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) authentication.getAuthorities();
+		String role 									   = null;
+		
+		if(authorities != null) {
+			role = authorities.stream()
+							  .findFirst()
+							  .map(GrantedAuthority :: getAuthority)
+							  .orElse(null);
+		}
+		
+		return role;
 	}
 }

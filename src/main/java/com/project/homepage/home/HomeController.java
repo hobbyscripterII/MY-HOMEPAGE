@@ -22,9 +22,7 @@ import com.project.homepage.cmmn.util.RSSParseUtil;
 
 @Controller
 public class HomeController {
-	private final Logger log = LoggerFactory.getLogger(getClass());
-	private final HomeService  service;
-//	private final RSSParseUtil rssReaderUtil;
+	private final HomeService service;
 	
 	public HomeController(HomeService service) {
 		this.service = service;
@@ -34,24 +32,6 @@ public class HomeController {
 	public String home(@RequestParam Map<String, Object> requestMap, Model model) throws ParserConfigurationException, SAXException, IOException {
 		Map<String, Object> daysGet = service.daysGet();
         model.addAttribute(Const.DATE , daysGet);
-        
-//		List<Map<String, Object>> latestPostGet = service.latestPostGet(requestMap);								// 게시판 별 최신 글 5개씩 ...
-//
-//		// RSS 관련
-//		Map<String, Object> responseMap = rssReaderUtil.responseMap;								           					// rssParseUtil 클래스 rssParse 메소드의 결과 값
-//		int responseCode				= (int) responseMap.get(Const.RESULT);								           					// responseMap에서 꺼낸 응답 코드(정상 / 에러)
-//		List<Map<String, Object>> rss 	= (List<Map<String, Object>>)responseMap.get(Const.RSS);	// responseMap에서 꺼낸 Tistory Blog RSS 결과물
-//		
-//		for(Map<String, Object> post : latestPostGet) {
-//			post.put("IMG_YN", ((String) post.get("CONTENTS")).contains("img") ? "Y" : "N");
-//		}
-//		
-//		if(responseCode == 1) {
-//			model.addAttribute(Const.RSS, rss);
-//		}
-//		
-//		model.addAttribute(Const.RESULT	, responseCode);
-//		model.addAttribute(Const.DATA	, latestPostGet);
 		
 		return "home";
 	}

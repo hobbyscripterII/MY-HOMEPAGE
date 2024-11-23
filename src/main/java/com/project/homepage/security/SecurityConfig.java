@@ -39,6 +39,7 @@ public class SecurityConfig {
                  out.logoutUrl("/logout")
                     .addLogoutHandler((request, response, authentication) -> {
                         HttpSession session = request.getSession();
+                        
                         if (session != null) {
                             session.invalidate();
                         }

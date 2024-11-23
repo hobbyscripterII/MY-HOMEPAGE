@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 
-<style>main { height: 100%; } .board-table tbody td.preview { border-top: 0px; text-align: left; }</style>
+<style>main { height: 100%; } .board-table tbody td.preview { border-top: 0px; text-align: left; } .tr-alert { font-weight: bold; }</style>
 
 <section class="notice">
 	<div class="page-title">
@@ -12,7 +12,7 @@
 
 	<div id="board-search">
 		<div class="container">
-			<div class="search-window">
+			<div class="search-window" th:if="${SEARCH_DATA.code != 'B002'}">
     			<form id="search-form">
     				<input type="hidden" id="code" name="code" class="form-control">
 					<div class="search-wrap">
@@ -37,8 +37,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<th:block th:each="data : ${DATA}">
-						<tr>
+					<th:block th:if="${SEARCH_DATA.code != 'B002'}">
+						<tr th:each="data : ${DATA}">
 							<td class="mobile-hide" th:text="${data.ROWNUMBER}">번호</td>
 							<td th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}">장르</td>
 							<td class="td-title">
@@ -60,6 +60,28 @@
 						</tr>
 						-->
 					</th:block>
+					
+				<tbody>
+					<th:block th:if="${SEARCH_DATA.code == 'B002'}">
+						<tr class="tr-alert">
+							<td class="mobile-hide">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+								  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+								</svg>
+							</td>
+							<td class="td-title">해당 게시판은 RSS 연동으로 클릭 시 TISTORY 블로그로 이동합니다.</td>
+							<td class="mobile-hide" ></td>
+						<tr>
+					
+						<tr th:each="data : ${DATA}">
+							<td class="mobile-hide" th:text="${data.ROWNUMBER}">번호</td>
+							<td class="td-title">
+								<a th:href="${data.LINK}" th:text="${data.TITLE}" target="_blank">제목</a>
+							</td>
+							<td class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
+						</tr>
+					</th:block>
+					
 					<tr th:if="${#lists.isEmpty(DATA)}">
 						<th:block th:if="${param.code.toString() eq 'B004'}">
 							<td colspan="4">검색 결과가 없습니다. 검색 단어: <strong th:text="${SEARCH_DATA.search}"></strong></td>
@@ -75,7 +97,7 @@
 	
 	<div th:replace="~{fragments/pagination :: pagination}"></div>
 	
-	<div class="btn-group">
+	<div class="btn-group" th:if="${SEARCH_DATA.code != 'B002'}">
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
 			<button type="submit" class="btn btn-pink" id="search-btn" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">작성</button>
 		</th:block>
@@ -113,6 +135,11 @@ $(document).ready(function(e) {
 		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
 		let currentPage = $(this).text().trim();									// 사용자가 선택한 페이지
 	});
+	
+	if(code == 'B002') {
+		$('.td-title').css('justify-content', 'left');
+		$('.td-title').css('text-align', 'left');
+	}
 });
 </script>
 </html>
