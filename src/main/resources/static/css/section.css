@@ -110,7 +110,7 @@ section.notice {
 }
 
 .board-table th, .board-table td {
-	padding: 14px 5px;
+	padding: 10px 0px;
 }
 
 .board-table tbody td {
@@ -257,8 +257,8 @@ blockquote p {
 
 .td-title {
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	align-items: left;
+	justify-content: left;
 }
 
 .bi-lock-fill {

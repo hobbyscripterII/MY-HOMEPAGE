@@ -73,7 +73,7 @@ public class BoardController {
 	// 리스트 목록형 & 사진 목록형 게시판(미사용)
 	@SuppressWarnings("unchecked")
 	@GetMapping("/list")
-	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) throws ParserConfigurationException, SAXException, IOException {
+	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
 		List<Map<String, Object>> boardGet = null;
 		String code	    				   = (String) requestMap.get("code");
 		String search   				   = (String) requestMap.get("search") == null ? "" : (String) requestMap.get("search");
@@ -89,16 +89,15 @@ public class BoardController {
 		requestMap.put("role"   , getRole());
 		
 		if (code.equals("B002")) {
-			try {
-				Map<String, Object> rssGet = rssParseUtil.rssGet(page);
-				boardGetCnt 		       = (int) rssGet.get("TOTAL");
-				boardGet				   = (List<Map<String, Object>>) rssGet.get("RSS");
-			} catch (ParserConfigurationException | SAXException | IOException e) {
-				e.printStackTrace();
-			}
+			Map<String, Object> rssGet = rssParseUtil.rssGet(page);
+			Integer result 			   = (Integer) rssGet.get(Const.RESULT);
+			boardGetCnt 		       = (int) rssGet.get(Const.TOTAL);
+			boardGet				   = (List<Map<String, Object>>) rssGet.get(Const.RSS);
+			
+			model.addAttribute(Const.RESULT, result);
 		} else {
-			boardGet    = service.boardGet(requestMap);
-			boardGetCnt	= service.boardGetCnt(requestMap);
+			boardGet    			   = service.boardGet(requestMap);
+			boardGetCnt				   = service.boardGetCnt(requestMap);
 		}
 		
 		Pagination pagination = new Pagination(page, amount, boardGetCnt);
@@ -119,10 +118,10 @@ public class BoardController {
 //			}
 //		}
 		
-		model.addAttribute(Const.DATA		  , boardGet);
-		model.addAttribute(Const.ARTICLE_TITLE, title);
-		model.addAttribute(Const.PAGINATION	  , pagination);
-		model.addAttribute(Const.SEARCH_DATA  , requestMap);
+		model.addAttribute(Const.DATA		   , boardGet);
+		model.addAttribute(Const.ARTICLE_TITLE , title);
+		model.addAttribute(Const.PAGINATION	   , pagination);
+		model.addAttribute(Const.SEARCH_DATA   , requestMap);
 		
 		return url;
 	}
@@ -223,7 +222,7 @@ public class BoardController {
 			case "B003": title = "PHOTO";  break;
 			case "B004": title = "MUSIC";  break;
 			case "B005": title = "DAILY";  break;
-//			case "B006": title = "DESIGN"; break;
+			case "B006": title = "DESIGN"; break;
 			case "B007": title = "ADMIN";  break;
 		}
 		

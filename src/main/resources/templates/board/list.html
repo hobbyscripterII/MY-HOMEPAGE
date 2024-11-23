@@ -61,7 +61,6 @@
 						-->
 					</th:block>
 					
-				<tbody>
 					<th:block th:if="${SEARCH_DATA.code == 'B002'}">
 						<tr class="tr-alert">
 							<td class="mobile-hide">
@@ -69,16 +68,24 @@
 								  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
 								</svg>
 							</td>
-							<td class="td-title">해당 게시판은 RSS 연동으로 클릭 시 TISTORY 블로그로 이동합니다.</td>
+							<td class="td-title">해당 게시판은 RSS 연동으로 클릭 시 티스토리 블로그로 이동합니다.</td>
 							<td class="mobile-hide" ></td>
 						<tr>
 					
-						<tr th:each="data : ${DATA}">
+						<tr th:if="${RESULT == 1}" th:each="data : ${DATA}">
 							<td class="mobile-hide" th:text="${data.ROWNUMBER}">번호</td>
 							<td class="td-title">
 								<a th:href="${data.LINK}" th:text="${data.TITLE}" target="_blank">제목</a>
 							</td>
 							<td class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
+						</tr>
+						
+						<tr th:if="${RESULT != 1}">
+							<td class="mobile-hide"></td>
+							<td class="td-title">
+								<span>블로그 데이터를 불러올 수 없습니다.</span>
+							</td>
+							<td class="mobile-hide"></td>
 						</tr>
 					</th:block>
 					
@@ -135,11 +142,6 @@ $(document).ready(function(e) {
 		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
 		let currentPage = $(this).text().trim();									// 사용자가 선택한 페이지
 	});
-	
-	if(code == 'B002') {
-		$('.td-title').css('justify-content', 'left');
-		$('.td-title').css('text-align', 'left');
-	}
 });
 </script>
 </html>

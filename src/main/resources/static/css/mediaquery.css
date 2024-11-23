@@ -35,7 +35,7 @@
 	.ck.ck-editor { width: 100% !important; }
 	.image > img { width: 100%; }
 	.login-wrap { width: 85vw !important; }
-	.board-table th, .board-table td { padding: 10px 5px; font-size: 1rem; }
+	.board-table th, .board-table td, .board-table td > a { padding: 10px 5px; font-size: 13px; }
 	.header-banner { height: 300px; }
 	.home-title.small { font-size: 20px; }
 	.rdm-img { width: 40%; }
