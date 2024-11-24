@@ -1,10 +1,8 @@
 @charset "UTF-8";
 @font-face {font-family: 'FreesentationL'; src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Freesentation/Freesentation-3Light.woff2')format('woff2'); font-style: normal;}
-* {margin: 0; box-sizing: border-box; font-family: 'FreesentationL';}
+* {margin: 0; box-sizing: border-box; font-family: 'FreesentationL'; -webkit-user-select: none;}
 a {text-decoration: none;}
 h1 {padding-top: 80px;}
 h4 {padding: 25px; display: inline;}
 body {height: 100%;}
-html {animation: fadein 1.5s forwards;}
 iframe {display: none;}
-@keyframes fadein {0%, 15% {opacity: 0;} 100% {opcity: 1;}}

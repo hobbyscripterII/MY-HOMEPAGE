@@ -26,6 +26,8 @@
 	#thumbnail-preview {width: 100%;}
 	#sec-yn-wrap>#sec-yn {display: inline; margin: 0;}
 	#editor {width: 100%;}
+	#scroll-btn {right: 3vw; bottom: 21vh;}
+	#quote {font-size: 32px;}
 	.header-banner {height: 300px;}
 	.nav>h4>a {font-size: 12px;}
 	.board-table {font-size: 11px;}
@@ -34,7 +36,7 @@
 	.td-20p {width: 20%;}
 	.mobile-hide {display: none;}
 	.container, .btn-group {width: 100%;}
-	.btn-group .btn {width: 103px;}
+	.btn-group .btn {width: 100px;}
 	.ck.ck-editor {width: 100% !important;}
 	.login-wrap {width: 85vw !important;}
 	.home-title.small {font-size: 20px;}
