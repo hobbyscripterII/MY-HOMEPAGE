@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="footer">
-<img th:src="@{/img/img-scroll.png}" id="scroll-btn" alt="라즈베리파이 사진">
+<img th:src="@{/img/img-scroll.png}" id="scroll-btn" alt="스크롤 이동 버튼">
 <footer>
 	<p id="quote">I Am the Result of My Choices.</p>
-    <p>Copyright © 2024 이주영 💗</p>
+    <p>Copyright © 2024 이주영</p>
     <div id="footer-links">
         <a href="https://github.com/hobbyscripterII" target="_blank"><span>github</span></a> | &nbsp;
         <a href="https://mytilblog.tistory.com" target="_blank"><span>tech blog</span></a> | &nbsp;
@@ -11,12 +11,13 @@
     </div>
 </footer>
 <script>
+/* 스크롤 상단 이동 버튼 */
 $('#scroll-btn').click(function() {
     $('html, body').animate({ scrollTop: 0 }, 'smooth');
 });
 
 $(window).scroll(function() {
-	  if($(this).scrollTop() > 300) {
+	  if($(this).scrollTop() > 700) {
 	    $('#scroll-btn').fadeIn();
 	  } else {
 	    $('#scroll-btn').fadeOut();

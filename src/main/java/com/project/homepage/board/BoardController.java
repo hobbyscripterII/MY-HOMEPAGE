@@ -103,20 +103,20 @@ public class BoardController {
 		Pagination pagination = new Pagination(page, amount, boardGetCnt);
 		
 		// 버그 발견으로 주석 처리
-//		int idx 						   = boardGet.size();
+		int idx 						   = boardGet.size();
 		
-//		if(!search.isEmpty()) {
-//			for(int i = 0; i < idx; i++) {
-//				Map<String, Object> post = boardGet.get(i);
-//				String contents_		 = (String) post.get("CONTENTS");
-//				String contents 		 = Jsoup.parse(contents_).text();
-//				int startIdx			 = contents.indexOf(search);
-//				int endIdx				 = Math.min((startIdx + 50), contents.length());
-//				String previewContents	 = contents.substring(startIdx, endIdx);
-//				
-//				post.put("PREVIEW_CONTENTS", previewContents);
-//			}
-//		}
+		if(!search.isEmpty()) {
+			for(int i = 0; i < idx; i++) {
+				Map<String, Object> post = boardGet.get(i);
+				String contents_		 = (String) post.get("CONTENTS");
+				String contents 		 = Jsoup.parse(contents_).text();
+				int startIdx			 = contents.indexOf(search);
+				int endIdx				 = Math.min((startIdx + 100), contents.length());
+				String previewContents	 = contents.substring(startIdx, endIdx);
+				
+				post.put("PREVIEW_CONTENTS", previewContents);
+			}
+		}
 		
 		model.addAttribute(Const.DATA		   , boardGet);
 		model.addAttribute(Const.ARTICLE_TITLE , title);

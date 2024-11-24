@@ -33,23 +33,22 @@
 						<th scope="col" class="th-num mobile-hide">번호</th>
 						<th th:if="${param.code.toString() eq 'B004'}" scope="col">장르</th>
 						<th scope="col" class="th-title">제목</th>
-						<th scope="col" class="th-date mobile-hide">작성일</th>
+						<th scope="col" class="th-date mobile-hide center">작성일</th>
 					</tr>
 				</thead>
 				<tbody>
-					<th:block th:if="${SEARCH_DATA.code != 'B002'}">
-						<tr th:each="data : ${DATA}">
-							<td class="mobile-hide" th:text="${data.ROWNUMBER}">번호</td>
-							<td th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}">장르</td>
+					<th:block th:if="${SEARCH_DATA.code != 'B002'}" th:each="data : ${DATA}">
+						<tr>
+							<td class="mobile-hide center" th:text="${data.ROWNUMBER}">번호</td>
+							<td class="center" th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}">장르</td>
 							<td class="td-title">
 								<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}" th:text="${data.TITLE}">제목</a>
 								<svg th:if="${data.SEC_YN == 'Y'}" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
 								  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
 								</svg>
 							</td>
-							<td class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
+							<td class="mobile-hide center" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
 						</tr>
-						<!--
 						<tr th:if="${SEARCH_DATA.search != ''}">
 							<td colspan="4" class="preview">
 							<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="gray" class="bi bi-arrow-return-right" viewBox="0 0 15 10">
@@ -58,26 +57,25 @@
 							
 							<span th:text="${data.PREVIEW_CONTENTS}"></span></td>
 						</tr>
-						-->
 					</th:block>
 					
 					<th:block th:if="${SEARCH_DATA.code == 'B002'}">
 						<tr class="tr-alert">
-							<td class="mobile-hide">
+							<td class="mobile-hide center">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
 								  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
 								</svg>
 							</td>
-							<td class="td-title">해당 게시판은 RSS 연동으로 클릭 시 티스토리 블로그로 이동합니다.</td>
+							<td class="td-title">RSS 연동 게시판입니다.</td>
 							<td class="mobile-hide" ></td>
 						<tr>
 					
 						<tr th:if="${RESULT == 1}" th:each="data : ${DATA}">
-							<td class="mobile-hide" th:text="${data.ROWNUMBER}">번호</td>
+							<td class="mobile-hide center" th:text="${data.ROWNUMBER}">번호</td>
 							<td class="td-title">
 								<a th:href="${data.LINK}" th:text="${data.TITLE}" target="_blank">제목</a>
 							</td>
-							<td class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
+							<td class="mobile-hide center" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
 						</tr>
 						
 						<tr th:if="${RESULT != 1}">

@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
 <header>
     <div class="header-banner">
-        <h1><a th:href="@{/}">jy's blog</a></h1>
+        <!-- <h1><a th:href="@{/}">jy's blog</a></h1> -->
     </div>
     <div class="clear"></div>
     <nav>
         <div class="site-title"></div>
         <ul>
+            <li><a th:href="@{/}">Main</a></li>
             <li><a th:href="@{/board/list(code='B001')}">Notice</a></li>
             <li><a th:href="@{/board/list(code='B006')}">Design</a></li>
             <li><a th:href="@{/board/list(code='B002')}">Study</a></li>
