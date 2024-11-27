@@ -18,7 +18,7 @@ section.notice {padding: 40px 0;}
 .home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.5rem;}
 .home-img {max-width: 300px;}
 .page-title {margin-bottom: 60px;}
-.page-title h3 {font-family: "Sriracha", cursive; font-size: 3rem; color: #333333; font-weight: 800; text-align: center;}
+.page-title h3 {-webkit-user-select: none; font-family: "Sriracha", cursive; font-size: 3rem; color: #333333; font-weight: 800; text-align: center;}
 .page-link {color: #333; margin: 0 5px 0 5px;}
 .board-table {width: 100%; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;}
 .board-table a {color: #333; display: inline-block; line-height: 1.4; word-break: break-all; vertical-align: middle;}

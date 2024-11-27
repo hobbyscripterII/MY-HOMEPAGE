@@ -6,5 +6,5 @@ footer>p {color: #FFF !important;}
 #footer-links>a {margin-right: 10px;}
 #footer-links>a>span:hover {text-decoration: underline;}
 #footer-title {text-transform: uppercase; color: #FFF;}
-#scroll-btn {display: none; border-radius: 50%; width: 50px; position: fixed; bottom: 26vh; right: 1vw; cursor: pointer;}
+#scroll-btn {display: none; border-radius: 50%; width: 50px; position: fixed; bottom: 26vh; right: 1vw; cursor: pointer; background-color: #FFF;}
 #quote {-webkit-user-select: none; font-family: "Sriracha", cursive; font-size: 60px; color: #FFF; padding: 20px 0px;}
