@@ -9,12 +9,29 @@
         <div class="site-title"></div>
         <ul>
             <li><a th:href="@{/}">Main</a></li>
-            <li><a th:href="@{/board/list(code='B001')}">Notice</a></li>
-            <li><a th:href="@{/board/list(code='B006')}">Design</a></li>
-            <li><a th:href="@{/board/list(code='B002')}">Study</a></li>
-            <!-- <li><a th:href="@{/board/list(code='B003')}">Photo</a></li> -->
-            <li><a th:href="@{/board/list(code='B004')}">Music</a></li>
-            <li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
+            <li>
+	            <a href="#">Info</a>
+	            <ul class="submenu">
+	                <li><a th:href="@{/board/list(code='B001')}">Notice</a></li>
+	                <li><a th:href="@{/board/list(code='B006')}">Design</a></li>
+	            </ul>
+            </li>
+            <li>
+            	<a href="#">About Me</a>
+            	<ul class="submenu">
+	                <li><a href="#">About Me</a></li>
+	                <li><a href="#">Portfolio</a></li>
+	            </ul>
+            </li>
+            <li>
+            	<a href="#">Life</a>
+            	<ul class="submenu">
+					<li><a th:href="@{/board/list(code='B003')}">Photo</a></li>
+	                <li><a th:href="@{/board/list(code='B002')}">Study</a></li>
+		            <li><a th:href="@{/board/list(code='B004')}">Music</a></li>
+		            <li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
+	            </ul>
+            </li>
             
             <!--
 		    <th:block sec:authorize="hasRole('ADMIN')">
@@ -33,6 +50,10 @@
     </nav>
 </header>
 <script>
+$('.header-banner').click(function() {
+	location.href = '/';
+});
+
 $(window).scroll(function() {
     if ($(window).width() <= 768) {
         if ($(window).scrollTop() >= 250) {
