@@ -223,7 +223,7 @@ public class BoardController {
 			case "B004": title = "MUSIC";  break;
 			case "B005": title = "DAILY";  break;
 			case "B006": title = "DESIGN"; break;
-			case "B007": title = "ADMIN";  break;
+			case "B007": title = "DATA";  break;
 		}
 		
 		return title;
