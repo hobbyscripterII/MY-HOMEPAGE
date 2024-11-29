@@ -6,10 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -29,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.xml.sax.SAXException;
 
 import com.project.homepage.cmmn.CategoryCode;
 import com.project.homepage.cmmn.Const;
@@ -102,9 +98,7 @@ public class BoardController {
 		}
 		
 		Pagination pagination = new Pagination(page, amount, boardGetCnt);
-		
-		// 버그 발견으로 주석 처리
-		int idx 						   = boardGet.size();
+		int idx 			  = boardGet.size();
 		
 		if(!search.isEmpty()) {
 			for(int i = 0; i < idx; i++) {

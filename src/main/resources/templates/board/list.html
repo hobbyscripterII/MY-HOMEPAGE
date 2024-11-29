@@ -87,12 +87,20 @@
 						</tr>
 					</th:block>
 					
-					<tr th:if="${#lists.isEmpty(DATA)}">
+					<tr th:if="${#lists.isEmpty(DATA) and SEARCH_DATA.search ne ''}">
 						<th:block th:if="${param.code.toString() eq 'B004'}">
-							<td colspan="4">검색 결과가 없습니다. 검색 단어: <strong th:text="${SEARCH_DATA.search}"></strong></td>
+							<td colspan="4" class="center">검색 결과가 없습니다. 검색 단어: <strong th:text="${SEARCH_DATA.search}"></strong></td>
 						</th:block>
 						<th:block th:if="${param.code.toString() ne 'B004'}">
-							<td colspan="3">검색 결과가 없습니다. 검색 단어: <strong th:text="${SEARCH_DATA.search}"></strong></td>
+							<td colspan="3" class="center">검색 결과가 없습니다. 검색 단어: <strong th:text="${SEARCH_DATA.search}"></strong></td>
+						</th:block>
+					</tr>
+					<tr th:if="${#lists.isEmpty(DATA) and SEARCH_DATA.search eq ''}">
+						<th:block th:if="${param.code.toString() eq 'B004'}">
+							<td colspan="4" class="center">등록된 게시글이 없습니다.</td>
+						</th:block>
+						<th:block th:if="${param.code.toString() ne 'B004'}">
+							<td colspan="3" class="center">등록된 게시글이 없습니다.</td>
 						</th:block>
 					</tr>
 				</tbody>
