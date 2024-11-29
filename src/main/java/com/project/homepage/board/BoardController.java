@@ -15,6 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +35,8 @@ import com.project.homepage.cmmn.ResponseCode;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
 import com.project.homepage.cmmn.util.FileUploadUtil;
 import com.project.homepage.cmmn.util.RSSParseUtil;
+
+import javassist.NotFoundException;
 
 @Controller
 @RequestMapping("/board")
@@ -58,8 +61,8 @@ public class BoardController {
 			MultipartFile image = request.getFile("upload");
 			String path 		= fileUploadUtil.fileUpload(image, "/img/");
 			
-			mv.addObject("uploaded"	, true);
-			mv.addObject("url"		, path);
+			mv.addObject("uploaded", true);
+			mv.addObject("url"	   , path);
 			
 			return mv;
 		} catch(IOException e) {
@@ -67,7 +70,6 @@ public class BoardController {
 		}
 	}
 	
-	// 리스트 목록형 & 사진 목록형 게시판(미사용)
 	@SuppressWarnings("unchecked")
 	@GetMapping("/list")
 	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
@@ -80,10 +82,14 @@ public class BoardController {
 		int offset      				   = (page == 1 ? 0 : (page - 1) * amount);
 		int boardGetCnt 				   = 0;
 		
-		requestMap.put("offset" , offset);
-		requestMap.put("amount" , amount);
-		requestMap.put("search" , search);
-		requestMap.put("role"   , getRole());
+		requestMap.put("offset", offset);
+		requestMap.put("amount", amount);
+		requestMap.put("search", search);
+		requestMap.put("role"  , getRole());
+		
+		if (code.equals(CategoryCode.DATA.code) && getRole().equals(Const.ROLE_ANONYMOUS)) {
+			throw new AccessDeniedException("접근이 거부되었습니다.");
+		}
 		
 		if (code.equals("B002")) {
 			Map<String, Object> rssGet = rssParseUtil.rssGet(page);
@@ -113,10 +119,10 @@ public class BoardController {
 			}
 		}
 		
-		model.addAttribute(Const.DATA		   , boardGet);
-		model.addAttribute(Const.ARTICLE_TITLE , title);
-		model.addAttribute(Const.PAGINATION	   , pagination);
-		model.addAttribute(Const.SEARCH_DATA   , requestMap);
+		model.addAttribute(Const.DATA		  , boardGet);
+		model.addAttribute(Const.ARTICLE_TITLE, title);
+		model.addAttribute(Const.PAGINATION	  , pagination);
+		model.addAttribute(Const.SEARCH_DATA  , requestMap);
 		
 		return url;
 	}
@@ -124,6 +130,7 @@ public class BoardController {
 	@GetMapping("/write-md")
 	public String write(@RequestParam Map<String, Object> requestMap, Model model) {
 		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
+		
 		model.addAttribute(Const.GENRE, boardGenreGet);
 		
 		return "board/write-we";
@@ -143,53 +150,54 @@ public class BoardController {
 		Map<String, Object> boardSelect			= service.boardSelect(requestMap);
 		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
 		
-		model.addAttribute(Const.DATA  , boardSelect);
-		model.addAttribute(Const.GENRE , boardGenreGet);
+		model.addAttribute(Const.DATA , boardSelect);
+		model.addAttribute(Const.GENRE, boardGenreGet);
 		
 		return "board/write-we";
 	}
 	
 	@GetMapping("/read-md")
-	public String readMarkdown(@RequestParam Map<String, Object> requestMap, Model model) {
-		try {
-			Map<String, Object> boardSelect		= service.boardSelect(requestMap);
-			String code 						= (String) boardSelect.get("icode");
-			String secYn 					    = (String) boardSelect.get("sec_yn");
-			String role							= getRole();
-			
-			requestMap.put("role", role);
-			
-			if(secYn.equals("Y") && role.equals(Const.ROLE_ANONYMOUS)) {
-				throw new AccessDeniedException("권한이 없습니다.");
-			}
-			
-			List<Map<String, Object>> prevPost 	= service.prevPostGet(requestMap);
-			List<Map<String, Object>> nextPost 	= service.nextPostGet(requestMap);
-			String title						= CategoryCode.getTitle(code);
-			
-			boardSelect.put("article_title"		, title);
-			boardSelect.put("contents"			, commonmarkUtil.markdown((String) boardSelect.get("contents")));
-			model.addAttribute(Const.PREV_POST 	, prevPost);
-			model.addAttribute(Const.NEXT_POST 	, nextPost);
-			model.addAttribute(Const.DATA		, boardSelect);
-			
-			return "board/read";
-		} catch(AccessDeniedException e) {
-			return "access-denied";
+	public String readMarkdown(@RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException, AccessDeniedException {
+		Map<String, Object> boardSelect = service.boardSelect(requestMap);
+		
+		if(boardSelect == null) {
+			throw new NotFoundException("존재하지 않는 페이지입니다.");
 		}
+		
+		String code  = (String) boardSelect.get("icode");
+		String secYn = (String) boardSelect.get("sec_yn");
+		String role  = getRole();
+		
+		requestMap.put("role", role);
+		
+		if((secYn.equals("Y") || code.equals(CategoryCode.DATA.code)) && role.equals(Const.ROLE_ANONYMOUS)) {
+			throw new AccessDeniedException("접근이 거부되었습니다.");
+		}
+		
+		List<Map<String, Object>> prevPost = service.prevPostGet(requestMap);
+		List<Map<String, Object>> nextPost = service.nextPostGet(requestMap);
+		String title					   = CategoryCode.getTitle(code);
+		
+		boardSelect.put(Const.ARTICLE_TITLE , title);
+		boardSelect.put(Const.CONTENTS		, commonmarkUtil.markdown((String) boardSelect.get("contents")));
+		
+		model.addAttribute(Const.PREV_POST  , prevPost);
+		model.addAttribute(Const.NEXT_POST  , nextPost);
+		model.addAttribute(Const.DATA	    , boardSelect);
+		
+		return "board/read";
 	}
 	
 	@ResponseBody
 	@PatchMapping("/update-md")
 	public Map<String, Object> updateMarkdown(@RequestBody Map<String, Object> requestMap) {
 		Map<String, Object> responseMap = new HashMap<String, Object>();
-		
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
 		
 		int boardUpdate = service.boardUpdate(requestMap);
 		
-		if(boardUpdate == 1) { responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code); } 
-		else 				 { responseMap.put(Const.RESULT, ResponseCode.FAIL.code); }
+		if(boardUpdate == 1) {responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);} 
+		else 				 {responseMap.put(Const.RESULT, ResponseCode.FAIL.code);}
 		
 		return responseMap;
 	}
@@ -202,8 +210,8 @@ public class BoardController {
 		
 		int boardDelete = service.boardDelete(iboard);
 		
-		if(boardDelete == 1) { responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code); } 
-		else 				 { responseMap.put(Const.RESULT, ResponseCode.FAIL.code); }
+		if(boardDelete == 1) {responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);} 
+		else 				 {responseMap.put(Const.RESULT, ResponseCode.FAIL.code);}
 		
 		return responseMap;
 	}
@@ -212,32 +220,10 @@ public class BoardController {
 	public String getRole() {
 		Authentication authentication 	   				   = SecurityContextHolder.getContext().getAuthentication();
 		Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) authentication.getAuthorities();
-		String role 									   = null;
 		
-		if(authorities != null) {
-			role = authorities.stream()
-							  .findFirst()
-							  .map(GrantedAuthority :: getAuthority)
-							  .orElse(null);
-		}
-		
-		return role;
+		return authorities.stream()
+						  .findFirst()
+						  .map(GrantedAuthority :: getAuthority)
+						  .orElse(null);
 	}
-	
-	// ENUM으로 관리하고 있으므로 미사용 주석 처리
-//	private String getTitle(String code) {
-//		String title = null;
-//		
-//		switch (code) {
-//			case "B001": title = "NOTICE"; break;
-//			case "B002": title = "STUDY";  break;
-//			case "B003": title = "PHOTO";  break;
-//			case "B004": title = "MUSIC";  break;
-//			case "B005": title = "DAILY";  break;
-//			case "B006": title = "DESIGN"; break;
-//			case "B007": title = "DATA";  break;
-//		}
-//		
-//		return title;
-//	}
 }

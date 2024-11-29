@@ -3,7 +3,7 @@
 <section class="notice">
 	<div class="page-title">
 		<div class="container">
-			<h3 th:text="${DATA.article_title}">타이틀</h3>
+			<h3 th:text="${DATA.ARTICLE_TITLE}">타이틀</h3>
 		</div>
 	</div>
 
@@ -44,11 +44,11 @@
 	
 	<div class="btn-group">
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-			<button type="button" class="btn btn-green" id="btn-delete">삭제</button>
-			<button type="button" class="btn btn-green" th:onclick="|location.href='@{/board/update-md(iboard = ${DATA.iboard})}'|">수정</button>
+			<button type="button" class="btn btn-dark" id="btn-delete">삭제</button>
+			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/update-md(iboard = ${DATA.iboard})}'|">수정</button>
 		</th:block>
 		
-		<button th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}" type="button" class="btn btn-green" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
+		<button th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}" type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
 	</div>
 
 	<div class="container" th:if="${#arrays.length(NEXT_POST) > 0 || #arrays.length(PREV_POST) > 0}">
@@ -69,7 +69,7 @@
 <script th:inline="javascript">
 	$(document).ready(() => {
 		let code              		  = [[${DATA.icode}]];
-		let contents          		  = [[${DATA.contents}]];
+		let contents          		  = [[${DATA.CONTENTS}]];
 		let name 			  		  = [[${DATA.name}]] || '';
 		let $thumbnailPreview 		  = $('#thumbnail-preview');
 		let $main                     = $('main');
@@ -84,15 +84,6 @@
 			$('iframe').css('display', 'block');
 			$trYoutube.removeClass('tr-remove');
 		}
-		
-		// 썸네일 표출(미사용으로 주석 처리)
-		/*
-		if(name != '') {
-			$thumbnailPreview.attr('src', name);
-			$thumbnailPreview.css('display', 'block');
-			$trThumbnail.removeClass('tr-remove');
-		}
-		*/
 	});
 	
 	$('#btn-delete').click(() => {

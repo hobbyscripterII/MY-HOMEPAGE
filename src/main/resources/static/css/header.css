@@ -1,18 +1,15 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Devonshire&family=Sriracha&display=swap');
 header {height: 360px; z-index: 10;}
-header h1 a {-webkit-user-select: none; font-family: "Sriracha", cursive; text-transform: uppercase; background-color: rgba(255, 255, 255, 0.7); color: #000; padding: 0 1rem; position: absolute; top: 2rem; left: 2rem; cursor: pointer; font-weight: 800;}
-nav {width: 100%; height: 60px; background: #76453B; z-index: 10;}
+nav {width: 100%; height: 60px; background: #000; z-index: 10;}
 nav div {color: white; line-height: 60px; position: absolute; top: 0; left: 2%; visibility: hidden;}
 nav ul {-webkit-user-select: none; list-style-type: none; margin: 0 2% auto 0; padding-left: 0; text-align: right; max-width: 100%;}
 nav ul li {display: inline-block; text-align: center; line-height: 60px; position: relative; padding: 0px 10px; width: 150px;}
-nav ul li a {font-family: "Sriracha", cursive; text-decoration: none; color: #F8FAE5; font-size: 1.5rem;}
+nav ul li a {text-decoration: none; color: #FFF; font-size: 1rem;}
 nav ul li a:hover {text-decoration: underline;}
 nav ul li a:hover + .submenu, nav ul li:hover .submenu {display: flex; flex-direction: column;}
-.header-banner {cursor: pointer; background-image:url('https://1994.r-e.kr/img/352cca65-c004-4c23-8c28-5e3356f27a8b.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; width: 100%; height: 300px;}
+.header-banner {cursor: pointer; background-image:url('https://1994.r-e.kr/img/2fa9b3ed-9832-4980-876e-75bf96cf1501.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; width: 100%; height: 300px;}
 .fixed-header {position: fixed; top: 0; left: 0; width: 100%;}
 .visible-title {visibility: visible;}
 .submenu {z-index: 999; width:100%; display: none; position: absolute; top: 100%; left: 0; list-style-type: none; padding: 0; background-color: #f8f8f8; border: 1px solid #ccc; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);}
 .submenu li {padding: 2px; text-align: center;}
-.submenu li a {text-decoration: none; color: #333; font-size: 1.3rem;}
-.submenu li a:hover {background-color: #ddd;}
+.submenu li a {text-decoration: none; color: #333; font-size: 1rem;}

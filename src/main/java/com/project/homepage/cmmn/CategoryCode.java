@@ -18,12 +18,12 @@ public enum CategoryCode {
 	public final String title;
 	
 	CategoryCode(String code, String title) {
-		this.code   = code;
-		this.title  = title;
+		this.code  = code;
+		this.title = title;
 	}
 	
 	public static String getTitle(String code) {
-		for(CategoryCode c :  values()) {
+		for(CategoryCode c : values()) {
 			if(c.code.equals(code)) {
 				return c.title;
 			}

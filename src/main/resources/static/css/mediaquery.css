@@ -35,7 +35,7 @@
 	.board-table {font-size: 11px;}
 	.board-table a {font-size: 1rem; text-overflow: ellipsis; overflow: hidden; word-break: break-all;}
 	.board-table th, .board-table td, .board-table td>a {padding: 10px 5px; font-size: 13px;}
-	.home-title.small {font-size: 20px;}
+	.home-title.small {font-size: 1rem;}
 	.home-img {width: 60%;}
 	.image>img {width: 100%;}
 	.td-20p {width: 20%;}

@@ -3,13 +3,12 @@
 <section class="notice">
 	<div class="page-title">
 		<div class="container">
-			<h3 style="color: #d1180b; font-weight: bold">403 FORBIDDEN</h3>
+			<h3 style="color: #d1180b; font-weight: bold" th:text="${ERROR.ARTICLE_TITLE}"></h3>
 		</div>
 	</div>
 	
 	<div class="err-msg-group center">
-	    <p><strong>접근이 거부되었습니다.</strong></p>
-	    <p><strong>해당 페이지 권한이 없습니다.</strong></p>
+	    <p><strong th:text="${ERROR.MSG}"></strong></p>
 	</div>
 	
 	<div class="btn-group center">
