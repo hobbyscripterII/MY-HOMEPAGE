@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.xml.sax.SAXException;
 
+import com.project.homepage.cmmn.CategoryCode;
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.Pagination;
 import com.project.homepage.cmmn.ResponseCode;
@@ -77,7 +78,7 @@ public class BoardController {
 		List<Map<String, Object>> boardGet = null;
 		String code	    				   = (String) requestMap.get("code");
 		String search   				   = (String) requestMap.get("search") == null ? "" : (String) requestMap.get("search");
-		String title    				   = getTitle(code);
+		String title    				   = CategoryCode.getTitle(code);
 		String url      				   = "board/list";
 		int amount      				   = 10;
 		int offset      				   = (page == 1 ? 0 : (page - 1) * amount);
@@ -170,7 +171,7 @@ public class BoardController {
 			
 			List<Map<String, Object>> prevPost 	= service.prevPostGet(requestMap);
 			List<Map<String, Object>> nextPost 	= service.nextPostGet(requestMap);
-			String title						= getTitle(code);
+			String title						= CategoryCode.getTitle(code);
 			
 			boardSelect.put("article_title"		, title);
 			boardSelect.put("contents"			, commonmarkUtil.markdown((String) boardSelect.get("contents")));
@@ -212,23 +213,7 @@ public class BoardController {
 		
 		return responseMap;
 	}
-	
-	private String getTitle(String code) {
-		String title = null;
-		
-		switch (code) {
-			case "B001": title = "NOTICE"; break;
-			case "B002": title = "STUDY";  break;
-			case "B003": title = "PHOTO";  break;
-			case "B004": title = "MUSIC";  break;
-			case "B005": title = "DAILY";  break;
-			case "B006": title = "DESIGN"; break;
-			case "B007": title = "DATA";  break;
-		}
-		
-		return title;
-	}
-	
+
 	// 권한 가져오기
 	public String getRole() {
 		Authentication authentication 	   				   = SecurityContextHolder.getContext().getAuthentication();
@@ -244,4 +229,21 @@ public class BoardController {
 		
 		return role;
 	}
+	
+	// ENUM으로 관리하고 있으므로 미사용 주석 처리
+//	private String getTitle(String code) {
+//		String title = null;
+//		
+//		switch (code) {
+//			case "B001": title = "NOTICE"; break;
+//			case "B002": title = "STUDY";  break;
+//			case "B003": title = "PHOTO";  break;
+//			case "B004": title = "MUSIC";  break;
+//			case "B005": title = "DAILY";  break;
+//			case "B006": title = "DESIGN"; break;
+//			case "B007": title = "DATA";  break;
+//		}
+//		
+//		return title;
+//	}
 }

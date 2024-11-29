@@ -11,12 +11,12 @@
 		<div class="container">
 			<table class="board-table">
 				<tbody>
-					<tr>
+					<tr th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}">
 						<td class="td-10p mobile-hide" scope="col">제목
 						<td class="td-10p" th:text="${DATA.title}">제목</td>
 					</tr>
 					
-					<tr>
+					<tr th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}">
 						<td scope="col" class="mobile-hide">작성일</td>
 						<td th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd')}">작성일</td>
 					</tr>
@@ -48,7 +48,7 @@
 			<button type="button" class="btn btn-green" th:onclick="|location.href='@{/board/update-md(iboard = ${DATA.iboard})}'|">수정</button>
 		</th:block>
 		
-		<button type="button" class="btn btn-green" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
+		<button th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}" type="button" class="btn btn-green" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
 	</div>
 
 	<div class="container" th:if="${#arrays.length(NEXT_POST) > 0 || #arrays.length(PREV_POST) > 0}">
