@@ -95,6 +95,7 @@ $(function() {
 
 $hamburger.click(function() {
     pin_yn = (pin_yn == null || pin_yn == 'n') ? 'y' : 'n';
+    
     pin(pin_yn);
 });
 
@@ -103,66 +104,40 @@ function mobile() {
 }
 
 function pin(yn) {
-    let result = null;
-
+    let result   = null;
+    let $main    = $('main');
+	let $section = $('section');
+	let $footer  = $('footer');
+    
     if (yn == 'n' || yn == null) {
-        result = 'n';
-        
         $nav.removeClass('open');
-        $('section').css('width', '100%');
-        $('footer').css('position', 'static');
-        $('footer').css('width', '100%');
+        $section.css('width', '100%');
+        $footer.css('position', 'static');
+        $footer.css('width', '100%');
     } else if (yn == 'y') {
-    	let windowWidth = $(window).width();
-    	let navWidth    = $nav.outerWidth();
-        let width		= windowWidth - navWidth;
-        result   	    = 'y';
+    	let $windowWidth = $(window).width();
+    	let $navWidth    = $nav.outerWidth();
+        let width		 = $windowWidth - $navWidth;
         
         if(!mobile()) {
-	        $('footer').css('width', width + 'px');
-	        $('footer').css('position', 'absolute');
-	        $('footer').css('right', '0');
-	        $('section').css('width', width + 'px');
-	        $('main').css('display', 'flex');
-	        $('main').css('justify-content', 'right');
+        	$footer.css('width', width + 'px');
+        	$footer.css('position', 'absolute');
+        	$footer.css('right', '0');
+	        $section.css('width', width + 'px');
+	        $main.css('display', 'flex');
+	        $main.css('justify-content', 'right');
         } else {
-            $('footer').css('width', '100%');
-            $('footer').css('position', 'static');
-            $('section').css('width', '100%');
+        	$footer.css('width', '100%');
+        	$footer.css('position', 'static');
+        	$section.css('width', '100%');
         }
 
         $nav.addClass('open');
     }
 
-    localStorage.setItem('pin_yn', result);
-}
-
-/*
-$('.header-banner').click(function() {
-	location.href = '/';
-});
- */
-
-/*
-$(window).scroll(function() {
-    if ($(window).width() <= 768) {
-        if ($(window).scrollTop() >= 250) {
-            $('nav').addClass('fixed-header');
-            $('nav div').addClass('visible-title');
-        } else {
-            $('nav').removeClass('fixed-header');
-            $('nav div').removeClass('visible-title');
-        }
-    } else {
-        if ($(window).scrollTop() >= 300) {
-            $('nav').addClass('fixed-header');
-            $('nav div').addClass('visible-title');
-        } else {
-            $('nav').removeClass('fixed-header');
-            $('nav div').removeClass('visible-title');
-        }
+    if(!mobile()) {
+	    localStorage.setItem('pin_yn', yn);
     }
-});
- */
+}
 </script>
 </html>

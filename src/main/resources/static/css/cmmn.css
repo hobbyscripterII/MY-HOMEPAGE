@@ -6,3 +6,5 @@ h1 {padding-top: 80px;}
 h4 {padding: 25px; display: inline;}
 body {height: 100%;}
 iframe {display: none;}
+html {animation: fadein 1s forwards;}
+@keyframes fadein {0% {opacity: 0;} 100% {opacity: 1;}}
