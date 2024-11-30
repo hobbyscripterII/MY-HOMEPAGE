@@ -42,7 +42,7 @@
 							<td class="mobile-hide center" th:text="${data.ROWNUMBER}">번호</td>
 							<td class="center" th:if="${param.code.toString() eq 'B004'}" th:text="${data.GENRE}">장르</td>
 							<td class="td-title">
-								<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}" th:text="${data.TITLE}">제목</a>
+								<a th:href="@{/board/read/{iboard}(iboard=${data.IBOARD})}" th:text="${data.TITLE}">제목</a>
 								<svg th:if="${data.SEC_YN == 'Y'}" xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
 								  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
 								</svg>
@@ -112,7 +112,7 @@
 	
 	<div class="btn-group" th:if="${SEARCH_DATA.code != 'B002'}">
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-			<button type="submit" class="btn btn-dark" id="search-btn" th:onclick="|location.href='@{/board/write-md(code = ${param.code})}'|">작성</button>
+			<button type="submit" class="btn btn-dark" id="search-btn" th:onclick="|location.href='@{/board/write(code = ${param.code})}'|">작성</button>
 		</th:block>
 	</div>
 </section>

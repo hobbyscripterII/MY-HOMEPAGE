@@ -175,7 +175,7 @@
 
 			$.ajax({
 				type		: 'PATCH',
-				url			: '/board/update-md',
+				url			: '/board/update',
 				data		: JSON.stringify(dto),
 				contentType	: 'application/json',
 				success		: (data) => {
@@ -183,7 +183,7 @@
 					
 					if(RESULT == 1) {
 						alert('게시글이 수정되었습니다.');
-						location.href = '/board/read-md?iboard=' + $iboard;
+						location.href = '/board/read/' + $iboard;
 					} else {
 						alert('게시글 수정에 실패하였습니다.');
 						return;
@@ -204,12 +204,12 @@
 		let $secYn		= $('#sec-yn').is(':checked') ? 'Y' : 'N';
 		let formData 	= new FormData();
 		
-		formData.append("icode"			, code);
-		formData.append("title"			, $title);
-		formData.append("contents"		, contents);
-		formData.append("youtube_id"	, youtube_id);
-		formData.append("genre"	        , $genre);
-		formData.append("sec_yn"	    , $secYn);
+		formData.append("icode"      , code);
+		formData.append("title"      , $title);
+		formData.append("contents"   , contents);
+		formData.append("youtube_id" , youtube_id);
+		formData.append("genre"	     , $genre);
+		formData.append("sec_yn"	 , $secYn);
 		
 		if($code == 'B004') {
 			if($title == '' || $title == null) {
@@ -229,19 +229,13 @@
 				$('#youtube-url').focus();
 				return;
 			}
-			
-			formData.append("thumbnail"		, null);
-		} else {
-			formData.append("thumbnail"		, null);
-			/*
-			let thumbnail = $('#thumbnail')[0].files[0];
-			formData.append("thumbnail"		, thumbnail);
-			*/
 		}
+		
+		formData.append("thumbnail" , null);
 		
 		$.ajax({
 			type		: 'POST',
-			url			: '/board/write-md',
+			url			: '/board/write',
 			data		: formData,
 			processData : false,
 			contentType	: false,

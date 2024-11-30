@@ -45,7 +45,7 @@
 	<div class="btn-group">
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
 			<button type="button" class="btn btn-dark" id="btn-delete">삭제</button>
-			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/update-md(iboard = ${DATA.iboard})}'|">수정</button>
+			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/update/{iboard}(iboard = ${DATA.iboard})}'|">수정</button>
 		</th:block>
 		
 		<button th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}" type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
@@ -56,11 +56,11 @@
 			<tbody>
 				<tr th:each="data : ${NEXT_POST}">
 					<td class="td-20p">다음 글</td>
-					<td><a th:href="@{/board/read-md(iboard = ${data.iboard})}" th:text="${data.title}"></a></td>
+					<td><a th:href="@{/board/read/{iboard}(iboard=${data.iboard})}" th:text="${data.title}"></a></td>
 				</tr>
 				<tr th:each="data : ${PREV_POST}">
 					<td class="td-20p">이전 글</td>
-					<td><a th:href="@{/board/read-md(iboard = ${data.iboard})}" th:text="${data.title}"></a></td>
+					<td><a th:href="@{/board/read/{iboard}(iboard=${data.iboard})}" th:text="${data.title}"></a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,7 +71,7 @@ public class BoardController {
 	
 	@SuppressWarnings("unchecked")
 	@GetMapping("/list")
-	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) {
+	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException {
 		List<Map<String, Object>> boardGet = null;
 		String code	    				   = (String) requestMap.get("code");
 		String search   				   = (String) requestMap.get("search") == null ? "" : (String) requestMap.get("search");
@@ -84,6 +85,10 @@ public class BoardController {
 		requestMap.put("amount", amount);
 		requestMap.put("search", search);
 		requestMap.put("role"  , getRole());
+		
+		if(title == null || title == "") {
+			throw new NotFoundException();
+		}
 		
 		if (code.equals(CategoryCode.DATA.code) && getRole().equals(Const.ROLE_ANONYMOUS)) {
 			throw new AccessDeniedException("접근이 거부되었습니다.");
@@ -125,23 +130,23 @@ public class BoardController {
 		return url;
 	}
 	
-	@GetMapping("/write-md")
+	@GetMapping("/write")
 	public String write(@RequestParam Map<String, Object> requestMap, Model model) {
 		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
 		
 		model.addAttribute(Const.GENRE, boardGenreGet);
 		
-		return "board/write-we";
+		return "board/write";
 	}
 	
 	@ResponseBody
-	@PostMapping("/write-md")
+	@PostMapping("/write")
 	public Map<String, Object> write(@RequestPart(name = "thumbnail", required = false) MultipartFile thumbnail, @RequestParam Map<String, Object> requestMap) throws IOException {
 		return service.boardInsert(thumbnail, requestMap);
 	}
 	
-	@GetMapping("/update-md")
-	public String update(@RequestParam("iboard") String iboard, Model model) {
+	@GetMapping("/update/{iboard}")
+	public String update(@PathVariable(name = "iboard") String iboard, Model model) {
 		Map<String, Object> requestMap = new HashMap<>();
 		requestMap.put("iboard" , iboard);
 		
@@ -151,11 +156,13 @@ public class BoardController {
 		model.addAttribute(Const.DATA , boardSelect);
 		model.addAttribute(Const.GENRE, boardGenreGet);
 		
-		return "board/write-we";
+		return "board/write";
 	}
 	
-	@GetMapping("/read-md")
-	public String readMarkdown(@RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException, AccessDeniedException {
+	@GetMapping("/read/{iboard}")
+	public String read(@PathVariable(name = "iboard") String iboard, @RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException, AccessDeniedException {
+		requestMap.put("iboard", iboard);
+		
 		Map<String, Object> boardSelect = service.boardSelect(requestMap);
 		
 		if(boardSelect == null) {
@@ -187,7 +194,7 @@ public class BoardController {
 	}
 	
 	@ResponseBody
-	@PatchMapping("/update-md")
+	@PatchMapping("/update")
 	public Map<String, Object> updateMarkdown(@RequestBody Map<String, Object> requestMap) {
 		Map<String, Object> responseMap = new HashMap<String, Object>();
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);

@@ -10,30 +10,35 @@ import jakarta.servlet.http.HttpSession;
 
 @Configuration
 public class SecurityConfig {
+//	private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+//	
+//	public SecurityConfig(CustomAuthenticationEntryPoint customAuthenticationEntryPoint) {
+//		this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
+//	}
+	
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf(c -> c.disable())
                 .formLogin(in -> in
-                        .loginPage("/login")			// HTML 경로
-                        .loginProcessingUrl("/login")	// URL 호출 시 Security가 낚아채므로 Controller에 구현할 필요 X
+                        .loginPage("/login")				// HTML 경로
+                        .loginProcessingUrl("/login")		// URL 호출 시 Security가 낚아채므로 Controller에 구현할 필요 X
                         .usernameParameter("id")
                         .passwordParameter("pw")
-                        .failureUrl("/login?error") 	// 매핑 URL, Error Param 생략 시 Login 화면에 에러 메세지 출력 X
-                        .defaultSuccessUrl("/") 		// 인증 완료 후 호출되는 URL
+                        .failureUrl("/login?error") 		// 매핑 URL, Error Param 생략 시 Login 화면에 에러 메세지 출력 X
+                        .defaultSuccessUrl("/") 			// 인증 완료 후 호출되는 URL
                         .permitAll())
                 .exceptionHandling(e -> e
-                        .accessDeniedPage("/access-denied?error")) // 매핑 URL
+                        .accessDeniedPage("/access-denied") // 매핑 URL
+                 )
                 .authorizeHttpRequests(a -> a
-                        // 권한없이 접근 가능
-                        .requestMatchers(
+                        .requestMatchers(					// 권한없이 접근 가능
                                 "/", "/css/**", "/js/**", "/img/**", "/favicon.ico",
-                                "/login", "/logout", "/access-denied",
-                                "/board/", "/board/list/**", "/board/read-md/**",
+                                "/login", "/logout", "/access-denied", "/error/error",
+                                "/board/", "/board/list/**", "/board/read/**",
                                 "/thumbnail/**"
                         ).permitAll()
-                        // ADMIN만 접근 가능
-                        .anyRequest().hasRole("ADMIN")
+                        .anyRequest().hasRole("ADMIN")		// ADMIN만 접근 가능
                 );
         httpSecurity.logout(out -> {
                  out.logoutUrl("/logout")

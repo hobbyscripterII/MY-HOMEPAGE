@@ -21,15 +21,15 @@ public class CustomExceptionHanlder {
 	private String handleException(Exception e, Model model) {
 		Map<String, Object> error = new HashMap<String, Object>();
 		
-		if 	   (e instanceof NotFoundException) 		{errorCode = ErrorCode.NOT_FOUND;}
-		if 	   (e instanceof NoResourceFoundException) 	{errorCode = ErrorCode.NOT_FOUND;}
-		else if(e instanceof AccessDeniedException) 	{errorCode = ErrorCode.FORBIDDEN;}
-		else if(e instanceof RuntimeException) 			{errorCode = ErrorCode.RUNTIME;}
+		if(e instanceof NotFoundException) 		  {errorCode = ErrorCode.NOT_FOUND;}
+		if(e instanceof NoResourceFoundException) {errorCode = ErrorCode.NOT_FOUND;}
+		if(e instanceof AccessDeniedException) 	  {errorCode = ErrorCode.FORBIDDEN;}
+		if(e instanceof RuntimeException) 		  {errorCode = ErrorCode.RUNTIME;}
 		
-		error.put(Const.ARTICLE_TITLE  , errorCode.title);
-		error.put(Const.MSG			   , errorCode.msg);
+		error.put(Const.ARTICLE_TITLE , errorCode.title);
+		error.put(Const.MSG			  , errorCode.msg);
 		
-		model.addAttribute(Const.ERROR , error);
+		model.addAttribute(Const.ERROR, error);
 		
 		return "error/error";
 	}
