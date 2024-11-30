@@ -117,21 +117,21 @@ function pin(yn) {
     	let navWidth    = $nav.outerWidth();
         let width		= windowWidth - navWidth;
         result   	    = 'y';
-
-        $nav.addClass('open');
         
         if(!mobile()) {
-	        $('main').css('display', 'flex');
-	        $('main').css('justify-content', 'right');
-	        $('section').css('width', width + 'px');
 	        $('footer').css('width', width + 'px');
 	        $('footer').css('position', 'absolute');
 	        $('footer').css('right', '0');
+	        $('section').css('width', width + 'px');
+	        $('main').css('display', 'flex');
+	        $('main').css('justify-content', 'right');
         } else {
-            $('section').css('width', '100%');
             $('footer').css('width', '100%');
             $('footer').css('position', 'static');
+            $('section').css('width', '100%');
         }
+
+        $nav.addClass('open');
     }
 
     localStorage.setItem('pin_yn', result);
