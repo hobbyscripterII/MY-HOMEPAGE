@@ -1,10 +1,11 @@
 @charset "UTF-8";
 @font-face {font-family: 'FreesentationL'; src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Freesentation/Freesentation-3Light.woff2') format('woff2');}
 * {margin: 0; box-sizing: border-box; font-family: 'FreesentationL';}
+html {animation: fadein 1s forwards;}
 a {text-decoration: none;}
 h1 {padding-top: 80px;}
 h4 {padding: 25px; display: inline;}
 body {height: 100%;}
 iframe {display: none;}
-html {animation: fadein 1s forwards;}
+img {-webkit-user-select: none;}
 @keyframes fadein {0% {opacity: 0;} 100% {opacity: 1;}}

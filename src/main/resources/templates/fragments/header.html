@@ -3,7 +3,8 @@
 <header>
     <div>
 	    <nav>
-			<div class="hamburger">&#9776;</div>
+	    	<img class="hamburger" th:src="@{/img/img-tomato.png}"></img>
+			<!-- <div class="hamburger">&#9776;</div> -->
 	        <div class="site-title"></div>
 	        <ul>
 	            <li><a th:href="@{/}">Main</a></li>
@@ -28,59 +29,9 @@
 			    </th:block>
 	        </ul>
 	    </nav>
-	    <div class="hamburger">&#9776;</div>
+	    <!-- <div class="hamburger">&#9776;</div> -->
+	    <img class="hamburger" th:src="@{/img/img-tomato.png}"></img>
     </div>
-    
-    <!--
-    <nav>
-        <div class="site-title"></div>
-        <ul>
-            <li><a th:href="@{/}">Main</a></li>
-            <li>
-	            <a href="#">Info</a>
-	            <ul class="submenu">
-	                <li><a th:href="@{/board/list(code='B001')}">Notice</a></li>
-	                <li><a th:href="@{/board/list(code='B006')}">Design</a></li>
-	            </ul>
-            </li>
-            <li>
-            	<a href="#">About Me</a>
-            	<ul class="submenu">
-	                <li><a th:href="@{/board/read-md?iboard=10000}">About Me</a></li>
-	                <li><a th:href="@{/board/read-md?iboard=10001}">Portfolio</a></li>
-	            </ul>
-            </li>
-            <li>
-            	<a href="#">Life</a>
-            	<ul class="submenu">
-	            	<th:block sec:authorize="hasRole('ADMIN')">
-						<li><a th:href="@{/board/list(code='B003')}">Photo</a></li>
-	            	</th:block>
-	                <li><a th:href="@{/board/list(code='B002')}">Study</a></li>
-		            <li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
-		            <li><a th:href="@{/board/list(code='B004')}">Music</a></li>
-	            </ul>
-            </li>
-            
-		    <th:block sec:authorize="hasRole('ADMIN')">
-				<li>
-					<a href="#">Admin</a>
-					<ul class="submenu">
-						<li><a th:href="@{/board/list(code='B007')}">Data</a></li>
-				    </ul>
-				</li>
-		    </th:block>
-		    
-		    <th:block sec:authorize="isAnonymous()">
-		    	<li><a th:href="@{/login}">Login</a></li>
-		    </th:block>
-		    
-		    <th:block sec:authorize="isAuthenticated()">
-		        <li><a th:href="@{/logout}">Logout</a></li>
-		    </th:block>
-        </ul>
-    </nav>
-    -->
 </header>
 <script>
 let pin_yn 	   = localStorage.getItem('pin_yn');
@@ -90,6 +41,8 @@ let $nav 	   = $('nav');
 $(function() {
 	if(!mobile()) {
 	    pin(pin_yn);
+	} else {
+		localStorage.setItem('pin_yn', 'n');
 	}
 });
 
@@ -104,40 +57,44 @@ function mobile() {
 }
 
 function pin(yn) {
-    let result   = null;
-    let $main    = $('main');
-	let $section = $('section');
-	let $footer  = $('footer');
-    
+    let result = null;
+
     if (yn == 'n' || yn == null) {
+        result = 'n';
+        
+        $('nav > .hamburger').css('display', 'none');
+        $('div > .hamburger').css('display', 'block');
+        
         $nav.removeClass('open');
-        $section.css('width', '100%');
-        $footer.css('position', 'static');
-        $footer.css('width', '100%');
+        $('section').css('width', '100%');
+        $('footer').css('position', 'static');
+        $('footer').css('width', '100%');
     } else if (yn == 'y') {
-    	let $windowWidth = $(window).width();
-    	let $navWidth    = $nav.outerWidth();
-        let width		 = $windowWidth - $navWidth;
+    	let windowWidth = $(window).width();
+    	let navWidth    = $nav.outerWidth();
+        let width		= windowWidth - navWidth;
+        result   	    = 'y';
+        
+        $('nav > .hamburger').css('display', 'block');
+        $('div > .hamburger').css('display', 'none');
         
         if(!mobile()) {
-        	$footer.css('width', width + 'px');
-        	$footer.css('position', 'absolute');
-        	$footer.css('right', '0');
-	        $section.css('width', width + 'px');
-	        $main.css('display', 'flex');
-	        $main.css('justify-content', 'right');
+	        $('footer').css('width', width + 'px');
+	        $('footer').css('position', 'absolute');
+	        $('footer').css('right', '0');
+	        $('section').css('width', width + 'px');
+	        $('main').css('display', 'flex');
+	        $('main').css('justify-content', 'right');
         } else {
-        	$footer.css('width', '100%');
-        	$footer.css('position', 'static');
-        	$section.css('width', '100%');
+            $('footer').css('width', '100%');
+            $('footer').css('position', 'static');
+            $('section').css('width', '100%');
         }
 
         $nav.addClass('open');
     }
 
-    if(!mobile()) {
-	    localStorage.setItem('pin_yn', yn);
-    }
+    localStorage.setItem('pin_yn', result);
 }
 </script>
 </html>

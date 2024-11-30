@@ -36,6 +36,7 @@ section.notice {padding: 40px 0;}
 .btn-pink {background: #FFB6C1; color: #fff;}
 .btn-pink:hover, .btn-pink:focus {background: #FF597B; border-color: #FF597B; color: #fff;}
 .btn-green {background: #1F4529; color: #fff;}
+.container {text-align: center;}
 .container, .btn-group {width: 1100px; margin: 0 auto;}
 .btn-group {text-align: right; margin-top: 20px; margin-bottom: 20px; padding: 0 5px;}
 .btn-group .btn {width: 108px; padding: 0; height: 44px; font-size: 1rem;}
