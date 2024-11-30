@@ -3,6 +3,7 @@ package com.project.homepage.exception;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,8 +12,6 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.ErrorCode;
-
-import javassist.NotFoundException;
 
 @ControllerAdvice
 public class CustomExceptionHanlder {

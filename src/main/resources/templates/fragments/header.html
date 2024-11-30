@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
 <header>
-    <div class="header-banner">
-        <!-- <h1><a th:href="@{/}">jy's blog</a></h1> -->
+    <div>
+	    <nav>
+			<div class="hamburger">&#9776;</div>
+	        <div class="site-title"></div>
+	        <ul>
+	            <li><a th:href="@{/}">Main</a></li>
+	            <li><a th:href="@{/board/list(code='B001')}">Notice</a></li>
+	            <li><a th:href="@{/board/list(code='B006')}">Design</a></li>
+	            <li><a th:href="@{/board/read-md?iboard=10000}">About Me</a></li>
+	            <li><a th:href="@{/board/read-md?iboard=10001}">Portfolio</a></li>
+	            <li><a th:href="@{/board/list(code='B002')}">Study</a></li>
+	            <li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
+	            <li><a th:href="@{/board/list(code='B004')}">Music</a></li>
+	            
+			    <th:block sec:authorize="hasRole('ADMIN')">
+					<li><a th:href="@{/board/list(code='B007')}">Data</a></li>
+			    </th:block>
+			    
+			    <th:block sec:authorize="isAnonymous()">
+			    	<li><a th:href="@{/login}">Login</a></li>
+			    </th:block>
+			    
+			    <th:block sec:authorize="isAuthenticated()">
+			        <li><a th:href="@{/logout}">Logout</a></li>
+			    </th:block>
+	        </ul>
+	    </nav>
+	    <div class="hamburger">&#9776;</div>
     </div>
-    <div class="clear"></div>
+    
+    <!--
     <nav>
         <div class="site-title"></div>
         <ul>
@@ -53,12 +80,70 @@
 		    </th:block>
         </ul>
     </nav>
+    -->
 </header>
 <script>
+let pin_yn 	   = localStorage.getItem('pin_yn');
+let $hamburger = $('.hamburger');
+let $nav 	   = $('nav');
+
+$(function() {
+	if(!mobile()) {
+	    pin(pin_yn);
+	}
+});
+
+$hamburger.click(function() {
+    pin_yn = (pin_yn == null || pin_yn == 'n') ? 'y' : 'n';
+    pin(pin_yn);
+});
+
+function mobile() {
+    return window.innerWidth <= 768;
+}
+
+function pin(yn) {
+    let result = null;
+
+    if (yn == 'n' || yn == null) {
+        result = 'n';
+        
+        $nav.removeClass('open');
+        $('section').css('width', '100%');
+        $('footer').css('position', 'static');
+        $('footer').css('width', '100%');
+    } else if (yn == 'y') {
+    	let windowWidth = $(window).width();
+    	let navWidth    = $nav.outerWidth();
+        let width		= windowWidth - navWidth;
+        result   	    = 'y';
+
+        $nav.addClass('open');
+        
+        if(!mobile()) {
+	        $('main').css('display', 'flex');
+	        $('main').css('justify-content', 'right');
+	        $('section').css('width', width + 'px');
+	        $('footer').css('width', width + 'px');
+	        $('footer').css('position', 'absolute');
+	        $('footer').css('right', '0');
+        } else {
+            $('section').css('width', '100%');
+            $('footer').css('width', '100%');
+            $('footer').css('position', 'static');
+        }
+    }
+
+    localStorage.setItem('pin_yn', result);
+}
+
+/*
 $('.header-banner').click(function() {
 	location.href = '/';
 });
+ */
 
+/*
 $(window).scroll(function() {
     if ($(window).width() <= 768) {
         if ($(window).scrollTop() >= 250) {
@@ -78,5 +163,6 @@ $(window).scroll(function() {
         }
     }
 });
+ */
 </script>
 </html>

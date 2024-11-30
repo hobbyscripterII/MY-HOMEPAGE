@@ -9,13 +9,13 @@ import java.util.Map;
 import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,8 +35,6 @@ import com.project.homepage.cmmn.ResponseCode;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
 import com.project.homepage.cmmn.util.FileUploadUtil;
 import com.project.homepage.cmmn.util.RSSParseUtil;
-
-import javassist.NotFoundException;
 
 @Controller
 @RequestMapping("/board")
@@ -161,7 +159,7 @@ public class BoardController {
 		Map<String, Object> boardSelect = service.boardSelect(requestMap);
 		
 		if(boardSelect == null) {
-			throw new NotFoundException("존재하지 않는 페이지입니다.");
+			throw new NotFoundException();
 		}
 		
 		String code  = (String) boardSelect.get("icode");
