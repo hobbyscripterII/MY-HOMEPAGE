@@ -10,8 +10,8 @@
 	            <li><a th:href="@{/}">Main</a></li>
 	            <!-- <li><a th:href="@{/board/list(code='B001')}">Notice</a></li> -->
 	            <!-- <li><a th:href="@{/board/list(code='B006')}">Design</a></li> -->
-	            <li><a th:href="@{/board/read/10000}">About Me</a></li>
-	            <li><a th:href="@{/board/read/10001}">Portfolio</a></li>
+	            <li><a th:href="@{/aboutme}">About Me</a></li>
+	            <li><a th:href="@{/portfolio}">Portfolio</a></li>
 	            <li><a th:href="@{/board/list(code='B002')}">Study</a></li>
 	            <li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
 	            <li><a th:href="@{/board/list(code='B004')}">Music</a></li>
@@ -47,6 +47,10 @@ $hamburger.click(function() {
     
     pin(pin_yn);
 });
+
+function mobile() {
+    return window.innerWidth <= 768;
+}
 
 function pin(yn) {
 	let $main    = $('main');
@@ -88,10 +92,6 @@ function pin(yn) {
     }
 	
     localStorage.setItem('pin_yn', yn);
-}
-
-function mobile() {
-    return window.innerWidth <= 768;
 }
 </script>
 </html>

@@ -11,17 +11,23 @@
     </div>
 </footer>
 <script>
+let $lastScrollTop = 0;
+
 /* 스크롤 상단 이동 버튼 */
 $('#scroll-btn').click(function() {
     $('html, body').animate({ scrollTop: 0 }, 'smooth');
 });
 
 $(window).scroll(function() {
-	  if($(this).scrollTop() > 700) {
-	    $('#scroll-btn').fadeIn();
-	  } else {
-	    $('#scroll-btn').fadeOut();
-	  }
-	});
+	let $currentScrollTop = $(this).scrollTop();
+	
+	if($currentScrollTop > $lastScrollTop) {
+	  $('#scroll-btn').fadeIn();
+	} else {
+	  $('#scroll-btn').fadeOut();
+	}
+	
+	$lastScrollTop = $currentScrollTop;
+});
 </script>
 </html>

@@ -24,4 +24,14 @@ public class HomeController {
 	public String home(@RequestParam Map<String, Object> requestMap, Model model) throws ParserConfigurationException, SAXException, IOException {
 		return "home";
 	}
+	
+	@GetMapping("/aboutme")
+	public String aboutMe() {
+		return "about-me";
+	}
+	
+	@GetMapping("/portfolio")
+	public String portfolio() {
+		return "portfolio";
+	}
 }
