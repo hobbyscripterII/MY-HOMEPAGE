@@ -46,6 +46,7 @@
 	.page-title h3 {font-size: 2rem;}
 	.header-banner {background-position-x: -30vw;}
 	.submenu li a {font-size: 12px;}
+	.pf-img {margin-bottom: 10px;}
 }
 
 @media ( max-width : 1120px) {

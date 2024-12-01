@@ -17,6 +17,7 @@ section.notice {padding: 40px 0;}
 #board-search .search-window .search-wrap .btn {position: absolute; right: 0; top: 0; bottom: 0; width: 108px; padding: 0; height: 44px; font-size: 1rem;}
 .home-wrap {text-align: center;}
 .home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.3rem;}
+.home-title.sub {font-size: 1.1rem; font-weight: bold;}
 .home-img {max-width: 300px;}
 .page-title {margin-bottom: 60px;}
 .page-title h3 {-webkit-user-select: none; font-size: 3rem; color: #333333; font-weight: 800; text-align: center;}
@@ -37,6 +38,7 @@ section.notice {padding: 40px 0;}
 .btn-pink:hover, .btn-pink:focus {background: #FF597B; border-color: #FF597B; color: #fff;}
 .btn-green {background: #1F4529; color: #fff;}
 .container, .btn-group {width: 1100px; margin: 0 auto;}
+.container.m-0 {margin: 0;}
 .btn-group {text-align: right; margin-top: 20px; margin-bottom: 20px; padding: 0 5px;}
 .btn-group .btn {width: 108px; padding: 0; height: 44px; font-size: 1rem;}
 .err-msg-group {height: 10vh;}
@@ -52,3 +54,6 @@ section.notice {padding: 40px 0;}
 .clearfix:after {content: ''; display: block; clear: both;}
 .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused), .ck.ck-editor__main>.ck-editor__editable:not(.ck-bulrred) {height: 500px;}
 .blind {position: absolute; overflow: hidden; clip: rect(0, 0, 0, 0); margin: -1px; width: 1px; height: 1px;}
+.w-100 {max-width: 100px;}
+.pf-img {margin-bottom: 20px; max-width: 100%;}
+.ul-1000 {max-width: 1000px; text-align: left; padding-left: 25px;}
