@@ -8,10 +8,10 @@
 	        <div class="site-title"></div>
 	        <ul>
 	            <li><a th:href="@{/}">Main</a></li>
-	            <li><a th:href="@{/board/list(code='B001')}">Notice</a></li>
-	            <li><a th:href="@{/board/list(code='B006')}">Design</a></li>
-	            <li><a th:href="@{/board/read-md?iboard=10000}">About Me</a></li>
-	            <li><a th:href="@{/board/read-md?iboard=10001}">Portfolio</a></li>
+	            <!-- <li><a th:href="@{/board/list(code='B001')}">Notice</a></li> -->
+	            <!-- <li><a th:href="@{/board/list(code='B006')}">Design</a></li> -->
+	            <li><a th:href="@{/board/read/10000}">About Me</a></li>
+	            <li><a th:href="@{/board/read/10001}">Portfolio</a></li>
 	            <li><a th:href="@{/board/list(code='B002')}">Study</a></li>
 	            <li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
 	            <li><a th:href="@{/board/list(code='B004')}">Music</a></li>
@@ -34,16 +34,12 @@
     </div>
 </header>
 <script>
-let pin_yn 	   = localStorage.getItem('pin_yn');
+let pin_yn     = localStorage.getItem('pin_yn');
 let $hamburger = $('.hamburger');
 let $nav 	   = $('nav');
 
 $(function() {
-	if(!mobile()) {
-	    pin(pin_yn);
-	} else {
-		localStorage.setItem('pin_yn', 'n');
-	}
+    pin(pin_yn);
 });
 
 $hamburger.click(function() {
@@ -52,49 +48,50 @@ $hamburger.click(function() {
     pin(pin_yn);
 });
 
-function mobile() {
-    return window.innerWidth <= 768;
-}
-
 function pin(yn) {
-    let result = null;
-
+	let $main    = $('main');
+	let $section = $('section');
+	let $footer  = $('footer');
+	
     if (yn == 'n' || yn == null) {
-        result = 'n';
-        
         $('nav > .hamburger').css('display', 'none');
         $('div > .hamburger').css('display', 'block');
         
         $nav.removeClass('open');
-        $('section').css('width', '100%');
-        $('footer').css('position', 'static');
-        $('footer').css('width', '100%');
+        $section.css('width', '100%');
+        $footer.css('position', 'static');
+        $footer.css('width', '100%');
     } else if (yn == 'y') {
-    	let windowWidth = $(window).width();
-    	let navWidth    = $nav.outerWidth();
-        let width		= windowWidth - navWidth;
-        result   	    = 'y';
+    	let $windowWidth = $(window).width();
+    	let $navWidth    = $nav.outerWidth();
+        let width		 = $windowWidth - $navWidth;
         
         $('nav > .hamburger').css('display', 'block');
         $('div > .hamburger').css('display', 'none');
         
         if(!mobile()) {
-	        $('footer').css('width', width + 'px');
-	        $('footer').css('position', 'absolute');
-	        $('footer').css('right', '0');
-	        $('section').css('width', width + 'px');
-	        $('main').css('display', 'flex');
-	        $('main').css('justify-content', 'right');
+        	$footer.css('width', width + 'px');
+        	$footer.css('position', 'absolute');
+        	$footer.css('right', '0');
+	        $section.css('width', width + 'px');
+	        $main.css('display', 'flex');
+	        $main.css('justify-content', 'right');
         } else {
-            $('footer').css('width', '100%');
-            $('footer').css('position', 'static');
-            $('section').css('width', '100%');
+            yn = 'n';
+            
+        	$footer.css('width', '100%');
+        	$footer.css('position', 'static');
+            $section.css('width', '100%');
         }
 
         $nav.addClass('open');
     }
+	
+    localStorage.setItem('pin_yn', yn);
+}
 
-    localStorage.setItem('pin_yn', result);
+function mobile() {
+    return window.innerWidth <= 768;
 }
 </script>
 </html>

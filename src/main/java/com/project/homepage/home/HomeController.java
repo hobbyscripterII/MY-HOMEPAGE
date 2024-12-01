@@ -22,18 +22,6 @@ import com.project.homepage.cmmn.Const;
 public class HomeController {
 	@GetMapping("/")
 	public String home(@RequestParam Map<String, Object> requestMap, Model model) throws ParserConfigurationException, SAXException, IOException {
-		// 날짜 및 일수 계산
-		Map<String, Object> daysGet = new HashMap<String, Object>();
-		String CURRENT 		        = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDateTime.now());
-		String DEPOLY               = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDate.of(2024, 9, 24));
-		long CNT				    = ChronoUnit.DAYS.between(LocalDate.of(2024, 9, 24), LocalDateTime.now());
-		
-		daysGet.put("CURRENT", CURRENT);
-		daysGet.put("DEPOLY" , DEPOLY);
-		daysGet.put("CNT"    , CNT);
-		
-        model.addAttribute(Const.DATE, daysGet);
-		
 		return "home";
 	}
 }
