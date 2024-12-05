@@ -46,10 +46,9 @@ section.notice {padding: 40px 0;}
 .image > img {max-width: 100%; max-height: 700px;}
 .tr-thumbnail td {border-bottom: 1px solid #fff;}
 .tr-remove {display: none;}
-.td-title {display: flex; align-items: left; justify-content: left;}
+.td-title {display: flex; align-items: center; justify-content: left;}
 .td-20p {width: 20%;}
 .center {text-align: center;}
-.bi-lock-fill {color: lightgray;}
 .pagination {display: flex; justify-content: center; margin-top: 10px;}
 .clearfix:after {content: ''; display: block; clear: both;}
 .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused), .ck.ck-editor__main>.ck-editor__editable:not(.ck-bulrred) {height: 500px;}
