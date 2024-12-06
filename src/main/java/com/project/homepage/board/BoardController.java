@@ -33,6 +33,7 @@ import com.project.homepage.cmmn.CategoryCode;
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.Pagination;
 import com.project.homepage.cmmn.ResponseCode;
+import com.project.homepage.cmmn.Utils;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
 import com.project.homepage.cmmn.util.FileUploadUtil;
 import com.project.homepage.cmmn.util.RSSParseUtil;
@@ -69,16 +70,19 @@ public class BoardController {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+	private int getOffset(int page, int amount) {
+		return (page == 1 ? 0 : (page - 1) * amount);
+	}
+	
 	@GetMapping("/list")
 	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException {
 		List<Map<String, Object>> boardGet = null;
-		String code	    				   = (String) requestMap.get("code");
-		String search   				   = (String) requestMap.get("search") == null ? "" : (String) requestMap.get("search");
+		String code	    				   = (String) requestMap.get(Const.CODE);
+		String search   				   = (String) requestMap.get(Const.SEARCH) == null ? "" : (String) requestMap.get("search");
 		String title    				   = CategoryCode.getTitle(code);
 		String url      				   = "board/list";
-		int amount      				   = 10;
-		int offset      				   = (page == 1 ? 0 : (page - 1) * amount);
+		int amount      				   = Const.AMOUNT;
+		int offset      				   = getOffset(page, amount);
 		int boardGetCnt 				   = 0;
 		
 		requestMap.put("offset", offset);
@@ -86,7 +90,7 @@ public class BoardController {
 		requestMap.put("search", search);
 		requestMap.put("role"  , getRole());
 		
-		if(title == null || title == "") {
+		if(title == null || Utils.isNotNull(title)) {
 			throw new NotFoundException();
 		}
 		
@@ -94,7 +98,7 @@ public class BoardController {
 			throw new AccessDeniedException("접근이 거부되었습니다.");
 		}
 		
-		if (code.equals("B002")) {
+		if (code.equals(CategoryCode.STUDY.code)) {
 			Map<String, Object> rssGet = rssParseUtil.rssGet(page);
 			Integer result 			   = (Integer) rssGet.get(Const.RESULT);
 			boardGetCnt 		       = (int) rssGet.get(Const.TOTAL);
@@ -112,7 +116,7 @@ public class BoardController {
 		if(!search.isEmpty()) {
 			for(int i = 0; i < idx; i++) {
 				Map<String, Object> post = boardGet.get(i);
-				String contents_		 = (String) post.get("CONTENTS");
+				String contents_		 = (String) post.get(Const.CONTENTS);
 				String contents 		 = Jsoup.parse(contents_).text();
 				int startIdx			 = contents.indexOf(search);
 				int endIdx				 = Math.min((startIdx + 100), contents.length());

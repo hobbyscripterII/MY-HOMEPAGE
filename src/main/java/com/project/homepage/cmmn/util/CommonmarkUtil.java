@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommonmarkUtil {
 	public String markdown(String md) {
-		Parser parser = Parser.builder().build();
-		Node document = parser.parse(md);
+		Parser parser 		  = Parser.builder().build();
+		Node document 		  = parser.parse(md);
 		HtmlRenderer renderer = HtmlRenderer.builder().build();
+		
 		return renderer.render(document);
 	}
 }
