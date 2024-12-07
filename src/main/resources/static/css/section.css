@@ -56,3 +56,6 @@ section.notice {padding: 40px 0;}
 .w-100 {max-width: 100px;}
 .pf-img {margin-bottom: 20px; max-width: 100%;}
 .ul-1000 {max-width: 1000px; text-align: left; padding-left: 25px;}
+.f-12px {font-size: 12px;}
+.b-whe {border: 1px solid #FFF !important;}
+.b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}

@@ -12,13 +12,11 @@
 			<table class="board-table">
 				<tbody>
 					<tr th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}">
-						<td class="td-10p mobile-hide" scope="col">제목
-						<td class="td-10p" th:text="${DATA.title}">제목</td>
+						<td class="td-10p b-whe b-tit" th:text="${DATA.title}">제목</td>
 					</tr>
 					
 					<tr th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}">
-						<td scope="col" class="mobile-hide">작성일</td>
-						<td th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd')}">작성일</td>
+						<td class="f-12px b-whe" th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd HH:mm')}">작성일</td>
 					</tr>
 					
 					<!-- 썸네일 표출(미사용으로 주석 처리) -->
@@ -30,12 +28,12 @@
 					
 					<!-- 음악 게시판일 경우 유튜브 동영상 표출 -->
 					<tr class="tr-youtube tr-remove">
-						<td colspan="2"><iframe th:src="'https://www.youtube.com/embed/' + ${DATA.youtube_id}"></iframe></td>
+						<td><iframe th:src="'https://www.youtube.com/embed/' + ${DATA.youtube_id}"></iframe></td>
 					</tr>
 					
 					<!-- CKEditor5 웹에디터 -->
 					<tr>
-						<td colspan="2"><div id="editor"></div></td>
+						<td class="b-whe"><div id="editor"></div></td>
 					</tr>
 				</tbody>
 			</table>

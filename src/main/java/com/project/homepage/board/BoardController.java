@@ -90,7 +90,7 @@ public class BoardController {
 		requestMap.put("search", search);
 		requestMap.put("role"  , getRole());
 		
-		if(title == null || Utils.isNotNull(title)) {
+		if(title == null || Utils.isNull(title)) {
 			throw new NotFoundException();
 		}
 		

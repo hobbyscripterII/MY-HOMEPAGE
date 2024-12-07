@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="footer">
-<img th:src="@{/img/img-scroll.png}" id="scroll-btn" alt="스크롤 이동 버튼">
+<!-- <img th:src="@{/img/img-scroll.png}" id="scroll-btn" alt="스크롤 이동 버튼"> -->
 <footer>
 	<p id="quote">I Am the Result of My Choices.</p>
     <p>Copyright © 2024 이주영</p>
@@ -14,6 +14,7 @@
 let $lastScrollTop = 0;
 
 /* 스크롤 상단 이동 버튼 */
+/*
 $('#scroll-btn').click(function() {
     $('html, body').animate({ scrollTop: 0 }, 'smooth');
 });
@@ -29,5 +30,6 @@ $(window).scroll(function() {
 	
 	$lastScrollTop = $currentScrollTop;
 });
+ */
 </script>
 </html>
