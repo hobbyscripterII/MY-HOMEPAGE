@@ -47,16 +47,17 @@ section.notice {padding: 40px 0;}
 .tr-thumbnail td {border-bottom: 1px solid #fff;}
 .tr-remove {display: none;}
 .td-title {display: flex; align-items: center; justify-content: left;}
-.td-20p {width: 20%;}
 .center {text-align: center;}
 .pagination {display: flex; justify-content: center; margin-top: 10px;}
 .clearfix:after {content: ''; display: block; clear: both;}
 .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused), .ck.ck-editor__main>.ck-editor__editable:not(.ck-bulrred) {height: 500px;}
 .blind {position: absolute; overflow: hidden; clip: rect(0, 0, 0, 0); margin: -1px; width: 1px; height: 1px;}
-.w-100 {max-width: 100px;}
+
+.td-20p {width: 20%;}
 .pf-img {margin-bottom: 20px; max-width: 100%;}
 .ul-1000 {max-width: 1000px; text-align: left; padding-left: 25px;}
 .f-12px {font-size: 12px;}
 .b-whe {border: 1px solid #FFF !important;}
-.b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: blue;}
+.b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #333; font-weight: bold;}
+.w-100 {max-width: 100px;}
 .mb-50 {margin-bottom: 50px;}

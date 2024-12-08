@@ -19,6 +19,35 @@
 		</ul>
 	</div>
 	
-	<div id="homepage-title"><a th:href="@{/}">TITLE</a></div>
+	<div id="homepage-title"><a th:href="@{/}">HOMEPAGE</a></div>
 </header>
+<div class="guide-bar"></div>
+
+<script>
+$(document).ready(function () {
+    const $header    = $('header');
+    const $guideBar  = $('.guide-bar');
+    const $section   = $('section');
+
+    $(window).on('scroll', function () {
+    	const $windowWidth     = $(window).width();
+        const $windowHeight	   = $(window).height();
+        const $docHeight	   = $(document).height();
+        const $scrollTop	   = $(this).scrollTop();
+        const $scrollThreshold = $windowWidth > 768 ? 200 : 100;
+        const $scrollProgress  = ($scrollTop / ($docHeight - $windowHeight)) * 100;
+        
+        $guideBar.css('width', $scrollProgress + '%');
+        
+        // header 색상 변경 이벤트
+        /*
+        if ($scrollTop > $scrollThreshold) {
+            $header.addClass('scrolled');
+        } else {
+            $header.removeClass('scrolled');
+        }
+        */
+    });
+});
+</script>
 </html>
