@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Devonshire&family=Sriracha&display=swap');
-footer {box-sizing: border-box; padding: 10px 0 10px 0; text-align: center; border-top: 2px solid #0000FF; display: block; margin-top: 312px;}
+footer {box-sizing: border-box; padding: 10px 0 10px 0; text-align: center; border-top: 2px solid lightgray; display: block; margin-top: 312px;}
 footer > p {color: #333 !important;}
 #footer-links, #footer-links>a>span {text-transform: uppercase; margin: 10px 0 10px 0; color: #333;}
 #footer-links > a {margin-right: 10px;}

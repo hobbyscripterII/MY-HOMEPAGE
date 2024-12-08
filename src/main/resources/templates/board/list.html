@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 
-<style>main { height: 100%; } .board-table tbody td.preview { border-top: 0px; text-align: left; } .tr-alert { font-weight: bold; }</style>
+<style>
+	main { height: 100%; } 
+	.board-table tbody td.preview { border-top: 0px; text-align: left; } 
+	.tr-alert { font-weight: bold; }
+</style>
 
 <section class="notice">
 	<div class="page-title">
@@ -113,27 +117,26 @@
 	
 	<div class="btn-group" th:if="${SEARCH_DATA.code != 'B002'}">
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-			<button type="submit" class="btn btn-dark" id="search-btn" th:onclick="|location.href='@{/board/write(code = ${param.code})}'|">작성</button>
+			<button type="submit" class="btn btn-dark" th:onclick="|location.href='@{/board/write(code = ${param.code})}'|">작성</button>
 		</th:block>
 	</div>
 </section>
 
 <script th:inline="javascript">
-function search() {
-	let search = ($('#search').val()).trim();
-	
-	if(search == null || search == '') {
-		alert('검색어를 입력해주세요.');
-		return false;
-	} else {
-		$('#search-form').attr('action', '/board/list');
-		$('#search-form').attr('method', 'get');
-		$('#search-form').submit();
-	}
-}
-
 $('#search-btn').click(function(e) {
-	search();
+	let $search  	= $('#search');
+	let $keyword 	= $search.val().trim();
+	let $searchForm = $('#search-form');
+	
+	if($keyword === '') {
+		alert('검색어를 입력해주세요.');
+		$search.focus();
+		e.preventDefault();
+	} else {
+		$searchForm.attr('action', '/board/list');
+		$searchForm.attr('method', 'get');
+		$searchForm.submit();
+	}
 });
 
 $(document).ready(function(e) {

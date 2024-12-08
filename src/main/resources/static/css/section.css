@@ -7,19 +7,21 @@ iframe {width: 700px; height: 400px;}
 section.notice {padding: 40px 0;}
 #thumbnail {display: none;}
 #thumbnail-preview {display: none; width: 440px; margin: auto;}
-#editor {text-align: left; width: 100%;}
+#editor {text-align: left; width: 100%; font-size: 17px;}
 #editor > p {margin-bottom: 5px;}
 #editor ul, #editor ol {padding-left: 20px;}
+#board-list {padding: 0 5px;}
 #board-search .search-window {padding: 15px 0; background-color: #f9f7f9;}
 #board-search .search-window .search-wrap {position: relative; padding-right: 124px; margin: 0 auto; width: 80%; max-width: 564px;}
 #board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {box-sizing: border-box; height: 44px; width: 100%; border: 1px solid #ccc; text-align: center; font-size: 1rem;}
 #board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {border-color: #333; outline: 0; border-width: 1px;}
 #board-search .search-window .search-wrap .btn {position: absolute; right: 0; top: 0; bottom: 0; width: 108px; padding: 0; height: 44px; font-size: 1rem;}
+#profile-img {border-radius: 50%;}
 .home-wrap {text-align: center;}
 .home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.3rem;}
 .home-title.sub {font-size: 1.1rem; font-weight: bold;}
-.home-img {max-width: 300px;}
-.page-title {margin-bottom: 60px;}
+.home-img, #profile-img {max-width: 250px;}
+.page-title {margin-bottom: 50px;}
 .page-title h3 {-webkit-user-select: none; font-size: 3rem; color: #333333; font-weight: 800; text-align: center;}
 .page-link {color: #333; margin: 0 5px 0 5px;}
 .board-table {width: 100%; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;}

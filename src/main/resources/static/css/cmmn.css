@@ -10,4 +10,4 @@ h4 {padding: 25px; display: inline;}
 iframe {display: none;}
 img {-webkit-user-select: none;}
 @keyframes fadein {0% {opacity: 0;} 100% {opacity: 1;}}
-::selection {background-color: blue; color: #FFF;}
+::selection {background-color: lightgray; color: #FFF;}
