@@ -2,17 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 
 <style>
-html {background-image: url("https://cdn-l-cyberpunk.cdprojektred.com/gallery/1080p/Cyberpunk2077_Love_this_town_RGB-ko.jpg"); background-size: cover; background-repeat: no-repeat; height: 100vh;}
-header {background-color: transparent;}
-footer {display: none;}
-#menu li {background-color: transparent;}
-#homepage-title a {color: #FFF;}
-#menu-toggle span {background: #FFF !important;}
+	footer {position: fixed; bottom: 0;}
 </style>
 
 <section class="notice">
 	<div class="container">
 		<div class="home-wrap">
+			<img th:src="@{/img/img-apple.png}" class="home-img" />
 		</div>
 	</div>
 </section>
