@@ -1,10 +1,10 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Devonshire&family=Sriracha&display=swap');
 footer {box-sizing: border-box; padding: 10px 0 10px 0; text-align: center; border-top: 2px solid #0000FF; display: block; margin-top: 312px;}
-footer>p {color: #333 !important;}
+footer > p {color: #333 !important;}
 #footer-links, #footer-links>a>span {text-transform: uppercase; margin: 10px 0 10px 0; color: #333;}
-#footer-links>a {margin-right: 10px;}
-#footer-links>a>span:hover {text-decoration: underline;}
+#footer-links > a {margin-right: 10px;}
+#footer-links > a > span:hover {text-decoration: underline;}
 #footer-title {text-transform: uppercase;}
 #scroll-btn {display: none; border-radius: 50%; width: 50px; position: fixed; bottom: 19vh; right: 0.4vw; cursor: pointer; background-color: #FFF;}
 #quote {-webkit-user-select: none; font-size: 40px; padding: 20px 0px;}

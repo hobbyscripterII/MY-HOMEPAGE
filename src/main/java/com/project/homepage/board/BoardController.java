@@ -185,9 +185,8 @@ public class BoardController {
 		
 		List<Map<String, Object>> prevPost = service.prevPostGet(requestMap);
 		List<Map<String, Object>> nextPost = service.nextPostGet(requestMap);
-		String title					   = CategoryCode.getTitle(code);
 		
-		boardSelect.put(Const.ARTICLE_TITLE , title);
+		boardSelect.put(Const.ARTICLE_TITLE , CategoryCode.getTitle(code));
 		boardSelect.put(Const.CONTENTS		, commonmarkUtil.markdown((String) boardSelect.get("contents")));
 		
 		model.addAttribute(Const.PREV_POST  , prevPost);

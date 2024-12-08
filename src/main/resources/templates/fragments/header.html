@@ -2,9 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
 <header>
 	<div id="menu-toggle">
-		<input type="checkbox" id="menuCheckbox" />
-		<span></span><span></span><span></span>
-
+		<input type="checkbox" />
+		<span></span>
+		<span></span>
+		<span></span>
+		
 		<ul id="menu">
 			<li><a th:href="@{/}">Main</a></li>
 			<li><a th:href="@{/aboutme}">About Me</a></li>
@@ -16,5 +18,7 @@
 			<th:block sec:authorize="isAuthenticated()"><li><a th:href="@{/logout}">Logout</a></li></th:block>
 		</ul>
 	</div>
+	
+	<div id="homepage-title"><a th:href="@{/}">TITLE</a></div>
 </header>
 </html>
