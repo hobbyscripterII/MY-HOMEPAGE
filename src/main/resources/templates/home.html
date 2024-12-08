@@ -1,109 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 
+<style>
+html {background-image: url("https://cdn-l-cyberpunk.cdprojektred.com/gallery/1080p/Cyberpunk2077_Love_this_town_RGB-ko.jpg"); background-size: cover; background-repeat: no-repeat; height: 100vh;}
+header {background-color: transparent;}
+footer {display: none;}
+#menu li {background-color: transparent;}
+#homepage-title a {color: #FFF;}
+#menu-toggle span {background: #FFF !important;}
+</style>
+
 <section class="notice">
 	<div class="container">
 		<div class="home-wrap">
-			<img th:src="@{/img/img-raspberry.png}" class="home-img" alt="라즈베리파이 사진">
-			<p class="home-title">배포 환경</p>
-			<p>RaspberryPI5</p>
-			<p>Java</p>
-			<p>Spring Boot 3.x</p>
-			<p>STS4</p>
-			<p>Docker</p>
-			<p>Apache Proxy</p>
-			<p>SSL</p>
 		</div>
 	</div>
 </section>
-
-<!--
-<div id="rss-contents-wrap">
-    <div id="thumbnail-home-study" class="card-2">
-        <p class="thumbnail-home-title">STUDY</p>
-        <div class="rss-contents-wrap">
-            <th:block th:if="${RESULT == 1}" th:each="rss : ${RSS}">
-                <div class="rss-item">
-                    <p class="rss-contents">
-                        <a th:href="${rss.link}" target="_blank"><img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/rss.png" alt="rss" /><span th:text="${rss.title}"></span></a>
-                        <span class="mobile-hide" th:text="${#dates.format(rss.date, 'yyyy-MM-dd')}"></span>
-						</p>
-					</div>
-			</th:block>
-			
-			<th:block th:if="${RESULT == -4}">
-					<div class="rss-item">
-						<p class="rss-contents-error">
-							<span>RSS를 불러올 수 없습니다.</span>
-						</p>
-					</div>
-			</th:block>
-		</div>
-	</div>
-
-	<div id="thumbnail-home-study" class="card-2">
-		<p class="thumbnail-home-title">PHOTO</p>
-		<div class="rss-contents-wrap">
-			<th:block th:each="data : ${DATA}">
-				<div class="rss-item" th:if="${data.ICODE == 'B003'}">
-					<p class="rss-contents">
-						<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
-							<span th:if="${data.IMG_YN eq 'Y'}">
-								<img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/slr-camera.png" alt="slr-camera"/>
-							</span>
-							<span th:if="${data.IMG_YN eq 'N'}">
-								<img width="15" height="15" src="https://img.icons8.com/ios-glyphs/30/1A1A1A/speech-bubble--v1.png" alt="speech-bubble--v1"/>
-							</span>
-							
-							<span th:text="${data.TITLE}"></span>
-						</a>
-						<span class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
-					</p>
-				</div>
-			</th:block>
-		</div>
-	</div>
-	
-	<div id="thumbnail-home-study" class="card-2">
-		<p class="thumbnail-home-title">MUSIC</p>
-		<div class="rss-contents-wrap">
-			<th:block th:each="data : ${DATA}">
-				<div class="rss-item" th:if="${data.ICODE == 'B004'}">
-					<p class="rss-contents">
-						<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
-							<img width="15" height="15" src="https://img.icons8.com/material-sharp/24/1A1A1A/music.png" alt="music"/>
-							<span th:text="${data.TITLE}"></span>
-						</a>
-						<span class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
-					</p>
-				</div>
-			</th:block>
-		</div>
-	</div>
-	
-	<div id="thumbnail-home-study" class="card-2">
-		<p class="thumbnail-home-title">DAILY</p>
-		<div class="rss-contents-wrap">
-			<th:block th:each="data : ${DATA}">
-				<th:block th:if="${data.ICODE == 'B005'}">
-					<div class="rss-item">
-						<p class="rss-contents">
-							<a th:href="@{/board/read-md(iboard = ${data.IBOARD})}">
-								<span th:if="${data.IMG_YN eq 'Y'}">
-									<img width="15" height="15" src="https://img.icons8.com/material-rounded/24/1A1A1A/slr-camera.png" alt="slr-camera"/>
-								</span>
-								<span th:if="${data.IMG_YN eq 'N'}">
-									<img width="15" height="15" src="https://img.icons8.com/ios-glyphs/30/1A1A1A/speech-bubble--v1.png" alt="speech-bubble--v1"/>
-								</span>
-								<span th:text="${data.TITLE}"></span>
-							</a>
-							<span class="mobile-hide" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}"></span>
-						</p>
-					</div>
-				</th:block>
-			</th:block>
-		</div>
-	</div>
-</div>
--->
 </html>
