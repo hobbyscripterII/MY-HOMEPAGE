@@ -1,12 +1,13 @@
 @charset "UTF-8";
 @font-face {font-family: 'FreesentationL'; src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Freesentation/Freesentation-3Light.woff2') format('woff2');}
 * {margin: 0; box-sizing: border-box; font-family: 'FreesentationL';}
-html {animation: fadein 1s forwards; background-image: url('https://images.unsplash.com/photo-1600172454520-134a542a2255?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center;}
+html {animation: fadein 1s forwards; background-color: #24af79;}
 main {position: relative;}
 body {height: 100%;}
-a {text-decoration: none;}
+a {text-decoration: none; color: #FFF;}
 h1 {padding-top: 80px;}
 h4 {padding: 25px; display: inline;}
 iframe {display: none;}
 img {-webkit-user-select: none;}
 @keyframes fadein {0% {opacity: 0;} 100% {opacity: 1;}}
+::selection {background-color: #D32F2F; color: #FFF;}

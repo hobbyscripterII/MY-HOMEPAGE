@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-
 <style>
-	main {height: 100vh;}
-	footer {margin-top: 0;}
+	main {height: 50vh;}
+	footer {position: absolute; bottom: 0;}
+	section {padding: 120px 0;}
+	#daysElapsed {font-size: 40px;}
+	#currentDate {margin-top: 400px;}
+	.home-wrap p {color: #FFF;}
 </style>
-
-<section class="notice">
+<section>
 	<div class="container">
 		<div class="home-wrap">
-			<!-- <img th:src="@{/img/img-apple.png}" class="home-img" /> -->
+			<p>주영이의 라즈베리파이에서 <span id="daysElapsed"></span> 일 째 돌아가는 중</p>
+			<p id="currentDate"></p>
 		</div>
 	</div>
 </section>
+<script>
+$(document).ready(function() {
+    function dateUpdate() {
+        let startDate      = new Date('2024-09-24');
+        let currentDate    = new Date();
+        let timeDifference = currentDate - startDate;
+        let daysElapsed    = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        
+        $('#daysElapsed').html(daysElapsed);
+        $('#currentDate').html(formatDate(currentDate));
+    }
+
+    dateUpdate();
+});
+
+function formatDate(date) {
+    let year    = date.getFullYear();
+    let month   = (date.getMonth() + 1).toString().padStart(2, '0');
+    let day     = date.getDate().toString().padStart(2, '0');
+    let hours   = date.getHours().toString().padStart(2, '0');
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+    let seconds = date.getSeconds().toString().padStart(2, '0');
+    
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+</script>
 </html>

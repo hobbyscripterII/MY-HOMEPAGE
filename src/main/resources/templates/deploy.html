@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-<section class="notice">
+<section>
 	<div class="container">
 		<div class="home-wrap">
 			<div class="page-title">
@@ -9,18 +9,28 @@
 				</div>
 			</div>
 			<img th:src="@{/img/img-raspberry.png}" id="profile-img" class="mb-50" alt="프로필 사진">
-		    <table class="board-table">
-		    	<thead>
-			        <tr class="center"><th>항목</th><th>내용</th></tr>
-		    	</thead>
-		    	<tbody>
-			        <tr><td>Hardware</td><td>Raspberry PI 5</td></tr>
-			        <tr><td>Back-End</td><td>Spring Boot 3.x, Spring Security</td></tr>
-			        <tr><td>Front-End</td><td>JavaScript, JQuery</td></tr>
-			        <tr><td>Database</td><td>MariaDB</td></tr>
-			        <tr><td>Deploy</td><td>Docker, Apache Proxy, SSL(Let's Encrypt)</td></tr>
-		    	</tbody>
-		    </table>
+			<div class="qna">
+			    <div class="item">
+			        <p class="left bold">Q. Hardware</p>
+			        <p class="left">A. Raspberry PI 5</p>
+			    </div>
+			    <div class="item">
+			        <p class="left bold">Q. Back-End</p>
+			        <p class="left">A. Spring Boot 3.x, Spring Security</p>
+			    </div>
+			    <div class="item">
+			        <p class="left bold">Q. Front-End</p>
+			        <p class="left">A. JavaScript, JQuery</p>
+			    </div>
+			    <div class="item">
+			        <p class="left bold">Q. Database</p>
+			        <p class="left">A. MariaDB</p>
+			    </div>
+			    <div class="item">
+			        <p class="left bold">Q. Deploy</p>
+			        <p class="left">A. Docker, Apache Proxy, SSL(Let's Encrypt)</p>
+			    </div>
+			</div>
 		</div>
 	</div>
 </section>

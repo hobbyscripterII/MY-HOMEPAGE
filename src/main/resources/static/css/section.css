@@ -1,38 +1,36 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Devonshire&family=Sriracha&display=swap');
 table {border-collapse: collapse; border-spacing: 0;}
-blockquote {border-left: 3px solid #000; color: #333;}
+blockquote {border-left: 3px solid #FFF; color: #FFF;}
 blockquote p {padding: 4px 0 4px 5px;}
 iframe {width: 700px; height: 400px;}
-section.notice {padding: 40px 0;}
-/* tr:hover {background-color: rgba(255, 255, 255, 0.5);} */
+section {padding: 40px 0;}
 #thumbnail {display: none;}
 #thumbnail-preview {display: none; width: 440px; margin: auto;}
 #editor {text-align: left; width: 100%; font-size: 17px;}
 #editor > p {margin-bottom: 5px;}
 #editor ul, #editor ol {padding-left: 20px;}
-#board-search .search-window {padding: 15px 0; margin: 0 5px; background-color: rgba(255, 255, 255, 0.5);}
+#board-search .search-window {padding: 15px 0; margin: 0 5px;}
 #board-search .search-window .search-wrap {position: relative; padding-right: 124px; margin: 0 auto; width: 80%; max-width: 564px;}
 #board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {box-sizing: border-box; height: 44px; width: 100%; border: 1px solid #ccc; text-align: center; font-size: 1rem;}
-#board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {border-color: #333; outline: 0; border-width: 1px;}
+#board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {border-color: #FFF; outline: 0; border-width: 1px;}
 #board-search .search-window .search-wrap .btn {position: absolute; right: 0; top: 0; bottom: 0; width: 108px; padding: 0; height: 44px; font-size: 1rem;}
 .home-wrap {text-align: center;}
 .home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.3rem;}
 .home-title.sub {font-size: 1.1rem; font-weight: bold;}
 .home-img {margin-top: 10vh;}
 .home-img, #profile-img {max-width: 250px;}
-.page-title {margin-bottom: 50px;}
-.page-title h3 {-webkit-user-select: none; font-size: 3rem; color: #333333; font-weight: 800; text-align: center;}
-.page-link {color: #333; margin: 0 5px 0 5px; font-weight: bold;}
-.board-table {width: 100%; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; background-color: #FFF;}
-.board-table a {display: inline-block; line-height: 1.4; word-break: break-all; vertical-align: middle; color: #333;}
+.page-title {margin-bottom: 53px;}
+.page-title h3 {-webkit-user-select: none; font-size: 3rem; color: #FFF; font-weight: 800; text-align: center;}
+.page-link {color: #FFF; margin: 0 5px 0 5px; font-weight: bold;}
+.board-table {width: 100%; color: #FFF;}
+.board-table a {display: inline-block; line-height: 1.4; word-break: break-all; vertical-align: middle; color: #FFF;}
 .board-table a:hover {text-decoration: underline;}
 .board-table th {text-align: center;}
 .board-table .th-num {width: 100px; text-align: center;}
 .board-table .th-date {width: 200px;}
 .board-table th, .board-table td {padding: 10px;}
-.board-table tbody td {border-top: 1px solid #e7e7e7;}
-.board-table tbody th {padding-left: 28px; padding-right: 14px; border-top: 1px solid #e7e7e7; text-align: left;}
+.board-table tbody th {padding-left: 28px; padding-right: 14px; text-align: left;}
 .btn {display: inline-block; padding: 0 30px; font-weight: 400; background: transparent; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border: 1px solid transparent; text-transform: uppercase; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s;}
 .btn-dark {background: #555; color: #fff;}
 .btn-dark:hover, .btn-dark:focus {background: #373737; border-color: #373737; color: #fff;}
@@ -59,10 +57,14 @@ section.notice {padding: 40px 0;}
 .ul-1000 {max-width: 1000px; text-align: left; padding-left: 25px;}
 .f-12px {font-size: 12px;}
 .b-whe {border: 1px solid #FFF !important;}
-.b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #333; font-weight: bold;}
+.b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #FFF; font-weight: bold;}
 .w-100 {max-width: 100px;}
 .mb-50 {margin-bottom: 50px;}
 .mb-5 {margin-bottom: 5px;}
 .p-0-5 {padding: 0 5px;}
 .m-0-5 {margin: 0 5px;}
 .m-at {margin: auto;}
+.qna {margin-left: 10px; color: #FFF;}
+.qna .item {margin-bottom: 10px;}
+.qna .left {text-align: left;}
+.qna .bold {font-weight: bold;}

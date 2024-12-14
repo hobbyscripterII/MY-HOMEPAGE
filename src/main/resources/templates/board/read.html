@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-<style>
-    tr:hover {background-color: transparent;}
-    .board-table {background-color: #FFF;}
-</style>
-<section class="notice">
+<section>
 	<div class="page-title">
 		<div class="container">
 			<h3 th:text="${DATA.ARTICLE_TITLE}">타이틀</h3>
@@ -16,11 +12,11 @@
 			<table class="board-table">
 				<tbody>
 					<tr th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}">
-						<td class="td-10p b-whe b-tit" th:text="${DATA.title}">제목</td>
+						<td class="td-10p b-tit" th:text="${DATA.title}">제목</td>
 					</tr>
 					
 					<tr th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}">
-						<td class="f-12px b-whe" th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd HH:mm')}">작성일</td>
+						<td class="f-12px" th:text="${#dates.format(DATA.created_at, 'yyyy-MM-dd HH:mm')}">작성일</td>
 					</tr>
 					
 					<!-- 썸네일 표출(미사용으로 주석 처리) -->
@@ -37,7 +33,7 @@
 					
 					<!-- CKEditor5 웹에디터 -->
 					<tr>
-						<td class="b-whe"><div id="editor"></div></td>
+						<td><div id="editor"></div></td>
 					</tr>
 				</tbody>
 			</table>
