@@ -2,15 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 <style>
 	main {height: 50vh;}
-	footer {position: absolute; bottom: 0;}
+	footer {margin-top: 240px;}
 	section {padding: 120px 0;}
 	#daysElapsed {font-size: 40px;}
-	#currentDate {margin-top: 400px;}
+	#currentDate {margin-top: 160px;}
 	.home-wrap p {color: #FFF;}
+	
+	@media (max-width : 767px) {
+		footer {position: static; margin-top: 290px;}
+		#currentDate {margin-top: 60px !important;}
+	}
 </style>
 <section>
 	<div class="container">
 		<div class="home-wrap">
+			<img th:src="@{/img/img-raspberry.png}" id="profile-img" class="mb-50" alt="프로필 사진">
 			<p>주영이의 라즈베리파이에서 <span id="daysElapsed"></span> 일 째 돌아가는 중</p>
 			<p id="currentDate"></p>
 		</div>

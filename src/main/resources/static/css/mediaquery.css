@@ -23,13 +23,12 @@
 	#editor p {max-width: 100vw;}
 	#scroll-btn {right: 3vw; bottom: 20vh;}
 	#quote {font-size: 22px;}
-	#currentDate {margin-top: 180px !important;}
 	.board-table {font-size: 13px;}
 	.board-table a {font-size: 1rem; text-overflow: ellipsis; overflow: hidden; word-break: break-all;}
 	.board-table th, .board-table td, .board-table td>a {padding: 10px 5px; font-size: 14px;}
 	.board-table tbody tr > .b-tit {font-size: 1.5rem;}
 	.home-title.small {font-size: 1rem;}
-	.home-img, #profile-img {width: 40%;}
+	.home-img, #profile-img {width: 80%;}
 	.image > img {width: 100%;}
 	.td-20p {width: 20%;}
 	.mobile-hide {display: none;}

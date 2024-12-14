@@ -16,10 +16,10 @@ section {padding: 40px 0;}
 #board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {border-color: #FFF; outline: 0; border-width: 1px;}
 #board-search .search-window .search-wrap .btn {position: absolute; right: 0; top: 0; bottom: 0; width: 108px; padding: 0; height: 44px; font-size: 1rem;}
 .home-wrap {text-align: center;}
-.home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.3rem;}
-.home-title.sub {font-size: 1.1rem; font-weight: bold;}
+.home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.5rem; color: #FFF;}
+.home-title.sub {font-size: 1.1rem; font-weight: bold; color: #FFF;}
 .home-img {margin-top: 10vh;}
-.home-img, #profile-img {max-width: 250px;}
+.home-img, #profile-img {max-width: 330px;}
 .page-title {margin-bottom: 53px;}
 .page-title h3 {-webkit-user-select: none; font-size: 3rem; color: #FFF; font-weight: 800; text-align: center;}
 .page-link {color: #FFF; margin: 0 5px 0 5px; font-weight: bold;}
@@ -41,6 +41,7 @@ section {padding: 40px 0;}
 .btn-group .btn {width: 108px; padding: 0; height: 44px; font-size: 1rem;}
 .container, .btn-group {width: 1100px; margin: 0 auto;}
 .container.m-0 {margin: 0;}
+.container p {color: #FFF;}
 .err-msg-group {height: 10vh;}
 .image {max-width: 100%;}
 .image > img {max-width: 100%; max-height: 700px;}
@@ -55,6 +56,7 @@ section {padding: 40px 0;}
 .td-20p {width: 20%;}
 .pf-img {margin-bottom: 20px; max-width: 100%;}
 .ul-1000 {max-width: 1000px; text-align: left; padding-left: 25px;}
+.ul-1000 li {color: #FFF;}
 .f-12px {font-size: 12px;}
 .b-whe {border: 1px solid #FFF !important;}
 .b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #FFF; font-weight: bold;}
