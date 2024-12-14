@@ -1,25 +1,27 @@
-@charset "UTF-8";
-header {width: 100%; height: 75px; position: fixed; background-color: #FFF; z-index: 999; transition: background-color 0.3s ease;}
-header.scrolled {background-color: lightgray;}
-header.scrolled #homepage-title a {color: #FFF;}
-header.scrolled #menu-toggle span {background: #FFF;}
+header {position: relative; margin: 0 auto; padding: 0; width: 100vw; height: 100%;}
+header:before, header:after {content: ""; display: table;}
+header:after {clear: both;}
 
-#homepage-title {font-size: xx-large; z-index: 2; position: fixed; top: 16px; left: 70px; -webkit-user-select: none;}
-#homepage-title a {font-weight: bold; color: lightgray;}
-#menu {position: fixed; max-width: 250px; width: 100vw; height: 61vh; margin: 19px 0px 0 -20px; box-sizing: border-box; overflow-y: auto; list-style-type: none; -webkit-font-smoothing: antialiased; transform-origin: 0% 0%; transform: translate(-100%, 0); transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); background-color: #FFF; padding-left: 0;}
-#menu li {padding: 5px 10px; font-size: 22px;}
-#menu li label {cursor: pointer;}
-#menu li a {padding-left: 5px;}
-#menu li:hover {background-color: lightgray;}
-#menu li:hover a {color: #FFF;}
-#menu-toggle {display: block; position: fixed; top: 20px; left: 20px; z-index: 1; -webkit-user-select: none; user-select: none;}
-#menu-toggle a {text-decoration: none; color: #232323; display: block; width: 100%;}
-#menu-toggle input {display: block; width: 40px; height: 32px; position: absolute; cursor: pointer; opacity: 0; z-index: 2; -webkit-touch-callout: none;}
-#menu-toggle span {display: block; width: 40px; height: 7px; margin-bottom: 5px; position: relative; background: lightgray; border-radius: 3px; z-index: 1; transform-origin: 4px 0px; transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;}
-#menu-toggle span:first-child {transform-origin: 0% 0%;}
-#menu-toggle span:nth-last-child(2) {transform-origin: 0% 100%;}
-#menu-toggle input:checked ~ span {opacity: 1; transform: rotate(45deg) translate(2px, 1px);}
-#menu-toggle input:checked ~ span:nth-last-child(3) {opacity: 0; transform: rotate(0deg) scale(0.2, 0.2);}
-#menu-toggle input:checked ~ span:nth-last-child(2) {transform: rotate(-45deg) translate(0px, 2px);}
-#menu-toggle input:checked ~ ul {transform: none;}
-.guide-bar {z-index: 999; width: 0vw; height: 5px; background-color: lightgray; transition: width 0.2s linear; position: fixed; top: 70px; left: 0;}
+.nav {margin-bottom: 48px;}
+.nav ul {list-style: none; margin: 0; padding: 0; background: #333;}
+.nav ul:before, .nav ul:after {content: ""; display: table;}
+.nav ul:after {clear: both;}
+.nav ul > li {float: left; position: relative; width: 100px; height: 40px;}
+.nav a {display: block; padding: 10px 15px; line-height: 1.2em; color: #fff; border-left: 1px solid #595959;}
+.nav a:hover {text-decoration: none; background: #595959;}
+.nav li ul {background: #273754;}
+.nav li ul li {width: 200px;}
+.nav li ul a {border: none;}
+.nav li ul a:hover {background: rgba(0, 0, 0, 0.2);}
+.nav1 ul > li:hover ul {left: 0;}
+.nav1 li ul {position: absolute; left: -9999em; top: 40px; z-index: 1; display: block; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 1s ease;}
+.nav1 li:hover > ul {left: 0; max-height: 500px; opacity: 1;}
+
+@media (max-width : 767px) {
+    .nav a {text-align: center;}
+    .nav ul > li {width: 100%;}
+    .nav li ul li {width: 100%;}
+    .nav1 li ul {display: none; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease;}
+    .nav1 li.open > ul {display: block; max-height: 500px; opacity: 1;}
+    .nav1 ul > li:hover ul {width: 100%;}
+}
