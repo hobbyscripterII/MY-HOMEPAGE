@@ -1,15 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-
-<style>
-    table {width: 100%; max-width: 800px; margin: 0 auto; border-collapse: collapse; background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);}
-    th, td {padding: 15px; text-align: left; border-bottom: 1px solid #ddd;}
-    th {background-color: #f2f2f2;}
-    td {height: 50px;}
-    tr:hover {background-color: #f1f1f1;}
-    @media screen and (max-width: 768px) {table {font-size: 12px; width: 100%;} th, td {padding: 10px;} .container {padding: 10px;} img.home-img {width: 80%; margin: 50px auto; display: block;} p.home-title {font-size: 16px; text-align: center;} table {overflow-x: auto; display: block;}}
-</style>
-
 <section class="notice">
 	<div class="container">
 		<div class="home-wrap">
@@ -19,13 +9,17 @@
 				</div>
 			</div>
 			<img th:src="@{/img/img-raspberry.png}" id="profile-img" class="mb-50" alt="프로필 사진">
-		    <table>
-		        <tr><th>항목</th><th>내용</th></tr>
-		        <tr><td>Hardware</td><td>Raspberry PI 5</td></tr>
-		        <tr><td>Back-End</td><td>Spring Boot 3.x, Spring Security</td></tr>
-		        <tr><td>Front-End</td><td>JavaScript, JQuery</td></tr>
-		        <tr><td>Database</td><td>MariaDB</td></tr>
-		        <tr><td>Deploy</td><td>Docker, Apache Proxy, SSL(Let's Encrypt)</td></tr>
+		    <table class="board-table">
+		    	<thead>
+			        <tr class="center"><th>항목</th><th>내용</th></tr>
+		    	</thead>
+		    	<tbody>
+			        <tr><td>Hardware</td><td>Raspberry PI 5</td></tr>
+			        <tr><td>Back-End</td><td>Spring Boot 3.x, Spring Security</td></tr>
+			        <tr><td>Front-End</td><td>JavaScript, JQuery</td></tr>
+			        <tr><td>Database</td><td>MariaDB</td></tr>
+			        <tr><td>Deploy</td><td>Docker, Apache Proxy, SSL(Let's Encrypt)</td></tr>
+		    	</tbody>
 		    </table>
 		</div>
 	</div>

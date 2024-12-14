@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
+<style>
+    tr:hover {background-color: transparent;}
+    .board-table {background-color: #FFF;}
+</style>
 <section class="notice">
 	<div class="page-title">
 		<div class="container">
@@ -8,7 +12,7 @@
 	</div>
 
 	<div id="board-list">
-		<div class="container">
+		<div class="container m-at p-0-5">
 			<table class="board-table">
 				<tbody>
 					<tr th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}">
@@ -39,17 +43,8 @@
 			</table>
 		</div>
 	</div>
-	
-	<div class="btn-group">
-		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-			<button type="button" class="btn btn-dark" id="btn-delete">삭제</button>
-			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/update/{iboard}(iboard = ${DATA.iboard})}'|">수정</button>
-		</th:block>
-		
-		<button th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}" type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
-	</div>
 
-	<div class="container" th:if="${#arrays.length(NEXT_POST) > 0 || #arrays.length(PREV_POST) > 0}">
+	<div class="container p-0-5 mb-5" th:if="${#arrays.length(NEXT_POST) > 0 || #arrays.length(PREV_POST) > 0}">
 		<table class="board-table">
 			<tbody>
 				<tr th:each="data : ${NEXT_POST}">
@@ -62,6 +57,15 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
+	
+	<div class="btn-group">
+		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<button type="button" class="btn btn-dark" id="btn-delete">삭제</button>
+			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/update/{iboard}(iboard = ${DATA.iboard})}'|">수정</button>
+		</th:block>
+		
+		<button th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}" type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
 	</div>
 </section>
 <script th:inline="javascript">

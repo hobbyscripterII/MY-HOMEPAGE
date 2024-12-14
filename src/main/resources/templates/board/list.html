@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-
 <style>
-	main { height: 100%; } 
-	.board-table tbody td.preview { border-top: 0px; text-align: left; } 
-	.tr-alert { font-weight: bold; }
+	main {height: 100%;} 
+	.board-table tbody td.preview {border-top: 0px; text-align: left;} 
+	.tr-alert {font-weight: bold;}
 </style>
-
 <section class="notice">
 	<div class="page-title">
 		<div class="container">
@@ -30,7 +28,7 @@
 	</div>
 
 	<div id="board-list">
-		<div class="container">
+		<div class="container p-0-5">
 			<table class="board-table">
 				<thead>
 					<tr>

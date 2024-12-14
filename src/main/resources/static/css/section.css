@@ -5,13 +5,13 @@ blockquote {border-left: 3px solid #000; color: #333;}
 blockquote p {padding: 4px 0 4px 5px;}
 iframe {width: 700px; height: 400px;}
 section.notice {padding: 40px 0;}
+/* tr:hover {background-color: rgba(255, 255, 255, 0.5);} */
 #thumbnail {display: none;}
 #thumbnail-preview {display: none; width: 440px; margin: auto;}
 #editor {text-align: left; width: 100%; font-size: 17px;}
 #editor > p {margin-bottom: 5px;}
 #editor ul, #editor ol {padding-left: 20px;}
-#board-list {padding: 0 5px;}
-#board-search .search-window {padding: 15px 0; background-color: #f9f7f9;}
+#board-search .search-window {padding: 15px 0; margin: 0 5px; background-color: rgba(255, 255, 255, 0.5);}
 #board-search .search-window .search-wrap {position: relative; padding-right: 124px; margin: 0 auto; width: 80%; max-width: 564px;}
 #board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {box-sizing: border-box; height: 44px; width: 100%; border: 1px solid #ccc; text-align: center; font-size: 1rem;}
 #board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {border-color: #333; outline: 0; border-width: 1px;}
@@ -23,14 +23,14 @@ section.notice {padding: 40px 0;}
 .home-img, #profile-img {max-width: 250px;}
 .page-title {margin-bottom: 50px;}
 .page-title h3 {-webkit-user-select: none; font-size: 3rem; color: #333333; font-weight: 800; text-align: center;}
-.page-link {color: #333; margin: 0 5px 0 5px;}
-.board-table {width: 100%; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;}
+.page-link {color: #333; margin: 0 5px 0 5px; font-weight: bold;}
+.board-table {width: 100%; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; background-color: #FFF;}
 .board-table a {display: inline-block; line-height: 1.4; word-break: break-all; vertical-align: middle; color: #333;}
 .board-table a:hover {text-decoration: underline;}
 .board-table th {text-align: center;}
 .board-table .th-num {width: 100px; text-align: center;}
 .board-table .th-date {width: 200px;}
-.board-table th, .board-table td {padding: 10px 0px;}
+.board-table th, .board-table td {padding: 10px;}
 .board-table tbody td {border-top: 1px solid #e7e7e7;}
 .board-table tbody th {padding-left: 28px; padding-right: 14px; border-top: 1px solid #e7e7e7; text-align: left;}
 .btn {display: inline-block; padding: 0 30px; font-weight: 400; background: transparent; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border: 1px solid transparent; text-transform: uppercase; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s;}
@@ -39,10 +39,10 @@ section.notice {padding: 40px 0;}
 .btn-pink {background: #FFB6C1; color: #fff;}
 .btn-pink:hover, .btn-pink:focus {background: #FF597B; border-color: #FF597B; color: #fff;}
 .btn-green {background: #1F4529; color: #fff;}
-.container, .btn-group {width: 1100px; margin: 0 auto;}
-.container.m-0 {margin: 0;}
 .btn-group {text-align: right; margin-top: 20px; margin-bottom: 20px; padding: 0 5px;}
 .btn-group .btn {width: 108px; padding: 0; height: 44px; font-size: 1rem;}
+.container, .btn-group {width: 1100px; margin: 0 auto;}
+.container.m-0 {margin: 0;}
 .err-msg-group {height: 10vh;}
 .image {max-width: 100%;}
 .image > img {max-width: 100%; max-height: 700px;}
@@ -54,7 +54,6 @@ section.notice {padding: 40px 0;}
 .clearfix:after {content: ''; display: block; clear: both;}
 .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused), .ck.ck-editor__main>.ck-editor__editable:not(.ck-bulrred) {height: 500px;}
 .blind {position: absolute; overflow: hidden; clip: rect(0, 0, 0, 0); margin: -1px; width: 1px; height: 1px;}
-
 .td-20p {width: 20%;}
 .pf-img {margin-bottom: 20px; max-width: 100%;}
 .ul-1000 {max-width: 1000px; text-align: left; padding-left: 25px;}
@@ -63,3 +62,7 @@ section.notice {padding: 40px 0;}
 .b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #333; font-weight: bold;}
 .w-100 {max-width: 100px;}
 .mb-50 {margin-bottom: 50px;}
+.mb-5 {margin-bottom: 5px;}
+.p-0-5 {padding: 0 5px;}
+.m-0-5 {margin: 0 5px;}
+.m-at {margin: auto;}

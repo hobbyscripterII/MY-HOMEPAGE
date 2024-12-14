@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
 <header>
-	<nav class="nav nav1">
+	<nav class="nav1">
 	    <ul>
 	        <li>
 	        <a th:href="@{/}">Main</a>
@@ -49,7 +49,6 @@ $(document).ready(function () {
 
     $('.nav1 > ul > li > a').click(function (event) {
         if ($(window).width() <= 768) {
-
             let $parentLi = $(this).parent('li');
             let $submenu  = $parentLi.find('ul');
 

@@ -1,27 +1,25 @@
-header {position: relative; margin: 0 auto; padding: 0; width: 100vw; height: 100%;}
+header {position: relative; margin: 0 auto; padding: 0; width: 100%; height: 100%;}
 header:before, header:after {content: ""; display: table;}
 header:after {clear: both;}
-
-.nav {margin-bottom: 48px;}
-.nav ul {list-style: none; margin: 0; padding: 0; background: #333;}
-.nav ul:before, .nav ul:after {content: ""; display: table;}
-.nav ul:after {clear: both;}
-.nav ul > li {float: left; position: relative; width: 100px; height: 40px;}
-.nav a {display: block; padding: 10px 15px; line-height: 1.2em; color: #fff; border-left: 1px solid #595959;}
-.nav a:hover {text-decoration: none; background: #595959;}
-.nav li ul {background: #273754;}
-.nav li ul li {width: 200px;}
-.nav li ul a {border: none;}
-.nav li ul a:hover {background: rgba(0, 0, 0, 0.2);}
+nav ul {list-style: none; margin: 0; padding: 0;}
+nav ul:before, nav ul:after {content: ""; display: table;}
+nav ul:after {clear: both;}
+nav ul > li {float: left; position: relative; width: 100px; height: 50px;}
+nav a {display: block; padding: 15px 20px; line-height: 1.2em; color: #333;}
+nav a:hover {text-decoration: none; background-color: #FFF;}
+nav li ul {background-color: rgba(255, 255, 255, 1);}
+nav li ul li {width: 200px;}
+nav li ul a {border: none;}
+nav li ul a:hover {background-color: #000; color: #FFF;}
 .nav1 ul > li:hover ul {left: 0;}
-.nav1 li ul {position: absolute; left: -9999em; top: 40px; z-index: 1; display: block; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 1s ease;}
+.nav1 li ul {position: absolute; left: -9999em; top: 49px; z-index: 1; display: block; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.3s ease, opacity 0.3s ease;}
 .nav1 li:hover > ul {left: 0; max-height: 500px; opacity: 1;}
 
 @media (max-width : 767px) {
-    .nav a {text-align: center;}
-    .nav ul > li {width: 100%;}
-    .nav li ul li {width: 100%;}
-    .nav1 li ul {display: none; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease;}
+    nav a {text-align: center;}
+    nav ul > li {width: 100%;}
+    nav li ul li {width: 100%;}
+    .nav1 li ul {display: none; max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.1s ease, opacity 0.1s ease;}
     .nav1 li.open > ul {display: block; max-height: 500px; opacity: 1;}
     .nav1 ul > li:hover ul {width: 100%;}
 }
