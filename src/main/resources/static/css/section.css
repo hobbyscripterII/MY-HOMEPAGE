@@ -8,10 +8,11 @@ section {padding: 40px 0;}
 #thumbnail {display: none;}
 #thumbnail-preview {display: none; width: 440px; margin: auto;}
 #editor {text-align: left; width: 100%; font-size: 17px;}
-#editor > p {margin-bottom: 5px;}
+#editor p {margin-bottom: 5px; font-size: 15px;}
+#editor ol li {font-size: 15px;}
 #editor ul, #editor ol {padding-left: 20px;}
 #board-search .search-window {padding: 15px 0; margin: 0 5px;}
-#board-search .search-window .search-wrap {position: relative; padding-right: 124px; margin: 0 auto; width: 80%; max-width: 564px;}
+#board-search .search-window .search-wrap {position: relative; padding-right: 124px; margin: 0 auto;}
 #board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {box-sizing: border-box; height: 44px; width: 100%; border: 1px solid #ccc; text-align: center; font-size: 1rem;}
 #board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {border-color: #FFF; outline: 0; border-width: 1px;}
 #board-search .search-window .search-wrap .btn {position: absolute; right: 0; top: 0; bottom: 0; width: 108px; padding: 0; height: 44px; font-size: 1rem;}
@@ -39,7 +40,7 @@ section {padding: 40px 0;}
 .btn-green {background: #1F4529; color: #fff;}
 .btn-group {text-align: right; margin-top: 20px; margin-bottom: 20px; padding: 0 5px;}
 .btn-group .btn {width: 108px; padding: 0; height: 44px; font-size: 1rem;}
-.container, .btn-group {width: 1100px; margin: 0 auto;}
+.container, .btn-group {width: 1000px; margin: 0 auto;}
 .container.m-0 {margin: 0;}
 .container p {color: #FFF;}
 .err-msg-group {height: 10vh;}

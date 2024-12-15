@@ -2,16 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 <style>
 	main {height: 50vh;}
-	footer {margin-top: 240px;}
 	section {padding: 120px 0;}
 	#daysElapsed {font-size: 40px;}
-	#currentDate {margin-top: 160px;}
+	#currentDate {margin-top: 190px;}
 	.home-wrap p {color: #FFF;}
-	
-	@media (max-width : 767px) {
-		footer {position: static; margin-top: 290px;}
-		#currentDate {margin-top: 60px !important;}
-	}
+	@media (max-width : 767px) {footer {position: static; margin-top: 290px;} #currentDate {margin-top: 60px !important;}}
 </style>
 <section>
 	<div class="container">
@@ -24,17 +19,23 @@
 </section>
 <script>
 $(document).ready(function() {
-    function dateUpdate() {
-        let startDate      = new Date('2024-09-24');
-        let currentDate    = new Date();
+    function updateDays() {
+	    let currentDate    = new Date();
+        let startDate      = new Date('2024-09-24T00:00:00');
         let timeDifference = currentDate - startDate;
         let daysElapsed    = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         
         $('#daysElapsed').html(daysElapsed);
+    }
+	
+    function updateCurrentTime() {
+	    let currentDate = new Date();
+	    
         $('#currentDate').html(formatDate(currentDate));
     }
-
-    dateUpdate();
+    
+    updateDays();
+    setInterval(updateCurrentTime, 1000);
 });
 
 function formatDate(date) {

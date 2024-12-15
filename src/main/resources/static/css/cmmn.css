@@ -1,13 +1,17 @@
 @charset "UTF-8";
 @font-face {font-family: 'FreesentationL'; src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Freesentation/Freesentation-3Light.woff2') format('woff2');}
-* {margin: 0; box-sizing: border-box; font-family: 'FreesentationL';}
-html {animation: fadein 1s forwards; background-color: #24af79;}
+* {margin: 0; box-sizing: border-box; font-family: 'verdana', 'FreesentationL';}
+/*
+초록색 : #24af79;
+*/
+html {animation: fadein 1s forwards; background-image: linear-gradient(to bottom, #434343 0%, black 100%);}
 main {position: relative;}
 body {height: 100%;}
 a {text-decoration: none; color: #FFF;}
+p, span, tr, td {font-size: 14px; color: #FFF;}
 h1 {padding-top: 80px;}
 h4 {padding: 25px; display: inline;}
 iframe {display: none;}
 img {-webkit-user-select: none;}
 @keyframes fadein {0% {opacity: 0;} 100% {opacity: 1;}}
-::selection {background-color: #D32F2F; color: #FFF;}
+::selection {background-color: #FFF; color: #333;}
