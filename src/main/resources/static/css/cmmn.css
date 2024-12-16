@@ -5,7 +5,7 @@
 초록색 : #24af79;
 */
 html {animation: fadein 1s forwards; background-image: linear-gradient(to bottom, #434343 0%, black 100%);}
-main {position: relative;}
+main {position: relative; height: 100vh;} 
 body {height: 100%;}
 a {text-decoration: none; color: #FFF;}
 p, span, tr, td {font-size: 14px; color: #FFF;}
