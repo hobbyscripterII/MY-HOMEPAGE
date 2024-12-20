@@ -1,46 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
 <header>
-	<nav class="nav1">
-	    <ul>
-	        <li>
-	        <a th:href="@{/}">Main</a>
-	        </li>
-	        <li>
-	            <a href="#">Info</a>
-	            <ul>
-	                <li><a th:href="@{/board/list(code='B001')}">Notice</a></li>
-	                <li><a th:href="@{/deploy}">Deploy</a></li>
-	                <li><a th:href="@{/aboutme}">About Me</a></li>
-	                <!-- <li><a th:href="@{/portfolio}">Portfolio</a></li> -->
-	            </ul>
-	        </li>
-	        <li>
-	            <a href="#">Life</a>
-	            <ul>
-	                <li><a th:href="@{/board/list(code='B002')}">Study</a></li>
-	                <li><a th:href="@{/board/list(code='B004')}">Music</a></li>
-	                <li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
-	            </ul>
-	        </li>
-	        <th:block sec:authorize="hasRole('ADMIN')">
-	        <li>
-	            <a href="#">Private</a>
-	            <ul>
-	            	<li><a th:href="@{/board/list(code='B007')}">Data</a></li>
-	            </ul>
-	        </li>
-	        </th:block>
-   	        <li>
-   	        	<th:block sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></th:block>
-   	        	<th:block sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></th:block>
-	        </li>
-	    </ul>
-	</nav>
+	<div id="menu-toggle">
+		<input type="checkbox" />
+		<span></span>
+		<span></span>
+		<span></span>
+		
+		<ul id="menu">
+			<li><a th:href="@{/}">Main</a></li>
+			<li><a th:href="@{/deploy}">Deploy Info</a></li>
+			<li><a th:href="@{/aboutme}">About Me</a></li>
+			<li><a th:href="@{/board/list(code='B002')}">Study</a></li>
+			<li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
+			<li><a th:href="@{/board/list(code='B004')}">Music</a></li>
+			<th:block sec:authorize="hasRole('ADMIN')"><li><a th:href="@{/board/list(code='B007')}">Data</a></li></th:block>
+			<th:block sec:authorize="isAnonymous()"><li><a th:href="@{/login}">Login</a></li></th:block>
+			<th:block sec:authorize="isAuthenticated()"><li><a th:href="@{/logout}">Logout</a></li></th:block>
+		</ul>
+	</div>
+	
+	<div id="homepage-title"><a th:href="@{/}">HOMEPAGE</a></div>
 </header>
-<!--
 <div class="guide-bar"></div>
--->
 
 <script>
 $(document).ready(function () {
@@ -48,25 +30,11 @@ $(document).ready(function () {
     const $guideBar = $('.guide-bar');
     const $section  = $('section');
 
-    $('.nav1 > ul > li > a').click(function (event) {
-        if ($(window).width() <= 768) {
-            let $parentLi = $(this).parent('li');
-            let $submenu  = $parentLi.find('ul');
-
-            if ($submenu.is(':visible')) {
-                $submenu.stop(true, true).slideUp();
-            } else {
-                $('.nav1 > ul > li').not($parentLi).find('ul').stop(true, true).slideUp();
-                $submenu.stop(true, true).slideDown();
-            }
-        }
-    });
-    
     $(window).on('scroll', function () {
-    	const $windowWidth     = $(window).width();
+    	  const $windowWidth     = $(window).width();
         const $windowHeight	   = $(window).height();
-        const $docHeight	   = $(document).height();
-        const $scrollTop	   = $(this).scrollTop();
+        const $docHeight	     = $(document).height();
+        const $scrollTop	     = $(this).scrollTop();
         const $scrollThreshold = $windowWidth > 768 ? 200 : 100;
         const $scrollProgress  = ($scrollTop / ($docHeight - $windowHeight)) * 100;
         

@@ -4,14 +4,14 @@
 /*
 초록색 : #24af79;
 */
-html {animation: fadein 1s forwards; background-image: linear-gradient(to bottom, #434343 0%, black 100%);}
+html {animation: fadein 1s forwards;}
 main {position: relative;}
 body {height: 100%;}
-a {text-decoration: none; color: #FFF;}
-p, span, tr, td {font-size: 14px; color: #FFF;}
+a {text-decoration: none;}
+p, span, tr, td {font-size: 14px;}
 h1 {padding-top: 80px;}
 h4 {padding: 25px; display: inline;}
 iframe {display: none;}
 img {-webkit-user-select: none;}
 @keyframes fadein {0% {opacity: 0;} 100% {opacity: 1;}}
-::selection {background-color: #FFF; color: #333;}
+::selection {background-color: #333; color: #FFF;}

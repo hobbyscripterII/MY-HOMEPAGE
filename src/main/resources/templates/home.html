@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
 <style>
-	main {height: 50vh;}
+	main {height: 100vh;}
 	section {padding: 120px 0;}
+	footer {margin-top: 0;}
 	#daysElapsed {font-size: 40px;}
-	#currentDate {margin-top: 190px;}
-	.home-wrap p {color: #FFF;}
-	@media (max-width : 767px) {footer {position: static; margin-top: 290px;} #currentDate {margin-top: 60px !important;}}
 </style>
 <section>
 	<div class="container">
@@ -19,6 +17,9 @@
 </section>
 <script>
 $(document).ready(function() {
+	let $guideBar = $('.guide-bar');
+	$guideBar.css('display', 'none');
+	
     function updateDays() {
 	    let currentDate    = new Date();
         let startDate      = new Date('2024-09-24T00:00:00');

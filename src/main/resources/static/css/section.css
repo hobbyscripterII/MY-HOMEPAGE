@@ -1,10 +1,10 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Devonshire&family=Sriracha&display=swap');
 table {border-collapse: collapse; border-spacing: 0;}
-blockquote {border-left: 3px solid #FFF; color: #FFF;}
+blockquote {border-left: 3px solid #333; color: #333;}
 blockquote p {padding: 4px 0 4px 5px;}
 iframe {width: 700px; height: 400px;}
-section {padding: 40px 0;}
+section {padding: 70px 0;}
 #thumbnail {display: none;}
 #thumbnail-preview {display: none; width: 440px; margin: auto;}
 #editor {text-align: left; width: 100%; font-size: 17px;}
@@ -17,15 +17,15 @@ section {padding: 40px 0;}
 #board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {border-color: #FFF; outline: 0; border-width: 1px;}
 #board-search .search-window .search-wrap .btn {position: absolute; right: 0; top: 0; bottom: 0; width: 108px; padding: 0; height: 44px; font-size: 1rem;}
 .home-wrap {text-align: center;}
-.home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.5rem; color: #FFF;}
+.home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.5rem;}
 .home-title.sub {font-size: 1.1rem; font-weight: bold; color: #FFF;}
 .home-img {margin-top: 10vh;}
 .home-img, #profile-img {max-width: 330px;}
-.page-title {margin-bottom: 53px;}
-.page-title h3 {-webkit-user-select: none; font-size: 3rem; color: #FFF; font-weight: 800; text-align: center;}
-.page-link {color: #FFF; margin: 0 5px 0 5px; font-weight: bold;}
-.board-table {width: 100%; color: #FFF;}
-.board-table a {display: inline-block; line-height: 1.4; word-break: break-all; vertical-align: middle; color: #FFF;}
+.page-title {margin: 40px 0;}
+.page-title h3 {-webkit-user-select: none; font-size: 3rem; color: #333; font-weight: 800; text-align: center;}
+.page-link {margin: 0 5px 0 5px; font-weight: bold; color: #333;}
+.board-table {width: 100%;}
+.board-table a {display: inline-block; line-height: 1.4; word-break: break-all; vertical-align: middle; color: #333;}
 .board-table a:hover {text-decoration: underline;}
 .board-table th {text-align: center;}
 .board-table .th-num {width: 100px; text-align: center;}
@@ -42,7 +42,7 @@ section {padding: 40px 0;}
 .btn-group .btn {width: 108px; padding: 0; height: 44px; font-size: 1rem;}
 .container, .btn-group {width: 1000px; margin: 0 auto;}
 .container.m-0 {margin: 0;}
-.container p {color: #FFF;}
+.container p {}
 .err-msg-group {height: 10vh;}
 .image {max-width: 100%;}
 .image > img {max-width: 100%; max-height: 700px;}
@@ -57,17 +57,17 @@ section {padding: 40px 0;}
 .td-20p {width: 20%;}
 .pf-img {margin-bottom: 20px; max-width: 100%;}
 .ul-1000 {max-width: 1000px; text-align: left; padding-left: 25px;}
-.ul-1000 li {color: #FFF;}
+.ul-1000 li {}
 .f-12px {font-size: 12px;}
 .b-whe {border: 1px solid #FFF !important;}
-.b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #FFF; font-weight: bold;}
+.b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: bold;}
 .w-100 {max-width: 100px;}
 .mb-50 {margin-bottom: 50px;}
 .mb-5 {margin-bottom: 5px;}
 .p-0-5 {padding: 0 5px;}
 .m-0-5 {margin: 0 5px;}
 .m-at {margin: auto;}
-.qna {margin-left: 10px; color: #FFF;}
+.qna {margin-left: 10px;}
 .qna .item {margin-bottom: 10px;}
 .qna .left {text-align: left;}
 .qna .bold {font-weight: bold;}
