@@ -47,6 +47,7 @@
 								<svg th:if="${data.SEC_YN == 'Y'}" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
 								  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
 								</svg>
+								<img th:src="@{/img/img-new.png}" class="new-img" alt="새로운 게시글 아이콘">
 							</td>
 							<td class="mobile-hide center" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
 						</tr>
@@ -137,13 +138,25 @@ $('#search-btn').click(function(e) {
 });
 
 $(document).ready(function(e) {
-	let $main 		= $('main');
-	let search_data = [[${SEARCH_DATA}]];
-	let code 		= [[${param.code}]];
-	let search      = search_data.search || '';
+	let $main 		 = $('main');
+	let search_data  = [[${SEARCH_DATA}]];
+	let code 		 = [[${param.code}]];
+	let search       = search_data.search || '';
+	let today	     = new Date();
+	let threeDaysAgo = new Date();
+	threeDaysAgo.setDate(today.getDate() - 3);
 	
 	$('#code').val(code);
 	$('#search').val(search);
+
+	$('table tbody tr').each(function() {
+		var createdAt_ = $(this).find('td:last').text().trim();
+		var createdAt  = new Date(createdAt_.split(' ')[0]);
+		
+		if(createdAt < threeDaysAgo) {
+			$(this).find('.new-img').hide();
+		}
+	});
 	
 	$('.page-item').each(function(e) {
 		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
