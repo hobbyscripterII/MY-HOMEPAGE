@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.homepage.home.HomeMapper">
+	<insert id="visitInsert" parameterType="map">
+	INSERT INTO TBL_VISIT_LOGS(ip_addr, user_agent, referer, current_url) VALUES(#{IP_ADDRESS}, #{USER_AGENT}, #{REFERER}, #{CURRENT_URI});
+	</insert>
+	
 	<select id="latestPostGet" parameterType="map">
 	(
 	SELECT A.IBOARD, A.ICODE, A.TITLE, A.CONTENTS, A.YOUTUBE_ID, A.GENRE, A.DEL_YN, A.CREATED_AT

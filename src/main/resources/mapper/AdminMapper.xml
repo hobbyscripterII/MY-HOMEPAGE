@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.homepage.admin.AdminMapper">
+	<select id="visitGet" parameterType="map" resultType="map">
+	SELECT ROW_NUMBER() OVER(ORDER BY IVISIT ASC) ROWNUMBER, IP_ADDR, USER_AGENT, REFERER, CURRENT_URL, CREATED_AT
+	FROM tbl_visit_logs
+	ORDER BY IVISIT DESC
+	LIMIT #{offset}, #{amount}
+	</select>
+</mapper>

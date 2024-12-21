@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
+<style>
+	.board-table tbody td.preview {border-top: 0px; text-align: left;} 
+	.tr-alert {font-weight: bold;}
+</style>
+<section>
+	<div class="page-title">
+		<div class="container">
+			<h3 th:text="${ARTICLE_TITLE}">타이틀</h3>
+		</div>
+	</div>
+
+	<div id="board-list">
+		<div class="container p-0-5">
+			<table class="board-table">
+				<thead>
+					<tr>
+						<th scope="col" class="th-num mobile-hide">NUMBER</th>
+						<th scope="col" class="th-title">IP ADDRESS</th>
+						<th scope="col" class="th-title center">DEVICE</th>
+						<th scope="col" class="th-title center mobile-hide">REFERER</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="data : ${DATA}">
+						<tr>
+							<td class="center mobile-hide" th:text="${data.ROWNUMBER}">NUMBER</td>
+							<td class="center" th:text="${data.IP_ADDR}">IP ADDRESS</td>
+							<td class="center" th:text="${data.USER_AGENT}">USER AGENT</td>
+							<td class="center mobile-hide" th:text="${data.REFERER}">REFERER</td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div th:replace="~{fragments/pagination :: pagination}"></div>
+</section>
+
+<script th:inline="javascript">
+$(document).ready(function(e) {
+	$('.page-item').each(function(e) {
+		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
+		let currentPage = $(this).text().trim();									// 사용자가 선택한 페이지
+	});
+});
+</script>
+</html>

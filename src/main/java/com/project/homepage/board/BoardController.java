@@ -70,10 +70,6 @@ public class BoardController {
 		}
 	}
 	
-	private int getOffset(int page, int amount) {
-		return (page == 1 ? 0 : (page - 1) * amount);
-	}
-	
 	@GetMapping("/list")
 	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException {
 		List<Map<String, Object>> boardGet = null;
@@ -233,5 +229,9 @@ public class BoardController {
 						  .findFirst()
 						  .map(GrantedAuthority :: getAuthority)
 						  .orElse(null);
+	}
+	
+	private int getOffset(int page, int amount) {
+		return (page == 1 ? 0 : (page - 1) * amount);
 	}
 }

@@ -14,7 +14,10 @@
 			<li><a th:href="@{/board/list(code='B002')}">Study</a></li>
 			<li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
 			<li><a th:href="@{/board/list(code='B004')}">Music</a></li>
+			<!--
 			<th:block sec:authorize="hasRole('ADMIN')"><li><a th:href="@{/board/list(code='B007')}">Data</a></li></th:block>
+			-->
+			<th:block sec:authorize="hasRole('ADMIN')"><li><a style="color: red" th:href="@{/admin/visit}">Visit</a></li></th:block>
 			<th:block sec:authorize="isAnonymous()"><li><a th:href="@{/login}">Login</a></li></th:block>
 			<th:block sec:authorize="isAuthenticated()"><li><a th:href="@{/logout}">Logout</a></li></th:block>
 		</ul>
