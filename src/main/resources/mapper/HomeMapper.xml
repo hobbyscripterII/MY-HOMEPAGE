@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.homepage.home.HomeMapper">
 	<insert id="visitInsert" parameterType="map">
-	INSERT INTO TBL_VISIT_LOGS(ip_addr, user_agent, referer, current_url) VALUES(#{IP_ADDRESS}, #{USER_AGENT}, #{REFERER}, #{CURRENT_URI});
+	INSERT INTO tbl_visit_logs(ip_addr, user_agent, referer, current_url) VALUES(#{IP_ADDRESS}, #{USER_AGENT}, #{REFERER}, #{CURRENT_URI})
 	</insert>
 	
 	<select id="latestPostGet" parameterType="map">

@@ -23,10 +23,15 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(HttpServletRequest request, Model model) {
 		Map<String, Object> requestMap = new HashMap<String, Object>();
-		String IP_ADDRESS  			   = request.getRemoteAddr();
-		String USER_AGENT  			   = request.getHeader("User-Agent");
-		String REFERER     			   = request.getHeader("Referer");
-		String CURRENT_URI 			   = request.getRequestURI();
+		String IP_ADDRESS  			   = request.getHeader("X-Forwarded-For");
+		
+		if(IP_ADDRESS == null) {
+			IP_ADDRESS = nullToEmpty(IP_ADDRESS);
+		}
+		
+		String USER_AGENT  			   = nullToEmpty(request.getHeader("User-Agent"));
+		String REFERER     			   = nullToEmpty(request.getHeader("Referer"));
+		String CURRENT_URI 			   = nullToEmpty(request.getRequestURI());
 		
 		requestMap.put("IP_ADDRESS" , IP_ADDRESS);
 		requestMap.put("USER_AGENT" , USER_AGENT);
@@ -53,5 +58,9 @@ public class HomeController {
 	@GetMapping("/deploy")
 	public String deploy() {
 		return "deploy";
+	}
+	
+	private String nullToEmpty(String str) {
+		return str == null ? "해당 정보를 찾을 수 없습니다." : str;
 	}
 }
