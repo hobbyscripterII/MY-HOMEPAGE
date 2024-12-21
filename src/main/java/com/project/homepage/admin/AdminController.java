@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -18,10 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.homepage.cmmn.CategoryCode;
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.Pagination;
-import com.project.homepage.cmmn.Utils;
 
 @Controller
 @RequestMapping("/admin")

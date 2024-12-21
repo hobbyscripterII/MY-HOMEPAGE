@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,14 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class HomeController {
 	private final HomeService service;
+	private final String ip_home;
+	private final String ip_oneroom;
 	private Logger log = LoggerFactory.getLogger(getClass());
 	
-	public HomeController(HomeService service) {
-		this.service = service;
+	public HomeController(HomeService service, @Value("${ip.home}") String ip_home, @Value("${ip.oneroom}") String ip_oneroom) {
+		this.service 	= service;
+		this.ip_home    = ip_home;
+		this.ip_oneroom = ip_oneroom;
 	}
 	
 	@GetMapping("/")
@@ -26,19 +31,20 @@ public class HomeController {
 		String IP_ADDRESS  			   = request.getHeader("X-Forwarded-For");
 		
 		if(IP_ADDRESS == null) {
-			IP_ADDRESS = nullToEmpty(IP_ADDRESS);
+			String IPV6 = request.getRemoteAddr();
+			IP_ADDRESS  = nullToEmpty(IPV6);
 		}
 		
-		String USER_AGENT  			   = nullToEmpty(request.getHeader("User-Agent"));
-		String REFERER     			   = nullToEmpty(request.getHeader("Referer"));
-		String CURRENT_URI 			   = nullToEmpty(request.getRequestURI());
+		String USER_AGENT  = nullToEmpty(request.getHeader("User-Agent"));
+		String REFERER     = nullToEmpty(request.getHeader("Referer"));
+		String CURRENT_URI = nullToEmpty(request.getRequestURI());
 		
 		requestMap.put("IP_ADDRESS" , IP_ADDRESS);
 		requestMap.put("USER_AGENT" , USER_AGENT);
 		requestMap.put("REFERER"    , REFERER);
 		requestMap.put("CURRENT_URI", CURRENT_URI);
 		
-		if(!IP_ADDRESS.equals("0:0:0:0:0:0:0:1") && !USER_AGENT.contains("SM-F731N")) {
+		if(!IP_ADDRESS.equals(ip_home) && !IP_ADDRESS.equals(ip_oneroom) && !USER_AGENT.contains("SM-F731N")) {
 			service.visitInsert(requestMap);
 		}
 		
@@ -61,6 +67,7 @@ public class HomeController {
 	}
 	
 	private String nullToEmpty(String str) {
-		return str == null ? "해당 정보를 찾을 수 없습니다." : str;
+		String UNKNOWN = "UNKNOWN";
+		return str == null ? UNKNOWN : str;
 	}
 }
