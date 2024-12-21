@@ -47,7 +47,8 @@
 								<svg th:if="${data.SEC_YN == 'Y'}" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
 								  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
 								</svg>
-								<img th:src="@{/img/img-new.png}" class="new-img" alt="새로운 게시글 아이콘">
+								<!-- <img th:src="@{/img/img-new.png}" class="new-img" alt="새로운 게시글 아이콘"> -->
+								<div class="new-icon">NEW</div>
 							</td>
 							<td class="mobile-hide center" th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}">작성일</td>
 						</tr>
@@ -149,12 +150,16 @@ $(document).ready(function(e) {
 	$('#code').val(code);
 	$('#search').val(search);
 
+	setInterval(function() {
+		$('.new-icon').toggleClass('new-icon-dynamic');
+	}, 800);
+	
 	$('table tbody tr').each(function() {
 		var createdAt_ = $(this).find('td:last').text().trim();
 		var createdAt  = new Date(createdAt_.split(' ')[0]);
 		
 		if(createdAt < threeDaysAgo) {
-			$(this).find('.new-img').hide();
+			$(this).find('.new-icon').hide();
 		}
 	});
 	

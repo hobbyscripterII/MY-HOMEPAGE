@@ -1,11 +1,13 @@
 @charset "UTF-8";
-@font-face {font-family: 'FreesentationL'; src: url('https://cdn.jsdelivr.net/gh/fontbee/font@main/Freesentation/Freesentation-3Light.woff2') format('woff2');}
-* {margin: 0; box-sizing: border-box; font-family: 'verdana', 'FreesentationL';}
+@import url('https://fonts.cdnfonts.com/css/helvetica-neue-5');
+@font-face {font-family: 'Pretendard-Regular'; src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff'); font-weight: 400; font-style: normal;}
+
+* {margin: 0; box-sizing: border-box; font-family: 'Helvetica Neue', 'Pretendard-Regular';}
 html {animation: fadein 1s forwards;}
 main {position: relative;}
 body {height: 100%;}
 a {text-decoration: none;}
-p, span, tr, td {font-size: 14px;}
+p, span, tr, td {font-size: 16px;}
 h1 {padding-top: 80px;}
 h4 {padding: 25px; display: inline;}
 iframe {display: none;}

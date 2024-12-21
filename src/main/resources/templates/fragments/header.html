@@ -31,10 +31,10 @@ $(document).ready(function () {
     const $section  = $('section');
 
     $(window).on('scroll', function () {
-    	  const $windowWidth     = $(window).width();
+    	const $windowWidth     = $(window).width();
         const $windowHeight	   = $(window).height();
-        const $docHeight	     = $(document).height();
-        const $scrollTop	     = $(this).scrollTop();
+        const $docHeight	   = $(document).height();
+        const $scrollTop	   = $(this).scrollTop();
         const $scrollThreshold = $windowWidth > 768 ? 200 : 100;
         const $scrollProgress  = ($scrollTop / ($docHeight - $windowHeight)) * 100;
         
