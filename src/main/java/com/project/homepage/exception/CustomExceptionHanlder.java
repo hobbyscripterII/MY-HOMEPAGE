@@ -3,6 +3,8 @@ package com.project.homepage.exception;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import com.project.homepage.cmmn.ErrorCode;
 @ControllerAdvice
 public class CustomExceptionHanlder {
 	private static ErrorCode errorCode;
+	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	@ExceptionHandler({NotFoundException.class, NoResourceFoundException.class, AccessDeniedException.class, RuntimeException.class})
 	private String handleException(Exception e, Model model) {
@@ -39,6 +42,8 @@ public class CustomExceptionHanlder {
 		
 		error.put(Const.ARTICLE_TITLE , errorCode.title);
 		error.put(Const.MSG			  , errorCode.msg);
+		
+		log.info("error = {}", error);
 		
 		model.addAttribute(Const.ERROR, error);
 		

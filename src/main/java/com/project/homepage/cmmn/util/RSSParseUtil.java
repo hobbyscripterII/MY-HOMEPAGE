@@ -76,7 +76,7 @@ public class RSSParseUtil {
 				map.put("TITLE"		, title);
 				map.put("LINK"	    , link);
 				map.put("CREATED_AT", date);
-				map.put("ROWNUMBER"	, i + 1);
+				map.put("ROWNUMBER"	, total - i);
 				
 				rss.add(map);
 				}
