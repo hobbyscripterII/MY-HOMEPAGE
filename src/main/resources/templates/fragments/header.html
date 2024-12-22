@@ -29,7 +29,6 @@
 					<a href="#" class="submenu-toggle">Admin</a>
 					<ul class="sub-menu">
 						<li><a th:href="@{/admin/visit}">Visit Logs</a></li>
-						<li><a href="#">Test</a></li>
 					</ul>
 				</li>
 			</th:block>
@@ -60,13 +59,11 @@ $(document).ready(function () {
         $guideBar.css('width', $scrollProgress + '%');
         
         // header 색상 변경 이벤트
-        /*
         if ($scrollTop > $scrollThreshold) {
             $header.addClass('scrolled');
         } else {
             $header.removeClass('scrolled');
         }
-        */
     });
     
     $('.submenu-toggle').click(function(e) {

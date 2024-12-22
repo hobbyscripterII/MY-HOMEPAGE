@@ -17,7 +17,7 @@ public class HomeService {
 		return mapper.latestPostGet(requestMap);
 	}
 	
-	public int visitInsert(Map<String, Object> requestMap) {
-		return mapper.visitInsert(requestMap);
+	public int visitLogsInsert(Map<String, Object> requestMap) {
+		return mapper.visitLogsInsert(requestMap);
 	}
 }

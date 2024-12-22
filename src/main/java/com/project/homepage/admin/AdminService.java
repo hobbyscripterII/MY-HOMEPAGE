@@ -13,7 +13,7 @@ public class AdminService {
 		this.adminMapper = adminMapper;
 	}
 	
-	public List<Map<String, Object>> visitGet(Map<String, Object> requestMap) {
-		return adminMapper.visitGet(requestMap);
+	public List<Map<String, Object>> visitLogsGet(Map<String, Object> requestMap) {
+		return adminMapper.visitLogsGet(requestMap);
 	}
 }

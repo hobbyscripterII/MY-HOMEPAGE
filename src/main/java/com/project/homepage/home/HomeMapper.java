@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface HomeMapper {
 	public List<Map<String, Object>> latestPostGet(Map<String, Object> requestMap);
-	public int visitInsert(Map<String, Object> requestMap);
+	public int visitLogsInsert(Map<String, Object> requestMap);
 }

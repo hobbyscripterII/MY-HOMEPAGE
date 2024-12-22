@@ -25,7 +25,7 @@ import com.project.homepage.cmmn.Pagination;
 public class AdminController {
 	private final AdminService service;
 	private Logger log   = LoggerFactory.getLogger(getClass());
-	private String TITLE = "VISIT";
+	private String TITLE = "VISIT LOGS";
 	
 	public AdminController(AdminService service) {
 		this.service = service;
@@ -33,8 +33,8 @@ public class AdminController {
 	
 	@GetMapping("/visit")
 	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException {
-		int amount   = 50;
-		int offset   = getOffset(page, amount);
+		int amount = 50;
+		int offset = getOffset(page, amount);
 		
 		requestMap.put("offset", offset);
 		requestMap.put("amount", amount);
@@ -43,11 +43,10 @@ public class AdminController {
 			throw new AccessDeniedException("접근이 거부되었습니다.");
 		}
 		
-		List<Map<String, Object>> visitGet = service.visitGet(requestMap);
-		Pagination pagination 			   = new Pagination(page, amount, 0);
-		int idx 			  			   = visitGet.size();
+		List<Map<String, Object>> visitLogsGet = service.visitLogsGet(requestMap);
+		Pagination pagination 			       = new Pagination(page, amount, 0);
 		
-		model.addAttribute(Const.DATA		  , visitGet);
+		model.addAttribute(Const.DATA		  , visitLogsGet);
 		model.addAttribute(Const.ARTICLE_TITLE, TITLE);
 		model.addAttribute(Const.PAGINATION	  , pagination);
 		

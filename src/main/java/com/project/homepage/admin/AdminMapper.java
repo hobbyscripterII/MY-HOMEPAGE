@@ -7,5 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface AdminMapper {
-	public List<Map<String, Object>> visitGet(Map<String, Object> requestMap);
+	public List<Map<String, Object>> visitLogsGet(Map<String, Object> requestMap);
 }

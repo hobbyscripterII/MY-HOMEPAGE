@@ -45,7 +45,7 @@ public class HomeController {
 		requestMap.put("CURRENT_URI", CURRENT_URI);
 		
 		if(!IP_ADDRESS.equals(ip_home) && !IP_ADDRESS.equals(ip_oneroom) && !USER_AGENT.contains("SM-F731N")) {
-			service.visitInsert(requestMap);
+			service.visitLogsInsert(requestMap);
 		}
 		
 		return "home";
