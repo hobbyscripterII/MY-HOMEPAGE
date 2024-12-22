@@ -1,0 +1,10 @@
+html {background-color: #000; cursor: pointer; height: 100%;}
+section {color: white; padding: 10px; font-family: 'IBM Plex Mono', sans-serif; font-size: 1rem;}
+p {margin: 0;}
+p > p {display: inline;}
+p.command:before {content: 'root@server:~$ ';}
+table {width: 420px;}
+.typed-cursor {display: inline-block; opacity: 1; -webkit-animation: blink 0.7s infinite; -moz-animation: blink 0.7s infinite; animation: blink 0.7s infinite;}
+@keyframes blink {0% { opacity:1; } 50% { opacity:0; } 100% { opacity:1; }}
+@-webkit-keyframes blink {0% { opacity:1; } 50% { opacity:0; } 100% { opacity:1; }}
+@-moz-keyframes blink {0% { opacity:1; } 50% { opacity:0; } 100% { opacity:1; }}

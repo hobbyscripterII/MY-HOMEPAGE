@@ -3,8 +3,6 @@ package com.project.homepage.home;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +23,12 @@ public class HomeController {
 	}
 	
 	@GetMapping("/")
-	public String home(HttpServletRequest request, Model model) {
+	public String home() {
+		return "home";
+	}
+	
+	@GetMapping("/main")
+	public String main(HttpServletRequest request, Model model) {
 		Map<String, Object> requestMap = new HashMap<String, Object>();
 		String IP_ADDRESS  			   = request.getHeader("X-Forwarded-For");
 		
@@ -47,18 +50,18 @@ public class HomeController {
 			service.visitLogsInsert(requestMap);
 		}
 		
-		return "home";
+		return "main";
 	}
 	
-	@GetMapping("/aboutme")
-	public String aboutMe() {
-		return "about-me";
-	}
+//	@GetMapping("/aboutme")
+//	public String aboutMe() {
+//		return "about-me";
+//	}
 	
-	@GetMapping("/portfolio")
-	public String portfolio() {
-		return "portfolio";
-	}
+//	@GetMapping("/portfolio")
+//	public String portfolio() {
+//		return "portfolio";
+//	}
 	
 //	@GetMapping("/deploy")
 //	public String deploy() {

@@ -8,15 +8,19 @@
 </style>
 <header>
 	<div id="menu-toggle">
+		<!-- 햄버거 버튼 -->
 		<input type="checkbox" />
 		<span></span>
 		<span></span>
 		<span></span>
 		
 		<ul id="menu">
-			<li><a th:href="@{/}">Main</a></li>
-			<!-- <li><a th:href="@{/deploy}">Deploy Info</a></li> -->
+			<li><a th:href="@{/main}">Main</a></li>
+			<!--
+			<li><a th:href="@{/deploy}">Deploy Info</a></li>
 			<li><a th:href="@{/aboutme}">About Me</a></li>
+			<li><a th:href="@{/portfolio}">Portfolio</a></li>
+			-->
 			<li><a th:href="@{/board/list(code='B002')}">Study</a></li>
 			<li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
 			<li><a th:href="@{/board/list(code='B004')}">Music</a></li>
@@ -35,9 +39,9 @@
 		</ul>
 	</div>
 	
-	<div id="homepage-title"><a th:href="@{/}">HOMEPAGE</a></div>
+	<div id="homepage-title"><a th:href="@{/main}">HOMEPAGE</a></div>
 </header>
-<div class="guide-bar"></div>
+<!-- <div class="guide-bar"></div> -->
 
 <script>
 $(document).ready(function () {
@@ -45,7 +49,9 @@ $(document).ready(function () {
     const $guideBar      = $('.guide-bar');
     const $section       = $('section');
 	const $submenuToggle = $('.submenu-toggle');
+	const $submenu		 = $('.sub-menu');
 	
+	/*
     $(window).on('scroll', function () {
     	const $windowWidth     = $(window).width();
         const $windowHeight	   = $(window).height();
@@ -63,12 +69,13 @@ $(document).ready(function () {
             $header.removeClass('scrolled');
         }
     });
+	*/
     
-    $('.submenu-toggle').click(function(e) {
+    $submenuToggle.click(function(e) {
     	let $this    = $(this);
     	let $submenu = $this.next('.sub-menu');
     	
-    	$('.sub-menu').not($submenu).slideUp();
+    	$submenu.not($submenu).slideUp();
     	$submenu.slideToggle();
     });
 });

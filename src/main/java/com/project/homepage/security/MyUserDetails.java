@@ -27,37 +27,11 @@ public class MyUserDetails implements UserDetails {
         return list;
     }
 
-    public int getIadmin() {
-        return iadmin;
-    }
-    
-    @Override
-    public String getPassword() {
-        return pw;
-    }
-
-    @Override
-    public String getUsername() {
-        return id;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+    public int getIadmin() {return iadmin;}
+    @Override public String getPassword() {return pw;}
+    @Override public String getUsername() {return id;}
+    @Override public boolean isAccountNonExpired() {return true;}
+    @Override public boolean isAccountNonLocked() {return true;}
+    @Override public boolean isCredentialsNonExpired() {return true;}
+    @Override public boolean isEnabled() {return true;}
 }

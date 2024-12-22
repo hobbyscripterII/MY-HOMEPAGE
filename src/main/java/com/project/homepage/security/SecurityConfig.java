@@ -31,8 +31,8 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(a -> a
                         .requestMatchers(					// 권한없이 접근 가능
-                                "/", "/css/**", "/js/**", "/img/**", "/favicon.ico",
-                                "/login", "/logout", "/access-denied", "/aboutme", "/portfolio", // "/deploy"
+                                "/css/**", "/js/**", "/img/**", "/favicon.ico",
+                                "/", "main", "/login", "/logout", "/access-denied", // "/aboutme", "/portfolio", "/deploy"
                                 "/board/", "/board/list/**", "/board/read/**", "/thumbnail/**"
                         ).permitAll()
                         .anyRequest().hasRole("ADMIN")		// ADMIN만 접근 가능
