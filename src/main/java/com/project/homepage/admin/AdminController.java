@@ -24,7 +24,8 @@ import com.project.homepage.cmmn.Pagination;
 @RequestMapping("/admin")
 public class AdminController {
 	private final AdminService service;
-	private Logger log = LoggerFactory.getLogger(getClass());
+	private Logger log   = LoggerFactory.getLogger(getClass());
+	private String TITLE = "VISIT";
 	
 	public AdminController(AdminService service) {
 		this.service = service;
@@ -32,7 +33,6 @@ public class AdminController {
 	
 	@GetMapping("/visit")
 	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException {
-		String title = "VISIT";
 		int amount   = 50;
 		int offset   = getOffset(page, amount);
 		
@@ -48,7 +48,7 @@ public class AdminController {
 		int idx 			  			   = visitGet.size();
 		
 		model.addAttribute(Const.DATA		  , visitGet);
-		model.addAttribute(Const.ARTICLE_TITLE, title);
+		model.addAttribute(Const.ARTICLE_TITLE, TITLE);
 		model.addAttribute(Const.PAGINATION	  , pagination);
 		
 		return "admin/visit";

@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
+<style>
+	#menu li ul {list-style: none; margin: 0; padding: 0;}
+	.main-menu:hover .sub-menu {display: none;}
+	.sub-menu {display: none;}
+	.sub-menu li {padding: 0px !important;}
+</style>
 <header>
 	<div id="menu-toggle">
 		<input type="checkbox" />
@@ -17,7 +23,16 @@
 			<!--
 			<th:block sec:authorize="hasRole('ADMIN')"><li><a th:href="@{/board/list(code='B007')}">Data</a></li></th:block>
 			-->
-			<th:block sec:authorize="hasRole('ADMIN')"><li><a style="color: red" th:href="@{/admin/visit}">Visit</a></li></th:block>
+			<!-- 토글 방식 -->
+			<th:block sec:authorize="hasRole('ADMIN')">
+				<li class="main-menu">
+					<a href="#" class="submenu-toggle">Admin</a>
+					<ul class="sub-menu">
+						<li><a th:href="@{/admin/visit}">Visit Logs</a></li>
+						<li><a href="#">Test</a></li>
+					</ul>
+				</li>
+			</th:block>
 			<th:block sec:authorize="isAnonymous()"><li><a th:href="@{/login}">Login</a></li></th:block>
 			<th:block sec:authorize="isAuthenticated()"><li><a th:href="@{/logout}">Logout</a></li></th:block>
 		</ul>
@@ -29,10 +44,11 @@
 
 <script>
 $(document).ready(function () {
-    const $header   = $('header');
-    const $guideBar = $('.guide-bar');
-    const $section  = $('section');
-
+    const $header        = $('header');
+    const $guideBar      = $('.guide-bar');
+    const $section       = $('section');
+	const $submenuToggle = $('.submenu-toggle');
+	
     $(window).on('scroll', function () {
     	const $windowWidth     = $(window).width();
         const $windowHeight	   = $(window).height();
@@ -51,6 +67,14 @@ $(document).ready(function () {
             $header.removeClass('scrolled');
         }
         */
+    });
+    
+    $('.submenu-toggle').click(function(e) {
+    	let $this    = $(this);
+    	let $submenu = $this.next('.sub-menu');
+    	
+    	$('.sub-menu').not($submenu).slideUp();
+    	$submenu.slideToggle();
     });
 });
 </script>
