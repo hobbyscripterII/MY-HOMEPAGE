@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-<style>.container {text-align: center;}</style>
+<style>.container {text-align: center;} .container h3 {color: red; font-weight: bold;}</style>
 <section>
 	<div class="page-title">
 		<div class="container">
-			<h3 style="color: #d1180b; font-weight: bold" th:text="${ERROR.ARTICLE_TITLE}"></h3>
+			<h3 th:text="${ERROR.ARTICLE_TITLE}"></h3>
 			<img th:src="@{/img/img-construction-barrier.png}">
 		</div>
 	</div>

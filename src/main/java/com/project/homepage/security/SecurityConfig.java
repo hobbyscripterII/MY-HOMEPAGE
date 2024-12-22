@@ -3,21 +3,13 @@ package com.project.homepage.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Configuration
 public class SecurityConfig {
-//	private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
-//	
-//	public SecurityConfig(CustomAuthenticationEntryPoint customAuthenticationEntryPoint) {
-//		this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
-//	}
-	
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
@@ -29,14 +21,18 @@ public class SecurityConfig {
                         .passwordParameter("pw")
                         .failureUrl("/login?error") 		// 매핑 URL, Error Param 생략 시 Login 화면에 에러 메세지 출력 X
                         .defaultSuccessUrl("/") 			// 인증 완료 후 호출되는 URL
-                        .permitAll())
+                        .permitAll()
+                )
                 .exceptionHandling(e -> e
-                        .accessDeniedPage("/access-denied") // 매핑 URL
-                 )
+                		// 인증되지 않은 사용자에 대한 예외 처리
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.sendRedirect("/access-denied");
+                        })
+                )
                 .authorizeHttpRequests(a -> a
                         .requestMatchers(					// 권한없이 접근 가능
                                 "/", "/css/**", "/js/**", "/img/**", "/favicon.ico",
-                                "/login", "/logout", "/access-denied", "/aboutme", "/deploy", "/portfolio",
+                                "/login", "/logout", "/access-denied", "/aboutme", "/portfolio", // "/deploy"
                                 "/board/", "/board/list/**", "/board/read/**", "/thumbnail/**"
                         ).permitAll()
                         .anyRequest().hasRole("ADMIN")		// ADMIN만 접근 가능
@@ -56,7 +52,7 @@ public class SecurityConfig {
         });
         return httpSecurity.build();
     }
-
+    
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

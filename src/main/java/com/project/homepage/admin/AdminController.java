@@ -40,7 +40,7 @@ public class AdminController {
 		requestMap.put("amount", amount);
 		
 		if (getRole().equals(Const.ROLE_ANONYMOUS)) {
-			throw new AccessDeniedException("접근이 거부되었습니다.");
+			throw new AccessDeniedException("접근 권한이 없습니다.");
 		}
 		
 		List<Map<String, Object>> visitLogsGet = service.visitLogsGet(requestMap);

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
+<style>.container {text-align: center;} .container h3 {color: red; font-weight: bold;}</style>
 <section>
 	<div class="page-title">
 		<div class="container">
-			<h3 style="color: #d1180b; font-weight: bold">403 FORBIDDEN</h3>
+			<h3>403 FORBIDDEN</h3>
+			<img th:src="@{/img/img-construction-barrier.png}">
 		</div>
 	</div>
 	
 	<div class="err-msg-group center">
-	    <p><strong>접근이 거부되었습니다.</strong></p>
-	    <p><strong>해당 페이지 권한이 없습니다.</strong></p>
+	    <p><strong>접근 권한이 없습니다. 올바른 경로로 이동해주세요.</strong></p>
 	</div>
 	
 	<div class="btn-group center">

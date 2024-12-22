@@ -17,7 +17,6 @@ public class HomeController {
 	private final HomeService service;
 	private final String ip_home;
 	private final String ip_oneroom;
-	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	public HomeController(HomeService service, @Value("${ip.home}") String ip_home, @Value("${ip.oneroom}") String ip_oneroom) {
 		this.service 	= service;
@@ -61,10 +60,10 @@ public class HomeController {
 		return "portfolio";
 	}
 	
-	@GetMapping("/deploy")
-	public String deploy() {
-		return "deploy";
-	}
+//	@GetMapping("/deploy")
+//	public String deploy() {
+//		return "deploy";
+//	}
 	
 	private String nullToEmpty(String str) {
 		String UNKNOWN = "UNKNOWN";

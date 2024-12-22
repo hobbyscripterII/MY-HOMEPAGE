@@ -38,6 +38,8 @@ import com.project.homepage.cmmn.util.CommonmarkUtil;
 import com.project.homepage.cmmn.util.FileUploadUtil;
 import com.project.homepage.cmmn.util.RSSParseUtil;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -45,7 +47,6 @@ public class BoardController {
 	private final CommonmarkUtil commonmarkUtil;
 	private final FileUploadUtil fileUploadUtil;
 	private final RSSParseUtil rssParseUtil;
-	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	public BoardController(BoardService service, CommonmarkUtil commonmarkUtil, FileUploadUtil fileUploadUtil, RSSParseUtil rssParseUtil) {
 		this.service		= service;
@@ -70,8 +71,9 @@ public class BoardController {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping("/list")
-	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException {
+	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model, HttpServletResponse response) throws IOException, NotFoundException {
 		List<Map<String, Object>> boardGet = null;
 		String code	    				   = (String) requestMap.get(Const.CODE);
 		String search   				   = (String) requestMap.get(Const.SEARCH) == null ? "" : (String) requestMap.get("search");
@@ -91,7 +93,7 @@ public class BoardController {
 		}
 		
 		if (code.equals(CategoryCode.DATA.code) && getRole().equals(Const.ROLE_ANONYMOUS)) {
-			throw new AccessDeniedException("접근이 거부되었습니다.");
+			response.sendError(HttpServletResponse.SC_FORBIDDEN, "접근이 거부되었습니다.");
 		}
 		
 		if (code.equals(CategoryCode.STUDY.code)) {
@@ -145,22 +147,8 @@ public class BoardController {
 		return service.boardInsert(thumbnail, requestMap);
 	}
 	
-	@GetMapping("/update/{iboard}")
-	public String update(@PathVariable(name = "iboard") String iboard, Model model) {
-		Map<String, Object> requestMap = new HashMap<>();
-		requestMap.put("iboard" , iboard);
-		
-		Map<String, Object> boardSelect			= service.boardSelect(requestMap);
-		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
-		
-		model.addAttribute(Const.DATA , boardSelect);
-		model.addAttribute(Const.GENRE, boardGenreGet);
-		
-		return "board/write";
-	}
-	
 	@GetMapping("/read/{iboard}")
-	public String read(@PathVariable(name = "iboard") String iboard, @RequestParam Map<String, Object> requestMap, Model model) throws NotFoundException, AccessDeniedException {
+	public String read(@PathVariable(name = "iboard") String iboard, @RequestParam Map<String, Object> requestMap, Model model, HttpServletResponse response) throws IOException, NotFoundException, AccessDeniedException {
 		requestMap.put("iboard", iboard);
 		
 		Map<String, Object> boardSelect = service.boardSelect(requestMap);
@@ -176,7 +164,7 @@ public class BoardController {
 		requestMap.put("role", role);
 		
 		if((secYn.equals("Y") || code.equals(CategoryCode.DATA.code)) && role.equals(Const.ROLE_ANONYMOUS)) {
-			throw new AccessDeniedException("접근이 거부되었습니다.");
+			response.sendError(HttpServletResponse.SC_FORBIDDEN, "접근이 거부되었습니다.");
 		}
 		
 		List<Map<String, Object>> prevPost = service.prevPostGet(requestMap);
@@ -190,6 +178,20 @@ public class BoardController {
 		model.addAttribute(Const.DATA	    , boardSelect);
 		
 		return "board/read";
+	}
+	
+	@GetMapping("/update/{iboard}")
+	public String update(@PathVariable(name = "iboard") String iboard, Model model) {
+		Map<String, Object> requestMap = new HashMap<>();
+		requestMap.put("iboard" , iboard);
+		
+		Map<String, Object> boardSelect			= service.boardSelect(requestMap);
+		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
+		
+		model.addAttribute(Const.DATA , boardSelect);
+		model.addAttribute(Const.GENRE, boardGenreGet);
+		
+		return "board/write";
 	}
 	
 	@ResponseBody
