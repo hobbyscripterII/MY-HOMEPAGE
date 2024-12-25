@@ -20,10 +20,10 @@
 			<li><a th:href="@{/deploy}">Deploy Info</a></li>
 			<li><a th:href="@{/aboutme}">About Me</a></li>
 			<li><a th:href="@{/portfolio}">Portfolio</a></li>
-			-->
 			<li><a th:href="@{/board/list(code='B004')}">Music</a></li>
-			<li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
 			<li><a th:href="@{/board/list(code='B007')}">Data</a></li>
+			-->
+			<li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
 			<!-- 토글 방식 -->
 			<!--
 			<th:block sec:authorize="hasRole('ADMIN')">
@@ -39,7 +39,7 @@
 		</ul>
 	</div>
 	
-	<div id="homepage-title"><a th:href="@{/main}">HOMEPAGE</a></div>
+	<div id="homepage-title"><a th:href="@{/}">HOMEPAGE</a></div>
 </header>
 <!-- <div class="guide-bar"></div> -->
 
