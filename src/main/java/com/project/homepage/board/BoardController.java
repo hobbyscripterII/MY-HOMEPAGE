@@ -47,6 +47,7 @@ public class BoardController {
 	private final CommonmarkUtil commonmarkUtil;
 	private final FileUploadUtil fileUploadUtil;
 	private final RSSParseUtil rssParseUtil;
+	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	public BoardController(BoardService service, CommonmarkUtil commonmarkUtil, FileUploadUtil fileUploadUtil, RSSParseUtil rssParseUtil) {
 		this.service		= service;

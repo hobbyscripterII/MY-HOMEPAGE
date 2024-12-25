@@ -15,25 +15,25 @@
 		<span></span>
 		
 		<ul id="menu">
-			<li><a th:href="@{/main}">Main</a></li>
+			<li><a th:href="@{/}">Home</a></li>
 			<!--
 			<li><a th:href="@{/deploy}">Deploy Info</a></li>
 			<li><a th:href="@{/aboutme}">About Me</a></li>
 			<li><a th:href="@{/portfolio}">Portfolio</a></li>
 			-->
-			<li><a th:href="@{/board/list(code='B002')}">Study</a></li>
-			<li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
 			<li><a th:href="@{/board/list(code='B004')}">Music</a></li>
+			<li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
+			<li><a th:href="@{/board/list(code='B007')}">Data</a></li>
 			<!-- 토글 방식 -->
+			<!--
 			<th:block sec:authorize="hasRole('ADMIN')">
 				<li class="main-menu">
 					<a href="#" class="submenu-toggle">Admin</a>
 					<ul class="sub-menu">
-						<li><a th:href="@{/board/list(code='B007')}">Data</a></li>
-						<li><a th:href="@{/admin/visit}">Visit Logs</a></li>
 					</ul>
 				</li>
 			</th:block>
+			-->
 			<th:block sec:authorize="isAnonymous()"><li><a th:href="@{/login}">Login</a></li></th:block>
 			<th:block sec:authorize="isAuthenticated()"><li><a th:href="@{/logout}">Logout</a></li></th:block>
 		</ul>
@@ -71,6 +71,7 @@ $(document).ready(function () {
     });
 	*/
     
+	/*
     $submenuToggle.click(function(e) {
     	let $this    = $(this);
     	let $submenu = $this.next('.sub-menu');
@@ -78,6 +79,7 @@ $(document).ready(function () {
     	$submenu.not($submenu).slideUp();
     	$submenu.slideToggle();
     });
+	*/
 });
 </script>
 </html>

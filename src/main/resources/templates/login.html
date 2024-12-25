@@ -1,63 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
-<link rel="stylesheet" th:href="@{/css/codepen/login.css}">
-<style>
-	main {height: 85vh;}
-</style>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="favicon" href="/favicon.ico" />
+	<link rel="stylesheet" th:href="@{/css/codepen/linux-theme.css}">
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+    <title>Lee Ju Young</title>
+</head>
 <section>
-	<div class="page-title">
-		<div class="container">
-			<h3>LOGIN</h3>
-		</div>
+	<div class="console">
+		<form id="form">
+			<span>login as:<span><input type="text" id="id" name="id" autocomplete="off">
+		</form>
 	</div>
-
-    <div class="card">
-        <div class="photo"></div>
-        <div class="banner"></div>
-        <ul>
-            <li><b>Ju Young Lee</b></li>
-            <li>Web Developer</li>
-        </ul>
-        <button class="contact" id="main-button">click to get in touch</button>
-	    <form id="form" class="email-form">
-	    	<input type="text" id="id" name="id" placeholder="ID">
-	    	<input type="password" id="pw" name="pw" placeholder="PASSWORD">
-	    	<button type="button" class="contact" id="login">LOGIN</button>
-	    </form>
-      </div>
 </section>
-
-<script th:src="@{/js/login.js}"></script>
-<script type="text/javascript">
-    $(document).ready(function(e) {
-        $(document).on('keydown', function(e) {
-            if (e.key == 'Enter') {
-                login();
-            }
-        });
-
-        $('#login').click(function() {
-            login();
-        });
-    });
-
-    function login() {
-        let id = $('#id');
-        let pw = $('#pw');
-
-        if (id.val().trim() == '') {
-            alert('아이디를 입력해주세요.');
-            id.focus();
-            return;
-        } else if (pw.val().trim() == '') {
-            alert('패스워드를 입력해주세요.');
-            pw.focus();
-            return;
-        } else {
-        	$('#form').attr('method', 'POST');
-            $('#form').submit();
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function(e) {
+        $('#id').focus();
+	});
+	
+	$('html').click(function() {
+        let $id = $('#id');
+        let $pw = $('#pw');
+        
+        if($id.val() == '') {
+        	$id.focus();
+        } 
+        
+        if($pw.val() == '') {
+        	$pw.focus();
         }
-    }
+	});
+	
+    $('#id').on('keydown', function(e) {
+    	if(e.key == 'Enter') {
+    		let $id = $('#id').val();
+    		
+            if ($id.trim() == '') {
+                alert('아이디를 입력해주세요.');
+                return;
+            }
+    		
+        	let $html = `<br><span>${$id}@192.168.0.48's password:</span><input type="password" id="pw" name="pw" autocomplete="off">`;
+        	let $form = $('#form');
+        	
+        	$form.append($html);
+        	
+        	$('#pw').focus();
+    	}
+    });
+    
+    $(document).on('keydown', '#pw', function(e) {
+        if (e.key == 'Enter') {
+        	let $pw = $('#pw').val();
+        	
+            if ($pw.trim() == '') {
+                alert('패스워드를 입력해주세요.');
+                return;
+            } else {
+            	$('#form').attr('method', 'POST');
+                $('#form').submit();
+            }
+        }
+    });
 </script>
-
 </html>

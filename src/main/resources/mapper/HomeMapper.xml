@@ -1,49 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.homepage.home.HomeMapper">
-	<insert id="visitLogsInsert" parameterType="map">
-	INSERT INTO tbl_visit_logs(ip_addr, user_agent, referer, current_url) VALUES(#{IP_ADDRESS}, #{USER_AGENT}, #{REFERER}, #{CURRENT_URI})
-	</insert>
-	
-	<select id="latestPostGet" parameterType="map">
-	(
-	SELECT A.IBOARD, A.ICODE, A.TITLE, A.CONTENTS, A.YOUTUBE_ID, A.GENRE, A.DEL_YN, A.CREATED_AT
-	FROM tbl_board A
-	LEFT JOIN tbl_thumbnail B
-	ON A.iboard = B.iboard
-	WHERE A.icode = 'B001' AND A.del_yn = 'N'
-	ORDER BY A.CREATED_AT DESC
-	LIMIT 10
-	)
-	UNION ALL
-	(
-	SELECT A.IBOARD, A.ICODE, A.TITLE, A.CONTENTS, A.YOUTUBE_ID, A.GENRE, A.DEL_YN, A.CREATED_AT
-	FROM tbl_board A
-	LEFT JOIN tbl_thumbnail B
-	ON A.iboard = B.iboard
-	WHERE A.icode = 'B003' AND A.del_yn = 'N'
-	ORDER BY A.CREATED_AT DESC
-	LIMIT 10
-	)
-	UNION ALL
-	(
-	SELECT A.IBOARD, A.ICODE, A.TITLE, A.CONTENTS, A.YOUTUBE_ID, A.GENRE, A.DEL_YN, A.CREATED_AT
-	FROM tbl_board A
-	LEFT JOIN tbl_thumbnail B
-	ON A.iboard = B.iboard
-	WHERE A.icode = 'B004' AND A.del_yn = 'N'
-	ORDER BY A.CREATED_AT DESC
-	LIMIT 10
-	)
-	UNION ALL
-	(
-	SELECT A.IBOARD, A.ICODE, A.TITLE, A.CONTENTS, A.YOUTUBE_ID, A.GENRE, A.DEL_YN, A.CREATED_AT
-	FROM tbl_board A
-	LEFT JOIN tbl_thumbnail B
-	ON A.iboard = B.iboard
-	WHERE A.icode = 'B005' AND A.del_yn = 'N'
-	ORDER BY A.CREATED_AT DESC
-	LIMIT 10
-	)
-	</select>
 </mapper>

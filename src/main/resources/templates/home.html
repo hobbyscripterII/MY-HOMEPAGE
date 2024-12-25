@@ -1,41 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{/css/codepen/linux-theme.css}">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="article">
+<style>
+	main {height: 100vh;}
+	section {padding: 120px 0;}
+	footer {margin-top: 0;}
+	#daysElapsed {font-size: 40px;}
+</style>
 <section>
-	<div class="console">
-	login as: jy <br />
-	
-	jy@***.***.***.**'s password: <br />
-	
-	Linux raspberrypi 6.6.31+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.6.31-1+rpt1 (2024-05-29) aarch64 <br /><br />
-	
-	The programs included with the Debian GNU/Linux system are free software; the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright. <br /><br />
-	Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law. Last login: Sat Sep 14 23:38:14 2024 from ***.***.***.** <br /><br />
-	
-	<span style="color: #00ff00">jy@raspberrypi</span>:<span style="color: #0000ff">~</span> <span style="color: #808080">$ </span>cat deployment_environment.txt<br />
-	
-	<br />
-	### Deployment Environment <br />
-	
-	1. Device: Raspberry Pi 5 <br />
-	2. OS: Debian <br />
-	3. Container Management Platform: Docker <br />
-	4. Web Server: nfront <br />
-	5. Proxy Settings: Reverse Proxy configured <br />
-	6. SSH Settings: Default port changed <br /><br />
-	
-	### Copyright © 2024 이주영 <br />
-	
-	<span style="color: #00ff00">jy@raspberrypi</span>:<span style="color: #0000ff">~</span> <span style="color: #808080">$ </span><span class='typed-cursor'>_</span><br />
+	<div class="container">
+		<div class="home-wrap">
+			<img th:src="@{/img/img-raspberry.png}" id="profile-img" class="mb-50" alt="프로필 사진">
+			<p><span id="daysElapsed"></span> 일 째 돌아가는 중</p>
+			<p>배포 일자 : <span id="startDate"></span></p>
+			<p>현재 일자 : <span id="currentDate"></span></p>
+		</div>
 	</div>
 </section>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	$(document).ready(function() {
-		$('html').click(function() {
-			location.href = '/main';
-		});
-	});
+$(document).ready(function() {
+    let startDate = new Date('2024-09-24T00:00:00');
+	let $guideBar = $('.guide-bar');
+	$guideBar.css('display', 'none');
+	
+    function updateDays() {
+	    let currentDate    = new Date();
+        let timeDifference = currentDate - startDate;
+        let daysElapsed    = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        
+        $('#daysElapsed').html(daysElapsed);
+    }
+	
+    function updateCurrentTime() {
+	    let currentDate = new Date();
+	    
+        $('#currentDate').html(formatDate(currentDate));
+    }
+    
+    updateDays();
+    $('#startDate').html(formatDate(startDate));
+    setInterval(updateCurrentTime, 1000);
+});
+
+function formatDate(date) {
+    let year    = date.getFullYear();
+    let month   = (date.getMonth() + 1).toString().padStart(2, '0');
+    let day     = date.getDate().toString().padStart(2, '0');
+    let hours   = date.getHours().toString().padStart(2, '0');
+    let minutes = date.getMinutes().toString().padStart(2, '0');
+    let seconds = date.getSeconds().toString().padStart(2, '0');
+    
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
 </script>
 </html>
