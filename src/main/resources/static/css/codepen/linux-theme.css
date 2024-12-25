@@ -2,5 +2,6 @@ html, body {padding: 0px; margin: 0px;}
 html {margin-left: 5px; background-color: #000; height: 100%; color: white; font-family: 'IBM Plex Mono'; font-size: 14px;}
 p {margin: 0;}
 p > p {display: inline;}
-input, input:focus {background-color: transparent; border-color: transparent; outline: none; font-family: 'IBM Plex Mono'; color: #FFF; font-size: 14px;}
-input:focus {caret-color: #00FF00;}
+input {background-color: transparent; border-color: transparent; outline: none;}
+#id, #id:focus {font-family: 'IBM Plex Mono'; color: #FFF; font-size: 14px; caret-color: #00FF00;}
+#pw, #pw:focus {color: #000; font-size: 14px; caret-color: #000;}

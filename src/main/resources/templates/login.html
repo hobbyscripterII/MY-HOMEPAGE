@@ -40,16 +40,16 @@
     		let $id = $('#id').val();
     		
             if ($id.trim() == '') {
-                alert('아이디를 입력해주세요.');
-                return;
+                alert('please enter your id.');
+                location.reload();
+            } else {
+	        	let $html = `<br><span>${$id}@192.168.0.48's password:</span><input type="password" id="pw" name="pw" autocomplete="off">`;
+	        	let $form = $('#form');
+	        	
+	        	$form.append($html);
+	        	
+	        	$('#pw').focus();
             }
-    		
-        	let $html = `<br><span>${$id}@192.168.0.48's password:</span><input type="password" id="pw" name="pw" autocomplete="off">`;
-        	let $form = $('#form');
-        	
-        	$form.append($html);
-        	
-        	$('#pw').focus();
     	}
     });
     
@@ -58,7 +58,7 @@
         	let $pw = $('#pw').val();
         	
             if ($pw.trim() == '') {
-                alert('패스워드를 입력해주세요.');
+            	alert('please enter your password.');
                 return;
             } else {
             	$('#form').attr('method', 'POST');
