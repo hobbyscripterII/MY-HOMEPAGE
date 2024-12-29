@@ -9,8 +9,8 @@ section {padding: 70px 0;}
 #thumbnail {display: none;}
 #thumbnail-preview {display: none; width: 440px; margin: auto;}
 #editor {text-align: left; width: 100%; font-size: 17px;}
-#editor p {margin-bottom: 5px; font-size: 15px;}
-#editor ol li {font-size: 15px;}
+#editor p {margin-bottom: 5px; font-size: 17px;}
+#editor ol li {font-size: 17px;}
 #editor ul, #editor ol {padding-left: 20px;}
 #board-search .search-window {padding: 15px 0; margin: 0 5px;}
 #board-search .search-window .search-wrap {position: relative; padding-right: 124px; margin: 0 auto;}

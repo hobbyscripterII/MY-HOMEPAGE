@@ -25,5 +25,6 @@ header.scrolled #menu-toggle span {background: #FFF;}
 #menu-toggle input:checked ~ span:nth-last-child(3) {opacity: 0; transform: rotate(0deg) scale(0.2, 0.2);}
 #menu-toggle input:checked ~ span:nth-last-child(2) {transform: rotate(-45deg) translate(0px, 2px);}
 #menu-toggle input:checked ~ ul {transform: none;}
+
 .sub-menu li a:hover {text-decoration: underline !important;}
 .guide-bar {z-index: 999; width: 0vw; height: 7px; background-color: #000; transition: width 0.1s linear; position: fixed; top: 70px; left: 0;}
