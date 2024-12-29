@@ -11,11 +11,10 @@ import com.project.homepage.cmmn.Const;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
-@Data
-@Builder
+@Getter
 public class MyUserDetails implements UserDetails {
-    private int iadmin;
     private String id;
     private String pw;
     private String role;
@@ -27,7 +26,6 @@ public class MyUserDetails implements UserDetails {
         return list;
     }
 
-    public int getIadmin() {return iadmin;}
     @Override public String getPassword() {return pw;}
     @Override public String getUsername() {return id;}
     @Override public boolean isAccountNonExpired() {return true;}

@@ -21,7 +21,6 @@ import com.project.homepage.cmmn.util.FileUploadUtil;
 public class BoardService {
 	private final BoardMapper mapper;
 	private final FileUploadUtil fileUploadUtil;
-	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	public BoardService(BoardMapper mapper, FileUploadUtil fileUploadUtil) {
 		this.mapper 	    = mapper;

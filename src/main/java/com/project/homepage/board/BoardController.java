@@ -37,6 +37,7 @@ import com.project.homepage.cmmn.Utils;
 import com.project.homepage.cmmn.util.CommonmarkUtil;
 import com.project.homepage.cmmn.util.FileUploadUtil;
 import com.project.homepage.cmmn.util.RSSParseUtil;
+import com.project.homepage.security.MyUserDetailsService;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -44,16 +45,17 @@ import jakarta.servlet.http.HttpServletResponse;
 @RequestMapping("/board")
 public class BoardController {
 	private final BoardService service;
+	private final MyUserDetailsService myUserDetailsService;
 	private final CommonmarkUtil commonmarkUtil;
 	private final FileUploadUtil fileUploadUtil;
 	private final RSSParseUtil rssParseUtil;
-	private Logger log = LoggerFactory.getLogger(getClass());
 	
-	public BoardController(BoardService service, CommonmarkUtil commonmarkUtil, FileUploadUtil fileUploadUtil, RSSParseUtil rssParseUtil) {
-		this.service		= service;
-		this.commonmarkUtil	= commonmarkUtil;
-		this.fileUploadUtil = fileUploadUtil;
-		this.rssParseUtil   = rssParseUtil;
+	public BoardController(BoardService service, MyUserDetailsService myUserDetailsService, CommonmarkUtil commonmarkUtil, FileUploadUtil fileUploadUtil, RSSParseUtil rssParseUtil) {
+		this.service			  = service;
+		this.myUserDetailsService = myUserDetailsService;
+		this.commonmarkUtil		  = commonmarkUtil;
+		this.fileUploadUtil 	  = fileUploadUtil;
+		this.rssParseUtil   	  = rssParseUtil;
 	}
 	
 	@RequestMapping("/upload-img")
@@ -80,6 +82,7 @@ public class BoardController {
 		String search   				   = (String) requestMap.get(Const.SEARCH) == null ? "" : (String) requestMap.get("search");
 		String title    				   = CategoryCode.getTitle(code);
 		String url      				   = "board/list";
+		String role						   = myUserDetailsService.getRole();
 		int amount      				   = Const.AMOUNT;
 		int offset      				   = getOffset(page, amount);
 		int boardGetCnt 				   = 0;
@@ -87,13 +90,13 @@ public class BoardController {
 		requestMap.put("offset", offset);
 		requestMap.put("amount", amount);
 		requestMap.put("search", search);
-		requestMap.put("role"  , getRole());
+		requestMap.put("role"  , role);
 		
 		if(title == null || Utils.isNull(title)) {
 			throw new NotFoundException();
 		}
 		
-		if (code.equals(CategoryCode.DATA.code) && getRole().equals(Const.ROLE_ANONYMOUS)) {
+		if (code.equals(CategoryCode.DATA.code) && role.equals(Const.ROLE_ANONYMOUS)) {
 			response.sendError(HttpServletResponse.SC_FORBIDDEN, "접근이 거부되었습니다.");
 		}
 		
@@ -160,7 +163,7 @@ public class BoardController {
 		
 		String code  = (String) boardSelect.get("icode");
 		String secYn = (String) boardSelect.get("sec_yn");
-		String role  = getRole();
+		String role	 = myUserDetailsService.getRole();
 		
 		requestMap.put("role", role);
 		
@@ -221,17 +224,6 @@ public class BoardController {
 		else 				 {responseMap.put(Const.RESULT, ResponseCode.FAIL.code);}
 		
 		return responseMap;
-	}
-
-	// 권한 가져오기
-	public String getRole() {
-		Authentication authentication 	   				   = SecurityContextHolder.getContext().getAuthentication();
-		Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) authentication.getAuthorities();
-		
-		return authorities.stream()
-						  .findFirst()
-						  .map(GrantedAuthority :: getAuthority)
-						  .orElse(null);
 	}
 	
 	private int getOffset(int page, int amount) {
