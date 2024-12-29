@@ -9,10 +9,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
     <title>Lee Ju Young</title>
 </head>
+<style>.form-wrap {display: flex; align-items: center;}</style>
 <section>
 	<div class="console">
 		<form id="form">
-			<span>login as:<span><input type="text" id="id" name="id" autocomplete="off">
+			<div class="form-wrap">
+				<img th:src="@{/img/img-linux.png}"><span>login as:</span><input type="text" id="id" name="id" autocomplete="off">
+			</div>
 		</form>
 	</div>
 </section>
@@ -43,7 +46,7 @@
                 alert('please enter your id.');
                 location.reload();
             } else {
-	        	let $html = `<br><span>${$id}@192.168.0.48's password:</span><input type="password" id="pw" name="pw" autocomplete="off">`;
+	        	let $html = `<div class="form-wrap"><img src="/img/img-linux.png"><span>${$id}@192.168.0.48's password:</span><input type="password" id="pw" name="pw" autocomplete="off"></div>`;
 	        	let $form = $('#form');
 	        	
 	        	$form.append($html);
