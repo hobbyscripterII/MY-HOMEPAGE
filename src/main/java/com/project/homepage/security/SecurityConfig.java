@@ -30,7 +30,12 @@ public class SecurityConfig {
                         })
                 )
                 .authorizeHttpRequests(a -> a
-                        .requestMatchers("/css/**", "/js/**", "/img/**", "/favicon.ico", "/", "/login", "/logout", "/access-denied")
+                        .requestMatchers(
+                        		"/",
+                        		"/css/**", "/js/**", "/img/**", "/favicon.ico", // resources
+                        		"/login", "/logout",
+                        		"/access-denied", "/error/error" // exception
+                        		)
                         .permitAll()
                         .anyRequest().hasRole("ADMIN") 		// ADMIN만 접근 가능
                 );

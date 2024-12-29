@@ -96,7 +96,7 @@ public class BoardController {
 			throw new NotFoundException();
 		}
 		
-		if (code.equals(CategoryCode.DATA.code) && role.equals(Const.ROLE_ANONYMOUS)) {
+		if (role.equals(Const.ROLE_ANONYMOUS)) {
 			response.sendError(HttpServletResponse.SC_FORBIDDEN, "접근이 거부되었습니다.");
 		}
 		
