@@ -15,12 +15,12 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(c -> c.disable())
                 .formLogin(in -> in
-                        .loginPage("/login")				// HTML 경로
-                        .loginProcessingUrl("/login")		// URL 호출 시 Security가 낚아채므로 Controller에 구현할 필요 X
+                        .loginPage("/login")		  // HTML 경로
+                        .loginProcessingUrl("/login") // URL 호출 시 Security가 낚아채므로 Controller에 구현할 필요 X
                         .usernameParameter("id")
                         .passwordParameter("pw")
-                        .failureUrl("/login?error") 		// 매핑 URL, Error Param 생략 시 Login 화면에 에러 메세지 출력 X
-                        .defaultSuccessUrl("/") 			// 인증 완료 후 호출되는 URL
+                        .failureUrl("/login?error")   // 매핑 URL, Error Param 생략 시 Login 화면에 에러 메세지 출력 X
+                        .defaultSuccessUrl("/") 	  // 인증 완료 후 호출되는 URL
                         .permitAll()
                 )
                 .exceptionHandling(e -> e
@@ -30,14 +30,13 @@ public class SecurityConfig {
                         })
                 )
                 .authorizeHttpRequests(a -> a
-                        .requestMatchers(
-                        		"/",
-                        		"/css/**", "/js/**", "/img/**", "/favicon.ico", // resources
-                        		"/login", "/logout",
-                        		"/access-denied", "/error/error" // exception
-                        		)
-                        .permitAll()
-                        .anyRequest().hasRole("ADMIN") 		// ADMIN만 접근 가능
+	                    .requestMatchers(
+	                    		"/", "/css/**", "/js/**", "/img/**", "/favicon.ico", // resources
+	                    		"/home", "/login", "/logout", "/access-denied", "/error/error",
+	                    		"/board/list/**", "/board/read/**"
+	                    		)
+	                    .permitAll()
+	                    .anyRequest().hasRole("ADMIN") // ADMIN만 접근 가능
                 );
         httpSecurity.logout(out -> {
                  out.logoutUrl("/logout")

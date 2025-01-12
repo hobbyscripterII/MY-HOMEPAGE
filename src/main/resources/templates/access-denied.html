@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="section">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -8,9 +8,19 @@
 	<link rel="stylesheet" th:href="@{/css/non-fragment.css}">
     <title>이주영 개인 홈페이지</title>
 </head>
+<style>section {height: 100vh;}</style>
 <section>
-	<h1>ALERT</h1>
+	<div class="page-title">
+		<div class="container">
+			<h3>ALERT</h3>
+		</div>
+	</div>
+	
 	<h3>PERMISSION ACCESS DENIED</h3>
+	
+	<div class="btn-group center" style="margin-top: 50px;">
+		<button type="button" class="btn btn-dark" id="search-btn" onclick="history.back()">돌아가기</button>
+	</div>
 </section>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/cmmn.js}"></script>

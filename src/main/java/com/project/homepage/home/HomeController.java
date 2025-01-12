@@ -8,23 +8,29 @@ import com.project.homepage.security.MyUserDetailsService;
 
 @Controller
 public class HomeController {
-	private final MyUserDetailsService myUserDetailService;
+	// 미사용으로 주석 처리
+//	private final MyUserDetailsService myUserDetailService;
+//	
+//	public HomeController(MyUserDetailsService myUserDetailsService) {
+//		this.myUserDetailService = myUserDetailsService;
+//	}
 	
-	public HomeController(MyUserDetailsService myUserDetailsService) {
-		this.myUserDetailService = myUserDetailsService;
-	}
+//	@GetMapping("/")
+//	public String index() {
+//		return "index";
+//	}
 	
 	@GetMapping("/")
 	public String home() {
 		String url  = "home";
-		String role = myUserDetailService.getRole();
 		
-		if (role.equals(Const.ROLE_ANONYMOUS)) {
-			url = "redirect:login";
-		}
+		// 비회원일 경우 login 화면으로 redirect
+//		String role = myUserDetailService.getRole();
+//		
+//		if (role.equals(Const.ROLE_ANONYMOUS)) {
+//			url = "redirect:login";
+//		}
 		
 		return url;
 	}
-	
-
 }

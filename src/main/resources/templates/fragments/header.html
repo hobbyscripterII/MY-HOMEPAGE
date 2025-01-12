@@ -17,12 +17,11 @@
 		<ul id="menu">
 			<li><a th:href="@{/}">Home</a></li>
 			<!--
-			<li><a th:href="@{/deploy}">Deploy Info</a></li>
+			<li><a th:href="@{/deploy}">Deploy</a></li>
 			<li><a th:href="@{/aboutme}">About Me</a></li>
 			<li><a th:href="@{/portfolio}">Portfolio</a></li>
-			<li><a th:href="@{/board/list(code='B004')}">Music</a></li>
-			<li><a th:href="@{/board/list(code='B007')}">Data</a></li>
 			-->
+			<li><a th:href="@{/board/list(code='B004')}">Music</a></li>
 			<li><a th:href="@{/board/list(code='B005')}">Daily</a></li>
 			<!-- 토글 방식 -->
 			<!--
@@ -30,6 +29,7 @@
 				<li class="main-menu">
 					<a href="#" class="submenu-toggle">Admin</a>
 					<ul class="sub-menu">
+						<li><a th:href="@{/board/list(code='B007')}">Data</a></li>
 					</ul>
 				</li>
 			</th:block>
@@ -71,7 +71,6 @@ $(document).ready(function () {
     });
 	*/
     
-	/*
     $submenuToggle.click(function(e) {
     	let $this    = $(this);
     	let $submenu = $this.next('.sub-menu');
@@ -79,7 +78,6 @@ $(document).ready(function () {
     	$submenu.not($submenu).slideUp();
     	$submenu.slideToggle();
     });
-	*/
 });
 </script>
 </html>
