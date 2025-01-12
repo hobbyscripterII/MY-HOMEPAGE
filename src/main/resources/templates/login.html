@@ -5,69 +5,19 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="favicon" href="/favicon.ico" />
-	<link rel="stylesheet" th:href="@{/css/codepen/linux-theme.css}">
-	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
-    <title>Lee Ju Young</title>
+	<link rel="stylesheet" th:href="@{/css/non-fragment.css}">
+	<link rel="stylesheet" th:href="@{/css/codepen/login.css}">
+    <title>이주영 개인 홈페이지</title>
 </head>
-<style>.form-wrap {display: flex; align-items: center;}</style>
 <section>
-	<div class="console">
-		<form id="form">
-			<div class="form-wrap">
-				<img th:src="@{/img/img-linux.png}"><span>login as:</span><input type="text" id="id" name="id" autocomplete="off">
-			</div>
-		</form>
-	</div>
+	<h1>LOGIN</h1>
+	<form id="form">
+		<input type="text" id="id" name="id" placeholder="ID">
+		<input type="password" id="pw" name="pw" placeholder="PASSWORD">
+		<button type="button">LOGIN</button>
+	</form>
 </section>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-	$(document).ready(function(e) {
-        $('#id').focus();
-	});
-	
-	$('html').click(function() {
-        let $id = $('#id');
-        let $pw = $('#pw');
-        
-        if($id.val() == '') {
-        	$id.focus();
-        } 
-        
-        if($pw.val() == '') {
-        	$pw.focus();
-        }
-	});
-	
-    $('#id').on('keydown', function(e) {
-    	if(e.key == 'Enter') {
-    		let $id = $('#id').val();
-    		
-            if ($id.trim() == '') {
-                alert('please enter your id.');
-                location.reload();
-            } else {
-	        	let $html = `<div class="form-wrap"><img src="/img/img-linux.png"><span>${$id}@192.168.0.48's password:</span><input type="password" id="pw" name="pw" autocomplete="off"></div>`;
-	        	let $form = $('#form');
-	        	
-	        	$form.append($html);
-	        	
-	        	$('#pw').focus();
-            }
-    	}
-    });
-    
-    $(document).on('keydown', '#pw', function(e) {
-        if (e.key == 'Enter') {
-        	let $pw = $('#pw').val();
-        	
-            if ($pw.trim() == '') {
-            	alert('please enter your password.');
-                return;
-            } else {
-            	$('#form').attr('method', 'POST');
-                $('#form').submit();
-            }
-        }
-    });
-</script>
+<script th:src="@{/js/cmmn.js}"></script>
+<script th:src="@{/js/login.js}"></script>
 </html>

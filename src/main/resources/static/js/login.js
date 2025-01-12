@@ -1,19 +1,9 @@
-$(document).ready(function() {
-	$('.contact').click(function(e) {
-		$('.card').toggleClass('active');
-		$('.banner').toggleClass('active');
-		$('.photo').toggleClass('active');
-		$('.social-media-banner').toggleClass('active');
-		$('.email-form').toggleClass('active');
+let $form = $('#form');
+let $id   = $('#id');
+let $pw   = $('#pw');
 
-		var buttonText = $('button.contact#main-button').text();
-
-		if(buttonText === 'back') {
-			buttonText = 'click to get in touch';
-			$('button.contact#main-button').text(buttonText);
-		} else {
-			buttonText = 'back';
-			$('button.contact#main-button').text(buttonText);
-		}
-	});
+$('button').click(function() {
+	if ($id.val() == '') { alert('아이디를 입력하세요.'); return; }
+	else if ($pw.val() == '') { alert('패스워드를 입력하세요.'); return; }
+	else { $form.attr('method', 'post'); $form.submit(); }
 });
