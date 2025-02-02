@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 	private final AdminService service;
-	
+
 	public AdminController(AdminService service) {
 		this.service = service;
 	}

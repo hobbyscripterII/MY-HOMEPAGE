@@ -5,7 +5,7 @@ table {border-collapse: collapse; border-spacing: 0;}
 blockquote {border-left: 3px solid #333; color: #333;}
 blockquote p {padding: 4px 0 4px 5px;}
 iframe {width: 700px; height: 400px;}
-figcaption {color: gray; font-size: 13px; margin-bottom: 5px;}
+figcaption {color: gray; font-size: 12px; margin-bottom: 5px;}
 #thumbnail {display: none;}
 #thumbnail-preview {display: none; width: 440px; margin: auto;}
 #editor {text-align: left; width: 100%; line-height: 2; color: gray;}
@@ -13,9 +13,9 @@ figcaption {color: gray; font-size: 13px; margin-bottom: 5px;}
 #editor ul, #editor ol {padding-left: 20px;}
 #board-search .search-window {padding: 15px 0; margin: 0 5px;}
 #board-search .search-window .search-wrap {position: relative; padding-right: 124px; margin: 0 auto;}
-#board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {box-sizing: border-box; height: 44px; width: 100%; border: 1px solid #ccc; text-align: center; font-size: 13px;}
+#board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {box-sizing: border-box; height: 44px; width: 100%; border: 1px solid #ccc; text-align: center; font-size: 12px;}
 #board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {border-color: #FFF; outline: 0; border-width: 1px;}
-#board-search .search-window .search-wrap .btn {position: absolute; right: 0; top: 0; bottom: 0; width: 108px; padding: 0; height: 44px; font-size: 13px;}
+#board-search .search-window .search-wrap .btn {position: absolute; right: 0; top: 0; bottom: 0; width: 108px; padding: 0; height: 44px; font-size: 12px;}
 .home-wrap {text-align: center;}
 .home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.5rem; font-family: 'Helvetica Neue';}
 .home-title.sub {font-size: 1.1rem; font-weight: bold; color: #FFF;}
@@ -37,7 +37,7 @@ figcaption {color: gray; font-size: 13px; margin-bottom: 5px;}
 .btn-dark {background: #555; color: #fff;}
 .btn-dark:hover, .btn-dark:focus {background: #373737; border-color: #373737; color: #fff;}
 .btn-group {text-align: right; margin-top: 20px; margin-bottom: 20px; padding: 0 5px;}
-.btn-group .btn {width: 108px; padding: 0; height: 44px; font-size: 1rem;}
+.btn-group .btn {width: 108px; padding: 0; height: 44px; font-size: 12px;}
 .container, .btn-group {width: 1000px; margin: 0 auto;}
 .container.m-0 {margin: 0;}
 .container p {}
@@ -46,7 +46,7 @@ figcaption {color: gray; font-size: 13px; margin-bottom: 5px;}
 .image > img {max-width: 100%; max-height: 700px;}
 .tr-thumbnail td {border-bottom: 1px solid #fff;}
 .tr-remove {display: none;}
-.td-title {display: flex; align-items: center; justify-content: left;}
+.td-title {text-align: left;}
 .center {text-align: center;}
 .page-box {width: 80%; margin: 5px auto; height: 30px; text-align: center;}
 .page-box a.btn {display: inline-block; padding: 3px 5px; font-size: 10px; border: 1px solid #dbdbdb; color: #333;}
@@ -60,7 +60,7 @@ figcaption {color: gray; font-size: 13px; margin-bottom: 5px;}
 .ul-1000 li {}
 .f-12px {font-size: 12px;}
 .b-whe {border: 1px solid #FFF !important;}
-.b-tit {font-size: 3rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: bold;}
+.b-tit {font-size: 2rem; max-width: 319px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: bold;}
 .w-100 {max-width: 100px;}
 .mb-50 {margin-bottom: 50px;}
 .mb-5 {margin-bottom: 5px;}
@@ -69,3 +69,32 @@ figcaption {color: gray; font-size: 13px; margin-bottom: 5px;}
 .m-at {margin: auto;}
 .new-icon {-webkit-user-select: none; width: 30px; height: 20px; line-height: 20px; background-color: red; color: #FFF; font-weight: bold; font-size: 9px; margin-left: 3px; padding-left: 4px; display: none;}
 .new-icon-dynamic {background-color: #FFF; color: red;}
+
+/* 게시판 */
+th {
+    background: #3498db;
+    color: #fff;
+}
+
+td, th {
+    border: 1px solid #dbdbdb;
+    padding: 10px 20px;
+    font-size: 12px;
+    text-align: center;
+}
+
+tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+/* 화면 */
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    margin: 0 15px;
+  }
+}

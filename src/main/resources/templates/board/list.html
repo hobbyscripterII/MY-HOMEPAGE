@@ -143,7 +143,8 @@ $(document).ready(function(e) {
 	
 	$('#code').val(code);
 	$('#search').val(search);
-
+	
+	/*
 	setInterval(function() {
 		$('.new-icon').toggleClass('new-icon-dynamic');
 	}, 800);
@@ -156,6 +157,7 @@ $(document).ready(function(e) {
 			$(this).find('.new-icon').show();
 		}
 	});
+	*/
 	
 	$('.page-item').each(function(e) {
 		let queryPage = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지

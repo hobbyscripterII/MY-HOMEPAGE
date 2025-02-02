@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
@@ -89,6 +87,10 @@ public class BoardController {
 
 		if (title == null || Utils.isNull(title)) {
 			throw new NotFoundException();
+		}
+		
+		if (code.equals(CategoryCode.DAILY.code) && role.equals(Const.ROLE_ANONYMOUS)) {
+			throw new AccessDeniedException(null);
 		}
 
 		if (code.equals(CategoryCode.STUDY.code)) {

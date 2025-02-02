@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="footer">
 <!-- <img th:src="@{/img/img-scroll.png}" id="scroll-btn" alt="스크롤 이동 버튼"> -->
-<footer>
-	<p id="quote">I Am the Result of My Choices.</p>
-    <p>Copyright © 2024 이주영</p>
-    <div id="footer-links">
-        <a href="https://github.com/hobbyscripterII" target="_blank"><span>github</span></a> | &nbsp;
-        <a href="https://mytilblog.tistory.com" target="_blank"><span>tech blog</span></a> | &nbsp;
-        <a href="https://blog.naver.com/wruomma2" target="_blank"><span>naver blog</span></a>
-    </div>
+
+<footer class="footer-distributed">
+  <div class="footer-left">
+    <p class="footer-links">
+      <a href="https://github.com/hobbyscripterII" target="_blank">Github</a>
+      <a href="https://mytilblog.tistory.com" target="_blank">Tech Blog</a>
+      <a href="https://blog.naver.com/wruomma2" target="_blank">Naver Blog</a>
+    </p>
+    <p>이주영 &copy; 2025</p>
+  </div>
 </footer>
+
 <script>
 let $lastScrollTop = 0;
 
