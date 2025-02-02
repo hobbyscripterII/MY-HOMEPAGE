@@ -2,9 +2,7 @@
 @import url('https://fonts.cdnfonts.com/css/helvetica-neue-5');
 * {margin: 0; box-sizing: border-box; font-family: 'Helvetica Neue';}
 main {position: relative;}
-body {height: 100%; padding-top: 330px;}
-body.sticky-header header {height: 60px; background-color: rgba(52, 152, 219, 0.9);}
-body.sticky-header header h1 {-moz-transform: scale(0, 0); -ms-transform: scale(0, 0); -webkit-transform: scale(0, 0); transform: scale(0, 0);}
+body {height: 100%; padding-top: 100px;}
 a {text-decoration: none;}
 p, span, tr, td {font-size: 13px;}
 h4 {padding: 25px; display: inline;}

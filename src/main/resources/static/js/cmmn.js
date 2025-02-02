@@ -11,15 +11,4 @@ $(function () {
       $(item).addClass('active');
 	}
   });
-
-  $(window).scroll(function () {
-    let $winTop = $(window).scrollTop();
-    let $lastScrollTop = 0;
-    
-    if ($winTop > $lastScrollTop) {
-      $("body").addClass("sticky-header");
-    } else {
-      $("body").removeClass("sticky-header");
-    }
-  });
 })
