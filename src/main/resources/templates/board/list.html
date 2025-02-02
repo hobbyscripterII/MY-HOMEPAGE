@@ -5,12 +5,6 @@
 	.tr-alert {font-weight: bold;}
 </style>
 <section>
-	<div class="page-title">
-		<div class="container">
-			<h3 th:text="${ARTICLE_TITLE}">타이틀</h3>
-		</div>
-	</div>
-
 	<div id="board-search">
 		<div class="container">
 			<div class="search-window" th:if="${SEARCH_DATA.code != 'B002'}">
@@ -70,7 +64,7 @@
 								  <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
 								</svg>
 							</td>
-							<td class="td-title">RSS 연동 게시판입니다.</td>
+							<td class="td-title" style="padding-left: 10px;">Tistory RSS 연동 게시판입니다.</td>
 							<td class="mobile-hide" ></td>
 						<tr>
 					
@@ -123,8 +117,8 @@
 
 <script th:inline="javascript">
 $('#search-btn').click(function(e) {
-	let $search  	= $('#search');
-	let $keyword 	= $search.val().trim();
+	let $search = $('#search');
+	let $keyword = $search.val().trim();
 	let $searchForm = $('#search-form');
 	
 	if($keyword === '') {
@@ -139,11 +133,11 @@ $('#search-btn').click(function(e) {
 });
 
 $(document).ready(function(e) {
-	let $main 		 = $('main');
-	let search_data  = [[${SEARCH_DATA}]];
-	let code 		 = [[${param.code}]];
-	let search       = search_data.search || '';
-	let today	     = new Date();
+	let $main = $('main');
+	let search_data = [[${SEARCH_DATA}]];
+	let code = [[${param.code}]];
+	let search = search_data.search || '';
+	let today = new Date();
 	let threeDaysAgo = new Date();
 	threeDaysAgo.setDate(today.getDate() - 3);
 	
@@ -156,15 +150,15 @@ $(document).ready(function(e) {
 	
 	$('table tbody tr').each(function() {
 		var createdAt_ = $(this).find('td:last').text().trim();
-		var createdAt  = new Date(createdAt_.split(' ')[0]);
+		var createdAt = new Date(createdAt_.split(' ')[0]);
 		
-		if(createdAt < threeDaysAgo) {
-			$(this).find('.new-icon').hide();
+		if(createdAt > threeDaysAgo) {
+			$(this).find('.new-icon').show();
 		}
 	});
 	
 	$('.page-item').each(function(e) {
-		let queryPage   = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
+		let queryPage = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
 		let currentPage = $(this).text().trim();									// 사용자가 선택한 페이지
 	});
 });

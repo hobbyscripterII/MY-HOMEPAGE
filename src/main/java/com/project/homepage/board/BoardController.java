@@ -1,7 +1,6 @@
 package com.project.homepage.board;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,183 +45,184 @@ public class BoardController {
 	private final CommonmarkUtil commonmarkUtil;
 	private final FileUploadUtil fileUploadUtil;
 	private final RSSParseUtil rssParseUtil;
-	
+
 	public BoardController(BoardService service, MyUserDetailsService myUserDetailsService, CommonmarkUtil commonmarkUtil, FileUploadUtil fileUploadUtil, RSSParseUtil rssParseUtil) {
-		this.service			  = service;
+		this.service = service;
 		this.myUserDetailsService = myUserDetailsService;
-		this.commonmarkUtil		  = commonmarkUtil;
-		this.fileUploadUtil 	  = fileUploadUtil;
-		this.rssParseUtil   	  = rssParseUtil;
+		this.commonmarkUtil = commonmarkUtil;
+		this.fileUploadUtil = fileUploadUtil;
+		this.rssParseUtil = rssParseUtil;
 	}
-	
+
 	@RequestMapping("/upload-img")
 	public ModelAndView uploadImg(MultipartHttpServletRequest request) throws IOException {
 		try {
-			ModelAndView mv		= new ModelAndView("jsonView");
+			ModelAndView mv = new ModelAndView("jsonView");
 			MultipartFile image = request.getFile("upload");
-			String path 		= fileUploadUtil.fileUpload(image, "/img/");
-			
+			String path = fileUploadUtil.fileUpload(image, "/img/");
+
 			mv.addObject("uploaded", true);
-			mv.addObject("url"	   , path);
-			
+			mv.addObject("url", path);
+
 			return mv;
-		} catch(IOException e) {
+		} catch (IOException e) {
 			return null;
 		}
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@GetMapping("/list")
 	public String main(@RequestParam(name = "page", required = false, defaultValue = "1") int page, @RequestParam Map<String, Object> requestMap, Model model, HttpServletResponse response) throws IOException, NotFoundException {
 		List<Map<String, Object>> boardGet = null;
-		String code	    				   = (String) requestMap.get(Const.CODE);
-		String search   				   = (String) requestMap.get(Const.SEARCH) == null ? "" : (String) requestMap.get("search");
-		String title    				   = CategoryCode.getTitle(code);
-		String url      				   = "board/list";
-		String role						   = myUserDetailsService.getRole();
-		int amount      				   = Const.AMOUNT;
-		int offset      				   = getOffset(page, amount);
-		int boardGetCnt 				   = 0;
-		
+		String code = (String) requestMap.get(Const.CODE);
+		String search = (String) requestMap.get(Const.SEARCH) == null ? "" : (String) requestMap.get("search");
+		String title = CategoryCode.getTitle(code);
+		String url = "board/list";
+		String role = myUserDetailsService.getRole();
+		int amount = Const.AMOUNT;
+		int offset = getOffset(page, amount);
+		int boardGetCnt = 0;
+
 		requestMap.put("offset", offset);
 		requestMap.put("amount", amount);
 		requestMap.put("search", search);
-		requestMap.put("role"  , role);
-		
-		if(title == null || Utils.isNull(title)) {
+		requestMap.put("role", role);
+
+		if (title == null || Utils.isNull(title)) {
 			throw new NotFoundException();
 		}
-		
-		if (role.equals(Const.ROLE_ANONYMOUS)) {
-			response.sendError(HttpServletResponse.SC_FORBIDDEN, "접근이 거부되었습니다.");
-		}
-		
+
 		if (code.equals(CategoryCode.STUDY.code)) {
 			Map<String, Object> rssGet = rssParseUtil.rssGet(page);
-			Integer result 			   = (Integer) rssGet.get(Const.RESULT);
-			boardGetCnt 		       = (int) rssGet.get(Const.TOTAL);
-			boardGet				   = (List<Map<String, Object>>) rssGet.get(Const.RSS);
-			
+			Integer result = (Integer) rssGet.get(Const.RESULT);
+			boardGetCnt = (int) rssGet.get(Const.TOTAL);
+			boardGet = (List<Map<String, Object>>) rssGet.get(Const.RSS);
+
 			model.addAttribute(Const.RESULT, result);
 		} else {
-			boardGet    			   = service.boardGet(requestMap);
-			boardGetCnt				   = service.boardGetCnt(requestMap);
+			boardGet = service.boardGet(requestMap);
+			boardGetCnt = service.boardGetCnt(requestMap);
 		}
-		
+
 		Pagination pagination = new Pagination(page, amount, boardGetCnt);
-		int idx 			  = boardGet.size();
-		
-		if(!search.isEmpty()) {
-			for(int i = 0; i < idx; i++) {
+		int idx = boardGet.size();
+
+		if (!search.isEmpty()) {
+			for (int i = 0; i < idx; i++) {
 				Map<String, Object> post = boardGet.get(i);
-				String contents_		 = (String) post.get(Const.CONTENTS);
-				String contents 		 = Jsoup.parse(contents_).text();
-				int startIdx			 = contents.indexOf(search);
-				int endIdx				 = Math.min((startIdx + 100), contents.length());
-				String previewContents	 = contents.substring(startIdx, endIdx);
-				
+				String contents_ = (String) post.get(Const.CONTENTS);
+				String contents = Jsoup.parse(contents_).text();
+				int startIdx = contents.indexOf(search);
+				int endIdx = Math.min((startIdx + 100), contents.length());
+				String previewContents = contents.substring(startIdx, endIdx);
+
 				post.put("PREVIEW_CONTENTS", previewContents);
 			}
 		}
-		
-		model.addAttribute(Const.DATA		  , boardGet);
+
+		model.addAttribute(Const.DATA, boardGet);
 		model.addAttribute(Const.ARTICLE_TITLE, title);
-		model.addAttribute(Const.PAGINATION	  , pagination);
-		model.addAttribute(Const.SEARCH_DATA  , requestMap);
-		
+		model.addAttribute(Const.PAGINATION, pagination);
+		model.addAttribute(Const.SEARCH_DATA, requestMap);
+
 		return url;
 	}
-	
+
 	@GetMapping("/write")
 	public String write(@RequestParam Map<String, Object> requestMap, Model model) {
 		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
-		
+
 		model.addAttribute(Const.GENRE, boardGenreGet);
-		
+
 		return "board/write";
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/write")
 	public Map<String, Object> write(@RequestPart(name = "thumbnail", required = false) MultipartFile thumbnail, @RequestParam Map<String, Object> requestMap) throws IOException {
 		return service.boardInsert(thumbnail, requestMap);
 	}
-	
+
 	@GetMapping("/read/{iboard}")
 	public String read(@PathVariable(name = "iboard") String iboard, @RequestParam Map<String, Object> requestMap, Model model, HttpServletResponse response) throws IOException, NotFoundException, AccessDeniedException {
 		requestMap.put("iboard", iboard);
-		
+
 		Map<String, Object> boardSelect = service.boardSelect(requestMap);
-		
-		if(boardSelect == null) {
+
+		if (boardSelect == null) {
 			throw new NotFoundException();
 		}
-		
-		String code  = (String) boardSelect.get("icode");
+
+		String code = (String) boardSelect.get("icode");
 		String secYn = (String) boardSelect.get("sec_yn");
-		String role	 = myUserDetailsService.getRole();
-		
+		String role = myUserDetailsService.getRole();
+
 		requestMap.put("role", role);
-		
-		if((secYn.equals("Y") || code.equals(CategoryCode.DATA.code)) && role.equals(Const.ROLE_ANONYMOUS)) {
+
+		if (secYn.equals("Y") && role.equals(Const.ROLE_ANONYMOUS)) {
 			response.sendError(HttpServletResponse.SC_FORBIDDEN, "접근이 거부되었습니다.");
 		}
-		
+
 		List<Map<String, Object>> prevPost = service.prevPostGet(requestMap);
 		List<Map<String, Object>> nextPost = service.nextPostGet(requestMap);
-		
-		boardSelect.put(Const.ARTICLE_TITLE , CategoryCode.getTitle(code));
-		boardSelect.put(Const.CONTENTS		, commonmarkUtil.markdown((String) boardSelect.get("contents")));
-		
-		model.addAttribute(Const.PREV_POST  , prevPost);
-		model.addAttribute(Const.NEXT_POST  , nextPost);
-		model.addAttribute(Const.DATA	    , boardSelect);
-		
+
+		boardSelect.put(Const.ARTICLE_TITLE, CategoryCode.getTitle(code));
+		boardSelect.put(Const.CONTENTS, commonmarkUtil.markdown((String) boardSelect.get("contents")));
+
+		model.addAttribute(Const.PREV_POST, prevPost);
+		model.addAttribute(Const.NEXT_POST, nextPost);
+		model.addAttribute(Const.DATA, boardSelect);
+
 		return "board/read";
 	}
-	
+
 	@GetMapping("/update/{iboard}")
 	public String update(@PathVariable(name = "iboard") String iboard, Model model) {
 		Map<String, Object> requestMap = new HashMap<>();
-		requestMap.put("iboard" , iboard);
-		
-		Map<String, Object> boardSelect			= service.boardSelect(requestMap);
+		requestMap.put("iboard", iboard);
+
+		Map<String, Object> boardSelect = service.boardSelect(requestMap);
 		List<Map<String, Object>> boardGenreGet = service.boardGenreGet();
-		
-		model.addAttribute(Const.DATA , boardSelect);
+
+		model.addAttribute(Const.DATA, boardSelect);
 		model.addAttribute(Const.GENRE, boardGenreGet);
-		
+
 		return "board/write";
 	}
-	
+
 	@ResponseBody
 	@PatchMapping("/update")
 	public Map<String, Object> updateMarkdown(@RequestBody Map<String, Object> requestMap) {
 		Map<String, Object> responseMap = new HashMap<String, Object>();
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
-		
+
 		int boardUpdate = service.boardUpdate(requestMap);
-		
-		if(boardUpdate == 1) {responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);} 
-		else 				 {responseMap.put(Const.RESULT, ResponseCode.FAIL.code);}
-		
+
+		if (boardUpdate == 1) {
+			responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);
+		} else {
+			responseMap.put(Const.RESULT, ResponseCode.FAIL.code);
+		}
+
 		return responseMap;
 	}
-	
+
 	@ResponseBody
 	@PatchMapping("/delete")
 	public Map<String, Object> delete(@RequestParam("iboard") String iboard) {
 		Map<String, Object> responseMap = new HashMap<String, Object>();
 		responseMap.put(ResponseCode.SUCCESS.msg, ResponseCode.SUCCESS.code);
-		
+
 		int boardDelete = service.boardDelete(iboard);
-		
-		if(boardDelete == 1) {responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);} 
-		else 				 {responseMap.put(Const.RESULT, ResponseCode.FAIL.code);}
-		
+
+		if (boardDelete == 1) {
+			responseMap.put(Const.RESULT, ResponseCode.SUCCESS.code);
+		} else {
+			responseMap.put(Const.RESULT, ResponseCode.FAIL.code);
+		}
+
 		return responseMap;
 	}
-	
+
 	private int getOffset(int page, int amount) {
 		return (page == 1 ? 0 : (page - 1) * amount);
 	}

@@ -1,15 +1,13 @@
 @charset "UTF-8";
 @import url('https://fonts.cdnfonts.com/css/helvetica-neue-5');
-@font-face {font-family: 'Pretendard-Regular'; src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff'); font-weight: 400; font-style: normal;}
-* {margin: 0; box-sizing: border-box; font-family: 'Helvetica Neue', 'Pretendard-Regular';}
-html {animation: fadein 1s forwards;}
+* {margin: 0; box-sizing: border-box; font-family: 'Helvetica Neue';}
 main {position: relative;}
-body {height: 100%;}
+body {height: 100%; padding-top: 330px;}
+body.sticky-header header {height: 60px; background-color: rgba(52, 152, 219, 0.9);}
+body.sticky-header header h1 {-moz-transform: scale(0, 0); -ms-transform: scale(0, 0); -webkit-transform: scale(0, 0); transform: scale(0, 0);}
 a {text-decoration: none;}
-p, span, tr, td {font-size: 16px;}
-h1 {padding-top: 80px;}
+p, span, tr, td {font-size: 13px;}
 h4 {padding: 25px; display: inline;}
-iframe {display: none;}
+iframe {display: none;} /* 음악 추천 게시글에서 jQuery로 표출(기본은 미표출) */
 img {-webkit-user-select: none;}
-@keyframes fadein {0% {opacity: 0;} 100% {opacity: 1;}}
-::selection {background-color: #333; color: #FFF;}
+::selection {background-color: rgba(52, 152, 219, 0.9); color: #FFF;}

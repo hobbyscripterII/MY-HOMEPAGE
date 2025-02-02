@@ -1,29 +1,64 @@
-@charset "UTF-8";
+header {
+  width: 100%;
+  height: 300px;
+  background-color: #3498db;
+  text-align: center;
+  position: relative;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  z-index: 9999;
+}
 
-header {width: 100%; height: 75px; position: fixed; background-color: #ff4500; z-index: 999; transition: background-color 0.3s ease;}
-header.scrolled {background-color: #fff;}
-header.scrolled #homepage-title a {color: #FFF;}
-header.scrolled #menu-toggle span {background: #FFF;}
+header h1 {
+  font-size: 42px;
+  color: #fff;
+  line-height: 230px;
+  text-transform: uppercase;
+  font-weight: 100;
+}
 
-#homepage-title {font-size: xx-large; z-index: 2; position: fixed; top: 18px; left: 75px; -webkit-user-select: none;}
-#homepage-title a {font-weight: bold; color: #fff; font-family: 'Helvetica Neue', sans-serif;}
+header nav {
+  position: absolute;
+  bottom: 0;
+  height: 60px;
+  line-height: 60px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
 
-#menu {position: fixed; max-width: 273px; width: 100vw; height: 100vh; margin: 19px 0px 0 -20px; box-sizing: border-box; overflow-y: auto; list-style-type: none; -webkit-font-smoothing: antialiased; transform-origin: 0% 0%; transform: translate(-100%, 0); transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); background-color: #ff4500; padding-left: 0;}
-#menu li {padding: 8px 10px; font-size: 1.7rem;}
-#menu li label {cursor: pointer;}
-#menu li a {padding-left: 5px; color: #FFF;}
-#menu li:hover {background-color: #FFF;}
-#menu li:hover a {color: #000;}
-#menu-toggle {display: block; position: fixed; top: 20px; left: 20px; z-index: 1; -webkit-user-select: none; user-select: none;}
-#menu-toggle a {text-transform:uppercase; height: 50px; line-height: 50px; text-decoration: none; color: #000; display: block; width: 100%; font-weight: bold; font-family: 'Helvetica Neue', sans-serif;}
-#menu-toggle input {display: block; width: 40px; height: 32px; position: absolute; cursor: pointer; opacity: 0; z-index: 2; -webkit-touch-callout: none;}
-#menu-toggle span {display: block; width: 40px; height: 7px; margin-bottom: 5px; position: relative; background: #fff; border-radius: 3px; z-index: 1; transform-origin: 4px 0px; transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;}
-#menu-toggle span:first-child {transform-origin: 0% 0%;}
-#menu-toggle span:nth-last-child(2) {transform-origin: 0% 100%;}
-#menu-toggle input:checked ~ span {opacity: 1; transform: rotate(45deg) translate(2px, 1px);}
-#menu-toggle input:checked ~ span:nth-last-child(3) {opacity: 0; transform: rotate(0deg) scale(0.2, 0.2);}
-#menu-toggle input:checked ~ span:nth-last-child(2) {transform: rotate(-45deg) translate(0px, 2px);}
-#menu-toggle input:checked ~ ul {transform: none;}
+header nav a {
+  color: #fff;
+  display: inline-block;
+  padding: 10px 7px;
+  line-height: 1;
+  text-decoration: none;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
 
-/* .sub-menu li a:hover {text-decoration: underline !important;} */
-.guide-bar {z-index: 999; width: 0vw; height: 7px; background-color: #000; transition: width 0.1s linear; position: fixed; top: 70px; left: 0;}
+header nav a:hover {
+  -moz-box-shadow: 0 0 0 1px #fff;
+  -webkit-box-shadow: 0 0 0 1px #fff;
+  box-shadow: 0 0 0 1px #fff;
+}
+
+header nav .active {
+  background-color: #fff;
+  -moz-box-shadow: 0 0 0 1px #fff;
+  -webkit-box-shadow: 0 0 0 1px #fff;
+  box-shadow: 0 0 0 1px #fff;
+  color: #333;
+}
+
+@media (max-width: 800px) {
+  header h1 {
+    font-size: 30px;
+  }
+
+  header nav a {
+  	padding: 10px 3px;
+    font-size: 11px;
+  }
+}

@@ -15,34 +15,29 @@ public class SecurityConfig {
         httpSecurity
                 .csrf(c -> c.disable())
                 .formLogin(in -> in
-                        .loginPage("/login")		  // HTML 경로
+                        .loginPage("/login") // HTML 경로
                         .loginProcessingUrl("/login") // URL 호출 시 Security가 낚아채므로 Controller에 구현할 필요 X
                         .usernameParameter("id")
                         .passwordParameter("pw")
-                        .failureUrl("/login?error")   // 매핑 URL, Error Param 생략 시 Login 화면에 에러 메세지 출력 X
-                        .defaultSuccessUrl("/") 	  // 인증 완료 후 호출되는 URL
-                        .permitAll()
-                )
+                        .failureUrl("/login?error") // 매핑 URL, Error Param 생략 시 Login 화면에 에러 메세지 출력 X
+                        .defaultSuccessUrl("/") // 인증 완료 후 호출되는 URL
+                        .permitAll())
                 .exceptionHandling(e -> e
-                		// 인증되지 않은 사용자에 대한 예외 처리
-                        .authenticationEntryPoint((request, response, authException) -> {
-                            response.sendRedirect("/access-denied");
-                        })
-                )
+                        .accessDeniedPage("/access-denied")) // 매핑 URL
                 .authorizeHttpRequests(a -> a
-	                    .requestMatchers(
-	                    		"/", "/css/**", "/js/**", "/img/**", "/favicon.ico", // resources
-	                    		"/home", "/login", "/logout", "/access-denied", "/error/error",
-	                    		"/board/list/**", "/board/read/**"
-	                    		)
-	                    .permitAll()
-	                    .anyRequest().hasRole("ADMIN") // ADMIN만 접근 가능
+                        // 권한없이 접근 가능
+                        .requestMatchers(
+                                "/", "/css/**", "/js/**", "/img/**", "/favicon.ico",
+                                "/login", "/logout", "/access-denied",
+                                "/board/", "/board/list/**", "/board/read/**",
+                                "/thumbnail/**"
+                        ).permitAll()
+                        .anyRequest().hasRole("ADMIN") // 그 외에는 ADMIN만 접근 가능
                 );
         httpSecurity.logout(out -> {
                  out.logoutUrl("/logout")
                     .addLogoutHandler((request, response, authentication) -> {
                         HttpSession session = request.getSession();
-                        
                         if (session != null) {
                             session.invalidate();
                         }
@@ -53,7 +48,7 @@ public class SecurityConfig {
         });
         return httpSecurity.build();
     }
-    
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

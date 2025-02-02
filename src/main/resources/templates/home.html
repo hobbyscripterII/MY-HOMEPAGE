@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="section">
 <style>
-	section {height: 100vh; padding: 120px 0;}
+	section {height: 80vh;}
 	footer {margin-top: 0;}
-	#daysElapsed {font-size: 40px;}
+	#daysElapsed {font-size: 20px;}
 </style>
 <section>
 	<div class="container">
@@ -22,9 +22,9 @@ $(document).ready(function() {
 	$guideBar.css('display', 'none');
 	
     function updateDays() {
-	    let currentDate    = new Date();
+	    let currentDate = new Date();
         let timeDifference = currentDate - startDate;
-        let daysElapsed    = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        let daysElapsed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         
         $('#daysElapsed').html(daysElapsed);
     }
@@ -41,10 +41,10 @@ $(document).ready(function() {
 });
 
 function formatDate(date) {
-    let year    = date.getFullYear();
-    let month   = (date.getMonth() + 1).toString().padStart(2, '0');
-    let day     = date.getDate().toString().padStart(2, '0');
-    let hours   = date.getHours().toString().padStart(2, '0');
+    let year = date.getFullYear();
+    let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
+    let hours = date.getHours().toString().padStart(2, '0');
     let minutes = date.getMinutes().toString().padStart(2, '0');
     let seconds = date.getSeconds().toString().padStart(2, '0');
     
