@@ -23,6 +23,7 @@ import org.xml.sax.SAXException;
 
 import com.project.homepage.cmmn.Const;
 import com.project.homepage.cmmn.ResponseCode;
+import com.project.homepage.cmmn.Utils;
 
 @Component
 public class RSSParseUtil {
@@ -51,9 +52,9 @@ public class RSSParseUtil {
 		}
 	}
 
-	public Map<String, Object> rssGet(int page) {
+	public Map<String, Object> rssGet(int page, int amount) {
 		List<Map<String, Object>> rss = new ArrayList<Map<String, Object>>();
-		int amount = 10;
+		amount = Utils.isNotNull(amount) ? amount : 10;
 		int offset = (page - 1) * 10;
 		int total = list.getLength();
 		int idx = Math.min(offset + amount, list.getLength());

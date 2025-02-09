@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.jsoup.Jsoup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
@@ -43,6 +45,8 @@ public class BoardController {
 	private final CommonmarkUtil commonmarkUtil;
 	private final FileUploadUtil fileUploadUtil;
 	private final RSSParseUtil rssParseUtil;
+	
+	Logger log = LoggerFactory.getLogger(getClass());
 
 	public BoardController(BoardService service, MyUserDetailsService myUserDetailsService, CommonmarkUtil commonmarkUtil, FileUploadUtil fileUploadUtil, RSSParseUtil rssParseUtil) {
 		this.service = service;
@@ -94,7 +98,7 @@ public class BoardController {
 		}
 
 		if (code.equals(CategoryCode.STUDY.code)) {
-			Map<String, Object> rssGet = rssParseUtil.rssGet(page);
+			Map<String, Object> rssGet = rssParseUtil.rssGet(page, amount);
 			Integer result = (Integer) rssGet.get(Const.RESULT);
 			boardGetCnt = (int) rssGet.get(Const.TOTAL);
 			boardGet = (List<Map<String, Object>>) rssGet.get(Const.RSS);
@@ -224,7 +228,17 @@ public class BoardController {
 
 		return responseMap;
 	}
-
+	
+	@ResponseBody
+	@GetMapping("/rss")
+	public Map<String, Object> rss() {
+		int page = 1;
+		int amount = 30;
+		Map<String, Object> rssGet = rssParseUtil.rssGet(page, amount);
+		
+		return rssGet;
+	}
+	
 	private int getOffset(int page, int amount) {
 		return (page == 1 ? 0 : (page - 1) * amount);
 	}

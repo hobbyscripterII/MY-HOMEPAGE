@@ -29,7 +29,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/", "/css/**", "/js/**", "/img/**", "/favicon.ico",
                                 "/login", "/logout", "/access-denied",
-                                "/board/", "/board/list/**", "/board/read/**",
+                                "/board/", "/board/list/**", "/board/read/**", "/board/rss",
                                 "/thumbnail/**"
                         ).permitAll()
                         .anyRequest().hasRole("ADMIN") // 그 외에는 ADMIN만 접근 가능

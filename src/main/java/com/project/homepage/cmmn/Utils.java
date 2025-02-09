@@ -5,7 +5,15 @@ public class Utils {
 		return str == "";
 	}
 	
+	public static boolean isNull(int str) {
+		return str == 0;
+	}
+	
 	public static boolean isNotNull(String str) {
 		return str != "";
+	}
+	
+	public static boolean isNotNull(int str) {
+		return str != 0;
 	}
 }

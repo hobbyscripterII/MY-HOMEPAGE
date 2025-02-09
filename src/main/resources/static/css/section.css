@@ -27,7 +27,7 @@ figcaption {color: gray; font-size: 12px; margin-bottom: 5px;}
 .page-item {background-color: #333; border-radius: 50%; padding: 2px 1px; margin-right: 2px;}
 .page-link {margin: 0 5px 0 5px; font-weight: bold; color: #FFF;}
 .board-table {width: 100%;}
-.board-table a {display: inline-block; line-height: 1.4; word-break: break-all; vertical-align: middle; color: #333;}
+.board-table a {display: flex; align-items: center; line-height: 1.4; word-break: break-all; vertical-align: middle; color: #333;}
 .board-table a:hover {text-decoration: underline;}
 .board-table th {text-align: center;}
 .board-table .th-num {width: 100px; text-align: center;}
@@ -47,7 +47,7 @@ figcaption {color: gray; font-size: 12px; margin-bottom: 5px;}
 .image > img {max-width: 100%; max-height: 700px;}
 .tr-thumbnail td {border-bottom: 1px solid #fff;}
 .tr-remove {display: none;}
-.td-title {text-align: left;}
+.td-title {text-align: left; display: flex; align-items: center;}
 .center {text-align: center;}
 .page-box {width: 80%; margin: 5px auto; height: 30px; text-align: center;}
 .page-box a.btn {display: inline-block; padding: 3px 5px; font-size: 10px; border: 1px solid #dbdbdb; color: #333;}
@@ -94,8 +94,33 @@ tr:nth-of-type(odd) {
   margin: 0 auto;
 }
 
+/* 홈 */
+.home-contents-wrap {
+	background-color: #f8f9fa;
+	width: 500px;
+	min-height: 50vh;
+	border-radius: 10px;
+	margin: 20px auto;
+	padding: 10px;
+}
+
+.home-contents-wrap ul li, .home-contents-wrap ul li a {
+	color: #333;
+	font-size: 13px;
+	font-weight: bold;
+}
+
 @media (max-width: 800px) {
   .wrapper {
     margin: 0 15px;
+  }
+  
+  .home-contents-wrap {
+  	width: 90vw;
+  	padding: 5px;
+  }
+  
+  .home-contents-wrap ul li, .home-contents-wrap ul li a {
+  	font-size: 11px;
   }
 }

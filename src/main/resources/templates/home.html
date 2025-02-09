@@ -2,14 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="section">
 <style>
 	#daysElapsed {font-size: 20px;}
+	ul {list-style: none;}
 </style>
 <section>
 	<div class="container">
 		<div class="home-wrap">
-			<img th:src="@{/img/img-raspberry.png}" id="profile-img" class="mb-50" alt="프로필 사진">
+			<img th:src="@{/img/img-raspberry.png}" id="profile-img" alt="프로필 사진">
 			<p><span id="daysElapsed"></span> 일 째 돌아가는 중</p>
 			<p>배포 일자 : <span id="startDate"></span></p>
 			<p>현재 일자 : <span id="currentDate"></span></p>
+		</div>
+		
+		<div class="home-contents-wrap">
+			<h1>📕 LATEST BLOG POSTS</h1>
 		</div>
 	</div>
 </section>
@@ -36,6 +41,8 @@ $(document).ready(function() {
     updateDays();
     $('#startDate').html(formatDate(startDate));
     setInterval(updateCurrentTime, 1000);
+    
+    getRss();
 });
 
 function formatDate(date) {
@@ -47,6 +54,38 @@ function formatDate(date) {
     let seconds = date.getSeconds().toString().padStart(2, '0');
     
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
+// JSON
+function formatDate2(date) {
+    let newDate = new Date(date);
+    return newDate.toISOString().split('T')[0];
+}
+
+function getRss() {
+	$.ajax({
+		type		: 'GET',
+		url			: '/board/rss',
+		contentType	: 'application/x-www-form-urlencoded',
+		success		: (data) => {
+			let result = data.RSS;
+			let html = '';
+			
+			html += '<ul>';
+			
+			result.forEach((item, idx) => {
+				let date = formatDate2(item.CREATED_AT);
+				
+				html += `<li>[${date}] <a href='${item.LINK}' target='_blank'>${item.TITLE}</a></li>`;
+			});
+			
+			html += '</ul>';
+			
+			$('.home-contents-wrap').append(html);
+		}, error	: (err) => {
+			console.log('err = ', err);
+		}
+	})
 }
 </script>
 </html>
