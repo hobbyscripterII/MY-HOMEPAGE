@@ -75,6 +75,9 @@ figcaption {color: gray; font-size: 12px; margin-bottom: 5px;}
 #sec-yn {width: auto !important; height: auto !important;}
 #sec-yn-wrap {padding: 10px 0px;}
 #star {display: none;}
+.star {font-size: 20px; font-weight: bold; color: #ffea00;  text-shadow: 1px 1px 2px black;}
+#review-contents {padding: 5px 0px;}
+
 /* 게시판 */
 th {
     background: #333;

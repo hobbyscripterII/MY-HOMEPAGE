@@ -4,7 +4,6 @@
 	.board-table img {max-width: 90%;}
 	.board-table tbody td.preview {border-top: 0px; text-align: left;} 
 	.tr-alert {font-weight: bold;}
-	.star {font-size: 20px; font-weight: bold; color: #ffea00;  text-shadow: 1px 1px 2px black;}
 </style>
 <section>
 	<div id="board-search">
@@ -39,9 +38,6 @@
 								<img th:src="@{${data.TUMBNAIL}}" alt="썸네일">
 								<div style="display: block; text-align: left;">
 									<p>
-										<!--
-											<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}" style="color: gray; font-size: 11px;"></span>
-										-->
 										<span th:text="${data.TITLE}" style="font-size: 20px; font-weight: bold;">제목</span>
 										<span th:switch="${data.STAR}">
 										        <span class="star" th:case="1">★☆☆☆☆</span>
@@ -51,7 +47,10 @@
 										        <span class="star" th:case="5">★★★★★</span>
 									    </span>
 									</p>
-									<p id="review-contents" th:text="'한줄평 : ' + ${data.CONTENTS}"></p>
+									<p id="review-contents">
+										<span th:text="'한줄평 : ' + ${data.CONTENTS}"></span>
+										<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd HH:mm')}" style="color: gray; font-size: 11px;"></span>
+									</p>
 								</div>
 							</td>
 						</tr>
