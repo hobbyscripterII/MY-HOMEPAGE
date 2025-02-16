@@ -3,11 +3,9 @@
 <style>
 #board-search .search-window .search-wrap {max-width: 1000px; padding-right: 0;}
 #board-search .search-window .search-wrap .btn {position: static; width: 100%;}
-#genre {display: none; appearance: none;}
-#sec-yn {width: auto !important; height: auto !important;}
+#board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {text-align: left; padding-left: 5px;}
 .ck.ck-editor {width: 1000pxpx; margin: auto;}
 .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused), .ck.ck-editor__main > .ck-editor__editable:not(.ck-bulrred) {padding-left: 30px;}
-.sec-yn-wrap {margin: 5px 0;}
 .row {margin-bottom: 10px;}
 </style>
 
@@ -33,7 +31,17 @@
 							</th:block>
 						</select>
 						
-						<!-- 썸네일 선택 및 썸네일 미리보기 표출 -->						
+						<!-- 리뷰 게시판일 경우 표출 -->
+						<select class="form-control" id="star">
+							<option value="1">별점 : ⭐</option>
+							<option value="2">별점 : ⭐⭐</option>
+							<option value="3">별점 : ⭐⭐⭐</option>
+							<option value="4">별점 : ⭐⭐⭐⭐</option>
+							<option value="5">별점 : ⭐⭐⭐⭐⭐</option>
+						</select>
+						
+						<!-- 썸네일 선택 및 썸네일 미리보기 표출 -->
+						<button type="button" id="btn-thumbnail" class="btn btn-dark">썸네일 등록</button>						
 						<input type="file" id="thumbnail" accept="image/*" onchange="thumnailPreview(this)">
 						<img id="thumbnail-preview" alt="썸네일 미리보기"></img>
 						
@@ -78,6 +86,7 @@
 			$thumbnail.val('');
 			$('label[for="thumbnail"]').text('YOUTUBE URL');
 			$('#genre').css('display', 'flex');
+			$('#thumbnail').css('display', 'none');
 			
 			if($iboard != '') {
 				let youtubeURL 	   = 'https://www.youtube.com/watch?v=' + $data.youtube_id;
@@ -91,12 +100,21 @@
 			$('#thumbnail').css('display', 'none');
 		}
 		
+		if($code == 'B008') {
+			$('#btn-thumbnail').css('display', 'block');
+			$('#star').css('display', 'block');
+		}
+		
 		if($secYn == 'Y') {
 			$('#sec-yn').prop('checked', true);
 		}
 		
 		$('#youtube-url').on('input', () => {
 			youtubeIdGet();
+		});
+		
+		$('#btn-thumbnail').click(function() {
+			$('#thumbnail').click();
 		});
 	});
 	
@@ -105,7 +123,6 @@
 		let id		    = url.split('v=')[1]?.split('&')[0];
 		let $youtubeUrl = $('#youtube-url');
 		youtube_id	    = id;
-		
 		
 		if(id && id.length == 11) {
 			$thumbnailPreview.css('display', 'block');
@@ -164,8 +181,9 @@
 			let $title   = $('#write-title').val();
 			let contents = editor.getData();
 			let $genre   = $('#genre').val();
+			let $star    = ($('#star').val() || null);
 			let $secYn   = $('#sec-yn').is(':checked') ? 'Y' : 'N';
-			let dto	     = {iboard : $iboard, title : $title, contents : contents, youtube_id : youtube_id, genre : $genre, sec_yn : $secYn };
+			let dto	     = {iboard : $iboard, title : $title, contents : contents, youtube_id : youtube_id, genre : $genre, star : $star, sec_yn : $secYn };
 
 			$.ajax({
 				type		: 'PATCH',
@@ -190,19 +208,22 @@
 	});
 	
 	$('#btn-write').click(() => {
-		let paramCode 	= `[[${param.code}]]`;
-		let code 		= paramCode.replace(/[\[\]"]/g, '');
-		let $title 		= $('#write-title').val();
-		let contents 	= editor.getData();
-		let $genre      = ($('#genre').val() || null);
-		let $secYn		= $('#sec-yn').is(':checked') ? 'Y' : 'N';
-		let formData 	= new FormData();
+		let paramCode  = `[[${param.code}]]`;
+		let code 	   = paramCode.replace(/[\[\]"]/g, '');
+		let $title 	   = $('#write-title').val();
+		let contents   = editor.getData();
+		let $genre     = ($('#genre').val() || null);
+		let $star      = ($('#star').val() || null);
+		let $secYn	   = $('#sec-yn').is(':checked') ? 'Y' : 'N';
+		let formData   = new FormData();
+		let $thumbnail = $('#thumbnail')[0].files[0];
 		
 		formData.append("icode"      , code);
 		formData.append("title"      , $title);
 		formData.append("contents"   , contents);
 		formData.append("youtube_id" , youtube_id);
 		formData.append("genre"	     , $genre);
+		formData.append("star"	     , $star);
 		formData.append("sec_yn"	 , $secYn);
 		
 		if($code == 'B004') {
@@ -225,7 +246,19 @@
 			}
 		}
 		
-		formData.append("thumbnail" , null);
+		if($code == 'B008') {
+			if(!$star) {
+				alert('별점 등록은 필수입니다.');
+				return;
+			}
+			
+			if(!$thumbnail) {
+				alert('썸네일 등록은 필수입니다.');
+				return;
+			} else {
+				formData.append("thumbnail", $thumbnail);
+			}
+		}
 		
 		$.ajax({
 			type		: 'POST',

@@ -34,7 +34,7 @@ public class BoardService {
 			String code = (String) requestMap.get("code");
 
 			if (thumbnail != null) {
-				uploadPath = fileUploadUtil.fileUpload(thumbnail, "/thumbnail/");
+				uploadPath = fileUploadUtil.fileUpload(thumbnail, "/img/");
 				requestMap.put("name", uploadPath);
 			}
 

@@ -80,7 +80,7 @@ public class BoardController {
 		String title = CategoryCode.getTitle(code);
 		String url = "board/list";
 		String role = myUserDetailsService.getRole();
-		int amount = Const.AMOUNT;
+		int amount = code.equals(CategoryCode.REVIEW.getCode()) ? 5 : Const.AMOUNT;
 		int offset = getOffset(page, amount);
 		int boardGetCnt = 0;
 
@@ -109,6 +109,21 @@ public class BoardController {
 			boardGetCnt = service.boardGetCnt(requestMap);
 		}
 
+		if (code.equals(CategoryCode.REVIEW.code)) {
+			url = "board/list2";
+			
+			for(int i = 0; i < boardGet.size(); i++) {
+				Map<String, Object> post = boardGet.get(i);
+				
+				String contents = (String) post.get("CONTENTS");
+				
+				if(contents != null) {
+					String removeHtmlTagContents = contents.replaceAll("<[^>]*>", "");
+					post.put("CONTENTS", removeHtmlTagContents);
+				}
+			}
+		}
+		
 		Pagination pagination = new Pagination(page, amount, boardGetCnt);
 		int idx = boardGet.size();
 

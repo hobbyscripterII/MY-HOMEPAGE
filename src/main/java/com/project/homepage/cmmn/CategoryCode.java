@@ -11,6 +11,7 @@ public enum CategoryCode {
 	DAILY     ("B005", "DAILY"),
 	DESIGN    ("B006", "DESIGN"),
 	DATA      ("B007", "DATA"),
+	REVIEW    ("B008", "REVIEW"),
 	ABOUT_ME  ("D001", "ABOUT ME"),
 	PORTFOLIO ("D002", "PORTFOLIO");
 	

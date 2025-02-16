@@ -14,11 +14,9 @@
 					</tr>
 					
 					<!-- 썸네일 표출(미사용으로 주석 처리) -->
-					<!--
 					<tr class="tr-thumbnail tr-remove">
 						<td colspan="2"><img id="thumbnail-preview" alt="썸네일"><p><strong>썸네일</strong></p></td>
 					</tr>
-					-->
 					
 					<!-- 음악 게시판일 경우 유튜브 동영상 표출 -->
 					<tr class="tr-youtube tr-remove">
@@ -61,8 +59,8 @@
 <script th:inline="javascript">
 	$(document).ready(() => {
 		let code              		  = [[${DATA.icode}]];
-		let contents          		  = [[${DATA.CONTENTS}]];
-		let name 			  		  = [[${DATA.name}]] || '';
+		let contents          		  = [[${DATA.contents}]];
+		let name 			  		  = [[${DATA.thumbnail}]] || '';
 		let $thumbnailPreview 		  = $('#thumbnail-preview');
 		let $main                     = $('main');
 		let $articleBoardMainContents = $('#article-board-main.contents');

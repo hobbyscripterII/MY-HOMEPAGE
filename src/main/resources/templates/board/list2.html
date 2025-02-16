@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/default-layout}" layout:fragment="section">
+<style>
+	.board-table img {max-width: 90%;}
+	.board-table tbody td.preview {border-top: 0px; text-align: left;} 
+	.tr-alert {font-weight: bold;}
+	.star {font-size: 20px; font-weight: bold; color: #ffea00;  text-shadow: 1px 1px 2px black;}
+</style>
+<section>
+	<div id="board-search">
+		<div class="container">
+			<!--
+			<div class="search-window" th:if="${SEARCH_DATA.code != 'B002'}">
+    			<form id="search-form">
+    				<input type="hidden" id="code" name="code" class="form-control">
+					<div class="search-wrap">
+						<label for="search" class="blind"></label>
+						<input id="search" name="search" placeholder="검색어를 입력해주세요.">
+						<button type="submit" class="btn btn-dark" id="search-btn">검색</button>
+					</div>
+				</form>
+			</div>
+			-->
+		</div>
+	</div>
+
+	<div id="board-list">
+		<div class="container p-0-5">
+			<table class="board-table">
+				<thead>
+					<tr>
+						<th scope="col" class="th-num mobile-hide">목록</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="data : ${DATA}">
+						<tr>
+							<td class="center" style="padding: 12px;">
+								<img th:src="@{${data.TUMBNAIL}}" alt="썸네일">
+								<div style="display: block; text-align: left;">
+									<p>
+										<!--
+											<span th:text="${#dates.format(data.CREATED_AT, 'yyyy-MM-dd')}" style="color: gray; font-size: 11px;"></span>
+										-->
+										<span th:text="${data.TITLE}" style="font-size: 20px; font-weight: bold;">제목</span>
+										<span th:switch="${data.STAR}">
+										        <span class="star" th:case="1">★☆☆☆☆</span>
+										        <span class="star" th:case="2">★★☆☆☆</span>
+										        <span class="star" th:case="3">★★★☆☆</span>
+										        <span class="star" th:case="4">★★★★☆</span>
+										        <span class="star" th:case="5">★★★★★</span>
+									    </span>
+									</p>
+									<p id="review-contents" th:text="'한줄평 : ' + ${data.CONTENTS}"></p>
+								</div>
+							</td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div th:replace="~{fragments/pagination :: pagination}"></div>
+	
+	<div class="btn-group">
+		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<button type="submit" class="btn btn-dark" th:onclick="|location.href='@{/board/write(code = ${param.code})}'|">작성</button>
+		</th:block>
+	</div>
+</section>
+
+<script th:inline="javascript">
+$('#search-btn').click(function(e) {
+	let $search = $('#search');
+	let $keyword = $search.val().trim();
+	let $searchForm = $('#search-form');
+	
+	if($keyword === '') {
+		alert('검색어를 입력해주세요.');
+		$search.focus();
+		e.preventDefault();
+	} else {
+		$searchForm.attr('action', '/board/list');
+		$searchForm.attr('method', 'get');
+		$searchForm.submit();
+	}
+});
+
+$(document).ready(function(e) {
+	let $main = $('main');
+	let search_data = [[${SEARCH_DATA}]];
+	let code = [[${param.code}]];
+	let search = search_data.search || '';
+	let today = new Date();
+	let threeDaysAgo = new Date();
+	
+	threeDaysAgo.setDate(today.getDate() - 3);
+	
+	$('#code').val(code);
+	$('#search').val(search);
+	
+	setInterval(function() {
+		$('.new-icon').toggleClass('new-icon-dynamic');
+	}, 800);
+	
+	$('.page-item').each(function(e) {
+		let queryPage = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
+		let currentPage = $(this).text().trim();									// 사용자가 선택한 페이지
+	});
+});
+</script>
+</html>
