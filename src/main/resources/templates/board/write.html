@@ -246,18 +246,19 @@
 			}
 		}
 		
-		if($code == 'B008') {
-			if(!$star) {
-				alert('별점 등록은 필수입니다.');
-				return;
-			}
-			
-			if(!$thumbnail) {
-				alert('썸네일 등록은 필수입니다.');
-				return;
-			} else {
-				formData.append("thumbnail", $thumbnail);
-			}
+		if (code == 'B008') {
+		    if (!$star) {
+		        alert('별점 등록은 필수입니다.');
+		        return;
+		    }
+		    if (!$thumbnail) {
+		        alert('썸네일 등록은 필수입니다.');
+		        return;
+		    }
+		}
+
+		if ($thumbnail) {
+		    formData.append("thumbnail", $thumbnail);
 		}
 		
 		$.ajax({
