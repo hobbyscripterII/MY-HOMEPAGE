@@ -49,11 +49,11 @@
 	
 	<div class="btn-group">
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-			<button type="button" class="btn btn-dark" id="btn-delete">삭제</button>
-			<button type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/update/{iboard}(iboard = ${DATA.iboard})}'|">수정</button>
+			<button type="button" class="btn btn-glass" id="btn-delete">삭제</button>
+			<button type="button" class="btn btn-glass" th:onclick="|location.href='@{/board/update/{iboard}(iboard = ${DATA.iboard})}'|">수정</button>
 		</th:block>
 		
-		<button th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}" type="button" class="btn btn-dark" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
+		<button th:if="${DATA.icode != 'D001' && DATA.icode != 'D002'}" type="button" class="btn btn-glass" th:onclick="|location.href='@{/board/list(code = ${DATA.icode})}'|">목록</button>
 	</div>
 </section>
 <script th:inline="javascript">
