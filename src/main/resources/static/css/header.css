@@ -16,7 +16,7 @@ header nav {
   height: 60px;
   line-height: 60px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
 }
 
 header nav a {

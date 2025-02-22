@@ -69,7 +69,7 @@ figcaption {color: gray; font-size: 12px; margin-bottom: 5px;}
 .p-0-5 {padding: 0 5px;}
 .m-0-5 {margin: 0 5px;}
 .m-at {margin: auto;}
-.new-icon {-webkit-user-select: none; width: 30px; height: 20px; line-height: 20px; background-color: red; color: #FFF; font-weight: bold; font-size: 9px; margin-left: 3px; padding-left: 4px; display: none;}
+.new-icon {-webkit-user-select: none; width: 30px; height: 20px; line-height: 20px; background-color: red; color: #FFF; font-weight: bold; font-size: 9px; margin-left: 3px; text-align: center; padding-right: 1px; display: none;}
 .new-icon-dynamic {background-color: #FFF; color: red;}
 #genre {display: none; appearance: none;}
 #sec-yn {width: auto !important; height: auto !important;}

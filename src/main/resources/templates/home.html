@@ -3,6 +3,7 @@
 <style>
 	#daysElapsed {font-size: 20px;}
 	ul {list-style: none;}
+	.new-icon {display: inline-block; width: 25px; height: 15px; line-height: 15px; font-size: 8px; text-align: center;}
 </style>
 <section>
 	<div class="container">
@@ -21,8 +22,12 @@
 <script>
 $(document).ready(function() {
     let startDate = new Date('2024-09-24T00:00:00');
-	let $guideBar = $('.guide-bar');
-	$guideBar.css('display', 'none');
+	// let $guideBar = $('.guide-bar');
+	// $guideBar.css('display', 'none');
+	
+	setInterval(function() {
+		$('.new-icon').toggleClass('new-icon-dynamic');
+	}, 800);
 	
     function updateDays() {
 	    let currentDate = new Date();
@@ -75,8 +80,23 @@ function getRss() {
 			
 			result.forEach((item, idx) => {
 				let date = formatDate2(item.CREATED_AT);
+				let itemDate = new Date(item.CREATED_AT);
+				let now = new Date();
 				
-				html += `<li>[${date}] <a href='${item.LINK}' target='_blank'>${item.TITLE}</a></li>`;
+				now.setHours(0, 0, 0, 0);
+				
+				let threeDaysAgo = new Date(now);
+				
+				threeDaysAgo.setDate(now.getDate() - 3);
+				
+				let isNew = itemDate >= threeDaysAgo;
+				
+				if(isNew) {
+					html += `<li>[${date}] <a href='${item.LINK}' target='_blank'>${item.TITLE}</a><span class="new-icon">NEW</span></li>`;
+				} else {
+					html += `<li>[${date}] <a href='${item.LINK}' target='_blank'>${item.TITLE}</a></li>`;
+				}
+				
 			});
 			
 			html += '</ul>';
