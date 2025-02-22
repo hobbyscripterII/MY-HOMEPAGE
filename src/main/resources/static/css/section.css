@@ -86,7 +86,7 @@ tr:nth-of-type(odd) {background: #eee;}
 #review-contents {padding: 5px 0px;}
 .wrapper {max-width: 800px; margin: 0 auto;}
 .home-contents-wrap {background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); width: 500px; min-height: 50vh; margin: 40px auto; padding: 10px;}
-.home-contents-wrap ul li, .home-contents-wrap ul li a {margin-bottom: 1px; color: #333; font-size: 13px; font-weight: bold; display: flex; align-items: center;}
+.home-contents-wrap ul li, .home-contents-wrap ul li a {margin-bottom: 1px; color: #333; font-size: 13px; font-weight: bold; display: inline-block; width: 100%; align-items: center;}
 .home-contents-wrap h1 {color: #333;}
 
 @media (max-width: 800px) {
