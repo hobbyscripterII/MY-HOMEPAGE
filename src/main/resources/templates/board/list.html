@@ -144,8 +144,8 @@ $(document).ready(function(e) {
 	$('#search').val(search);
 	
 	$('.page-item').each(function(e) {
-		let queryPage = [[${param.page}]] == null ? '1' : [[${param.page}]][0]	// 쿼리 스트링에 담겨있는 페이지
-		let currentPage = $(this).text().trim();									// 사용자가 선택한 페이지
+		let queryPage = [[${param.page}]] == null ? '1' : [[${param.page}]][0];
+		let currentPage = $(this).text().trim();
 	});
 });
 </script>
