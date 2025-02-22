@@ -13,7 +13,7 @@
 					<div class="search-wrap">
 						<label for="search" class="blind"></label>
 						<input id="search" name="search" placeholder="검색어를 입력해주세요.">
-						<button type="submit" class="btn btn-dark" id="search-btn">검색</button>
+						<button type="submit" class="btn btn-glass" id="search-btn">검색</button>
 					</div>
 				</form>
 			</div>
@@ -110,7 +110,7 @@
 	
 	<div class="btn-group" th:if="${SEARCH_DATA.code != 'B002'}">
 		<th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
-			<button type="submit" class="btn btn-dark" th:onclick="|location.href='@{/board/write(code = ${param.code})}'|">작성</button>
+			<button type="submit" class="btn btn-glass" th:onclick="|location.href='@{/board/write(code = ${param.code})}'|">작성</button>
 		</th:block>
 	</div>
 </section>

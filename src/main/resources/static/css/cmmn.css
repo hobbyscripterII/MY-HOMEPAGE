@@ -2,10 +2,10 @@
 @import url('https://fonts.cdnfonts.com/css/helvetica-neue-5');
 * {margin: 0; box-sizing: border-box; font-family: 'Helvetica Neue';}
 main {position: relative;}
-body {height: 100%; padding-top: 100px;}
+body {background: url('/img/img-wood.jpg') no-repeat center center fixed; background-size: cover; height: 100%; padding-top: 100px;}
 a {text-decoration: none;}
 p, span, tr, td {font-size: 13px;}
 h4 {padding: 25px; display: inline;}
 iframe {display: none;} /* 음악 추천 게시글에서 jQuery로 표출(기본은 미표출) */
 img {-webkit-user-select: none;}
-::selection {background-color: rgba(52, 152, 219, 0.9); color: #FFF;}
+::selection {background-color: #03462e; color: #FFF;}

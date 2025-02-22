@@ -210,6 +210,9 @@
 	$('#btn-write').click(() => {
 		let paramCode  = `[[${param.code}]]`;
 		let code 	   = paramCode.replace(/[\[\]"]/g, '');
+		
+		console.log('code = ', code);
+		
 		let $title 	   = $('#write-title').val();
 		let contents   = editor.getData();
 		let $genre     = ($('#genre').val() || null);

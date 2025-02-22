@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 @media ( max-width : 319px) {
 	#editor {padding: 0;}
 	#movie-wrap {padding: 0;}
@@ -6,9 +7,11 @@
 	.btn {--bs-btn-padding-x: 1rem; --bs-btn-padding-y: 0.5rem;}
 	.table>:not(caption)>*>* {padding: 0;}
 }
+
 @media screen and (max-width: 500px) {
 	h4 {padding-left: 2%; padding-right: 2%;}
 }
+
 @media (max-width : 767px) {
 	html {background-position-x: -188vw;}
 	iframe {width: 100%; height: 200px;}
@@ -44,6 +47,7 @@
 	.pf-img {margin-bottom: 10px;}
 	#review-contents {padding: 5px 2px; font-size: 12px;}
 }
+
 @media ( max-width : 1120px) {
 	.container, .btn-group {width: 100%;}
 }
