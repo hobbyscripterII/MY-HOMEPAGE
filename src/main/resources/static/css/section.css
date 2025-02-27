@@ -8,7 +8,7 @@ blockquote p {padding: 4px 0 4px 5px;}
 iframe {width: 700px; height: 400px;}
 figcaption {color: gray; font-size: 12px; margin-bottom: 5px;}
 th {color: #333;}
-td, th {border: 1px solid #dbdbdb; padding: 10px 20px; font-size: 12px; text-align: center; color: #333;}
+td, th {border: 1px solid #333; padding: 10px 20px; font-size: 12px; text-align: center; color: #333;}
 td a {color: #333;}
 /*
 tr:nth-of-type(odd) {background: #eee;}
@@ -24,7 +24,7 @@ tr:nth-of-type(odd) {background: #eee;}
 #board-search .search-window .search-wrap input, #board-search .search-window .search-wrap select {box-sizing: border-box; height: 44px; width: 100%; border: 1px solid #ccc; text-align: center; font-size: 12px;}
 #board-search .search-window .search-wrap input:focus, #board-search .search-window .search-wrap select:focus {border-color: #FFF; outline: 0; border-width: 1px;}
 #board-search .search-window .search-wrap .btn {position: absolute; right: 0; top: 0; bottom: 0; width: 108px; padding: 0; height: 44px; font-size: 12px;}
-.home-wrap {text-align: center;}
+.home-wrap {margin: 40px auto; padding: 10px; text-align: center; width: 500px; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px);}
 .home-title, .home-contents {margin: 20px 0; padding-top: 0; font-size: 1.5rem; font-family: 'Helvetica Neue';}
 .home-title.sub {font-size: 1.1rem; font-weight: bold; color: #FFF;}
 .home-img {margin-top: 10vh;}
@@ -33,7 +33,7 @@ tr:nth-of-type(odd) {background: #eee;}
 .page-title h3 {-webkit-user-select: none; font-size: 3rem; color: #333; font-weight: 800; text-align: center;}
 .page-item {background-color: #333; border-radius: 50%; padding: 2px 1px; margin-right: 2px;}
 .page-link {margin: 0 5px 0 5px; font-weight: bold; color: #FFF;}
-.board-table {width: 100%; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);}
+.board-table {width: 100%; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px);}
 .board-table a {display: flex; align-items: center; line-height: 1.4; word-break: break-all; vertical-align: middle; color: #333;}
 .board-table a:hover {text-decoration: underline;}
 .board-table th {text-align: center;}
@@ -44,7 +44,7 @@ tr:nth-of-type(odd) {background: #eee;}
 .btn {display: inline-block; padding: 0 30px; font-weight: 400; background: transparent; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border: 1px solid transparent; text-transform: uppercase; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s;}
 .btn-dark {background: #555; color: #fff;}
 .btn-dark:hover, .btn-dark:focus {background: #373737; border-color: #373737; color: #fff;}
-.btn-glass {background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); color: #333; border: 1px solid #ccc;}
+.btn-glass {background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); color: #333; border: 1px solid #ccc;}
 .btn-group {text-align: right; margin-top: 20px; margin-bottom: 20px; padding: 0 5px;}
 .btn-group .btn {width: 108px; padding: 0; height: 44px; font-size: 12px;}
 .container, .btn-group {width: 1000px; margin: 0 auto;}
@@ -85,12 +85,12 @@ tr:nth-of-type(odd) {background: #eee;}
 .star {font-size: 20px; font-weight: bold; color: #ffea00;  text-shadow: 1px 1px 2px black;}
 #review-contents {padding: 5px 0px;}
 .wrapper {max-width: 800px; margin: 0 auto;}
-.home-contents-wrap {background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); width: 500px; min-height: 50vh; margin: 40px auto; padding: 10px;}
+.home-contents-wrap {background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); width: 500px; min-height: 50vh; margin: 40px auto; padding: 10px;}
 .home-contents-wrap ul li, .home-contents-wrap ul li a {margin-bottom: 1px; color: #333; font-size: 13px; font-weight: bold; display: inline-block; width: 100%; align-items: center;}
 .home-contents-wrap h1 {color: #333;}
 
 @media (max-width: 800px) {
   .wrapper {margin: 0 15px;}
-  .home-contents-wrap {width: 90vw; padding: 5px;}
+  .home-contents-wrap, .home-wrap {width: 90vw; padding: 20px 5px;}
   .home-contents-wrap ul li, .home-contents-wrap ul li a {font-size: 11px;}
 }
