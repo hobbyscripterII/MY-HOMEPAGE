@@ -179,7 +179,7 @@ public class BoardController {
 
 		requestMap.put("role", role);
 
-		if ((code.equals(CategoryCode.DAILY.getCode()) || secYn.equals("Y")) && role.equals(Const.ROLE_ANONYMOUS)) {
+		if (secYn.equals("Y") && role.equals(Const.ROLE_ANONYMOUS)) {
 			throw new AccessDeniedException(null);
 		}
 
