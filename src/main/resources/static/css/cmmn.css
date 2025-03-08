@@ -9,7 +9,6 @@ main {
 	position:relative;
 }
 body {
-	background-image:radial-gradient(73% 147%,#EADFDF 59%,#ECE2DF 100%),radial-gradient(91% 146%,rgba(255,255,255,0.50) 47%,rgba(0,0,0,0.50) 100%);
 	background-blend-mode:screen;
 	height:100%;
 	padding-top:100px;
@@ -30,8 +29,4 @@ iframe {
 /* 음악 추천 게시글에서 jQuery로 표출(기본은 미표출) */
 img {
 	-webkit-user-select:none;
-}
-::selection {
-	background-color:#ff4573;
-	color: #FFF;
 }

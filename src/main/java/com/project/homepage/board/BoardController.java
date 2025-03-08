@@ -179,8 +179,8 @@ public class BoardController {
 
 		requestMap.put("role", role);
 
-		if (secYn.equals("Y") && role.equals(Const.ROLE_ANONYMOUS)) {
-			response.sendError(HttpServletResponse.SC_FORBIDDEN, "접근이 거부되었습니다.");
+		if ((code.equals(CategoryCode.DAILY.getCode()) || secYn.equals("Y")) && role.equals(Const.ROLE_ANONYMOUS)) {
+			throw new AccessDeniedException(null);
 		}
 
 		List<Map<String, Object>> prevPost = service.prevPostGet(requestMap);
