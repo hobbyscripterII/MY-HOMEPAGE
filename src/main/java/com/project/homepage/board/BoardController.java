@@ -93,9 +93,9 @@ public class BoardController {
 			throw new NotFoundException();
 		}
 		
-		if (code.equals(CategoryCode.DAILY.code) && role.equals(Const.ROLE_ANONYMOUS)) {
-			throw new AccessDeniedException(null);
-		}
+//		if (code.equals(CategoryCode.DAILY.code) && role.equals(Const.ROLE_ANONYMOUS)) {
+//			throw new AccessDeniedException(null);
+//		}
 
 		if (code.equals(CategoryCode.STUDY.code)) {
 			Map<String, Object> rssGet = rssParseUtil.rssGet(page, amount);
