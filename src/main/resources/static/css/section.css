@@ -120,8 +120,9 @@ td a {
 .home-img {
 	margin-top:10vh;
 }
-.home-img,#profile-img {
+.home-img, #profile-img {
 	max-width:330px;
+	margin-bottom: 50px;
 }
 .page-title {
 	margin:40px 0;

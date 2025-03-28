@@ -1,6 +1,6 @@
 html {-webkit-user-select: none;}
-#form {overflow: hidden; background-color: white; padding: 25px 20px 35px 40px; position: absolute; top: 45%; left: 50%; width: 400px; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); -webkit-transition: -webkit-transform 300ms, box-shadow 300ms; -moz-transition: -moz-transform 300ms, box-shadow 300ms; transition: transform 300ms, box-shadow 300ms;}
+#form {overflow: hidden; background-color: white; padding: 25px 20px 35px 40px; position: absolute; top: 65%; left: 50%; width: 400px; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); -webkit-transition: -webkit-transform 300ms, box-shadow 300ms; -moz-transition: -moz-transform 300ms, box-shadow 300ms; transition: transform 300ms, box-shadow 300ms;}
 #form > input {display: block; font-size: 16px; background: white; width: 100%; border: 2px solid gray; padding: 10px 10px; margin: 15px -10px;}
 #form > button {cursor: pointer; color: #fff; font-size: 16px; text-transform: uppercase; width: 100%; border: 0; padding: 10px 0; margin-top: 10px; margin-left: -10px; background-color: lightgray; -webkit-transition: background-color 300ms; -moz-transition: background-color 300ms; transition: background-color 300ms;}
 #form > button:hover {background-color: gray;}
-@media (max-width : 767px) {#form {width: 95%; top: 45%;}}
+@media (max-width : 767px) {#form {width: 95%; top: 65%;}}
