@@ -3,8 +3,8 @@ header {
     z-index: 10;
 }
 .header-banner {
-    background-color: #22403A;
-    background-image: url('/image/img-header-ver-2-night.jpg');
+    background-color: #fff;
+    background-image: url('/image/img-header-ver-2-rainbow.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,8 +12,8 @@ header {
     height: 300px;
 }
 header h1 a {
-    background-color: #22403A;
-    color: #fff;
+    background-color: #fff;
+    color: #333;
     padding: 0.5rem;
     position: absolute;
     top: 2rem; 
@@ -28,12 +28,13 @@ header h1 a {
 nav {
     width: 100%;
     height: 60px;
-    background: #22403A;
+    background: #fff;
     position: absolute;
     z-index: 10;
+	border-bottom: 1px solid #dbdbdb;
 }
 nav div {
-    color: #fff;
+    color: #333;
     font-size: 2rem;
     line-height: 60px;
     position: absolute;
@@ -42,7 +43,7 @@ nav div {
     visibility: hidden;
 }
 .site-title a {
-	color: #fff;
+	color: #333;
 	font-weight: bold;
 }
 .visible-title {
@@ -62,7 +63,7 @@ nav ul li {
 }
 nav ul li a {
     text-decoration: none; 
-    color: #fff;
+    color: #333;
 	font-weight: bold;
 }
 @media only screen and (max-width: 768px) {
@@ -92,5 +93,8 @@ nav ul li a {
 
 	nav div {
 		display: none;
+	}
+	.header-banner {
+		background-position-x: 7%;
 	}
 }
