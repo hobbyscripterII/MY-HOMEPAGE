@@ -57,6 +57,7 @@
 					</th:block>
 					
 					<th:block th:if="${SEARCH_DATA.code == 'B002'}">
+						<!--
 						<tr class="tr-alert">
 							<td class="mobile-hide center">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
@@ -66,6 +67,7 @@
 							<td class="td-title" style="padding-left: 10px;">Tistory RSS 연동 게시판입니다.</td>
 							<td class="mobile-hide" ></td>
 						<tr>
+						-->
 					
 						<tr th:if="${RESULT == 1}" th:each="data : ${DATA}">
 							<td class="mobile-hide center" th:text="${data.ROWNUMBER}">번호</td>

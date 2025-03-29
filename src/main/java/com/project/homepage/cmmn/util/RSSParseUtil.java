@@ -66,10 +66,11 @@ public class RSSParseUtil {
 				Element element = (Element) node;
 
 				// 카테고리 제거 표출용
-				String title_ = element.getElementsByTagName("title").item(0).getTextContent();
-				String title = delCategory(title_);
-				String link = element.getElementsByTagName("link").item(0).getTextContent();
-				String date = element.getElementsByTagName("pubDate").item(0).getTextContent();
+				String title_ 			= element.getElementsByTagName("title").item(0).getTextContent();
+				// String title  			= delCategory(title_);
+				String title  			= title_;
+				String link   			= element.getElementsByTagName("link").item(0).getTextContent();
+				String date 			= element.getElementsByTagName("pubDate").item(0).getTextContent();
 				Map<String, Object> map = new HashMap<String, Object>();
 
 				map.put("TITLE", title);
