@@ -4,7 +4,7 @@ header {
 }
 .header-banner {
     background-color: #fff;
-    background-image: url('/image/img-header-ver-2-rainbow.jpg');
+    background-image: url('/image/img-header.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -53,7 +53,7 @@ nav ul {
     list-style-type: none;
     margin: 0 2% auto 0;
     padding-left: 0;
-    text-align: right;
+    /* text-align: right; */
     max-width: 100%;
 }
 nav ul li { 
@@ -95,6 +95,6 @@ nav ul li a {
 		display: none;
 	}
 	.header-banner {
-		background-position-x: 7%;
+		background-position-x: 49%;
 	}
 }

@@ -9,18 +9,18 @@
 <section>
 	<div class="container">
 		<div class="home-wrap">
-			<img src="https://item.kakaocdn.net/do/925a904f91c161c5dae310d2542553a88f324a0b9c48f77dbce3a43bd11ce785" id="profile-img" alt="프로필 사진">
+			<!-- <img src="https://item.kakaocdn.net/do/925a904f91c161c5dae310d2542553a88f324a0b9c48f77dbce3a43bd11ce785" id="profile-img" alt="프로필 사진"> -->
 			
-			<h3><span id="daysElapsed"></span> 일 째 돌아가는 중</h3>
+			<p>라즈베리파이에서 <span id="daysElapsed"></span>일 째 돌아가는 중</p>
+			<!--
 			<p>배포 일자 : <span id="startDate"></span></p>
 			<p>현재 일자 : <span id="currentDate"></span></p>
+			-->
 		</div>
 		
-		<!--
 		<div class="home-contents-wrap">
-			<h1>📕 LATEST BLOG POSTS</h1>
+			<h1>✍🏻 STUDY LOG</h1>
 		</div>
-		-->
 	</div>
 </section>
 <script>
@@ -34,9 +34,9 @@ $(document).ready(function() {
 	}, 800);
 	
     function updateDays() {
-	    let currentDate = new Date();
+	    let currentDate    = new Date();
         let timeDifference = currentDate - startDate;
-        let daysElapsed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        let daysElapsed    = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         
         $('#daysElapsed').html(daysElapsed);
     }
@@ -55,10 +55,10 @@ $(document).ready(function() {
 });
 
 function formatDate(date) {
-    let year = date.getFullYear();
-    let month = (date.getMonth() + 1).toString().padStart(2, '0');
-    let day = date.getDate().toString().padStart(2, '0');
-    let hours = date.getHours().toString().padStart(2, '0');
+    let year    = date.getFullYear();
+    let month   = (date.getMonth() + 1).toString().padStart(2, '0');
+    let day     = date.getDate().toString().padStart(2, '0');
+    let hours   = date.getHours().toString().padStart(2, '0');
     let minutes = date.getMinutes().toString().padStart(2, '0');
     let seconds = date.getSeconds().toString().padStart(2, '0');
     
@@ -73,19 +73,19 @@ function formatDate2(date) {
 
 function getRss() {
 	$.ajax({
-		type		: 'GET',
-		url			: '/board/rss',
-		contentType	: 'application/x-www-form-urlencoded',
-		success		: (data) => {
+		type: 'GET',
+		url: '/board/rss',
+		contentType: 'application/x-www-form-urlencoded',
+		success: (data) => {
 			let result = data.RSS;
-			let html = '';
+			let html   = '';
 			
 			html += '<ul>';
 			
 			result.forEach((item, idx) => {
-				let date = formatDate2(item.CREATED_AT);
+				let date     = formatDate2(item.CREATED_AT);
 				let itemDate = new Date(item.CREATED_AT);
-				let now = new Date();
+				let now      = new Date();
 				
 				now.setHours(0, 0, 0, 0);
 				
@@ -100,7 +100,6 @@ function getRss() {
 				} else {
 					html += `<li><a href='${item.LINK}' target='_blank'>[${date}] ${item.TITLE}</a></li>`;
 				}
-				
 			});
 			
 			html += '</ul>';

@@ -388,7 +388,7 @@ td a {
 	margin:0 auto;
 }
 .home-contents-wrap {
-	width:500px;
+	width:600px;
 	min-height:50vh;
 	margin:40px auto;
 	padding:10px;
@@ -397,13 +397,9 @@ td a {
 	margin-bottom:1px;
 	color:#333;
 	font-size:13px;
-	font-weight:bold;
 	display:inline-block;
 	width:100%;
 	align-items:center;
-	white-space:nowrap;
-	overflow:hidden;
-	text-overflow:ellipsis;
 }
 .home-contents-wrap h1 {
 	color:#333;
